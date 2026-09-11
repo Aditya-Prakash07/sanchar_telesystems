@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-paper text-ink font-sans antialiased;
+    }
+
+    h1, h2, h3, h4 {
+        @apply font-display;
+    }
+
+    /* Respect reduced-motion preferences everywhere, per the frontend design floor. */
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.001ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.001ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+
+    /* Visible keyboard focus, not the browser default outline-none anti-pattern. */
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+        outline: 2px solid theme('colors.beacon.DEFAULT');
+        outline-offset: 2px;
+    }
+}
+
+@layer components {
+    .container-content {
+        @apply mx-auto max-w-content px-6 lg:px-8;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center gap-2 bg-beacon text-navy font-semibold px-6 py-3
+               rounded-sm hover:bg-beacon-dim transition-colors duration-150;
+    }
+
+    .btn-outline-dark {
+        @apply inline-flex items-center gap-2 border border-navy-border text-paper font-semibold
+               px-6 py-3 rounded-sm hover:border-beacon hover:text-beacon transition-colors duration-150;
+    }
+
+    .panel {
+        @apply border border-steel/20 bg-white;
+    }
+
+    .input {
+        @apply w-full border border-steel/30 bg-white px-4 py-3 text-sm focus:border-beacon outline-none;
+    }
+}
