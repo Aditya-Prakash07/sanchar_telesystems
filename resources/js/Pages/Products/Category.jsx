@@ -65,16 +65,22 @@ export default function ProductsCategory({ category, subcategory, items = [], se
                             </Link>
                         </div>
                     ) : (
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div className={`grid gap-8 ${
+                            items.length === 1 
+                                ? 'grid-cols-1 max-w-md' 
+                                : items.length === 2 
+                                ? 'grid-cols-1 sm:grid-cols-2 max-w-3xl' 
+                                : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+                        }`}>
                             {items.map((item) => (
                                 <Link
                                     key={item.id}
                                     href={`/products/${category.slug}/${subcategory.slug}/${item.slug}`}
-                                    className="panel-hover flex flex-col justify-between overflow-hidden group"
+                                    className="card-symmetric group"
                                 >
-                                    <div>
+                                    <div className="flex-1 flex flex-col">
                                         {/* Image Pedestal */}
-                                        <div className="aspect-[4/3] bg-slate-100 dark:bg-navy-dark overflow-hidden relative flex items-center justify-center p-6 border-b border-slate-100 dark:border-navy-border/40">
+                                        <div className="aspect-[4/3] w-full bg-slate-100 dark:bg-navy-dark overflow-hidden relative flex items-center justify-center p-6 border-b border-slate-100 dark:border-navy-border/40">
                                             <img
                                                 src={`/storage/${item.cover_image_path}`}
                                                 alt={item.name}
@@ -93,20 +99,18 @@ export default function ProductsCategory({ category, subcategory, items = [], se
                                             )}
                                         </div>
 
-                                        <div className="p-6 space-y-2">
-                                            <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors line-clamp-1">
+                                        <div className="p-6 space-y-2 flex-1 flex flex-col">
+                                            <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors min-h-[3.25rem] line-clamp-2 leading-snug">
                                                 {item.name}
                                             </h3>
 
-                                            {item.short_description && (
-                                                <p className="text-xs sm:text-sm text-slate-600 dark:text-steel line-clamp-2 leading-relaxed">
-                                                    {item.short_description}
-                                                </p>
-                                            )}
+                                            <p className="text-xs sm:text-sm text-slate-600 dark:text-steel min-h-[2.5rem] line-clamp-2 leading-relaxed flex-1">
+                                                {item.short_description || 'High-reliability wireless communication equipment engineered for critical operations.'}
+                                            </p>
                                         </div>
                                     </div>
 
-                                    <div className="p-6 pt-0 border-t border-slate-100 dark:border-navy-border/40 mt-4 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-steel">
+                                    <div className="p-6 pt-4 border-t border-slate-100 dark:border-navy-border/40 mt-auto flex items-center justify-between text-xs font-mono text-slate-500 dark:text-steel">
                                         <span className="group-hover:text-slate-900 dark:group-hover:text-paper font-medium">Technical Specifications</span>
                                         <span className="text-amber-500 dark:text-beacon font-bold">&rarr;</span>
                                     </div>

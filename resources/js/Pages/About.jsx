@@ -1,6 +1,8 @@
 import { Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
+import AnimatedNumber from '@/Components/AnimatedNumber';
+import WhySancharDiagram from '@/Components/WhySancharDiagram';
 
 const PROCESS = [
     {
@@ -131,31 +133,42 @@ export default function About({ team = [], seo = {} }) {
 
                         <div className="lg:col-span-6">
                             <div className="grid grid-cols-2 gap-4">
-                                <div className="panel p-6 space-y-2">
-                                    <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">80K+</div>
-                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Units Sold</h3>
-                                    <p className="text-xs text-slate-500 dark:text-steel">Digital transceivers and PoC smart devices deployed nationwide.</p>
-                                </div>
-                                <div className="panel p-6 space-y-2">
-                                    <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">150+</div>
-                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Critical Projects</h3>
-                                    <p className="text-xs text-slate-500 dark:text-steel">Completed infrastructure installations for government, rail, and industry.</p>
-                                </div>
-                                <div className="panel p-6 space-y-2">
-                                    <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">500+</div>
-                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Dealer Network</h3>
-                                    <p className="text-xs text-slate-500 dark:text-steel">Authorized regional distributors ensuring nationwide sales and field support.</p>
-                                </div>
-                                <div className="panel p-6 space-y-2">
-                                    <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">30+</div>
+                                <div className="card-symmetric p-6 space-y-2">
+                                    <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">
+                                        <AnimatedNumber value={30} suffix="+" duration={1800} />
+                                    </div>
                                     <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Years Experience</h3>
-                                    <p className="text-xs text-slate-500 dark:text-steel">Pioneering two-way radio and cellular telecom technologies since the 1990s.</p>
+                                    <p className="text-xs text-slate-500 dark:text-steel">Pioneering wireless radio and cellular telecom technologies since the 1990s.</p>
+                                </div>
+                                <div className="card-symmetric p-6 space-y-2">
+                                    <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">
+                                        <AnimatedNumber value="2,500" suffix="+" duration={2200} />
+                                    </div>
+                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Delhi Police Terminals</h3>
+                                    <p className="text-xs text-slate-500 dark:text-steel">Single largest law-enforcement LTE dispatch order executed in 2022.</p>
+                                </div>
+                                <div className="card-symmetric p-6 space-y-2">
+                                    <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">
+                                        <AnimatedNumber value={150} suffix="+" duration={2000} />
+                                    </div>
+                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Critical Projects</h3>
+                                    <p className="text-xs text-slate-500 dark:text-steel">Completed infrastructure installations for Parliament, Rail, and Industry.</p>
+                                </div>
+                                <div className="card-symmetric p-6 space-y-2">
+                                    <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">
+                                        <AnimatedNumber value={10} suffix="+" duration={1600} />
+                                    </div>
+                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">OEM Principals</h3>
+                                    <p className="text-xs text-slate-500 dark:text-steel">Direct factory relationships with Kenwood, Diamond, Teltronics, and Nokia.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+
+            {/* Core Value Pillars Diagram (Why Choose Sanchar Telesystems) */}
+            <WhySancharDiagram />
 
             {/* Turnkey 6-Step Execution Methodology */}
             <section className="py-20 bg-white dark:bg-navy border-y border-slate-200 dark:border-navy-border transition-colors duration-300">
@@ -174,16 +187,18 @@ export default function About({ team = [], seo = {} }) {
 
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {PROCESS.map((p) => (
-                            <div key={p.step} className="panel-hover p-8 group">
-                                <span className="font-mono text-sm text-amber-500 dark:text-beacon font-bold block mb-2">
-                                    PHASE {p.step}
-                                </span>
-                                <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper mb-2 group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors">
-                                    {p.title}
-                                </h3>
-                                <p className="text-xs sm:text-sm text-slate-600 dark:text-steel leading-relaxed">
-                                    {p.description}
-                                </p>
+                            <div key={p.step} className="card-symmetric p-8 group">
+                                <div>
+                                    <span className="font-mono text-xs tracking-wider text-amber-500 dark:text-beacon font-bold block mb-2">
+                                        PHASE {p.step}
+                                    </span>
+                                    <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper mb-2 group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors min-h-[1.75rem]">
+                                        {p.title}
+                                    </h3>
+                                    <p className="text-xs sm:text-sm text-slate-600 dark:text-steel leading-relaxed">
+                                        {p.description}
+                                    </p>
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -193,7 +208,7 @@ export default function About({ team = [], seo = {} }) {
             {/* Executive Leadership Gallery */}
             <section className="py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
                 <div className="container-content">
-                    <div className="max-w-2xl mb-14">
+                    <div className="max-w-2xl mb-14 text-center md:text-left">
                         <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-2">
                             LEADERSHIP TEAM
                         </span>
@@ -205,7 +220,8 @@ export default function About({ team = [], seo = {} }) {
                         </p>
                     </div>
 
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {/* Symmetrically Centered Team Gallery (Row 1: 3 cards, Row 2: 2 cards centered) */}
+                    <div className="flex flex-wrap justify-center gap-8">
                         {(team.length > 0 ? team : [
                             {
                                 name: 'Mr. Suresh Gupta',
@@ -238,25 +254,36 @@ export default function About({ team = [], seo = {} }) {
                                 photo_path: 'media/team/AmitBhardwaj.jpg'
                             }
                         ]).map((member) => (
-                            <div key={member.name} className="panel p-6 flex flex-col justify-between group">
-                                <div>
-                                    <div className="aspect-[4/5] w-full overflow-hidden bg-slate-200 dark:bg-navy-dark rounded-lg mb-5 relative">
-                                        <img
-                                            src={`/storage/${member.photo_path}`}
-                                            alt={member.name}
-                                            className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
-                                            loading="lazy"
-                                        />
-                                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                                            <span className="text-xs font-mono text-beacon font-bold tracking-wide uppercase">
-                                                {member.title}
-                                            </span>
-                                        </div>
+                            <div 
+                                key={member.name} 
+                                className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm card-symmetric p-6 group flex flex-col justify-between h-[520px] sm:h-[540px]"
+                            >
+                                <div className="h-64 sm:h-72 w-full overflow-hidden bg-slate-200 dark:bg-navy-dark rounded-xl mb-5 relative shrink-0">
+                                    <img
+                                        src={`/storage/${member.photo_path}`}
+                                        alt={member.name}
+                                        className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                                        loading="lazy"
+                                    />
+                                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4">
+                                        <span className="text-xs font-mono text-amber-400 dark:text-beacon font-bold tracking-wide uppercase">
+                                            {member.title}
+                                        </span>
                                     </div>
+                                </div>
 
-                                    <h3 className="font-display font-bold text-xl text-slate-900 dark:text-paper mb-1">{member.name}</h3>
-                                    <p className="text-xs font-mono text-slate-500 dark:text-steel mb-3">{member.title}</p>
-                                    <p className="text-sm text-slate-600 dark:text-steel leading-relaxed">{member.bio}</p>
+                                <div className="flex-1 flex flex-col justify-between">
+                                    <div>
+                                        <h3 className="font-display font-bold text-xl text-slate-900 dark:text-paper mb-1 line-clamp-1">
+                                            {member.name}
+                                        </h3>
+                                        <p className="text-xs font-mono text-amber-600 dark:text-beacon/90 font-medium mb-3 line-clamp-1">
+                                            {member.title}
+                                        </p>
+                                    </div>
+                                    <p className="text-sm text-slate-600 dark:text-steel leading-relaxed line-clamp-4 overflow-hidden">
+                                        {member.bio}
+                                    </p>
                                 </div>
                             </div>
                         ))}

@@ -19,9 +19,17 @@ class CompanyStatResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\TextInput::make('label')->required()->placeholder('Units Sold'),
+            Forms\Components\TextInput::make('label')->required()->placeholder('UNITS SOLD'),
             Forms\Components\TextInput::make('value')->numeric()->required(),
             Forms\Components\TextInput::make('suffix')->default('+'),
+            Forms\Components\Select::make('icon')
+                ->options([
+                    'briefcase' => 'Briefcase (Units Sold)',
+                    'clipboard' => 'Clipboard / Projects Delivered',
+                    'network' => 'Gear Network / Dealers Network',
+                    'shield' => 'Shield (Security)',
+                ])
+                ->default('briefcase'),
             Forms\Components\TextInput::make('sort_order')->numeric()->default(0),
         ])->columns(2);
     }
@@ -32,6 +40,7 @@ class CompanyStatResource extends Resource
             Tables\Columns\TextColumn::make('label'),
             Tables\Columns\TextColumn::make('value'),
             Tables\Columns\TextColumn::make('suffix'),
+            Tables\Columns\TextColumn::make('icon'),
         ])->reorderable('sort_order')->defaultSort('sort_order')
           ->actions([Tables\Actions\EditAction::make(), Tables\Actions\DeleteAction::make()]);
     }

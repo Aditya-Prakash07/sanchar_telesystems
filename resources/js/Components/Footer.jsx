@@ -2,12 +2,9 @@ import { Link } from '@inertiajs/react';
 
 export default function Footer() {
     return (
-        <footer className="bg-slate-900 dark:bg-navy-dark text-slate-300 dark:text-paper/80 border-t border-slate-800 dark:border-navy-border relative overflow-hidden transition-colors duration-300">
-            {/* Background grid pattern */}
-            <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
-
-            {/* Certifications & Compliance Strip */}
-            <div className="border-b border-slate-800/80 dark:border-navy-border/60 bg-slate-950/60 dark:bg-navy-surface/50 relative z-10">
+        <footer className="bg-slate-950 dark:bg-[#0a0d14] text-slate-300 dark:text-steel border-t border-slate-800/80 dark:border-white/10 relative overflow-hidden transition-colors duration-300">
+            {/* Certifications & Compliance Strip (Seamless Unified Background) */}
+            <div className="border-b border-slate-800/80 dark:border-white/5 bg-transparent relative z-10">
                 <div className="container-content py-4 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-400 dark:text-paper/70">
                     <div className="flex flex-wrap items-center gap-6">
                         <span className="flex items-center gap-2 text-beacon font-semibold">
@@ -95,23 +92,33 @@ export default function Footer() {
                             <br />
                             New Delhi-110020, India
                         </p>
-                        <p className="space-y-1">
-                            <span className="block text-xs font-mono text-slate-400 dark:text-paper/60 uppercase">Direct Tel:</span>
-                            <a href="tel:+911146528894" className="hover:text-beacon text-white transition-colors font-mono">
-                                +91 (11) 4652 8894–97
-                            </a>
-                        </p>
-                        <p className="space-y-1">
-                            <span className="block text-xs font-mono text-slate-400 dark:text-paper/60 uppercase">Defense & Enterprise Inquiries:</span>
-                            <a href="mailto:info@sanchartelesystems.com" className="hover:text-beacon text-white transition-colors font-mono">
-                                info@sanchartelesystems.com
-                            </a>
-                        </p>
+                        <div className="space-y-2 pt-1 text-xs font-mono">
+                            <div>
+                                <span className="block text-slate-400 dark:text-paper/60 uppercase text-[10px]">Sales & Marketing:</span>
+                                <a href="tel:+911146528894" className="hover:text-amber-400 dark:hover:text-beacon text-white transition-colors">
+                                    +91 (11) 4652 8894–97
+                                </a>
+                                <br />
+                                <a href="mailto:info@sanchartelesystems.com" className="hover:text-amber-400 dark:hover:text-beacon text-slate-300 transition-colors">
+                                    info@sanchartelesystems.com
+                                </a>
+                            </div>
+                            <div className="pt-1">
+                                <span className="block text-slate-400 dark:text-paper/60 uppercase text-[10px]">Support & Repair Bench:</span>
+                                <a href="tel:+911146528892" className="hover:text-amber-400 dark:hover:text-beacon text-white transition-colors">
+                                    +91 (11) 4652 8892–93
+                                </a>
+                                <br />
+                                <a href="mailto:service@sanchartelesystems.com" className="hover:text-amber-400 dark:hover:text-beacon text-slate-300 transition-colors">
+                                    service@sanchartelesystems.com
+                                </a>
+                            </div>
+                        </div>
                     </address>
                 </div>
             </div>
 
-            <div className="border-t border-slate-800 dark:border-navy-border relative z-10 bg-slate-950/80 dark:bg-navy-dark">
+            <div className="border-t border-slate-800/80 dark:border-white/5 relative z-10 bg-transparent">
                 <div className="container-content py-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-500 dark:text-steel font-mono">
                     <p>© {new Date().getFullYear()} Sanchar Telesystems Limited. All rights reserved.</p>
                     <div className="flex items-center gap-6">

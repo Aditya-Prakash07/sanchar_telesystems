@@ -31,7 +31,7 @@ class HomeController extends Controller
                 ->with('subcategory.category')
                 ->get(['id', 'product_subcategory_id', 'name', 'slug', 'model_number', 'short_description', 'cover_image_path', 'specifications']),
 
-            'stats' => CompanyStat::orderBy('sort_order')->get(['label', 'value', 'suffix']),
+            'stats' => CompanyStat::orderBy('sort_order')->get(['label', 'value', 'suffix', 'icon']),
 
             'testimonials' => Testimonial::where('is_published', true)
                 ->orderBy('sort_order')

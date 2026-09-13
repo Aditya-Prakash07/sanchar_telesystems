@@ -95,14 +95,20 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
                                     </span>
                                 </div>
 
-                                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <div className={`grid gap-6 ${
+                                    cat.subcategories?.length === 1 
+                                        ? 'grid-cols-1 max-w-md' 
+                                        : cat.subcategories?.length === 2 
+                                        ? 'grid-cols-1 sm:grid-cols-2 max-w-3xl' 
+                                        : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+                                }`}>
                                     {cat.subcategories?.map((sub) => (
                                         <Link
                                             key={sub.id}
                                             href={`/products/${cat.slug}/${sub.slug}`}
-                                            className="panel-hover p-6 flex flex-col justify-between group"
+                                            className="card-symmetric p-6 group"
                                         >
-                                            <div className="space-y-3">
+                                            <div className="flex-1 flex flex-col space-y-3">
                                                 <div className="flex items-center justify-between">
                                                     <span className="badge-rf text-[10px]">
                                                         WPC CERTIFIED
@@ -112,16 +118,16 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
                                                     </span>
                                                 </div>
 
-                                                <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors">
+                                                <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors min-h-[1.75rem]">
                                                     {sub.name}
                                                 </h3>
 
-                                                <p className="text-xs sm:text-sm text-slate-600 dark:text-steel line-clamp-2 leading-relaxed">
+                                                <p className="text-xs sm:text-sm text-slate-600 dark:text-steel min-h-[2.5rem] line-clamp-2 leading-relaxed flex-1">
                                                     {sub.description || `High-reliability ${sub.name} equipment and turnkey accessories.`}
                                                 </p>
                                             </div>
 
-                                            <div className="pt-4 mt-4 border-t border-slate-100 dark:border-navy-border/40 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-steel">
+                                            <div className="pt-4 mt-auto border-t border-slate-100 dark:border-navy-border/40 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-steel">
                                                 <span className="group-hover:text-slate-900 dark:group-hover:text-paper font-medium">Browse Products</span>
                                                 <span className="text-amber-500 dark:text-beacon font-bold">&rarr;</span>
                                             </div>

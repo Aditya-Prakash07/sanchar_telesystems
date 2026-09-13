@@ -66,40 +66,46 @@ export default function Careers({ openings = [], seo = {} }) {
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">
-                        <div className="panel p-8">
-                            <div className="w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center font-mono font-bold text-xl mb-5">
-                                01
+                        <div className="card-symmetric p-8 flex flex-col justify-between">
+                            <div>
+                                <div className="w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center font-mono font-bold text-xl mb-5">
+                                    01
+                                </div>
+                                <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-3">
+                                    National Critical Infrastructure
+                                </h3>
+                                <p className="text-sm text-slate-600 dark:text-steel leading-relaxed">
+                                    Experience direct deployment impact at landmark sites including the Parliament of India, Delhi Police tactical units, state emergency dispatchers, and metro networks.
+                                </p>
                             </div>
-                            <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-3">
-                                National Critical Infrastructure
-                            </h3>
-                            <p className="text-sm text-slate-600 dark:text-steel leading-relaxed">
-                                Experience direct deployment impact at landmark sites including the Parliament of India, Delhi Police tactical units, state emergency dispatchers, and metro networks.
-                            </p>
                         </div>
 
-                        <div className="panel p-8">
-                            <div className="w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center font-mono font-bold text-xl mb-5">
-                                02
+                        <div className="card-symmetric p-8 flex flex-col justify-between">
+                            <div>
+                                <div className="w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center font-mono font-bold text-xl mb-5">
+                                    02
+                                </div>
+                                <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-3">
+                                    Indigenous R&D & Make in India
+                                </h3>
+                                <p className="text-sm text-slate-600 dark:text-steel leading-relaxed">
+                                    Participate in the design of next-generation DMR handhelds, base repeaters, and tactical push-to-talk PoC terminals designed and manufactured right here in India.
+                                </p>
                             </div>
-                            <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-3">
-                                Indigenous R&D & Make in India
-                            </h3>
-                            <p className="text-sm text-slate-600 dark:text-steel leading-relaxed">
-                                Participate in the design of next-generation DMR handhelds, base repeaters, and tactical push-to-talk PoC terminals designed and manufactured right here in India.
-                            </p>
                         </div>
 
-                        <div className="panel p-8">
-                            <div className="w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center font-mono font-bold text-xl mb-5">
-                                03
+                        <div className="card-symmetric p-8 flex flex-col justify-between">
+                            <div>
+                                <div className="w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center font-mono font-bold text-xl mb-5">
+                                    03
+                                </div>
+                                <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-3">
+                                    Deep Spectrum Mastery
+                                </h3>
+                                <p className="text-sm text-slate-600 dark:text-steel leading-relaxed">
+                                    Work with spectrum analyzers, duplexer tuning benches, antenna modeling software, and carrier-grade Push-to-Talk over Cellular (PoC) cloud architectures.
+                                </p>
                             </div>
-                            <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-3">
-                                Deep Spectrum Mastery
-                            </h3>
-                            <p className="text-sm text-slate-600 dark:text-steel leading-relaxed">
-                                Work with spectrum analyzers, duplexer tuning benches, antenna modeling software, and carrier-grade Push-to-Talk over Cellular (PoC) cloud architectures.
-                            </p>
                         </div>
                     </div>
                 </div>

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
 import SignalWave from '@/Components/SignalWave';
+import KeyStatsSection from '@/Components/KeyStatsSection';
 
 const SECTOR_DATA = [
     {
@@ -100,14 +101,14 @@ export default function Home({ banners = [], categories = [], featuredProducts =
         }
     ];
 
-    // Carousel auto-advance
+    // Continuous smooth auto-advance every 5.5s, resetting when slide changes
     useEffect(() => {
-        if (isPaused || slides.length <= 1) return;
-        const interval = setInterval(() => {
+        if (slides.length <= 1) return;
+        const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides.length);
-        }, 6500);
-        return () => clearInterval(interval);
-    }, [isPaused, slides.length]);
+        }, 5500);
+        return () => clearInterval(timer);
+    }, [currentSlide, slides.length]);
 
     const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
     const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
@@ -123,18 +124,14 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             {/* =========================================================================
                 1. HERO SECTION WITH ORIGINAL LIVE BANNERS CAROUSEL
             ========================================================================= */}
-            <section 
-                className="relative bg-slate-950 text-paper overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28"
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
-            >
+            <section className="relative bg-slate-950 text-paper overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28">
                 {/* Background Slider Imagery */}
                 <div className="absolute inset-0 z-0">
                     {slides.map((s, idx) => (
                         <div
                             key={s.id || idx}
                             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                                currentSlide === idx ? 'opacity-35 scale-100' : 'opacity-0 scale-105 pointer-events-none'
+                                currentSlide === idx ? 'opacity-40 scale-100' : 'opacity-0 scale-105 pointer-events-none'
                             } transform transition-transform duration-[7000ms]`}
                         >
                             <img
@@ -155,35 +152,37 @@ export default function Home({ banners = [], categories = [], featuredProducts =
 
                 <div className="container-content relative z-10">
                     <div className="grid lg:grid-cols-12 gap-12 items-center min-h-[480px]">
-                        {/* Slide Content */}
-                        <div className="lg:col-span-8 space-y-6">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-beacon/30 bg-beacon/10 text-beacon font-mono text-xs tracking-wider uppercase">
-                                <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
-                                <span>TELECOM ENGINEERING &bull; WPC TYPE APPROVED</span>
-                            </div>
+                        {/* Slide Content with Cinematic Fade */}
+                        <div className="lg:col-span-8">
+                            <div key={currentSlide} className="animate-hero-fade space-y-6">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-beacon/30 bg-beacon/10 text-beacon font-mono text-xs tracking-wider uppercase">
+                                    <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
+                                    <span>TELECOM ENGINEERING &bull; WPC TYPE APPROVED</span>
+                                </div>
 
-                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-white leading-[1.12]">
-                                {slides[currentSlide].heading}
-                            </h1>
+                                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-white leading-[1.12]">
+                                    {slides[currentSlide].heading}
+                                </h1>
 
-                            <p className="text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed font-sans">
-                                {slides[currentSlide].subheading}
-                            </p>
+                                <p className="text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed font-sans min-h-[3.5rem]">
+                                    {slides[currentSlide].subheading}
+                                </p>
 
-                            <div className="pt-4 flex flex-wrap items-center gap-4">
-                                <Link 
-                                    href={slides[currentSlide].cta_url || '/products'} 
-                                    className="btn-beacon !py-3.5 !px-8 text-sm uppercase tracking-wider font-mono font-bold"
-                                >
-                                    {slides[currentSlide].cta_label || 'Explore Products'} &rarr;
-                                </Link>
+                                <div className="pt-4 flex flex-wrap items-center gap-4">
+                                    <Link 
+                                        href={slides[currentSlide].cta_url || '/products'} 
+                                        className="btn-shimmer !py-3.5 !px-8 text-sm uppercase tracking-wider font-mono font-bold"
+                                    >
+                                        {slides[currentSlide].cta_label || 'Explore Products'} &rarr;
+                                    </Link>
 
-                                <Link 
-                                    href="/contact-us" 
-                                    className="btn-outline-paper !py-3.5 !px-6 text-sm font-mono uppercase tracking-wider text-white"
-                                >
-                                    Engineering Consultation
-                                </Link>
+                                    <Link 
+                                        href="/contact-us" 
+                                        className="btn-outline-paper !py-3.5 !px-6 text-sm font-mono uppercase tracking-wider text-white"
+                                    >
+                                        Engineering Consultation
+                                    </Link>
+                                </div>
                             </div>
 
                             {/* Slide Controls & Progress Dots */}
@@ -208,8 +207,8 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                         <button
                                             key={dotIdx}
                                             onClick={() => setCurrentSlide(dotIdx)}
-                                            className={`h-2 rounded-full transition-all duration-300 ${
-                                                currentSlide === dotIdx ? 'w-8 bg-beacon' : 'w-2 bg-white/30 hover:bg-white/60'
+                                            className={`h-2 rounded-full transition-all duration-500 ${
+                                                currentSlide === dotIdx ? 'w-10 bg-beacon shadow-md shadow-beacon/30' : 'w-2 bg-white/30 hover:bg-white/60'
                                             }`}
                                             aria-label={`Go to slide ${dotIdx + 1}`}
                                         />
@@ -427,11 +426,11 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                         {(featuredProducts || []).map((item) => (
                             <div 
                                 key={item.id}
-                                className="panel-hover flex flex-col justify-between overflow-hidden group"
+                                className="card-symmetric group"
                             >
-                                <div>
+                                <div className="flex-1 flex flex-col">
                                     {/* Image Pedestal */}
-                                    <div className="aspect-[4/3] bg-slate-50 dark:bg-navy-dark overflow-hidden relative flex items-center justify-center p-6 border-b border-slate-100 dark:border-navy-border/40">
+                                    <div className="aspect-[4/3] w-full bg-slate-50 dark:bg-navy-dark overflow-hidden relative flex items-center justify-center p-6 border-b border-slate-100 dark:border-navy-border/40">
                                         <img
                                             src={`/storage/${item.cover_image_path}`}
                                             alt={item.name}
@@ -451,24 +450,24 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                     </div>
 
                                     {/* Details */}
-                                    <div className="p-6 space-y-3">
+                                    <div className="p-6 space-y-3 flex-1 flex flex-col">
                                         <div className="flex items-center gap-2">
                                             <span className="badge-steel text-[10px]">
                                                 {item.subcategory?.name || 'Radio System'}
                                             </span>
                                         </div>
 
-                                        <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors line-clamp-1">
+                                        <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors min-h-[3.25rem] line-clamp-2 leading-snug">
                                             {item.name}
                                         </h3>
 
-                                        <p className="text-xs sm:text-sm text-slate-600 dark:text-steel line-clamp-2 leading-relaxed">
-                                            {item.short_description || 'High-reliability wireless communication equipment.'}
+                                        <p className="text-xs sm:text-sm text-slate-600 dark:text-steel min-h-[2.5rem] line-clamp-2 leading-relaxed">
+                                            {item.short_description || 'High-reliability wireless communication equipment engineered for critical infrastructure.'}
                                         </p>
                                     </div>
                                 </div>
 
-                                <div className="p-6 pt-0 border-t border-slate-100 dark:border-navy-border/40 mt-4 flex items-center justify-between">
+                                <div className="p-6 pt-4 border-t border-slate-100 dark:border-navy-border/40 mt-auto flex items-center justify-between">
                                     <Link
                                         href={`/products/${item.subcategory?.category?.slug || 'professional-amateur-radio'}/${item.subcategory?.slug || 'dmr'}/${item.slug}`}
                                         className="text-xs font-mono font-semibold text-slate-900 dark:text-paper hover:text-amber-600 dark:hover:text-beacon flex items-center gap-1"
@@ -492,30 +491,9 @@ export default function Home({ banners = [], categories = [], featuredProducts =
 
 
             {/* =========================================================================
-                5. IMPACT METRICS (STATS)
+                5. IMPACT METRICS (STATS) — ANIMATED SCROLL COUNTER & TIER-1 CSS EFFECTS
             ========================================================================= */}
-            <section className="py-20 bg-slate-950 text-paper relative overflow-hidden">
-                <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
-                <div className="container-content relative z-10">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        {(stats.length > 0 ? stats : [
-                            { label: 'Units Sold', value: 80000, suffix: '+' },
-                            { label: 'Projects Delivered', value: 150, suffix: '+' },
-                            { label: 'Distributors / Dealers Network', value: 500, suffix: '+' },
-                            { label: 'Years of RF Engineering Excellence', value: 30, suffix: '+' },
-                        ]).map((stat) => (
-                            <div key={stat.label} className="space-y-2">
-                                <div className="font-display text-4xl sm:text-5xl font-bold text-beacon tracking-tight">
-                                    {stat.value.toLocaleString()}{stat.suffix}
-                                </div>
-                                <div className="text-xs sm:text-sm font-mono text-slate-300 uppercase tracking-wider">
-                                    {stat.label}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <KeyStatsSection stats={stats} />
 
 
             {/* =========================================================================

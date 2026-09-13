@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class CompanyStat extends Model
 {
-    protected $fillable = ['label', 'value', 'suffix', 'sort_order'];
+    protected $fillable = ['label', 'value', 'suffix', 'icon', 'sort_order'];
 }

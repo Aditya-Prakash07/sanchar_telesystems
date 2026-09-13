@@ -67,7 +67,7 @@ export default function OemPartners({ partners = [], seo = {} }) {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
                         {partners.map((p) => {
                             const hasLink = Boolean(p.website_url && p.website_url !== '#');
                             const Component = hasLink ? 'a' : 'div';
@@ -79,17 +79,17 @@ export default function OemPartners({ partners = [], seo = {} }) {
                                 <Component
                                     key={p.name || p.id}
                                     {...linkProps}
-                                    className="panel-hover p-8 flex flex-col items-center justify-center min-h-[160px] text-center group"
+                                    className="card-symmetric p-6 flex flex-col items-center justify-between min-h-[170px] text-center group"
                                 >
-                                    <div className="w-full flex items-center justify-center flex-1">
+                                    <div className="w-full flex items-center justify-center flex-1 py-3">
                                         <img
                                             src={p.logo_path ? `/storage/${p.logo_path}` : '/storage/media/branding/logo0.png'}
                                             alt={p.name}
-                                            className="max-h-14 max-w-[140px] w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-105"
+                                            className="max-h-12 max-w-[130px] w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-105"
                                             loading="lazy"
                                         />
                                     </div>
-                                    <div className="mt-4 pt-3 border-t border-slate-100 dark:border-navy-border/40 w-full flex items-center justify-between text-xs font-mono text-slate-500 dark:text-steel">
+                                    <div className="mt-auto pt-3 border-t border-slate-100 dark:border-navy-border/40 w-full flex items-center justify-between text-xs font-mono text-slate-500 dark:text-steel">
                                         <span className="font-semibold text-slate-900 dark:text-paper truncate">{p.name}</span>
                                         {hasLink && (
                                             <span className="text-amber-500 dark:text-beacon opacity-0 group-hover:opacity-100 transition-opacity">
@@ -104,40 +104,46 @@ export default function OemPartners({ partners = [], seo = {} }) {
 
                     {/* Technical Standards */}
                     <div className="mt-20 grid md:grid-cols-3 gap-8">
-                        <div className="panel p-8">
-                            <div className="w-10 h-10 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon font-mono font-bold flex items-center justify-center mb-5 text-sm">
-                                01
+                        <div className="card-symmetric p-8 flex flex-col justify-between">
+                            <div>
+                                <div className="w-10 h-10 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon font-mono font-bold flex items-center justify-center mb-5 text-sm">
+                                    01
+                                </div>
+                                <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-2">
+                                    WPC Spectrum Compliance
+                                </h3>
+                                <p className="text-sm text-slate-600 dark:text-steel leading-relaxed">
+                                    Every imported terminal and RF repeater undergoes stringent harmonic testing, frequency calibration, and Wireless Planning & Coordination (WPC) ETA licensing.
+                                </p>
                             </div>
-                            <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-2">
-                                WPC Spectrum Compliance
-                            </h3>
-                            <p className="text-sm text-slate-600 dark:text-steel leading-relaxed">
-                                Every imported terminal and RF repeater undergoes stringent harmonic testing, frequency calibration, and Wireless Planning & Coordination (WPC) ETA licensing.
-                            </p>
                         </div>
 
-                        <div className="panel p-8">
-                            <div className="w-10 h-10 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon font-mono font-bold flex items-center justify-center mb-5 text-sm">
-                                02
+                        <div className="card-symmetric p-8 flex flex-col justify-between">
+                            <div>
+                                <div className="w-10 h-10 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon font-mono font-bold flex items-center justify-center mb-5 text-sm">
+                                    02
+                                </div>
+                                <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-2">
+                                    Tactical Ruggedization
+                                </h3>
+                                <p className="text-sm text-slate-600 dark:text-steel leading-relaxed">
+                                    Partner hardware is tested against MIL-STD-810G and IP67/IP68 ingress standards to withstand extreme Indian operating conditions from Himalayan cold to coastal humidity.
+                                </p>
                             </div>
-                            <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-2">
-                                Tactical Ruggedization
-                            </h3>
-                            <p className="text-sm text-slate-600 dark:text-steel leading-relaxed">
-                                Partner hardware is tested against MIL-STD-810G and IP67/IP68 ingress standards to withstand extreme Indian operating conditions from Himalayan cold to coastal humidity.
-                            </p>
                         </div>
 
-                        <div className="panel p-8">
-                            <div className="w-10 h-10 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon font-mono font-bold flex items-center justify-center mb-5 text-sm">
-                                03
+                        <div className="card-symmetric p-8 flex flex-col justify-between">
+                            <div>
+                                <div className="w-10 h-10 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon font-mono font-bold flex items-center justify-center mb-5 text-sm">
+                                    03
+                                </div>
+                                <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-2">
+                                    Tier-1 RMA & Spares Depot
+                                </h3>
+                                <p className="text-sm text-slate-600 dark:text-steel leading-relaxed">
+                                    Direct OEM parts inventory in New Delhi guarantees sub-48-hour turnarounds on mission-critical board replacements, battery cells, and RF antenna modules.
+                                </p>
                             </div>
-                            <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-2">
-                                Tier-1 RMA & Spares Depot
-                            </h3>
-                            <p className="text-sm text-slate-600 dark:text-steel leading-relaxed">
-                                Direct OEM parts inventory in New Delhi guarantees sub-48-hour turnarounds on mission-critical board replacements, battery cells, and RF antenna modules.
-                            </p>
                         </div>
                     </div>
 

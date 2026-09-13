@@ -12,6 +12,8 @@ use App\Models\ProductSubcategory;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +24,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // 0. Super Administrator Account
+        User::firstOrCreate(
+            ['email' => 'admin@sanchartelesystems.com'],
+            [
+                'name' => 'System Administrator',
+                'password' => Hash::make('Sanchar@2026!'),
+                'role' => User::ROLE_SUPER_ADMIN,
+            ]
+        );
+
         // 1. Categories & Subcategories Tree
         $tree = [
             'Professional / Amateur Radio' => [
@@ -210,12 +222,11 @@ class DatabaseSeeder extends Seeder
             );
         }
 
-        // 5. Impact Telemetry (Stats from Live Site)
+        // 5. Impact Telemetry (Exact Production Key Stats from User)
         $stats = [
-            ['label' => 'Units Sold', 'value' => 80000, 'suffix' => '+', 'sort_order' => 0],
-            ['label' => 'Projects Delivered', 'value' => 150, 'suffix' => '+', 'sort_order' => 1],
-            ['label' => 'Distributors / Dealers Network', 'value' => 500, 'suffix' => '+', 'sort_order' => 2],
-            ['label' => 'Years of RF Engineering Excellence', 'value' => 30, 'suffix' => '+', 'sort_order' => 3],
+            ['label' => 'UNITS SOLD', 'value' => 300000, 'suffix' => ' +', 'icon' => 'briefcase', 'sort_order' => 0],
+            ['label' => 'PROJECTS DELIVERED', 'value' => 500, 'suffix' => ' +', 'icon' => 'clipboard', 'sort_order' => 1],
+            ['label' => 'DISTRIBUTORS / DEALERS NETWORK', 'value' => 50, 'suffix' => ' +', 'icon' => 'network', 'sort_order' => 2],
         ];
 
         CompanyStat::truncate();
