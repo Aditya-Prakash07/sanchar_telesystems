@@ -26,18 +26,18 @@ export default function ProductsShow({ category, subcategory, item, seo = {} }) 
             />
 
             {/* Breadcrumb Header */}
-            <div className="bg-slate-950 text-paper pt-32 pb-8 border-b border-slate-800 dark:border-navy-border/80">
+            <div className="bg-white dark:bg-navy text-slate-900 dark:text-paper pt-32 pb-8 border-b border-slate-200/80 dark:border-navy-border">
                 <div className="container-content">
-                    <nav className="flex items-center gap-2 text-xs font-mono text-slate-400">
-                        <Link href="/" className="hover:text-white transition-colors">HOME</Link>
+                    <nav className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400">
+                        <Link href="/" className="hover:text-slate-900 dark:hover:text-white transition-colors">HOME</Link>
                         <span>/</span>
-                        <Link href="/products" className="hover:text-white transition-colors">PRODUCTS</Link>
+                        <Link href="/products" className="hover:text-slate-900 dark:hover:text-white transition-colors">PRODUCTS</Link>
                         <span>/</span>
-                        <Link href={`/products/${category.slug}/${subcategory.slug}`} className="hover:text-white transition-colors uppercase">
+                        <Link href={`/products/${category.slug}/${subcategory.slug}`} className="hover:text-slate-900 dark:hover:text-white transition-colors uppercase">
                             {subcategory.name}
                         </Link>
                         <span>/</span>
-                        <span className="text-amber-400 dark:text-beacon font-bold truncate max-w-[200px] sm:max-w-none">{item.name}</span>
+                        <span className="text-amber-600 dark:text-beacon font-bold truncate max-w-[200px] sm:max-w-none">{item.name}</span>
                     </nav>
                 </div>
             </div>
@@ -73,13 +73,19 @@ export default function ProductsShow({ category, subcategory, item, seo = {} }) 
                                     onClick={() => setRfqModalOpen(true)}
                                     className="flex-1 btn-beacon !py-3 font-mono text-xs uppercase tracking-wider font-bold"
                                 >
-                                    Request Formal RFQ / Tender Quote &rarr;
+                                    Request Formal RFQ / Tender Quote
                                 </button>
                                 <a
-                                    href={`/contact-us?subject=Datasheet%20Request%20for%20${encodeURIComponent(item.name)}`}
-                                    className="btn-outline-dark !py-3 font-mono text-xs uppercase tracking-wider"
+                                    href={`/products/${item.slug}/datasheet?print=1`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn-outline-dark !py-3 font-mono text-xs uppercase tracking-wider flex items-center justify-center gap-2"
+                                    title="Open and print/save official technical specification datasheet"
                                 >
-                                    Download Datasheet
+                                    <svg className="w-4 h-4 text-amber-500 dark:text-beacon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                    <span>Download Datasheet (PDF)</span>
                                 </a>
                             </div>
 
@@ -242,7 +248,7 @@ export default function ProductsShow({ category, subcategory, item, seo = {} }) 
                                     href={`/contact-us?subject=Quote%20Request%20for%20${encodeURIComponent(item.name)}`}
                                     className="btn-beacon w-full text-center text-xs font-mono uppercase tracking-wider font-bold !py-3"
                                 >
-                                    Proceed to Full RFQ Form &rarr;
+                                    Proceed to Full RFQ Form
                                 </Link>
                             </div>
                         </form>

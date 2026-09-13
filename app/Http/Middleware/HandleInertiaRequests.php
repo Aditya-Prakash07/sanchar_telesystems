@@ -40,8 +40,13 @@ class HandleInertiaRequests extends Middleware
             ],
             'categoriesNav' => fn () => \App\Models\ProductCategory::where('is_published', true)
                 ->orderBy('sort_order')
-                ->with(['subcategories' => fn ($q) => $q->where('is_published', true)->orderBy('sort_order')])
-                ->get(['id', 'name', 'slug']),
+                ->with([
+                    'subcategories' => fn ($q) => $q->where('is_published', true)
+                        ->orderBy('sort_order')
+                        ->withCount(['items' => fn ($iq) => $iq->where('portfolio_items.is_published', true)])
+                ])
+                ->withCount(['items' => fn ($iq) => $iq->where('portfolio_items.is_published', true)])
+                ->get(['id', 'name', 'slug', 'description', 'thumbnail_path']),
         ];
     }
 }

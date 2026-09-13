@@ -15,11 +15,11 @@ export default {
             colors: {
                 // "Signal" design system — see DESIGN-SYSTEM.md for rationale.
                 navy: {
-                    dark: '#070D18',
-                    DEFAULT: '#0F1B2D', // control-room navy — dark section bg
-                    surface: '#122035',
-                    light: '#16273D',
-                    border: '#26374C',
+                    dark: '#0a0d14',
+                    DEFAULT: '#12151b', // matching key stats section background
+                    surface: '#161a23',
+                    light: '#1f2430',
+                    border: '#282f3e',
                 },
                 paper: '#F6F7F5',      // light section bg
                 ink: '#10151C',        // primary text on paper

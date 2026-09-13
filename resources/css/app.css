@@ -40,28 +40,28 @@
     }
 
     .btn-primary {
-        @apply inline-flex items-center justify-center gap-2 bg-beacon text-navy-dark font-semibold px-6 py-3
-               rounded-lg shadow-sm hover:bg-beacon-light hover:shadow-beacon/25 hover:shadow-lg transition-all duration-200 active:scale-[0.98];
+        @apply inline-flex items-center justify-center gap-2 bg-gradient-to-b from-amber-400 to-amber-500 dark:from-beacon dark:to-beacon-dim text-slate-950 font-bold px-6 py-3
+               rounded-lg shadow-md shadow-amber-500/15 hover:shadow-xl hover:shadow-amber-500/25 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
     }
 
     .btn-secondary {
-        @apply inline-flex items-center justify-center gap-2 bg-slate-200 dark:bg-navy-surface text-slate-900 dark:text-paper font-semibold px-6 py-3
-               rounded-lg hover:bg-slate-300 dark:hover:bg-navy-light transition-all duration-200 active:scale-[0.98];
+        @apply inline-flex items-center justify-center gap-2 bg-white dark:bg-navy-surface border border-slate-300 dark:border-white/10 text-slate-800 dark:text-paper font-semibold px-6 py-3
+               rounded-lg shadow-sm hover:border-amber-500/50 dark:hover:border-beacon/50 hover:bg-slate-50 dark:hover:bg-white/[0.04] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
     }
 
     .btn-outline-dark {
-        @apply inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-navy-border text-slate-800 dark:text-paper font-semibold
-               px-6 py-3 rounded-lg hover:border-beacon hover:text-beacon hover:bg-beacon/5 transition-all duration-200 active:scale-[0.98];
+        @apply inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-white/15 text-slate-800 dark:text-paper font-semibold
+               px-6 py-3 rounded-lg hover:border-amber-500 dark:hover:border-beacon hover:text-amber-600 dark:hover:text-beacon hover:bg-amber-500/5 dark:hover:bg-beacon/5 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
     }
 
     .btn-beacon {
-        @apply inline-flex items-center justify-center gap-2 bg-beacon text-navy-dark font-semibold px-6 py-3
-               rounded-lg shadow-md shadow-beacon/20 hover:bg-beacon-light hover:shadow-beacon/30 hover:shadow-xl transition-all duration-200 active:scale-[0.98];
+        @apply inline-flex items-center justify-center gap-2 bg-gradient-to-b from-amber-400 to-amber-500 dark:from-beacon dark:to-beacon-dim text-slate-950 font-bold px-6 py-3
+               rounded-lg shadow-md shadow-amber-500/15 hover:shadow-xl hover:shadow-amber-500/25 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
     }
 
     .btn-outline-paper {
-        @apply inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-paper/20 text-slate-800 dark:text-paper font-semibold
-               px-5 py-2.5 rounded-lg hover:border-beacon hover:text-beacon transition-all duration-200 active:scale-[0.98];
+        @apply inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-white/20 text-slate-800 dark:text-paper font-semibold
+               px-5 py-2.5 rounded-lg hover:border-amber-500 dark:hover:border-beacon hover:text-amber-600 dark:hover:text-beacon hover:bg-amber-500/5 dark:hover:bg-beacon/5 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
     }
 
     .card-dual {
@@ -83,23 +83,8 @@
     }
 
     .btn-shimmer {
-        @apply relative overflow-hidden inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 text-slate-950 font-bold px-6 py-3 rounded-lg shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30 hover:shadow-xl transition-all duration-300 active:scale-95;
-    }
-
-    .btn-shimmer::after {
-        content: '';
-        position: absolute;
-        top: -50%;
-        bottom: -50%;
-        left: -50%;
-        right: -50%;
-        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
-        transform: rotate(30deg) translateX(-100%);
-        transition: transform 0.75s ease-in-out;
-    }
-
-    .btn-shimmer:hover::after {
-        transform: rotate(30deg) translateX(100%);
+        @apply inline-flex items-center justify-center gap-2 bg-gradient-to-b from-amber-400 to-amber-500 dark:from-beacon dark:to-beacon-dim text-slate-950 font-bold px-6 py-3
+               rounded-lg shadow-md shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/35 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
     }
 
     .panel-dark {
@@ -143,7 +128,7 @@
     @keyframes heroFadeIn {
         from {
             opacity: 0;
-            transform: translateY(8px);
+            transform: translateY(12px);
         }
         to {
             opacity: 1;
@@ -152,7 +137,32 @@
     }
 
     .animate-hero-fade {
-        animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .animate-hero-fade-d1 {
+        animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+    }
+
+    .animate-hero-fade-d2 {
+        animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
+    }
+
+    .animate-hero-fade-d3 {
+        animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+    }
+
+    @keyframes slideProgress {
+        from {
+            width: 0%;
+        }
+        to {
+            width: 100%;
+        }
+    }
+
+    .animate-slide-progress {
+        animation: slideProgress 5.5s linear forwards;
     }
 
     .stat-number-glow {

@@ -46,52 +46,38 @@ export default function About({ team = [], seo = {} }) {
                 canonicalPath="/about-us"
             />
 
-            {/* Header with Original Inner Banner */}
-            <header className="relative bg-slate-950 text-paper pt-36 pb-20 overflow-hidden">
-                <div className="absolute inset-0 z-0 opacity-30">
-                    <img 
-                        src="/storage/media/banners/inner_about.jpg" 
-                        alt="About Sanchar Telesystems" 
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = '/storage/media/banners/banner1.png';
-                        }}
-                    />
-                    <div className="absolute inset-0 bg-slate-950/80" />
-                    <div className="absolute inset-0 bg-grid-pattern opacity-30" />
-                </div>
-
+            {/* Header */}
+            <header className="relative bg-white dark:bg-navy border-b border-slate-200/80 dark:border-navy-border pt-36 pb-20 overflow-hidden transition-colors duration-300">
                 <div className="container-content relative z-10">
                     <div className="max-w-3xl">
-                        <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-400 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
-                            <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
+                        <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
+                            <span className="w-2 h-2 rounded-full bg-amber-500 dark:bg-beacon animate-pulse" />
                             <span>ESTABLISHED IN THE 1990s &bull; NEW DELHI HQ</span>
                         </div>
-                        <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-white leading-tight">
+                        <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
                             Mobility, Efficiency, and Reliability in Wireless Communications.
                         </h1>
-                        <p className="mt-5 text-lg text-slate-300 leading-relaxed font-sans">
+                        <p className="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
                             Sanchar Telesystems is a market leader in mission-critical wireless communications in India. We pioneer in offering world-class wireless communication solutions to customers around the country.
                         </p>
                     </div>
 
-                    <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-white/10 pt-8 max-w-4xl text-xs font-mono">
+                    <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-200 dark:border-navy-border/80 pt-8 max-w-4xl text-xs font-mono">
                         <div>
-                            <span className="text-slate-400 block">ESTABLISHED</span>
-                            <span className="text-white font-bold mt-1 block">30+ YEARS OF EXCELLENCE</span>
+                            <span className="text-slate-500 dark:text-slate-400 block">ESTABLISHED</span>
+                            <span className="text-slate-900 dark:text-white font-bold mt-1 block">30+ YEARS OF EXCELLENCE</span>
                         </div>
                         <div>
-                            <span className="text-slate-400 block">STANDARDS</span>
-                            <span className="text-white font-bold mt-1 block">DMR &bull; TETRA &bull; PoC &bull; LTE-R</span>
+                            <span className="text-slate-500 dark:text-slate-400 block">STANDARDS</span>
+                            <span className="text-slate-900 dark:text-white font-bold mt-1 block">DMR &bull; TETRA &bull; PoC &bull; LTE-R</span>
                         </div>
                         <div>
-                            <span className="text-slate-400 block">PROCUREMENT</span>
-                            <span className="text-white font-bold mt-1 block">GeM PORTAL VENDOR</span>
+                            <span className="text-slate-500 dark:text-slate-400 block">PROCUREMENT</span>
+                            <span className="text-slate-900 dark:text-white font-bold mt-1 block">GeM PORTAL VENDOR</span>
                         </div>
                         <div>
-                            <span className="text-slate-400 block">COVERAGE</span>
-                            <span className="text-white font-bold mt-1 block">PAN-INDIA 500+ DEALERS</span>
+                            <span className="text-slate-500 dark:text-slate-400 block">COVERAGE</span>
+                            <span className="text-slate-900 dark:text-white font-bold mt-1 block">PAN-INDIA 500+ DEALERS</span>
                         </div>
                     </div>
                 </div>
@@ -300,7 +286,7 @@ export default function About({ team = [], seo = {} }) {
                     </p>
                     <div>
                         <Link href="/contact-us" className="btn-beacon !py-3.5 !px-8 text-sm font-mono uppercase tracking-wider">
-                            Connect with Our Technical Team &rarr;
+                            Connect with Our Technical Team
                         </Link>
                     </div>
                 </div>

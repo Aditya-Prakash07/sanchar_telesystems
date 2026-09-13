@@ -42,32 +42,18 @@ export default function Contact({ seo = {}, flash = {} }) {
                 canonicalPath="/contact-us"
             />
 
-            {/* Header with Original Inner Banner */}
-            <header className="relative bg-slate-950 text-paper pt-36 pb-20 overflow-hidden">
-                <div className="absolute inset-0 z-0 opacity-30">
-                    <img 
-                        src="/storage/media/banners/inner_contact.jpg" 
-                        alt="Contact Sanchar Telesystems" 
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = '/storage/media/banners/banner1.png';
-                        }}
-                    />
-                    <div className="absolute inset-0 bg-slate-950/80" />
-                    <div className="absolute inset-0 bg-grid-pattern opacity-30" />
-                </div>
-
+            {/* Header */}
+            <header className="relative bg-white dark:bg-navy border-b border-slate-200/80 dark:border-navy-border pt-36 pb-16 overflow-hidden transition-colors duration-300">
                 <div className="container-content relative z-10">
                     <div className="max-w-3xl">
-                        <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-400 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
+                        <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
                             <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
                             <span>DIRECT ENGINEERING DESK &bull; NEW DELHI HQ</span>
                         </div>
-                        <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-white leading-tight">
+                        <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
                             Contact Technical Operations & Procurement
                         </h1>
-                        <p className="mt-5 text-lg text-slate-300 leading-relaxed font-sans">
+                        <p className="mt-5 text-lg text-slate-600 dark:text-steel leading-relaxed font-sans">
                             Consult with our RF design team, request formal government tender authorizations, or schedule an onsite propagation survey.
                         </p>
                     </div>
@@ -214,65 +200,65 @@ export default function Contact({ seo = {}, flash = {} }) {
                                         disabled={processing}
                                         className="btn-beacon w-full !py-3.5 text-sm uppercase font-mono tracking-wider font-bold"
                                     >
-                                        {processing ? 'Submitting to Engineering...' : 'Dispatch Request to Engineering Desk →'}
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+                                         {processing ? 'Submitting to Engineering...' : 'Dispatch Request to Engineering Desk'}
+                                     </button>
+                                 </form>
+                             </div>
+                         </div>
 
-                        {/* Telemetry & Office Details */}
-                        <div className="lg:col-span-5 space-y-6">
-                            {/* Headquarters Card */}
-                            <div className="card-dual !bg-slate-900 text-paper p-8 space-y-5 border border-slate-800 dark:border-navy-border shadow-xl">
-                                <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                                    <span className="text-xs font-mono uppercase tracking-wider text-beacon font-bold">
-                                        NATIONAL HEADQUARTERS
-                                    </span>
-                                    <span className="text-[11px] font-mono text-emerald-400">OPEN 09:30 - 18:00 IST</span>
-                                </div>
+                         {/* Telemetry & Office Details */}
+                         <div className="lg:col-span-5 space-y-6">
+                             {/* Headquarters Card */}
+                             <div className="card-dual !bg-white dark:!bg-navy-surface p-8 space-y-5 border border-slate-200/80 dark:border-navy-border shadow-md">
+                                 <div className="flex items-center justify-between border-b border-slate-100 dark:border-navy-border/60 pb-3">
+                                     <span className="text-xs font-mono uppercase tracking-wider text-amber-600 dark:text-beacon font-bold">
+                                         NATIONAL HEADQUARTERS
+                                     </span>
+                                     <span className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-medium">OPEN 09:30 - 18:00 IST</span>
+                                 </div>
 
-                                <div className="space-y-2 text-sm font-sans text-slate-300">
-                                    <h3 className="font-display font-bold text-xl text-white">
-                                        Sanchar Telesystems Limited
-                                    </h3>
-                                    <p className="leading-relaxed">
-                                        A-78, Ground Floor, Okhla Industrial Area, Phase-II<br />
-                                        New Delhi – 110020, India
-                                    </p>
-                                </div>
+                                 <div className="space-y-2 text-sm font-sans text-slate-600 dark:text-steel">
+                                     <h3 className="font-display font-bold text-xl text-slate-900 dark:text-white">
+                                         Sanchar Telesystems Limited
+                                     </h3>
+                                     <p className="leading-relaxed">
+                                         A-78, Ground Floor, Okhla Industrial Area, Phase-II<br />
+                                         New Delhi – 110020, India
+                                     </p>
+                                 </div>
 
-                                <div className="space-y-3 pt-3 border-t border-white/10 text-xs font-mono">
-                                    <div>
-                                        <span className="text-slate-400 block mb-0.5">DIRECT SALES & MARKETING:</span>
-                                        <a href="tel:+911146528894" className="text-beacon hover:underline text-sm font-bold">
-                                            +91 (11) 4652 8894–97
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <span className="text-slate-400 block mb-0.5">TECHNICAL SUPPORT & AMC:</span>
-                                        <a href="tel:+911146528892" className="text-white hover:text-beacon transition-colors text-sm font-bold">
-                                            +91 (11) 4652 8892–93
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <span className="text-slate-400 block mb-0.5">PRIMARY INQUIRIES:</span>
-                                        <a href="mailto:info@sanchartelesystems.com" className="text-white hover:text-beacon transition-colors text-sm">
-                                            info@sanchartelesystems.com
-                                        </a>
-                                    </div>
-                                </div>
+                                 <div className="space-y-3 pt-3 border-t border-slate-100 dark:border-navy-border/60 text-xs font-mono">
+                                     <div>
+                                         <span className="text-slate-500 dark:text-slate-400 block mb-0.5">DIRECT SALES & MARKETING:</span>
+                                         <a href="tel:+911146528894" className="text-amber-600 dark:text-beacon hover:underline text-sm font-bold">
+                                             +91 (11) 4652 8894–97
+                                         </a>
+                                     </div>
+                                     <div>
+                                         <span className="text-slate-500 dark:text-slate-400 block mb-0.5">TECHNICAL SUPPORT & AMC:</span>
+                                         <a href="tel:+911146528892" className="text-slate-800 dark:text-white hover:text-amber-600 dark:hover:text-beacon transition-colors text-sm font-bold">
+                                             +91 (11) 4652 8892–93
+                                         </a>
+                                     </div>
+                                     <div>
+                                         <span className="text-slate-500 dark:text-slate-400 block mb-0.5">PRIMARY INQUIRIES:</span>
+                                         <a href="mailto:info@sanchartelesystems.com" className="text-slate-800 dark:text-white hover:text-amber-600 dark:hover:text-beacon transition-colors text-sm">
+                                             info@sanchartelesystems.com
+                                         </a>
+                                     </div>
+                                 </div>
 
-                                <div className="pt-2">
-                                    <a 
-                                        href="https://maps.google.com/?q=Sanchar+Telesystems+Limited+Okhla+Industrial+Area+Phase+II+New+Delhi" 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        className="btn-outline-paper w-full justify-center text-xs font-mono !py-3 text-white"
-                                    >
-                                        Open Location in Google Maps &rarr;
-                                    </a>
-                                </div>
-                            </div>
+                                 <div className="pt-2">
+                                     <a 
+                                         href="https://maps.google.com/?q=Sanchar+Telesystems+Limited+Okhla+Industrial+Area+Phase+II+New+Delhi" 
+                                         target="_blank" 
+                                         rel="noopener noreferrer"
+                                         className="btn-beacon w-full justify-center text-xs font-mono !py-3 font-bold"
+                                     >
+                                         Open Location in Google Maps
+                                     </a>
+                                 </div>
+                             </div>
 
                             {/* Procurement Assurance Card */}
                             <div className="panel p-6 space-y-3">

@@ -72,9 +72,9 @@ export default function WhySancharDiagram() {
     const spokeRadius = 54;
 
     return (
-        <section className="py-20 bg-slate-50 dark:bg-navy-dark/70 border-y border-slate-200 dark:border-white/10 transition-colors duration-300 relative overflow-hidden">
+        <section className="py-20 bg-slate-50 dark:bg-navy-dark border-y border-slate-200 dark:border-navy-border transition-colors duration-300 relative overflow-hidden">
             {/* Soft Ambient Radial Background Aura */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-crimson/5 dark:bg-crimson/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/5 dark:bg-beacon/5 rounded-full blur-3xl pointer-events-none" />
 
             <div className="container-content relative z-10">
                 {/* Section Header */}
@@ -241,7 +241,7 @@ export default function WhySancharDiagram() {
 
                     {/* Right: Interactive Pillar Breakdown & Highlighting */}
                     <div className="lg:col-span-5 space-y-4">
-                        <div className="panel p-6 sm:p-8 relative overflow-hidden border border-slate-200 dark:border-white/10 shadow-lg">
+                        <div className="panel p-6 sm:p-8 relative overflow-hidden border border-slate-200/90 dark:border-navy-border shadow-lg">
                             <div className="flex items-center gap-3 mb-4">
                                 <span 
                                     className="w-4 h-4 rounded-full transition-colors duration-300"
@@ -259,7 +259,7 @@ export default function WhySancharDiagram() {
                                 }
                             </p>
 
-                            <div className="mt-6 pt-5 border-t border-slate-200 dark:border-white/10 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-steel">
+                            <div className="mt-6 pt-5 border-t border-slate-200 dark:border-navy-border/60 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-steel">
                                 <span>INTERACTIVE VALUE MATRIX</span>
                                 <span className="text-amber-600 dark:text-beacon font-semibold">
                                     {activePillar ? 'ACTIVE PILLAR' : '6 VALUE DRIVERS'}
@@ -279,7 +279,7 @@ export default function WhySancharDiagram() {
                                         className={`p-3 rounded-xl border text-left transition-all text-xs font-medium flex items-center gap-2.5 ${
                                             isSelected 
                                                 ? 'border-amber-500/80 bg-white dark:bg-navy-surface shadow-md scale-[1.02]' 
-                                                : 'border-slate-200 dark:border-white/5 bg-white/60 dark:bg-navy-surface/40 hover:border-slate-300 dark:hover:border-white/20'
+                                                : 'border-slate-200 dark:border-navy-border/80 bg-white dark:bg-navy-surface/80 hover:border-slate-300 dark:hover:border-navy-border'
                                         }`}
                                     >
                                         <span 

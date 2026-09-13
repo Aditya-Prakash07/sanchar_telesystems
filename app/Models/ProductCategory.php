@@ -20,6 +20,11 @@ class ProductCategory extends Model
         return $this->hasMany(ProductSubcategory::class)->orderBy('sort_order');
     }
 
+    public function items(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    {
+        return $this->hasManyThrough(PortfolioItem::class, ProductSubcategory::class);
+    }
+
     public function getRouteKeyName(): string
     {
         return 'slug';

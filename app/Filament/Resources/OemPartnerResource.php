@@ -19,6 +19,7 @@ class OemPartnerResource extends Resource
     {
         return $form->schema([
             Forms\Components\TextInput::make('name')->required(),
+            Forms\Components\Textarea::make('description')->rows(4)->columnSpanFull(),
             Forms\Components\FileUpload::make('logo_path')
                 ->image()->disk('public')->directory('partners')->required()
                 ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp']),

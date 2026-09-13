@@ -60,6 +60,7 @@ class PublicPagesTest extends TestCase
 
         $this->get("/products/{$cat->slug}/{$sub->slug}")->assertStatus(200);
         $this->get("/products/{$cat->slug}/{$sub->slug}/{$product->slug}")->assertStatus(200);
+        $this->get("/products/{$product->slug}/datasheet")->assertStatus(200);
     }
 
     public function test_contact_form_submission_works(): void

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\ProductCategory;
 use App\Models\ProductSubcategory;
 use App\Models\PortfolioItem;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -67,6 +69,27 @@ class ProductController extends Controller
                 'title' => ($item->meta_title ?: $item->name).' — Sanchar Telesystems',
                 'description' => $item->meta_description ?: $item->short_description,
             ],
+        ]);
+    }
+
+    /**
+     * /products/{item}/datasheet — official technical specification datasheet.
+     */
+    public function datasheet(PortfolioItem $item)
+    {
+        if ($item->datasheet_path && Storage::disk('public')->exists($item->datasheet_path)) {
+            return response()->download(
+                storage_path('app/public/' . $item->datasheet_path),
+                Str::slug($item->name) . '-datasheet.pdf'
+            );
+        }
+
+        $item->load(['subcategory.category']);
+
+        return view('datasheet', [
+            'item' => $item,
+            'subcategory' => $item->subcategory,
+            'category' => $item->subcategory?->category,
         ]);
     }
 }

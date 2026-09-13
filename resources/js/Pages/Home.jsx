@@ -4,6 +4,7 @@ import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
 import SignalWave from '@/Components/SignalWave';
 import KeyStatsSection from '@/Components/KeyStatsSection';
+import WelcomeVideoSection from '@/Components/WelcomeVideoSection';
 
 const SECTOR_DATA = [
     {
@@ -101,14 +102,14 @@ export default function Home({ banners = [], categories = [], featuredProducts =
         }
     ];
 
-    // Continuous smooth auto-advance every 5.5s, resetting when slide changes
+    // Continuous smooth auto-advance every 5.5s, resetting when slide changes or paused
     useEffect(() => {
-        if (slides.length <= 1) return;
+        if (slides.length <= 1 || isPaused) return;
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides.length);
         }, 5500);
         return () => clearInterval(timer);
-    }, [currentSlide, slides.length]);
+    }, [currentSlide, slides.length, isPaused]);
 
     const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
     const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
@@ -124,20 +125,26 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             {/* =========================================================================
                 1. HERO SECTION WITH ORIGINAL LIVE BANNERS CAROUSEL
             ========================================================================= */}
-            <section className="relative bg-slate-950 text-paper overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28">
+            <section 
+                className="relative bg-slate-950 text-paper overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28"
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+            >
                 {/* Background Slider Imagery */}
-                <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 z-0 overflow-hidden">
                     {slides.map((s, idx) => (
                         <div
                             key={s.id || idx}
                             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                                currentSlide === idx ? 'opacity-40 scale-100' : 'opacity-0 scale-105 pointer-events-none'
-                            } transform transition-transform duration-[7000ms]`}
+                                currentSlide === idx ? 'opacity-40 z-10' : 'opacity-0 pointer-events-none z-0'
+                            }`}
                         >
                             <img
                                 src={`/storage/${s.image_path}`}
                                 alt={s.heading}
-                                className="w-full h-full object-cover object-center"
+                                className={`w-full h-full object-cover object-center transform transition-transform duration-[6000ms] ease-out will-change-transform ${
+                                    currentSlide === idx ? 'scale-110' : 'scale-100'
+                                }`}
                                 onError={(e) => {
                                     e.target.onerror = null;
                                     e.target.src = '/storage/media/banners/banner1.png';
@@ -146,34 +153,33 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                         </div>
                     ))}
                     {/* Dark gradient overlay for typography readability */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/60" />
-                    <div className="absolute inset-0 bg-grid-pattern opacity-25" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/60 z-10" />
                 </div>
 
                 <div className="container-content relative z-10">
                     <div className="grid lg:grid-cols-12 gap-12 items-center min-h-[480px]">
-                        {/* Slide Content with Cinematic Fade */}
+                        {/* Slide Content with Cinematic Staggered Entrance */}
                         <div className="lg:col-span-8">
-                            <div key={currentSlide} className="animate-hero-fade space-y-6">
-                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-beacon/30 bg-beacon/10 text-beacon font-mono text-xs tracking-wider uppercase">
+                            <div key={currentSlide} className="space-y-6">
+                                <div className="animate-hero-fade inline-flex items-center gap-2 px-3 py-1 rounded-full border border-beacon/30 bg-beacon/10 text-beacon font-mono text-xs tracking-wider uppercase">
                                     <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
                                     <span>TELECOM ENGINEERING &bull; WPC TYPE APPROVED</span>
                                 </div>
 
-                                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-white leading-[1.12]">
+                                <h1 className="animate-hero-fade-d1 text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-white leading-[1.12]">
                                     {slides[currentSlide].heading}
                                 </h1>
 
-                                <p className="text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed font-sans min-h-[3.5rem]">
+                                <p className="animate-hero-fade-d2 text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed font-sans min-h-[3.5rem]">
                                     {slides[currentSlide].subheading}
                                 </p>
 
-                                <div className="pt-4 flex flex-wrap items-center gap-4">
+                                <div className="animate-hero-fade-d3 pt-4 flex flex-wrap items-center gap-4">
                                     <Link 
                                         href={slides[currentSlide].cta_url || '/products'} 
                                         className="btn-shimmer !py-3.5 !px-8 text-sm uppercase tracking-wider font-mono font-bold"
                                     >
-                                        {slides[currentSlide].cta_label || 'Explore Products'} &rarr;
+                                        {slides[currentSlide].cta_label || 'Explore Products'}
                                     </Link>
 
                                     <Link 
@@ -192,14 +198,18 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                     className="h-9 w-9 rounded-lg border border-white/20 text-white/80 hover:text-beacon hover:border-beacon flex items-center justify-center transition-colors"
                                     aria-label="Previous Slide"
                                 >
-                                    &larr;
+                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                    </svg>
                                 </button>
                                 <button 
                                     onClick={nextSlide}
                                     className="h-9 w-9 rounded-lg border border-white/20 text-white/80 hover:text-beacon hover:border-beacon flex items-center justify-center transition-colors"
                                     aria-label="Next Slide"
                                 >
-                                    &rarr;
+                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
                                 </button>
 
                                 <div className="flex items-center gap-2 ml-2">
@@ -207,11 +217,18 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                         <button
                                             key={dotIdx}
                                             onClick={() => setCurrentSlide(dotIdx)}
-                                            className={`h-2 rounded-full transition-all duration-500 ${
-                                                currentSlide === dotIdx ? 'w-10 bg-beacon shadow-md shadow-beacon/30' : 'w-2 bg-white/30 hover:bg-white/60'
+                                            className={`relative h-2 rounded-full overflow-hidden transition-all duration-300 ${
+                                                currentSlide === dotIdx ? 'w-12 bg-white/20' : 'w-2.5 bg-white/30 hover:bg-white/60'
                                             }`}
                                             aria-label={`Go to slide ${dotIdx + 1}`}
-                                        />
+                                        >
+                                            {currentSlide === dotIdx && (
+                                                <span 
+                                                    className="absolute inset-0 bg-beacon rounded-full animate-slide-progress" 
+                                                    style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
+                                                />
+                                            )}
+                                        </button>
                                     ))}
                                 </div>
                             </div>
@@ -219,7 +236,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
 
                         {/* Right: Real-time Telemetry Status Card */}
                         <div className="lg:col-span-4 hidden lg:block">
-                            <div className="card-dual !bg-slate-900/90 dark:!bg-navy-surface/90 border border-slate-700 dark:border-navy-border p-6 space-y-5 shadow-2xl backdrop-blur-md">
+                            <div className="card-dual !bg-[#12151b]/90 dark:!bg-[#12151b]/90 border border-white/10 p-6 space-y-5 shadow-2xl backdrop-blur-md">
                                 <div className="flex items-center justify-between border-b border-white/10 pb-3 font-mono text-xs">
                                     <span className="text-beacon font-bold">SYSTEM TELEMETRY</span>
                                     <span className="flex items-center gap-1.5 text-emerald-400">
@@ -319,6 +336,12 @@ export default function Home({ banners = [], categories = [], featuredProducts =
 
 
             {/* =========================================================================
+                2B. WELCOME & CORPORATE HD VIDEO SHOWCASE (FROM ORIGINAL WEBSITE)
+            ========================================================================= */}
+            <WelcomeVideoSection />
+
+
+            {/* =========================================================================
                 3. TAILORED INDUSTRY SECTORS (INTERACTIVE TABS)
             ========================================================================= */}
             <section className="py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
@@ -381,7 +404,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
 
                                 <div className="pt-4 flex items-center gap-4">
                                     <Link href="/contact-us" className="btn-primary text-sm font-mono uppercase tracking-wider">
-                                        Request {SECTOR_DATA[selectedSector].title.split('&')[0]} Architecture &rarr;
+                                        Request {SECTOR_DATA[selectedSector].title.split('&')[0]} Architecture
                                     </Link>
                                 </div>
                             </div>
@@ -418,7 +441,9 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                         </div>
                         <Link href="/products" className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-900 dark:text-paper border-b-2 border-amber-500 dark:border-beacon pb-0.5 hover:text-amber-600 dark:hover:text-beacon transition-colors">
                             <span>Browse Complete 120+ Product Catalog</span>
-                            <span>&rarr;</span>
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
                         </Link>
                     </div>
 
@@ -470,17 +495,19 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 <div className="p-6 pt-4 border-t border-slate-100 dark:border-navy-border/40 mt-auto flex items-center justify-between">
                                     <Link
                                         href={`/products/${item.subcategory?.category?.slug || 'professional-amateur-radio'}/${item.subcategory?.slug || 'dmr'}/${item.slug}`}
-                                        className="text-xs font-mono font-semibold text-slate-900 dark:text-paper hover:text-amber-600 dark:hover:text-beacon flex items-center gap-1"
+                                        className="text-xs font-mono font-semibold text-slate-900 dark:text-paper hover:text-amber-600 dark:hover:text-beacon flex items-center gap-1.5"
                                     >
                                         <span>Specifications</span>
-                                        <span>&rarr;</span>
+                                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
                                     </Link>
 
                                     <Link
                                         href={`/contact-us?subject=Quote%20Request%20for%20${encodeURIComponent(item.name)}`}
                                         className="btn-primary !py-1.5 !px-3 text-xs font-mono"
                                     >
-                                        RFQ &rarr;
+                                        RFQ
                                     </Link>
                                 </div>
                             </div>
@@ -513,8 +540,11 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 Direct factory relationships bringing global component standards to the Indian subcontinent.
                             </p>
                         </div>
-                        <Link href="/oem-partners" className="text-sm font-semibold text-slate-900 dark:text-paper hover:text-amber-600 dark:hover:text-beacon font-mono">
-                            View All 10 Partners &rarr;
+                        <Link href="/oem-partners" className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-900 dark:text-paper hover:text-amber-600 dark:hover:text-beacon font-mono">
+                            <span>View All 10 Partners</span>
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
                         </Link>
                     </div>
 
@@ -557,7 +587,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                     </p>
                     <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
                         <Link href="/contact-us" className="btn-beacon !py-3.5 !px-8 text-sm font-mono uppercase tracking-wider">
-                            Contact Technical Desk &rarr;
+                            Contact Technical Desk
                         </Link>
                         <a href="tel:+911146528894" className="btn-secondary !py-3.5 !px-6 text-sm font-mono">
                             Call +91 (11) 4652 8894

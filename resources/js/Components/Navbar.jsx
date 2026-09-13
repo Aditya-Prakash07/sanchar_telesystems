@@ -19,11 +19,26 @@ export default function Navbar() {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [productsDropdown, setProductsDropdown] = useState(false);
     const dropdownTimeoutRef = useRef(null);
+    const navRef = useRef(null);
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 15);
+        const onScroll = () => {
+            setScrolled(window.scrollY > 15);
+            // Auto-close dropdown on scroll to prevent any overlap with scrolling content
+            setProductsDropdown(false);
+        };
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (navRef.current && !navRef.current.contains(e.target)) {
+                setProductsDropdown(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
     const handleMouseEnter = () => {
@@ -38,11 +53,11 @@ export default function Navbar() {
     };
 
     return (
-        <header className="fixed inset-x-0 top-0 z-50 transition-all duration-200">
-            {/* Main Navigation Bar (Seamless / Borderless) */}
+        <header ref={navRef} className="fixed inset-x-0 top-0 z-50 transition-all duration-200">
+            {/* Main Navigation Bar (100% Solid Opaque when scrolled) */}
             <div className={`transition-all duration-300 ${
                 scrolled
-                    ? 'bg-white/95 dark:bg-navy/95 backdrop-blur-md py-3'
+                    ? 'bg-white dark:bg-navy shadow-md py-3 border-b border-slate-200/80 dark:border-navy-border'
                     : 'bg-transparent py-4'
             }`}>
                 <nav className="container-content flex items-center justify-between">
@@ -92,67 +107,249 @@ export default function Navbar() {
                                         </Link>
 
                                         {/* Products Mega Dropdown */}
-                                        {productsDropdown && (
-                                            <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[820px] max-w-[90vw]">
-                                                <div className="bg-white dark:bg-navy-surface border border-slate-200 dark:border-navy-border shadow-2xl rounded-xl p-6 overflow-hidden">
-                                                    <div className="flex items-center justify-between border-b border-slate-100 dark:border-navy-border/60 pb-3 mb-5">
-                                                        <span className="text-xs font-mono uppercase tracking-wider text-amber-600 dark:text-beacon font-semibold flex items-center gap-2">
-                                                            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-beacon" />
-                                                            HARDWARE ECOSYSTEM &bull; MISSION-CRITICAL SYSTEMS
-                                                        </span>
-                                                        <Link 
-                                                            href="/products" 
-                                                            className="text-xs text-slate-500 dark:text-steel hover:text-amber-600 dark:hover:text-beacon transition-colors flex items-center gap-1 font-mono"
-                                                        >
-                                                            <span>Full Catalog</span>
-                                                            <span>&rarr;</span>
-                                                        </Link>
-                                                    </div>
+                                        {productsDropdown && (() => {
+                                            const radioCat = categoriesNav.find(c => c.slug === 'professional-amateur-radio') || categoriesNav[0];
+                                            const pocCat = categoriesNav.find(c => c.slug === 'ptt-over-cellular-poc');
+                                            const lteRCat = categoriesNav.find(c => c.slug === 'lte-r');
+                                            const captiveCat = categoriesNav.find(c => c.slug === 'captive-lte');
+                                            const accessoriesCat = categoriesNav.find(c => c.slug === 'accessories') || categoriesNav[categoriesNav.length - 1];
 
-                                                    <div className="grid grid-cols-3 gap-6">
-                                                        {(categoriesNav.length > 0 ? categoriesNav : [
-                                                            { name: 'Professional / Amateur Radio', slug: 'professional-amateur-radio', description: 'DMR Tier II/III, TETRA, P25, and Marine Radios.' },
-                                                            { name: 'PTT over Cellular (PoC)', slug: 'ptt-over-cellular-poc', description: 'Nationwide broadband dispatch terminals and consoles.' },
-                                                            { name: 'Accessories & Antennas', slug: 'accessories', description: 'Diamond Japan antennas, power supplies, batteries.' },
-                                                        ]).map((cat) => (
-                                                            <div key={cat.slug} className="group/item">
-                                                                <Link 
-                                                                    href="/products"
-                                                                    className="block text-sm font-semibold text-slate-900 dark:text-paper group-hover/item:text-amber-600 dark:group-hover/item:text-beacon transition-colors"
-                                                                >
-                                                                    {cat.name}
-                                                                </Link>
-                                                                <p className="text-xs text-slate-500 dark:text-steel mt-1 line-clamp-2 leading-relaxed">
-                                                                    {cat.description || 'Mission-ready communication terminals and components.'}
-                                                                </p>
-                                                                {cat.subcategories && cat.subcategories.length > 0 && (
-                                                                    <div className="mt-3 flex flex-wrap gap-1.5">
-                                                                        {cat.subcategories.slice(0, 3).map((sub) => (
+                                            const broadbandItems = [
+                                                ...(pocCat?.subcategories || []).map(s => ({ ...s, catSlug: pocCat.slug })),
+                                                ...(lteRCat?.subcategories || []).map(s => ({ ...s, catSlug: lteRCat.slug })),
+                                                ...(captiveCat?.subcategories || []).map(s => ({ ...s, catSlug: captiveCat.slug })),
+                                            ];
+
+                                            const broadbandCount = (pocCat?.items_count || 0) + (lteRCat?.items_count || 0) + (captiveCat?.items_count || 0);
+
+                                            return (
+                                                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[980px] max-w-[95vw] xl:w-[1060px] z-50">
+                                                    <div className="bg-white dark:bg-[#161a23] border border-slate-200/90 dark:border-white/10 shadow-2xl rounded-2xl p-6 overflow-hidden transition-all duration-200 animate-in fade-in slide-in-from-top-2">
+                                                        
+                                                        {/* Top Telemetry Header */}
+                                                        <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/10 pb-3.5 mb-5">
+                                                            <div className="flex items-center gap-2.5 text-xs font-mono uppercase tracking-wider text-amber-600 dark:text-beacon font-bold">
+                                                                <span className="w-2 h-2 rounded-full bg-amber-500 dark:bg-beacon animate-pulse" />
+                                                                <span>SANCHAR WIRELESS ECOSYSTEM &bull; 121 MISSION-CRITICAL HARDWARE SYSTEMS</span>
+                                                            </div>
+                                                            <Link 
+                                                                href="/products" 
+                                                                onClick={() => setProductsDropdown(false)}
+                                                                className="text-xs font-mono text-slate-500 dark:text-steel hover:text-amber-600 dark:hover:text-beacon transition-colors font-semibold"
+                                                            >
+                                                                Browse All 121 Products
+                                                            </Link>
+                                                        </div>
+
+                                                        {/* 3 Symmetrical Architectural Pillars */}
+                                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                                                            
+                                                            {/* Pillar 1: Land Mobile Radio (LMR) */}
+                                                            <div className="group/col flex flex-col justify-between p-4 rounded-xl border border-slate-200/70 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.02] hover:border-amber-500/40 dark:hover:border-beacon/30 hover:bg-white dark:hover:bg-white/[0.04] transition-all duration-200">
+                                                                <div>
+                                                                    <div className="flex items-center gap-3 mb-3">
+                                                                        <div className="w-9 h-9 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center shrink-0 group-hover/col:bg-amber-500 group-hover/col:text-slate-950 transition-all duration-200">
+                                                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                                                            </svg>
+                                                                        </div>
+                                                                        <div>
+                                                                            <Link 
+                                                                                href={`/products`}
+                                                                                onClick={() => setProductsDropdown(false)}
+                                                                                className="text-sm font-bold text-slate-900 dark:text-paper group-hover/col:text-amber-600 dark:group-hover/col:text-beacon transition-colors flex items-center gap-1.5"
+                                                                            >
+                                                                                <span>Radio Communications</span>
+                                                                                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-100 dark:bg-beacon/20 text-amber-700 dark:text-beacon font-bold">
+                                                                                    {radioCat?.items_count ?? 41}
+                                                                                </span>
+                                                                            </Link>
+                                                                            <p className="text-[11px] text-slate-500 dark:text-steel font-mono">
+                                                                                DMR &bull; TETRA &bull; P25 &bull; Marine
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div className="space-y-1 mt-3">
+                                                                        {(radioCat?.subcategories || []).map((sub) => (
                                                                             <Link
                                                                                 key={sub.slug}
-                                                                                href={`/products/${cat.slug}/${sub.slug}`}
-                                                                                className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-navy-light text-slate-600 dark:text-paper/70 hover:bg-amber-50 dark:hover:bg-beacon/20 hover:text-amber-600 dark:hover:text-beacon transition-colors"
+                                                                                href={`/products/${radioCat.slug}/${sub.slug}`}
+                                                                                onClick={() => setProductsDropdown(false)}
+                                                                                className="group/item flex items-center justify-between py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-700 dark:text-steel hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.07] hover:translate-x-0.5 active:scale-[0.98] transition-all duration-150"
                                                                             >
-                                                                                {sub.name}
+                                                                                <div className="flex items-center gap-2 truncate">
+                                                                                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-white/20 group-hover/item:bg-amber-500 dark:group-hover/item:bg-beacon transition-colors shrink-0" />
+                                                                                    <span className="truncate">{sub.name}</span>
+                                                                                </div>
+                                                                                {sub.items_count !== undefined && (
+                                                                                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-steel group-hover/item:bg-amber-500/15 group-hover/item:text-amber-700 dark:group-hover/item:text-beacon transition-colors shrink-0">
+                                                                                        {sub.items_count}
+                                                                                    </span>
+                                                                                )}
                                                                             </Link>
                                                                         ))}
                                                                     </div>
-                                                                )}
-                                                            </div>
-                                                        ))}
-                                                    </div>
+                                                                </div>
 
-                                                    <div className="mt-6 pt-4 border-t border-slate-100 dark:border-navy-border/60 bg-slate-50/80 dark:bg-navy-dark/40 -mx-6 -mb-6 p-4 px-6 flex items-center justify-between text-xs">
-                                                        <span className="text-slate-600 dark:text-steel">
-                                                            Need custom frequency calibration or bulk tender RFQ?
-                                                        </span>
-                                                        <Link href="/contact-us" className="text-amber-600 dark:text-beacon font-semibold hover:underline">
-                                                            Connect with Technical Desk &rarr;
-                                                        </Link>
+                                                                <div className="mt-4 pt-3 border-t border-slate-100 dark:border-white/5">
+                                                                    <Link
+                                                                        href="/products"
+                                                                        onClick={() => setProductsDropdown(false)}
+                                                                        className="text-[11px] font-mono font-semibold text-amber-600 dark:text-beacon hover:underline"
+                                                                    >
+                                                                        Explore all {radioCat?.items_count ?? 41} Radio terminals
+                                                                    </Link>
+                                                                </div>
+                                                            </div>
+
+                                                            {/* Pillar 2: Broadband PoC, LTE-R & Captive LTE */}
+                                                            <div className="group/col flex flex-col justify-between p-4 rounded-xl border border-slate-200/70 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.02] hover:border-amber-500/40 dark:hover:border-beacon/30 hover:bg-white dark:hover:bg-white/[0.04] transition-all duration-200">
+                                                                <div>
+                                                                    <div className="flex items-center gap-3 mb-3">
+                                                                        <div className="w-9 h-9 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center shrink-0 group-hover/col:bg-amber-500 group-hover/col:text-slate-950 transition-all duration-200">
+                                                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z" />
+                                                                            </svg>
+                                                                        </div>
+                                                                        <div>
+                                                                            <Link 
+                                                                                href={`/products`}
+                                                                                onClick={() => setProductsDropdown(false)}
+                                                                                className="text-sm font-bold text-slate-900 dark:text-paper group-hover/col:text-amber-600 dark:group-hover/col:text-beacon transition-colors flex items-center gap-1.5"
+                                                                            >
+                                                                                <span>PoC & Dedicated LTE</span>
+                                                                                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-100 dark:bg-beacon/20 text-amber-700 dark:text-beacon font-bold">
+                                                                                    {broadbandCount || 12}
+                                                                                </span>
+                                                                            </Link>
+                                                                            <p className="text-[11px] text-slate-500 dark:text-steel font-mono">
+                                                                                4G/LTE &bull; Rail LTE-R &bull; Captive
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div className="space-y-1 mt-3">
+                                                                        {broadbandItems.map((sub) => (
+                                                                            <Link
+                                                                                key={sub.slug}
+                                                                                href={`/products/${sub.catSlug}/${sub.slug}`}
+                                                                                onClick={() => setProductsDropdown(false)}
+                                                                                className="group/item flex items-center justify-between py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-700 dark:text-steel hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.07] hover:translate-x-0.5 active:scale-[0.98] transition-all duration-150"
+                                                                            >
+                                                                                <div className="flex items-center gap-2 truncate">
+                                                                                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-white/20 group-hover/item:bg-amber-500 dark:group-hover/item:bg-beacon transition-colors shrink-0" />
+                                                                                    <span className="truncate">{sub.name}</span>
+                                                                                </div>
+                                                                                {sub.items_count !== undefined && (
+                                                                                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-steel group-hover/item:bg-amber-500/15 group-hover/item:text-amber-700 dark:group-hover/item:text-beacon transition-colors shrink-0">
+                                                                                        {sub.items_count}
+                                                                                    </span>
+                                                                                )}
+                                                                            </Link>
+                                                                        ))}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="mt-4 pt-3 border-t border-slate-100 dark:border-white/5">
+                                                                    <Link
+                                                                        href="/products"
+                                                                        onClick={() => setProductsDropdown(false)}
+                                                                        className="text-[11px] font-mono font-semibold text-amber-600 dark:text-beacon hover:underline"
+                                                                    >
+                                                                        Explore all {broadbandCount || 12} Cellular / LTE systems
+                                                                    </Link>
+                                                                </div>
+                                                            </div>
+
+                                                            {/* Pillar 3: OEM RF Accessories & Antennas */}
+                                                            <div className="group/col flex flex-col justify-between p-4 rounded-xl border border-slate-200/70 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.02] hover:border-amber-500/40 dark:hover:border-beacon/30 hover:bg-white dark:hover:bg-white/[0.04] transition-all duration-200">
+                                                                <div>
+                                                                    <div className="flex items-center gap-3 mb-3">
+                                                                        <div className="w-9 h-9 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center shrink-0 group-hover/col:bg-amber-500 group-hover/col:text-slate-950 transition-all duration-200">
+                                                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                                                            </svg>
+                                                                        </div>
+                                                                        <div>
+                                                                            <Link 
+                                                                                href={`/products`}
+                                                                                onClick={() => setProductsDropdown(false)}
+                                                                                className="text-sm font-bold text-slate-900 dark:text-paper group-hover/col:text-amber-600 dark:group-hover/col:text-beacon transition-colors flex items-center gap-1.5"
+                                                                            >
+                                                                                <span>OEM Accessories</span>
+                                                                                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-100 dark:bg-beacon/20 text-amber-700 dark:text-beacon font-bold">
+                                                                                    {accessoriesCat?.items_count ?? 68}
+                                                                                </span>
+                                                                            </Link>
+                                                                            <p className="text-[11px] text-slate-500 dark:text-steel font-mono">
+                                                                                Diamond Japan &bull; Kenwood &bull; RF
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div className="space-y-1 mt-3">
+                                                                        {(accessoriesCat?.subcategories || []).map((sub) => (
+                                                                            <Link
+                                                                                key={sub.slug}
+                                                                                href={`/products/${accessoriesCat.slug}/${sub.slug}`}
+                                                                                onClick={() => setProductsDropdown(false)}
+                                                                                className="group/item flex items-center justify-between py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-700 dark:text-steel hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.07] hover:translate-x-0.5 active:scale-[0.98] transition-all duration-150"
+                                                                            >
+                                                                                <div className="flex items-center gap-2 truncate">
+                                                                                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-white/20 group-hover/item:bg-amber-500 dark:group-hover/item:bg-beacon transition-colors shrink-0" />
+                                                                                    <span className="truncate">{sub.name}</span>
+                                                                                </div>
+                                                                                {sub.items_count !== undefined && (
+                                                                                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-steel group-hover/item:bg-amber-500/15 group-hover/item:text-amber-700 dark:group-hover/item:text-beacon transition-colors shrink-0">
+                                                                                        {sub.items_count}
+                                                                                    </span>
+                                                                                )}
+                                                                            </Link>
+                                                                        ))}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="mt-4 pt-3 border-t border-slate-100 dark:border-white/5">
+                                                                    <Link
+                                                                        href="/products"
+                                                                        onClick={() => setProductsDropdown(false)}
+                                                                        className="text-[11px] font-mono font-semibold text-amber-600 dark:text-beacon hover:underline"
+                                                                    >
+                                                                        Explore all {accessoriesCat?.items_count ?? 68} OEM Accessories
+                                                                    </Link>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        {/* Bottom Executive Utility Strip */}
+                                                        <div className="mt-5 pt-4 border-t border-slate-100 dark:border-white/10 bg-slate-50 dark:bg-[#0a0d14] -mx-6 -mb-6 p-4 px-6 flex flex-wrap items-center justify-between gap-3 text-xs">
+                                                            <div className="flex flex-wrap items-center gap-3 text-[11px] font-mono text-slate-500 dark:text-steel">
+                                                                <span className="flex items-center gap-1.5">
+                                                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                                                                    Govt. of India WPC & TEC Approved
+                                                                </span>
+                                                                <span>&bull;</span>
+                                                                <span>GeM Registered OEM</span>
+                                                                <span>&bull;</span>
+                                                                <span>MIL-STD-810 Tested</span>
+                                                                <span>&bull;</span>
+                                                                <span>Authorized Kenwood & Diamond Partner</span>
+                                                            </div>
+                                                            <Link 
+                                                                href="/contact-us" 
+                                                                onClick={() => setProductsDropdown(false)}
+                                                                className="text-amber-600 dark:text-beacon font-bold hover:underline font-mono text-xs"
+                                                            >
+                                                                Direct RFQ & Frequency Tuning Desk
+                                                            </Link>
+                                                        </div>
+
                                                     </div>
                                                 </div>
-                                            </div>
-                                        )}
+                                            );
+                                        })()}
                                     </li>
                                 );
                             }
@@ -174,7 +371,7 @@ export default function Navbar() {
                         })}
                     </ul>
 
-                    {/* Right Controls: Theme Toggle & Shimmer CTA */}
+                    {/* Right Controls: Theme Toggle & Request Architecture CTA */}
                     <div className="flex items-center gap-3 shrink-0">
                         {/* Dual-Tone Theme Toggle Switch */}
                         <button
@@ -199,7 +396,7 @@ export default function Navbar() {
 
                         <Link
                             href="/contact-us"
-                            className="hidden sm:inline-flex btn-shimmer !py-2 !px-4 text-xs font-mono uppercase tracking-wider whitespace-nowrap"
+                            className="hidden sm:inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 dark:from-beacon dark:to-beacon-dim text-slate-950 font-bold !py-2 !px-4 text-xs font-mono uppercase tracking-wider rounded-lg shadow-sm hover:shadow-md hover:shadow-amber-500/20 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 whitespace-nowrap cursor-pointer group"
                         >
                             Request Architecture
                         </Link>
@@ -225,7 +422,7 @@ export default function Navbar() {
 
             {/* Mobile Drawer */}
             {mobileOpen && (
-                <div className="lg:hidden bg-white/98 dark:bg-navy/98 backdrop-blur-xl border-b border-slate-200 dark:border-navy-border shadow-2xl px-6 py-6 space-y-4 animate-in fade-in slide-in-from-top-4 duration-200">
+                <div className="lg:hidden bg-white dark:bg-navy border-b border-slate-200 dark:border-navy-border shadow-2xl px-6 py-6 space-y-4 animate-in fade-in slide-in-from-top-4 duration-200">
                     <div className="flex items-center justify-between border-b border-slate-200 dark:border-white/10 pb-3">
                         <span className="text-xs font-mono text-amber-600 dark:text-beacon uppercase tracking-wider font-semibold">
                             NAVIGATION MENU
@@ -269,7 +466,7 @@ export default function Navbar() {
                             onClick={() => setMobileOpen(false)}
                             className="btn-primary w-full text-center text-xs font-mono uppercase tracking-wider !py-3"
                         >
-                            Request Architecture &rarr;
+                            Request Architecture
                         </Link>
                     </div>
                 </div>

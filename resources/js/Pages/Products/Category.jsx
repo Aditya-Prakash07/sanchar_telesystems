@@ -17,26 +17,25 @@ export default function ProductsCategory({ category, subcategory, items = [], se
             />
 
             {/* Header */}
-            <header className="relative bg-slate-950 text-paper pt-36 pb-20 overflow-hidden">
-                <div className="absolute inset-0 bg-grid-pattern opacity-25" />
+            <header className="relative bg-white dark:bg-navy border-b border-slate-200/80 dark:border-navy-border pt-36 pb-16 overflow-hidden">
                 <div className="container-content relative z-10">
                     {/* Breadcrumbs */}
-                    <nav className="flex items-center gap-2 text-xs font-mono text-slate-400 mb-6">
-                        <Link href="/" className="hover:text-white transition-colors">HOME</Link>
+                    <nav className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 mb-6">
+                        <Link href="/" className="hover:text-slate-900 dark:hover:text-white transition-colors">HOME</Link>
                         <span>/</span>
-                        <Link href="/products" className="hover:text-white transition-colors">PRODUCTS</Link>
+                        <Link href="/products" className="hover:text-slate-900 dark:hover:text-white transition-colors">PRODUCTS</Link>
                         <span>/</span>
-                        <span className="text-amber-400 dark:text-beacon uppercase font-bold">{subcategory.name}</span>
+                        <span className="text-amber-600 dark:text-beacon uppercase font-bold">{subcategory.name}</span>
                     </nav>
 
                     <div className="max-w-3xl">
                         <span className="badge-rf text-xs mb-3">
                             {category.name}
                         </span>
-                        <h1 className="text-3xl sm:text-5xl font-display font-bold tracking-tight text-white leading-tight">
+                        <h1 className="text-3xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
                             {subcategory.name}
                         </h1>
-                        <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed font-sans">
+                        <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-steel leading-relaxed font-sans">
                             {subcategory.description || `Browse high-durability ${subcategory.name} equipment and systems engineered for mission-critical deployments across India.`}
                         </p>
                     </div>
@@ -50,8 +49,11 @@ export default function ProductsCategory({ category, subcategory, items = [], se
                         <span className="text-xs font-mono uppercase text-slate-500 dark:text-steel font-bold">
                             HARDWARE CATALOG &bull; {items.length} {items.length === 1 ? 'TERMINAL' : 'TERMINALS / UNITS'}
                         </span>
-                        <Link href="/products" className="text-xs font-mono text-amber-600 dark:text-beacon hover:underline">
-                            &larr; Return to All Categories
+                        <Link href="/products" className="text-xs font-mono text-amber-600 dark:text-beacon hover:underline inline-flex items-center gap-1.5 font-medium">
+                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                            <span>Return to All Categories</span>
                         </Link>
                     </div>
 
@@ -60,8 +62,8 @@ export default function ProductsCategory({ category, subcategory, items = [], se
                             <p className="font-mono text-sm text-slate-600 dark:text-steel">
                                 Direct supply models available via custom RFP quotation.
                             </p>
-                            <Link href="/contact-us" className="btn-primary !py-2.5 !px-6 text-xs font-mono">
-                                Request Custom Hardware Specs &rarr;
+                            <Link href="/contact-us" className="btn-beacon !py-2.5 !px-6 text-xs font-mono uppercase tracking-wider font-bold">
+                                Request Custom Hardware Specs
                             </Link>
                         </div>
                     ) : (
@@ -112,7 +114,9 @@ export default function ProductsCategory({ category, subcategory, items = [], se
 
                                     <div className="p-6 pt-4 border-t border-slate-100 dark:border-navy-border/40 mt-auto flex items-center justify-between text-xs font-mono text-slate-500 dark:text-steel">
                                         <span className="group-hover:text-slate-900 dark:group-hover:text-paper font-medium">Technical Specifications</span>
-                                        <span className="text-amber-500 dark:text-beacon font-bold">&rarr;</span>
+                                        <svg className="w-4 h-4 text-amber-500 dark:text-beacon transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
                                     </div>
                                 </Link>
                             ))}

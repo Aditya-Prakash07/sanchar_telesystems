@@ -12,39 +12,38 @@ export default function Careers({ openings = [], seo = {} }) {
             />
 
             {/* Header */}
-            <header className="relative bg-slate-950 text-paper pt-36 pb-20 overflow-hidden">
-                <div className="absolute inset-0 bg-grid-pattern opacity-25" />
+            <header className="relative bg-white dark:bg-navy border-b border-slate-200/80 dark:border-navy-border pt-36 pb-20 overflow-hidden transition-colors duration-300">
                 <div className="container-content relative z-10">
-                    <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-400 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
-                        <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
+                    <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
+                        <span className="w-2 h-2 rounded-full bg-amber-500 dark:bg-beacon animate-pulse" />
                         <span>CAREERS &bull; FIELD ENGINEERING &bull; RF RESEARCH</span>
                     </div>
 
                     <div className="max-w-3xl">
-                        <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-white leading-tight">
+                        <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
                             Engineer Systems Where Failure is Not an Option.
                         </h1>
-                        <p className="mt-5 text-lg text-slate-300 leading-relaxed font-sans">
+                        <p className="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
                             Join our team of RF propagation specialists, embedded systems developers, and mission-critical network engineers building wireless networks for Parliament, Delhi Police, and India's vital infrastructure.
                         </p>
                     </div>
 
-                    <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-white/10 pt-8 max-w-4xl text-xs font-mono">
+                    <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-200 dark:border-white/10 pt-8 max-w-4xl text-xs font-mono">
                         <div>
-                            <span className="text-slate-400 block">PRIMARY LOCATION</span>
-                            <span className="text-white font-bold mt-1 block">NEW DELHI (HQ & LAB)</span>
+                            <span className="text-slate-500 dark:text-slate-400 block">PRIMARY LOCATION</span>
+                            <span className="text-slate-900 dark:text-white font-bold mt-1 block">NEW DELHI (HQ & LAB)</span>
                         </div>
                         <div>
-                            <span className="text-slate-400 block">DOMAINS</span>
-                            <span className="text-white font-bold mt-1 block">DMR &bull; TETRA &bull; PoC &bull; 4G/5G</span>
+                            <span className="text-slate-500 dark:text-slate-400 block">DOMAINS</span>
+                            <span className="text-slate-900 dark:text-white font-bold mt-1 block">DMR &bull; TETRA &bull; PoC &bull; 4G/5G</span>
                         </div>
                         <div>
-                            <span className="text-slate-400 block">INITIATIVE</span>
-                            <span className="text-white font-bold mt-1 block">MAKE IN INDIA / ATMANIRBHAR</span>
+                            <span className="text-slate-500 dark:text-slate-400 block">INITIATIVE</span>
+                            <span className="text-slate-900 dark:text-white font-bold mt-1 block">MAKE IN INDIA / ATMANIRBHAR</span>
                         </div>
                         <div>
-                            <span className="text-slate-400 block">BENCH CULTURE</span>
-                            <span className="text-white font-bold mt-1 block">HANDS-ON SPECTRUM WORK</span>
+                            <span className="text-slate-500 dark:text-slate-400 block">BENCH CULTURE</span>
+                            <span className="text-slate-900 dark:text-white font-bold mt-1 block">HANDS-ON SPECTRUM WORK</span>
                         </div>
                     </div>
                 </div>
@@ -145,7 +144,6 @@ export default function Careers({ openings = [], seo = {} }) {
                                     className="btn-beacon !py-2.5 !px-6 text-xs font-mono uppercase tracking-wider inline-flex items-center gap-2 font-bold"
                                 >
                                     <span>Email Resume (info@sanchartelesystems.com)</span>
-                                    <span>&rarr;</span>
                                 </a>
                             </div>
                         </div>
@@ -188,7 +186,7 @@ export default function Careers({ openings = [], seo = {} }) {
                                             href={`/contact-us?subject=Application%20for%20${encodeURIComponent(job.title)}`}
                                             className="shrink-0 btn-beacon !py-2.5 !px-5 text-xs font-mono uppercase tracking-wider font-bold text-center"
                                         >
-                                            Apply for Role &rarr;
+                                            Apply for Role
                                         </Link>
                                     </div>
 
@@ -204,18 +202,18 @@ export default function Careers({ openings = [], seo = {} }) {
                     )}
 
                     {/* Spontaneous Application Card */}
-                    <div className="mt-12 card-dual !bg-slate-900 text-paper p-8 border border-slate-800 dark:border-navy-border flex flex-col sm:flex-row items-center justify-between gap-6">
+                    <div className="mt-12 card-dual !bg-white dark:!bg-navy-surface p-8 border border-slate-200/80 dark:border-navy-border shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
                         <div>
-                            <h4 className="font-display font-bold text-lg text-white">Don't see your specific specialization?</h4>
-                            <p className="text-xs sm:text-sm text-slate-300 mt-1">
+                            <h4 className="font-display font-bold text-lg text-slate-900 dark:text-white">Don't see your specific specialization?</h4>
+                            <p className="text-xs sm:text-sm text-slate-600 dark:text-steel mt-1">
                                 We regularly recruit RF circuit designers, FPGA developers, and defense liaison specialists.
                             </p>
                         </div>
                         <a
                             href="mailto:info@sanchartelesystems.com?subject=Spontaneous%20Application%20-%20RF%20Engineering"
-                            className="shrink-0 btn-outline-paper !py-2.5 !px-5 text-xs font-mono uppercase tracking-wider text-white"
+                            className="shrink-0 btn-beacon !py-2.5 !px-5 text-xs font-mono uppercase tracking-wider font-bold"
                         >
-                            Drop CV to HR &rarr;
+                            Drop CV to HR
                         </a>
                     </div>
                 </div>

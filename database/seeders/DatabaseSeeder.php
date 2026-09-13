@@ -234,21 +234,83 @@ class DatabaseSeeder extends Seeder
             CompanyStat::create($s);
         }
 
-        // 6. Global OEM Partners from Live Site
-        $scrapedPartnersFile = storage_path('app/scraped_partners.json');
-        if (file_exists($scrapedPartnersFile)) {
-            $partners = json_decode(file_get_contents($scrapedPartnersFile), true);
-            foreach ($partners as $i => $p) {
-                OemPartner::updateOrCreate(
-                    ['name' => $p['name']],
-                    [
-                        'logo_path' => $p['logo_path'],
-                        'website_url' => $p['website_url'] ?: '#',
-                        'sort_order' => $i,
-                        'is_published' => true,
-                    ]
-                );
-            }
+        // 6. Global OEM Partners with Detailed Descriptions & Working URLs
+        $oemPartners = [
+            [
+                'name' => 'Kenwood Corporation, Japan',
+                'description' => 'Started in 1946, KENWOOD is a world leader in land mobile radios with a global reputation for advanced RF engineering, superb reliability, and innovative mission-critical performance. Sanchar has been Kenwood\'s accredited distributor in India since 1999.',
+                'logo_path' => 'media/partners/1560034561_Kenwood-logo.png',
+                'website_url' => 'https://www.kenwood.com/',
+                'sort_order' => 0,
+            ],
+            [
+                'name' => 'Diamond Corporation, Japan',
+                'description' => 'Established in 1955, Diamond Antenna Japan is the global benchmark in high-gain base station, mobile, and handheld RF antennas. Sanchar provides genuine Diamond antennas to maximize transceiver range and signal integrity.',
+                'logo_path' => 'media/partners/1560034773_da.png',
+                'website_url' => 'https://www.diamond-ant.co.jp/english/',
+                'sort_order' => 1,
+            ],
+            [
+                'name' => 'Radio Activity',
+                'description' => 'Specialized RF engineering company focused on DMR Tier III simulcast and multisite repeater stations. A 100% subsidiary of JVCKENWOOD Group, Radio Activity partners with Sanchar to cater to Indian professional mobile radio networks.',
+                'logo_path' => 'media/partners/1560034967_ra.png',
+                'website_url' => 'https://www.radioactivity-tlc.com/',
+                'sort_order' => 2,
+            ],
+            [
+                'name' => 'EF Johnson Technologies',
+                'description' => 'Founded in 1923, A JVCKENWOOD company delivering modern turnkey P25 solutions for public safety and tactical first responders. Sanchar serves as their accredited representative in India for mission-critical wireless deployments.',
+                'logo_path' => 'media/partners/1560035008_ef.png',
+                'website_url' => 'https://www.efjohnson.com/',
+                'sort_order' => 3,
+            ],
+            [
+                'name' => 'Yaesu',
+                'description' => 'Synonymous with premium transceivers for amateur radio, air band, and marine communicators (Standard Horizon) for over half a century. Sanchar is the authorized National Distributor for Yaesu across the Indian subcontinent.',
+                'logo_path' => 'media/partners/1560035046_ya.png',
+                'website_url' => 'https://www.yaesu.com/',
+                'sort_order' => 4,
+            ],
+            [
+                'name' => 'RugGear',
+                'description' => 'Global pioneer in designing rugged smart mobile devices and mission-critical MCPTT / Push-to-Talk over Cellular (PoC) terminals tested to MIL-STD-810H and IP68 standards. Sanchar delivers rugged tactical PTT hardware with RugGear.',
+                'logo_path' => 'media/partners/1560035112_ru.png',
+                'website_url' => 'https://www.ruggear.com/',
+                'sort_order' => 5,
+            ],
+            [
+                'name' => 'Wireless Technologies',
+                'description' => 'Wireless Technologies Finland Ltd develops carrier-grade real-time group communication and dispatch platforms (PushCom) compliant with 3GPP and IETF telecom standards, powering Sanchar\'s nationwide PoC fleet deployments.',
+                'logo_path' => 'media/partners/1560578565_PushCom_Logo_1.PNG',
+                'website_url' => 'https://www.wirelesstechnologies.mobi/',
+                'sort_order' => 6,
+            ],
+            [
+                'name' => 'Teltronics (Cab Radios)',
+                'description' => 'Global leader in railway mission-critical communications (EN 50155). Teltronic delivers continuous train-to-trackside voice and data over TETRA, LTE-R, and future 5G FRMCS standards, deployed by Sanchar for Indian rail infrastructure.',
+                'logo_path' => 'media/partners/1707162735_Teltronics.png',
+                'website_url' => 'https://www.teltronic.es/en/',
+                'sort_order' => 7,
+            ],
+            [
+                'name' => 'Nokia (Captive 4G/5G)',
+                'description' => 'World leader in Private Wireless and Industrial 4G/5G networks. Nokia RAN infrastructure provides future-proof, carrier-grade connectivity for critical ports, mining, and smart industrial campuses deployed by Sanchar.',
+                'logo_path' => 'media/partners/1707308840_nokia.png',
+                'website_url' => 'https://www.nokia.com/networks/solutions/private-wireless/',
+                'sort_order' => 8,
+            ],
+            [
+                'name' => 'Resonous',
+                'description' => 'Bangalore-based 4G/5G Wireless Network Solutions provider with deep R&D focus, delivering secure, reliable, and cost-effective end-to-end small cells and core networks for Indian defense, rural telecom, and Industry 4.0 IoT.',
+                'logo_path' => 'media/partners/1707308900_Resonous.png',
+                'website_url' => 'https://www.resonous.com/',
+                'sort_order' => 9,
+            ],
+        ];
+
+        OemPartner::truncate();
+        foreach ($oemPartners as $p) {
+            OemPartner::create($p + ['is_published' => true]);
         }
 
         // 7. Original Live Site Hero Banners
