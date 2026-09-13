@@ -1,254 +1,289 @@
-import { useForm, usePage } from '@inertiajs/react';
+import { useForm } from '@inertiajs/react';
 import { useState } from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
 
-const INQUIRY_TYPES = [
-    'System Architecture / RFQ',
-    'Hardware Procurement',
-    'AMC & Technical Support',
-    'Channel / OEM Partnership',
+const REQUIREMENT_TYPES = [
+    { id: 'system_architecture', label: 'System Architecture & Design' },
+    { id: 'hardware_procurement', label: 'Hardware Procurement & Tender RFQ' },
+    { id: 'amc_support', label: 'Annual Maintenance & Repair (AMC)' },
+    { id: 'oem_partnership', label: 'OEM & Channel Partnership' },
 ];
 
-export default function Contact({ seo }) {
-    const { flash } = usePage().props;
-    const [selectedType, setSelectedType] = useState(INQUIRY_TYPES[0]);
+export default function Contact({ seo = {}, flash = {} }) {
+    const [selectedType, setSelectedType] = useState('system_architecture');
 
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors, reset, recentlySuccessful } = useForm({
         name: '',
         email: '',
         phone: '',
-        subject: `[${INQUIRY_TYPES[0]}] Inquiry`,
+        subject: '',
         message: '',
-        website: '', // honeypot — real users never see or fill this field
+        website: '', // Honeypot
     });
 
-    const handleTypeSelect = (type) => {
-        setSelectedType(type);
-        setData('subject', `[${type}] Inquiry`);
-    };
-
-    function submit(e) {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        post('/contact-us', { 
-            onSuccess: () => {
-                reset();
-                setData('subject', `[${selectedType}] Inquiry`);
-            } 
+        const payload = {
+            ...data,
+            subject: data.subject ? `[${selectedType.toUpperCase()}] ${data.subject}` : `[${selectedType.toUpperCase()}] General Inquiry`,
+        };
+        post('/contact-us', {
+            preserveScroll: true,
+            onSuccess: () => reset(),
         });
-    }
+    };
 
     return (
         <MainLayout>
-            <Seo title={seo.title} description={seo.description} canonicalPath="/contact-us" />
+            <Seo
+                title={seo?.title || 'Contact Us — Sanchar Telesystems Limited'}
+                description={seo?.description || 'Reach Sanchar Telesystems headquarters in Okhla, New Delhi. Direct sales, technical support, and government procurement assistance.'}
+                canonicalPath="/contact-us"
+            />
 
-            {/* Header */}
-            <section className="bg-navy-dark text-paper pt-36 pb-20 border-b border-navy-border relative overflow-hidden">
-                <div className="absolute inset-0 bg-grid-pattern opacity-50 pointer-events-none" />
-                <div className="container-content relative z-10 max-w-3xl">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-beacon/30 bg-beacon/10 text-beacon text-xs font-mono uppercase tracking-wider mb-4">
-                        TECHNICAL CONSULTATION & DEFENSE PROCUREMENT
-                    </div>
-                    <h1 className="text-4xl sm:text-5xl font-display font-bold leading-tight">
-                        Contact Our Engineering Desk
-                    </h1>
-                    <p className="mt-4 text-base sm:text-lg text-paper/80 leading-relaxed font-sans">
-                        Discuss your site topology, emergency communications fleet, or tender requirements. 
-                        Our RF engineers respond within one business day with formal documentation.
-                    </p>
+            {/* Header with Original Inner Banner */}
+            <header className="relative bg-slate-950 text-paper pt-36 pb-20 overflow-hidden">
+                <div className="absolute inset-0 z-0 opacity-30">
+                    <img 
+                        src="/storage/media/banners/inner_contact.jpg" 
+                        alt="Contact Sanchar Telesystems" 
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = '/storage/media/banners/banner1.png';
+                        }}
+                    />
+                    <div className="absolute inset-0 bg-slate-950/80" />
+                    <div className="absolute inset-0 bg-grid-pattern opacity-30" />
                 </div>
-            </section>
 
-            {/* Main Content Grid */}
-            <div className="container-content py-20">
-                <div className="grid lg:grid-cols-12 gap-12 items-start">
-                    {/* Left: Contact & RFQ Form */}
-                    <div className="lg:col-span-7 bg-white panel p-8 sm:p-10 rounded-sm shadow-sm">
-                        <div className="mb-8">
-                            <span className="text-xs font-mono uppercase tracking-widest text-beacon font-semibold block mb-1">
-                                DIRECT INQUIRY
-                            </span>
-                            <h2 className="text-2xl font-display font-bold text-ink">
-                                Send a Message or Tender Request
-                            </h2>
-                            <p className="text-sm text-steel mt-1">
-                                Select your requirement category to route directly to the designated department.
-                            </p>
+                <div className="container-content relative z-10">
+                    <div className="max-w-3xl">
+                        <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-400 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
+                            <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
+                            <span>DIRECT ENGINEERING DESK &bull; NEW DELHI HQ</span>
+                        </div>
+                        <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-white leading-tight">
+                            Contact Technical Operations & Procurement
+                        </h1>
+                        <p className="mt-5 text-lg text-slate-300 leading-relaxed font-sans">
+                            Consult with our RF design team, request formal government tender authorizations, or schedule an onsite propagation survey.
+                        </p>
+                    </div>
+                </div>
+            </header>
+
+            <div className="py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
+                <div className="container-content">
+                    <div className="grid lg:grid-cols-12 gap-12">
+                        {/* Form Column */}
+                        <div className="lg:col-span-7">
+                            <div className="panel p-8 sm:p-10">
+                                {recentlySuccessful || flash?.success ? (
+                                    <div className="p-6 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200 space-y-2">
+                                        <div className="flex items-center gap-2 font-display font-bold text-lg">
+                                            <svg className="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                            </svg>
+                                            <span>Request Received</span>
+                                        </div>
+                                        <p className="text-sm text-emerald-800 dark:text-emerald-300">
+                                            Thank you. Our technical operations desk has received your request and will follow up within one business day.
+                                        </p>
+                                    </div>
+                                ) : null}
+
+                                <form onSubmit={handleSubmit} className="space-y-6 mt-4">
+                                    {/* Requirement Type Selector */}
+                                    <div className="space-y-2">
+                                        <label className="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 font-semibold">
+                                            Select Requirement Category
+                                        </label>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                            {REQUIREMENT_TYPES.map((type) => (
+                                                <button
+                                                    key={type.id}
+                                                    type="button"
+                                                    onClick={() => setSelectedType(type.id)}
+                                                    className={`p-3 rounded-lg border text-left text-xs font-mono transition-all duration-200 ${
+                                                        selectedType === type.id
+                                                            ? 'border-amber-500 dark:border-beacon bg-amber-50 dark:bg-beacon/10 text-amber-900 dark:text-beacon font-bold'
+                                                            : 'border-slate-200 dark:border-navy-border/80 text-slate-700 dark:text-paper/80 hover:bg-slate-50 dark:hover:bg-white/5'
+                                                    }`}
+                                                >
+                                                    {type.label}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Name & Email */}
+                                    <div className="grid sm:grid-cols-2 gap-5">
+                                        <div>
+                                            <label className="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1.5 font-semibold">
+                                                Full Name *
+                                            </label>
+                                            <input
+                                                type="text"
+                                                required
+                                                value={data.name}
+                                                onChange={(e) => setData('name', e.target.value)}
+                                                className="input"
+                                                placeholder="e.g. Commander Sharma"
+                                            />
+                                            {errors.name && <p className="text-red-500 text-xs mt-1 font-mono">{errors.name}</p>}
+                                        </div>
+
+                                        <div>
+                                            <label className="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1.5 font-semibold">
+                                                Official Email *
+                                            </label>
+                                            <input
+                                                type="email"
+                                                required
+                                                value={data.email}
+                                                onChange={(e) => setData('email', e.target.value)}
+                                                className="input"
+                                                placeholder="name@organization.gov.in"
+                                            />
+                                            {errors.email && <p className="text-red-500 text-xs mt-1 font-mono">{errors.email}</p>}
+                                        </div>
+                                    </div>
+
+                                    {/* Phone & Subject */}
+                                    <div className="grid sm:grid-cols-2 gap-5">
+                                        <div>
+                                            <label className="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1.5 font-semibold">
+                                                Phone Number
+                                            </label>
+                                            <input
+                                                type="text"
+                                                value={data.phone}
+                                                onChange={(e) => setData('phone', e.target.value)}
+                                                className="input"
+                                                placeholder="+91 98765 43210"
+                                            />
+                                            {errors.phone && <p className="text-red-500 text-xs mt-1 font-mono">{errors.phone}</p>}
+                                        </div>
+
+                                        <div>
+                                            <label className="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1.5 font-semibold">
+                                                Subject Line
+                                            </label>
+                                            <input
+                                                type="text"
+                                                value={data.subject}
+                                                onChange={(e) => setData('subject', e.target.value)}
+                                                className="input"
+                                                placeholder="e.g. VHF Base Station Tender Inquiry"
+                                            />
+                                            {errors.subject && <p className="text-red-500 text-xs mt-1 font-mono">{errors.subject}</p>}
+                                        </div>
+                                    </div>
+
+                                    {/* Message */}
+                                    <div>
+                                        <label className="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1.5 font-semibold">
+                                            Detailed Requirement / RF Specifications *
+                                        </label>
+                                        <textarea
+                                            required
+                                            rows={5}
+                                            value={data.message}
+                                            onChange={(e) => setData('message', e.target.value)}
+                                            className="input"
+                                            placeholder="Provide technical details, frequency band requirements, quantities, or project timelines..."
+                                        />
+                                        {errors.message && <p className="text-red-500 text-xs mt-1 font-mono">{errors.message}</p>}
+                                    </div>
+
+                                    {/* Honeypot field (hidden) */}
+                                    <input
+                                        type="text"
+                                        name="website"
+                                        value={data.website}
+                                        onChange={(e) => setData('website', e.target.value)}
+                                        className="hidden"
+                                        tabIndex={-1}
+                                        autoComplete="off"
+                                    />
+
+                                    <button
+                                        type="submit"
+                                        disabled={processing}
+                                        className="btn-beacon w-full !py-3.5 text-sm uppercase font-mono tracking-wider font-bold"
+                                    >
+                                        {processing ? 'Submitting to Engineering...' : 'Dispatch Request to Engineering Desk →'}
+                                    </button>
+                                </form>
+                            </div>
                         </div>
 
-                        {/* Flash Success Banner */}
-                        {flash?.success && (
-                            <div className="mb-6 border border-emerald-500/40 bg-emerald-50 text-emerald-950 p-4 rounded text-sm flex items-start gap-3">
-                                <svg className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <div>
-                                    <strong className="font-semibold block font-display">Inquiry Dispatched Successfully</strong>
-                                    <p className="text-xs mt-0.5 text-emerald-800">{flash.success}</p>
+                        {/* Telemetry & Office Details */}
+                        <div className="lg:col-span-5 space-y-6">
+                            {/* Headquarters Card */}
+                            <div className="card-dual !bg-slate-900 text-paper p-8 space-y-5 border border-slate-800 dark:border-navy-border shadow-xl">
+                                <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                                    <span className="text-xs font-mono uppercase tracking-wider text-beacon font-bold">
+                                        NATIONAL HEADQUARTERS
+                                    </span>
+                                    <span className="text-[11px] font-mono text-emerald-400">OPEN 09:30 - 18:00 IST</span>
+                                </div>
+
+                                <div className="space-y-2 text-sm font-sans text-slate-300">
+                                    <h3 className="font-display font-bold text-xl text-white">
+                                        Sanchar Telesystems Limited
+                                    </h3>
+                                    <p className="leading-relaxed">
+                                        A-78, Ground Floor, Okhla Industrial Area, Phase-II<br />
+                                        New Delhi – 110020, India
+                                    </p>
+                                </div>
+
+                                <div className="space-y-3 pt-3 border-t border-white/10 text-xs font-mono">
+                                    <div>
+                                        <span className="text-slate-400 block mb-0.5">DIRECT SALES & MARKETING:</span>
+                                        <a href="tel:+911146528894" className="text-beacon hover:underline text-sm font-bold">
+                                            +91 (11) 4652 8894–97
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <span className="text-slate-400 block mb-0.5">TECHNICAL SUPPORT & AMC:</span>
+                                        <a href="tel:+911146528892" className="text-white hover:text-beacon transition-colors text-sm font-bold">
+                                            +91 (11) 4652 8892–93
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <span className="text-slate-400 block mb-0.5">PRIMARY INQUIRIES:</span>
+                                        <a href="mailto:info@sanchartelesystems.com" className="text-white hover:text-beacon transition-colors text-sm">
+                                            info@sanchartelesystems.com
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div className="pt-2">
+                                    <a 
+                                        href="https://maps.google.com/?q=Sanchar+Telesystems+Limited+Okhla+Industrial+Area+Phase+II+New+Delhi" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="btn-outline-paper w-full justify-center text-xs font-mono !py-3 text-white"
+                                    >
+                                        Open Location in Google Maps &rarr;
+                                    </a>
                                 </div>
                             </div>
-                        )}
 
-                        <form onSubmit={submit} className="space-y-6" noValidate>
-                            {/* Requirement Type Selector */}
-                            <div>
-                                <label className="block text-xs font-mono text-steel uppercase tracking-wider mb-2 font-semibold">
-                                    Requirement Nature
-                                </label>
-                                <div className="grid grid-cols-2 gap-2">
-                                    {INQUIRY_TYPES.map((t) => (
-                                        <button
-                                            type="button"
-                                            key={t}
-                                            onClick={() => handleTypeSelect(t)}
-                                            className={`p-2.5 text-xs font-medium rounded border text-left transition-all ${
-                                                selectedType === t
-                                                    ? 'border-beacon bg-beacon/10 text-navy font-semibold ring-1 ring-beacon'
-                                                    : 'border-steel/20 bg-paper/50 text-steel hover:border-steel/40'
-                                            }`}
-                                        >
-                                            {t}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="grid sm:grid-cols-2 gap-6">
-                                <Field label="Full Name *" error={errors.name}>
-                                    <input
-                                        type="text"
-                                        value={data.name}
-                                        onChange={(e) => setData('name', e.target.value)}
-                                        className="input"
-                                        placeholder="e.g. Rajesh Sharma"
-                                        required
-                                    />
-                                </Field>
-
-                                <Field label="Official / Business Email *" error={errors.email}>
-                                    <input
-                                        type="email"
-                                        value={data.email}
-                                        onChange={(e) => setData('email', e.target.value)}
-                                        className="input"
-                                        placeholder="name@organization.gov.in"
-                                        required
-                                    />
-                                </Field>
-                            </div>
-
-                            <div className="grid sm:grid-cols-2 gap-6">
-                                <Field label="Contact Phone Number" error={errors.phone}>
-                                    <input
-                                        type="tel"
-                                        value={data.phone}
-                                        onChange={(e) => setData('phone', e.target.value)}
-                                        className="input"
-                                        placeholder="+91 98765 43210"
-                                    />
-                                </Field>
-
-                                <Field label="Subject Line" error={errors.subject}>
-                                    <input
-                                        type="text"
-                                        value={data.subject}
-                                        onChange={(e) => setData('subject', e.target.value)}
-                                        className="input"
-                                    />
-                                </Field>
-                            </div>
-
-                            <Field label="Technical Scope / Project Requirements *" error={errors.message}>
-                                <textarea
-                                    rows={5}
-                                    value={data.message}
-                                    onChange={(e) => setData('message', e.target.value)}
-                                    className="input resize-none"
-                                    placeholder="Please describe your facility, required frequency bands, terminal quantities, or tender reference..."
-                                    required
-                                />
-                            </Field>
-
-                            {/* Anti-spam honeypot */}
-                            <div className="absolute -left-[9999px]" aria-hidden="true">
-                                <label htmlFor="website">Leave empty</label>
-                                <input
-                                    id="website"
-                                    type="text"
-                                    tabIndex={-1}
-                                    autoComplete="off"
-                                    value={data.website}
-                                    onChange={(e) => setData('website', e.target.value)}
-                                />
-                            </div>
-
-                            <button
-                                type="submit"
-                                disabled={processing}
-                                className="btn-primary w-full sm:w-auto text-sm !py-3.5 !px-8 disabled:opacity-60"
-                            >
-                                {processing ? 'Submitting to Engineering...' : 'Dispatch Request to Engineering Desk'}
-                            </button>
-                        </form>
-                    </div>
-
-                    {/* Right: Office Telemetry & Emergency Desk */}
-                    <div className="lg:col-span-5 space-y-6">
-                        {/* Registered Office Card */}
-                        <div className="bg-navy-dark text-paper p-8 rounded border border-navy-border space-y-5">
-                            <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                                <span className="text-xs font-mono uppercase tracking-wider text-beacon font-semibold">
-                                    NATIONAL HEADQUARTERS
-                                </span>
-                                <span className="text-[11px] font-mono text-emerald-400">OPEN 09:30 - 18:00 IST</span>
-                            </div>
-
-                            <div className="space-y-3 text-sm font-sans text-paper/85">
-                                <h3 className="font-display font-bold text-lg text-paper">
-                                    Sanchar Telesystems Limited
-                                </h3>
-                                <p className="text-steel leading-relaxed">
-                                    A-78, Ground Floor, Okhla Industrial Area, Phase-II<br />
-                                    New Delhi – 110020, India
+                            {/* Procurement Assurance Card */}
+                            <div className="panel p-6 space-y-3">
+                                <span className="badge-rf text-[10px]">GOVERNMENT & DEFENSE</span>
+                                <h4 className="font-display font-bold text-base text-slate-900 dark:text-paper">
+                                    Government e-Marketplace (GeM) Assurance
+                                </h4>
+                                <p className="text-xs text-slate-600 dark:text-steel leading-relaxed">
+                                    Sanchar Telesystems products, including Kenwood DMR terminals, are registered and actively available through the GeM portal. For tender compliance authorizations or OEM letters, include your RFP number in the message.
                                 </p>
                             </div>
-
-                            <div className="space-y-3 pt-2 border-t border-white/10 text-xs font-mono">
-                                <div>
-                                    <span className="text-steel-light block">DIRECT TELEPHONE:</span>
-                                    <a href="tel:+911146528894" className="text-beacon hover:underline text-sm font-bold">
-                                        +91 (11) 4652 8894–97
-                                    </a>
-                                </div>
-                                <div>
-                                    <span className="text-steel-light block">PRIMARY EMAIL:</span>
-                                    <a href="mailto:info@sanchartelesystems.com" className="text-paper hover:text-beacon transition-colors text-sm">
-                                        info@sanchartelesystems.com
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div className="pt-2">
-                                <a 
-                                    href="https://maps.google.com/?q=Sanchar+Telesystems+Limited+Okhla+Industrial+Area+Phase+II+New+Delhi" 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="btn-outline-dark w-full justify-center text-xs !py-2.5"
-                                >
-                                    Open in Google Maps &rarr;
-                                </a>
-                            </div>
-                        </div>
-
-                        {/* Government & Defense Assurance */}
-                        <div className="panel p-6 bg-white space-y-3">
-                            <span className="badge-rf text-[10px]">PROCUREMENT ASSURANCE</span>
-                            <h4 className="font-display font-bold text-base text-ink">
-                                Government Tenders & GeM Portal
-                            </h4>
-                            <p className="text-xs text-steel leading-relaxed">
-                                Sanchar Telesystems is registered and actively delivers through the Government e-Marketplace (GeM) and defense procurement portals. For direct tender compliance letters or OEM authorization certificates, please mention your RFP tender ID.
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -256,16 +291,3 @@ export default function Contact({ seo }) {
         </MainLayout>
     );
 }
-
-function Field({ label, error, children }) {
-    return (
-        <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-ink font-semibold mb-2">
-                {label}
-            </label>
-            {children}
-            {error && <p className="mt-1.5 text-xs text-red-600 font-mono">{error}</p>}
-        </div>
-    );
-}
-

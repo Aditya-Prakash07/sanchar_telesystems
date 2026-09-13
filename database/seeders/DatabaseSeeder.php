@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         // 1. Categories & Subcategories Tree
         $tree = [
             'Professional / Amateur Radio' => [
-                'thumbnail' => 'media/pl1.jpg',
+                'thumbnail' => 'media/sectors/p1.jpg',
                 'description' => 'Military-grade, high-reliability voice and data communications across DMR, TETRA, and P25 protocols.',
                 'subs' => [
                     'Digital Mobile Radio (DMR)',
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
                 ],
             ],
             'PTT over Cellular (PoC)' => [
-                'thumbnail' => 'media/poc.jpg',
+                'thumbnail' => 'media/products/1560597371_poc.jpg',
                 'description' => 'Nationwide instant group voice and video dispatch over 4G/LTE and Wi-Fi networks with sub-second latency.',
                 'subs' => [
                     'PoC Platform',
@@ -45,17 +45,17 @@ class DatabaseSeeder extends Seeder
                 ],
             ],
             'LTE-R' => [
-                'thumbnail' => 'media/LTTE-R.jpeg',
+                'thumbnail' => 'media/sectors/LTTE-R.jpeg',
                 'description' => 'Dedicated broadband wireless communication standard for high-speed train control, passenger safety, and railway signaling.',
                 'subs' => ['LTE-R'],
             ],
             'Captive LTE' => [
-                'thumbnail' => 'media/back1.png',
+                'thumbnail' => 'media/sectors/back1.png',
                 'description' => 'Private, secure cellular infrastructure for airports, ports, mining operations, and critical utilities.',
                 'subs' => ['Captive LTE'],
             ],
             'Accessories' => [
-                'thumbnail' => 'media/Diamond_Antenna_1.jpg',
+                'thumbnail' => 'media/sectors/Diamond_Antenna_1.jpg',
                 'description' => 'High-gain Diamond antennas, heavy-duty surveillance earpieces, multi-unit chargers, and RF connectors.',
                 'subs' => ['Diamond', 'Kenwood', 'Others'],
             ],
@@ -141,35 +141,35 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Mr. Suresh Gupta',
                 'title' => 'Founder & Director',
                 'bio' => 'Mr. Suresh Gupta is founder director of the company bringing in more than 30 years of technology industry leadership. He is pivotal in managing corporate direction and strategy with his deep technical knowledge.',
-                'photo_path' => 'media/MrSureshGupta_1.jpg',
+                'photo_path' => 'media/team/MrSureshGupta_1.jpg',
                 'sort_order' => 0,
             ],
             [
                 'name' => 'Ms. Priyanka Gupta',
                 'title' => 'Director',
                 'bio' => 'Priyanka Gupta holds bachelor degree in engineering and masters in Business administration with an experience over a decade helps in marketing, alliances and channels.',
-                'photo_path' => 'media/PriyankaGupta.jpg',
+                'photo_path' => 'media/team/PriyankaGupta.jpg',
                 'sort_order' => 1,
             ],
             [
                 'name' => 'Mr. Amit Goyal',
                 'title' => 'Vice President',
                 'bio' => 'Amit Goyal holds bachelor degree in engineering and masters in Business administration with an experience over two decades helps in software development, partnership development and projects.',
-                'photo_path' => 'media/Amit_goyal.jpeg',
+                'photo_path' => 'media/team/Amit_goyal.jpeg',
                 'sort_order' => 2,
             ],
             [
                 'name' => 'Ms. Ritu Goel',
                 'title' => 'General Manager – Technical',
                 'bio' => 'Ritu Goel - G.M - Technical is having core technical expertise and provides technical direction to the company with her two decade of experience.',
-                'photo_path' => 'media/ritugoel.jpg',
+                'photo_path' => 'media/team/ritugoel.jpg',
                 'sort_order' => 3,
             ],
             [
                 'name' => 'Mr. Amit Bhardwaj',
                 'title' => 'General Manager – Finance & Imports',
                 'bio' => 'Amit Bhardwaj, General Manager – Finance & Imports is a veteran in finance & EXIM and is heading finance of the company from the date of inception. With his 17 years of hands-on experience in strategic finance planning, company achieved stern financial outlook.',
-                'photo_path' => 'media/AmitBhardwaj.jpg',
+                'photo_path' => 'media/team/AmitBhardwaj.jpg',
                 'sort_order' => 4,
             ],
         ];
@@ -186,19 +186,19 @@ class DatabaseSeeder extends Seeder
             [
                 'client_name' => 'Parliament of India, Delhi',
                 'story' => 'Sanchar Telesystems engineered and commissioned the secure wireless communication network for the Parliament of India, with 24/7 dedicated mission-critical SLA and maintenance support.',
-                'logo_path' => 'media/Parliament.png',
+                'logo_path' => 'media/clients/Parliament.png',
                 'sort_order' => 0,
             ],
             [
                 'client_name' => 'Delhi Police, Delhi',
                 'story' => 'Awarded the single largest LTE PoC end-to-end communication contract in India in 2022, supplying over 2,500 smart tactical terminals and real-time dispatcher command console integration.',
-                'logo_path' => 'media/DelhiPolice.png',
+                'logo_path' => 'media/clients/DelhiPolice.png',
                 'sort_order' => 1,
             ],
             [
                 'client_name' => 'Surat Diamond Bourse (SDB), Surat',
                 'story' => 'Engineered and deployed complete private captive LTE coverage with 70+ specialized terminals across the world’s largest diamond trading hub, guaranteeing uninterrupted security communications.',
-                'logo_path' => 'media/sdb.png',
+                'logo_path' => 'media/clients/sdb.png',
                 'sort_order' => 2,
             ],
         ];
@@ -240,18 +240,46 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        // 7. Hero Banners
-        Banner::updateOrCreate(
-            ['heading' => 'CONNECTION EVERYWHERE — SEAMLESS COMMUNICATION'],
+        // 7. Original Live Site Hero Banners
+        $heroBanners = [
             [
-                'subheading' => 'Market leader in wireless communications in India. Engineered DMR, TETRA, PoC over Cellular, and Railway LTE-R solutions trusted by the Parliament of India, Delhi Police, and SDB.',
-                'image_path' => 'media/PoC_Banner_1.png',
+                'heading' => 'CONNECTION EVERYWHERE',
+                'subheading' => 'World-class wireless communication solutions engineered for India’s defense, homeland security, and critical industrial sectors.',
+                'image_path' => 'media/banners/banner1.png',
                 'cta_label' => 'Explore Products',
                 'cta_url' => '/products',
                 'sort_order' => 0,
-                'is_published' => true,
-            ]
-        );
+            ],
+            [
+                'heading' => 'SEAMLESS COMMUNICATION',
+                'subheading' => 'Integrated DMR, TETRA, and P25 trunking architectures built for zero failure in high-risk operational environments.',
+                'image_path' => 'media/banners/banner2.jpg',
+                'cta_label' => 'View DMR Systems',
+                'cta_url' => '/products',
+                'sort_order' => 1,
+            ],
+            [
+                'heading' => 'PTT OVER CELLULAR',
+                'subheading' => 'Nationwide instant group voice and live dispatch over LTE & Wi-Fi networks — keeping emergency forces connected without range limits.',
+                'image_path' => 'media/banners/banner3.jpg',
+                'cta_label' => 'Discover PoC Platforms',
+                'cta_url' => '/products',
+                'sort_order' => 2,
+            ],
+            [
+                'heading' => 'STAY CONNECTED',
+                'subheading' => 'Over three decades of mission-critical engineering excellence trusted by the Parliament of India, Delhi Police, and Indian Railways.',
+                'image_path' => 'media/banners/banner4.jpg',
+                'cta_label' => 'Consult with Engineering Desk',
+                'cta_url' => '/contact-us',
+                'sort_order' => 3,
+            ],
+        ];
+
+        Banner::truncate();
+        foreach ($heroBanners as $b) {
+            Banner::create($b + ['is_published' => true]);
+        }
     }
 }
 

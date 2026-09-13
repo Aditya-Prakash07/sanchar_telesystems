@@ -1,287 +1,254 @@
-import { Link, Head } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
 
-export default function ProductShow({ category, subcategory, item, seo }) {
-    const images = [item.cover_image_path, ...(item.gallery || [])].filter(Boolean);
-    const [active, setActive] = useState(0);
+export default function ProductsShow({ category, subcategory, item, seo = {} }) {
     const [activeTab, setActiveTab] = useState('specs');
-    const [quoteModalOpen, setQuoteModalOpen] = useState(false);
+    const [rfqModalOpen, setRfqModalOpen] = useState(false);
 
-    const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    const structuredData = {
-        '@context': 'https://schema.org',
-        '@type': 'Product',
-        name: item.name,
-        description: item.short_description,
-        image: images.map((p) => `${origin}/storage/${p}`),
-        brand: { '@type': 'Brand', name: 'Sanchar Telesystems' },
-        ...(item.model_number ? { model: item.model_number } : {}),
-    };
+    // Normalize specifications: [{label, value}]
+    const specs = Array.isArray(item.specifications) ? item.specifications : [];
 
     return (
         <MainLayout>
-            <Seo title={seo.title} description={seo.description} image={item.cover_image_path ? `/storage/${item.cover_image_path}` : undefined} />
-            <Head>
-                <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
-            </Head>
+            <Seo
+                title={seo?.title || `${item.name} — Technical Specifications | Sanchar Telesystems`}
+                description={seo?.description || item.short_description || `Technical specifications, frequency bands, and features for ${item.name}.`}
+                canonicalPath={`/products/${category.slug}/${subcategory.slug}/${item.slug}`}
+                breadcrumbs={[
+                    { name: 'Home', url: '/' },
+                    { name: 'Products', url: '/products' },
+                    { name: subcategory.name, url: `/products/${category.slug}/${subcategory.slug}` },
+                    { name: item.name, url: `/products/${category.slug}/${subcategory.slug}/${item.slug}` },
+                ]}
+                product={item}
+            />
 
-            {/* Breadcrumb & Hardware Header */}
-            <div className="bg-navy-dark text-paper pt-36 pb-8 border-b border-navy-border">
+            {/* Breadcrumb Header */}
+            <div className="bg-slate-950 text-paper pt-32 pb-8 border-b border-slate-800 dark:border-navy-border/80">
                 <div className="container-content">
-                    <nav className="text-xs font-mono text-paper/60 mb-3 flex items-center gap-2">
-                        <Link href="/products" className="hover:text-beacon transition-colors">Catalog</Link>
+                    <nav className="flex items-center gap-2 text-xs font-mono text-slate-400">
+                        <Link href="/" className="hover:text-white transition-colors">HOME</Link>
                         <span>/</span>
-                        <Link href={`/products#${category.slug}`} className="hover:text-beacon transition-colors">{category.name}</Link>
+                        <Link href="/products" className="hover:text-white transition-colors">PRODUCTS</Link>
                         <span>/</span>
-                        <Link href={`/products/${category.slug}/${subcategory.slug}`} className="hover:text-beacon transition-colors">{subcategory.name}</Link>
+                        <Link href={`/products/${category.slug}/${subcategory.slug}`} className="hover:text-white transition-colors uppercase">
+                            {subcategory.name}
+                        </Link>
                         <span>/</span>
-                        <span className="text-beacon truncate max-w-xs">{item.model_number || item.name}</span>
+                        <span className="text-amber-400 dark:text-beacon font-bold truncate max-w-[200px] sm:max-w-none">{item.name}</span>
                     </nav>
-
-                    <div className="flex flex-wrap items-center justify-between gap-4">
-                        <div>
-                            {item.model_number && (
-                                <span className="inline-block px-2.5 py-0.5 rounded bg-beacon/10 text-beacon border border-beacon/30 font-mono text-xs font-semibold mb-2">
-                                    MODEL {item.model_number}
-                                </span>
-                            )}
-                            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-paper">
-                                {item.name}
-                            </h1>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <button 
-                                onClick={() => setQuoteModalOpen(true)}
-                                className="btn-primary text-sm !py-2.5"
-                            >
-                                Request Fleet / Tender Quote
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </div>
 
-            {/* Main Product Showcase */}
-            <div className="container-content py-16">
-                <div className="grid lg:grid-cols-12 gap-12">
-                    {/* Left: Gallery & Visuals */}
-                    <div className="lg:col-span-6 space-y-4">
-                        <div className="aspect-square bg-navy-surface rounded border border-steel/15 flex items-center justify-center p-8 relative group overflow-hidden shadow-sm">
-                            {images[active] ? (
+            {/* Product Hero & Specifications */}
+            <div className="py-16 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
+                <div className="container-content">
+                    <div className="grid lg:grid-cols-12 gap-12 items-start">
+                        {/* Hardware Image Showcase */}
+                        <div className="lg:col-span-5">
+                            <div className="panel p-8 sm:p-12 aspect-square flex items-center justify-center relative group overflow-hidden">
                                 <img
-                                    src={`/storage/${images[active]}`}
+                                    src={`/storage/${item.cover_image_path}`}
                                     alt={item.name}
-                                    className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                                    className="max-h-full max-w-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                                     onError={(e) => {
                                         e.target.onerror = null;
-                                        e.target.src = '/storage/media/p1.jpg';
+                                        e.target.src = '/storage/media/products/1559989450_nx3220_ht.jpg';
                                     }}
                                 />
-                            ) : (
-                                <div className="text-steel font-mono text-sm">IMAGE NOT AVAILABLE</div>
-                            )}
 
-                            {/* Verified Tag */}
-                            <span className="absolute top-4 left-4 badge-navy text-[11px]">
-                                WPC / TEC APPROVED
-                            </span>
-                        </div>
-
-                        {/* Thumbnails row */}
-                        {images.length > 1 && (
-                            <div className="flex gap-3 overflow-x-auto pb-2">
-                                {images.map((img, idx) => (
-                                    <button
-                                        key={img}
-                                        onClick={() => setActive(idx)}
-                                        className={`h-20 w-20 shrink-0 rounded border p-2 bg-navy-surface transition-all ${
-                                            active === idx ? 'border-beacon ring-2 ring-beacon/30' : 'border-steel/20 opacity-70 hover:opacity-100'
-                                        }`}
-                                    >
-                                        <img src={`/storage/${img}`} alt="" className="h-full w-full object-contain" />
-                                    </button>
-                                ))}
+                                {item.model_number && (
+                                    <span className="absolute top-4 right-4 text-xs font-mono px-3 py-1 rounded-full bg-slate-900/90 dark:bg-navy-dark/90 text-amber-400 dark:text-beacon border border-white/10 font-bold">
+                                        MODEL: {item.model_number}
+                                    </span>
+                                )}
                             </div>
-                        )}
 
-                        {/* Quick Spec Highlights Callout */}
-                        <div className="bg-paper border border-steel/20 p-5 rounded space-y-3 font-mono text-xs">
-                            <div className="text-ink font-semibold uppercase tracking-wider">HARDWARE ATTRIBUTES</div>
-                            <div className="grid grid-cols-2 gap-2 text-steel">
-                                <div>• Ingress: IP68 Waterproof</div>
-                                <div>• Drop: MIL-STD-810G</div>
-                                <div>• Encryption: AES-256</div>
-                                <div>• Audio: 2.5W High-Loudness</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Right: Product Details, Specs & Procurement */}
-                    <div className="lg:col-span-6 space-y-8">
-                        <div>
-                            <span className="text-xs font-mono uppercase tracking-widest text-steel block mb-1">
-                                {subcategory.name}
-                            </span>
-                            <h2 className="text-2xl font-display font-bold text-ink mb-3">{item.name}</h2>
-                            {item.short_description && (
-                                <p className="text-steel leading-relaxed text-base">
-                                    {item.short_description}
-                                </p>
-                            )}
-                        </div>
-
-                        {/* CTAs */}
-                        <div className="flex flex-wrap items-center gap-4 pt-2">
-                            <button 
-                                onClick={() => setQuoteModalOpen(true)}
-                                className="btn-primary"
-                            >
-                                Request Official Quote
-                            </button>
-                            {item.datasheet_path ? (
-                                <a
-                                    href={`/storage/${item.datasheet_path}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 border border-steel/30 text-ink font-semibold px-6 py-3 rounded-sm hover:border-beacon hover:text-beacon transition-colors"
-                                >
-                                    <svg className="w-4 h-4 text-beacon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                    </svg>
-                                    <span>Download Technical PDF</span>
-                                </a>
-                            ) : (
+                            {/* Actions under image */}
+                            <div className="mt-6 flex flex-col sm:flex-row gap-3">
                                 <button
-                                    onClick={() => setQuoteModalOpen(true)}
-                                    className="inline-flex items-center gap-2 border border-steel/30 text-steel font-semibold px-6 py-3 rounded-sm hover:border-ink hover:text-ink transition-colors text-sm"
+                                    type="button"
+                                    onClick={() => setRfqModalOpen(true)}
+                                    className="flex-1 btn-beacon !py-3 font-mono text-xs uppercase tracking-wider font-bold"
                                 >
-                                    <span>Request Spec Sheet PDF</span>
+                                    Request Formal RFQ / Tender Quote &rarr;
                                 </button>
-                            )}
+                                <a
+                                    href={`/contact-us?subject=Datasheet%20Request%20for%20${encodeURIComponent(item.name)}`}
+                                    className="btn-outline-dark !py-3 font-mono text-xs uppercase tracking-wider"
+                                >
+                                    Download Datasheet
+                                </a>
+                            </div>
+
+                            {/* Compliance Badge Card */}
+                            <div className="mt-6 panel p-5 space-y-2 text-xs font-mono">
+                                <div className="text-slate-700 dark:text-paper font-bold flex items-center gap-2">
+                                    <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                                    STANDARD COMPLIANCE VERIFICATION
+                                </div>
+                                <div className="text-slate-500 dark:text-steel leading-relaxed">
+                                    Government of India WPC ETA type-approved, MIL-STD-810 ruggedization, and GeM procurement eligible.
+                                </div>
+                            </div>
                         </div>
 
-                        {/* Tabs Interface */}
-                        <div className="pt-6 border-t border-steel/20">
-                            <div className="flex border-b border-steel/20 gap-6 text-sm font-medium">
+                        {/* Hardware Details & Spec Tables */}
+                        <div className="lg:col-span-7 space-y-8">
+                            <div>
+                                <div className="flex items-center gap-2 mb-3">
+                                    <span className="badge-rf text-xs font-mono">
+                                        {subcategory.name}
+                                    </span>
+                                    <span className="badge-navy text-xs font-mono">
+                                        TIER-1 ARCHITECTURE
+                                    </span>
+                                </div>
+
+                                <h1 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-paper leading-tight">
+                                    {item.name}
+                                </h1>
+
+                                {item.short_description && (
+                                    <p className="mt-4 text-base text-slate-600 dark:text-steel leading-relaxed font-sans">
+                                        {item.short_description}
+                                    </p>
+                                )}
+                            </div>
+
+                            {/* Tab Switcher */}
+                            <div className="border-b border-slate-200 dark:border-navy-border flex gap-6 text-sm font-mono">
                                 <button
                                     onClick={() => setActiveTab('specs')}
-                                    className={`pb-3 font-mono tracking-wide uppercase transition-colors relative ${
+                                    className={`pb-3 border-b-2 font-bold transition-colors ${
                                         activeTab === 'specs'
-                                            ? 'text-beacon font-bold border-b-2 border-beacon'
-                                            : 'text-steel hover:text-ink'
+                                            ? 'border-amber-500 dark:border-beacon text-amber-600 dark:text-beacon'
+                                            : 'border-transparent text-slate-500 dark:text-steel hover:text-slate-900 dark:hover:text-paper'
                                     }`}
                                 >
-                                    Technical Specifications
+                                    TECHNICAL SPECIFICATIONS ({specs.length})
                                 </button>
                                 <button
-                                    onClick={() => setActiveTab('desc')}
-                                    className={`pb-3 font-mono tracking-wide uppercase transition-colors relative ${
-                                        activeTab === 'desc'
-                                            ? 'text-beacon font-bold border-b-2 border-beacon'
-                                            : 'text-steel hover:text-ink'
+                                    onClick={() => setActiveTab('overview')}
+                                    className={`pb-3 border-b-2 font-bold transition-colors ${
+                                        activeTab === 'overview'
+                                            ? 'border-amber-500 dark:border-beacon text-amber-600 dark:text-beacon'
+                                            : 'border-transparent text-slate-500 dark:text-steel hover:text-slate-900 dark:hover:text-paper'
                                     }`}
                                 >
-                                    Overview & Features
+                                    SYSTEM OVERVIEW
                                 </button>
                             </div>
 
-                            {/* Tab Content: Specs */}
+                            {/* Tab 1: Specifications Table */}
                             {activeTab === 'specs' && (
-                                <div className="mt-6">
-                                    {item.specifications && item.specifications.length > 0 ? (
-                                        <div className="border border-steel/20 rounded overflow-hidden">
-                                            <table className="w-full text-sm">
-                                                <tbody>
-                                                    {item.specifications.map((row, idx) => (
-                                                        <tr 
-                                                            key={row.label} 
-                                                            className={idx % 2 === 0 ? 'bg-white' : 'bg-paper/60'}
-                                                        >
-                                                            <td className="py-3 px-4 text-steel font-mono text-xs w-2/5 border-b border-steel/10 font-medium">
-                                                                {row.label}
-                                                            </td>
-                                                            <td className="py-3 px-4 text-ink font-semibold border-b border-steel/10">
-                                                                {row.value}
-                                                            </td>
-                                                        </tr>
-                                                    ))}
-                                                </tbody>
-                                            </table>
+                                <div className="space-y-4">
+                                    {specs.length === 0 ? (
+                                        <div className="panel p-6 text-sm text-slate-500 dark:text-steel font-mono">
+                                            Detailed parameters available upon formal technical tender request.
                                         </div>
                                     ) : (
-                                        <div className="text-steel text-sm py-4">
-                                            Standard technical documentation available upon request. Contact our engineering desk for frequency channel plans.
+                                        <div className="panel overflow-hidden">
+                                            <div className="divide-y divide-slate-100 dark:divide-navy-border/50 text-xs sm:text-sm font-mono">
+                                                {specs.map((spec, i) => (
+                                                    <div key={i} className="grid grid-cols-1 sm:grid-cols-3 p-3.5 hover:bg-slate-50 dark:hover:bg-white/[0.02] transition-colors">
+                                                        <span className="font-semibold text-slate-700 dark:text-paper/90 sm:col-span-1">
+                                                            {spec.label}
+                                                        </span>
+                                                        <span className="text-slate-600 dark:text-steel sm:col-span-2 mt-1 sm:mt-0 font-sans">
+                                                            {spec.value}
+                                                        </span>
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
                                     )}
                                 </div>
                             )}
 
-                            {/* Tab Content: Description */}
-                            {activeTab === 'desc' && (
-                                <div className="mt-6 prose prose-sm max-w-none text-ink leading-relaxed">
+                            {/* Tab 2: System Overview */}
+                            {activeTab === 'overview' && (
+                                <div className="panel p-8 space-y-4 text-sm text-slate-700 dark:text-steel leading-relaxed">
                                     {item.description ? (
-                                        <div dangerouslySetInnerHTML={{ __html: item.description }} />
+                                        <div 
+                                            className="prose dark:prose-invert max-w-none text-sm"
+                                            dangerouslySetInnerHTML={{ __html: item.description }}
+                                        />
                                     ) : (
-                                        <p className="text-steel">
-                                            The {item.name} is engineered for high-durability operational deployment across Indian terrain, providing fail-safe voice and telemetry support.
+                                        <p>
+                                            The {item.name} is built for continuous, zero-failure operations in mission-critical radio environments. It supports open industry digital standards and integrates seamlessly into Sanchar command and dispatch console topologies.
                                         </p>
                                     )}
                                 </div>
                             )}
                         </div>
-
-                        {/* Government Procurement Assurance Box */}
-                        <div className="p-4 rounded bg-navy-dark text-paper border border-navy-border text-xs font-mono flex items-center justify-between">
-                            <div>
-                                <span className="text-beacon font-semibold block">TENDER & GEM PORTAL COMPLIANT</span>
-                                <span className="text-steel">Original Manufacturer Authorization & Warranty Provided</span>
-                            </div>
-                            <Link href="/contact-us" className="text-beacon hover:underline font-semibold shrink-0">
-                                Contact Officer &rarr;
-                            </Link>
-                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* Quick Quote Modal */}
-            {quoteModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy-dark/80 backdrop-blur-sm animate-in fade-in duration-200">
-                    <div className="bg-white rounded border border-steel/20 shadow-2xl max-w-lg w-full p-8 relative">
+            {/* Quick RFQ Modal */}
+            {rfqModalOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
+                    <div className="card-dual w-full max-w-lg p-6 sm:p-8 space-y-5 relative shadow-2xl">
                         <button
-                            onClick={() => setQuoteModalOpen(false)}
-                            className="absolute top-4 right-4 text-steel hover:text-ink text-xl font-bold"
-                            aria-label="Close modal"
+                            type="button"
+                            onClick={() => setRfqModalOpen(false)}
+                            className="absolute top-5 right-5 text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                            aria-label="Close Modal"
                         >
-                            &times;
+                            ✕
                         </button>
-                        <span className="badge-rf text-[10px] mb-2 font-mono">OFFICIAL RFQ INQUIRY</span>
-                        <h3 className="font-display font-bold text-2xl text-ink">
-                            Request Quote for {item.model_number || item.name}
-                        </h3>
-                        <p className="text-steel text-sm mt-1 mb-6">
-                            Our technical sales engineers will send formal pricing, data sheets, and delivery timelines.
-                        </p>
 
-                        <div className="space-y-4">
-                            <p className="text-xs text-steel font-mono bg-paper p-3 rounded border border-steel/10">
-                                Product: <strong className="text-ink">{item.name}</strong>
-                                {item.model_number && <span> | Model: <strong className="text-ink">{item.model_number}</strong></span>}
+                        <div>
+                            <span className="badge-rf text-[10px] mb-2 font-mono">
+                                FORMAL QUOTATION &bull; RFP DESK
+                            </span>
+                            <h3 className="font-display font-bold text-xl text-slate-900 dark:text-paper">
+                                Request Quote: {item.name}
+                            </h3>
+                            <p className="text-xs text-slate-500 dark:text-steel mt-1">
+                                Receive tender specifications, bulk pricing, and WPC compliance certificates within 24 hours.
                             </p>
-
-                            <Link 
-                                href="/contact-us" 
-                                className="btn-primary w-full text-center justify-center text-sm py-3 block"
-                            >
-                                Proceed to Procurement Form &rarr;
-                            </Link>
                         </div>
+
+                        <form 
+                            action="/contact-us" 
+                            method="POST"
+                            className="space-y-4 pt-2"
+                        >
+                            <div>
+                                <label className="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1 font-semibold">Your Name *</label>
+                                <input type="text" required name="name" className="input" placeholder="Rajesh Sharma" />
+                            </div>
+                            <div>
+                                <label className="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1 font-semibold">Official Email *</label>
+                                <input type="email" required name="email" className="input" placeholder="name@organization.gov.in" />
+                            </div>
+                            <div>
+                                <label className="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1 font-semibold">Phone Number</label>
+                                <input type="text" name="phone" className="input" placeholder="+91 98765 43210" />
+                            </div>
+                            <div>
+                                <label className="block text-xs font-mono uppercase text-slate-700 dark:text-slate-300 mb-1 font-semibold">Quantity / Project Scope</label>
+                                <textarea rows={3} name="message" defaultValue={`Requesting quotation and technical specification sheet for ${item.name} (${item.model_number || 'Standard Model'}).`} className="input" />
+                            </div>
+                            <input type="hidden" name="subject" value={`Quote Request: ${item.name}`} />
+                            <input type="hidden" name="website" value="" />
+
+                            <div className="pt-2 flex gap-3">
+                                <Link
+                                    href={`/contact-us?subject=Quote%20Request%20for%20${encodeURIComponent(item.name)}`}
+                                    className="btn-beacon w-full text-center text-xs font-mono uppercase tracking-wider font-bold !py-3"
+                                >
+                                    Proceed to Full RFQ Form &rarr;
+                                </Link>
+                            </div>
+                        </form>
                     </div>
                 </div>
             )}
         </MainLayout>
     );
 }
-

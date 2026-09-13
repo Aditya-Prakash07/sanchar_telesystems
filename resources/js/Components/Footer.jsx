@@ -2,15 +2,15 @@ import { Link } from '@inertiajs/react';
 
 export default function Footer() {
     return (
-        <footer className="bg-navy-dark text-paper/80 border-t border-navy-border relative overflow-hidden">
-            {/* Subtle background grid pattern */}
-            <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
+        <footer className="bg-slate-900 dark:bg-navy-dark text-slate-300 dark:text-paper/80 border-t border-slate-800 dark:border-navy-border relative overflow-hidden transition-colors duration-300">
+            {/* Background grid pattern */}
+            <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
 
             {/* Certifications & Compliance Strip */}
-            <div className="border-b border-navy-border/60 bg-navy-surface/50 relative z-10">
-                <div className="container-content py-5 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-paper/70">
+            <div className="border-b border-slate-800/80 dark:border-navy-border/60 bg-slate-950/60 dark:bg-navy-surface/50 relative z-10">
+                <div className="container-content py-4 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-400 dark:text-paper/70">
                     <div className="flex flex-wrap items-center gap-6">
-                        <span className="flex items-center gap-2 text-beacon">
+                        <span className="flex items-center gap-2 text-beacon font-semibold">
                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                             </svg>
@@ -22,36 +22,36 @@ export default function Footer() {
                         <span>Atmanirbhar Bharat / Make In India Partner</span>
                     </div>
 
-                    <div className="flex items-center gap-2 text-steel-light">
+                    <div className="flex items-center gap-2 text-slate-300 dark:text-steel-light">
                         <span className="inline-block h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                         <span>24/7 Mission-Critical Support Active</span>
                     </div>
                 </div>
             </div>
 
-            <div className="container-content py-16 grid gap-12 md:grid-cols-4 relative z-10">
-                <div className="md:col-span-1 space-y-4">
+            <div className="container-content py-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-4 relative z-10">
+                <div className="space-y-4">
                     <Link href="/" className="flex items-center gap-3">
                         <img 
-                            src="/storage/media/logo0.png" 
+                            src="/storage/media/branding/logo0.png" 
                             alt="Sanchar Telesystems" 
                             className="h-11 w-auto object-contain"
                             onError={(e) => {
                                 e.target.onerror = null;
-                                e.target.src = '/storage/media/logo1.jpeg';
+                                e.target.src = '/storage/media/branding/logo1.jpeg';
                             }}
                         />
                     </Link>
-                    <p className="text-sm leading-relaxed text-steel">
+                    <p className="text-sm leading-relaxed text-slate-400 dark:text-steel">
                         India’s premier wireless communication systems provider since the 1990s.
                         Delivering turnkey DMR, TETRA, PoC over Cellular, and Railway LTE-R networks.
                     </p>
-                    <div className="pt-2 flex items-center gap-3 text-steel">
+                    <div className="pt-2 flex items-center gap-3 text-slate-400 dark:text-steel">
                         <a 
                             href="https://www.linkedin.com/company/sanchar-telesystems-limited" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="h-9 w-9 rounded border border-navy-border flex items-center justify-center hover:border-beacon hover:text-beacon transition-colors"
+                            className="h-9 w-9 rounded-lg border border-slate-700 dark:border-navy-border flex items-center justify-center hover:border-beacon hover:text-beacon transition-colors"
                             aria-label="LinkedIn"
                         >
                             <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -84,26 +84,26 @@ export default function Footer() {
                 />
 
                 <div>
-                    <h3 className="text-sm font-semibold text-paper mb-4 font-mono uppercase tracking-wider">
+                    <h3 className="text-sm font-semibold text-white mb-4 font-mono uppercase tracking-wider">
                         Headquarters
                     </h3>
-                    <address className="not-italic text-sm text-steel leading-relaxed space-y-3">
+                    <address className="not-italic text-sm text-slate-400 dark:text-steel leading-relaxed space-y-3 font-sans">
                         <p>
-                            <strong className="text-paper font-medium">Sanchar Telesystems Limited</strong>
+                            <strong className="text-white font-medium">Sanchar Telesystems Limited</strong>
                             <br />
                             A-78, Ground Floor, Okhla Industrial Area, Phase-II
                             <br />
                             New Delhi-110020, India
                         </p>
                         <p className="space-y-1">
-                            <span className="block text-xs font-mono text-paper/60 uppercase">Direct Tel:</span>
-                            <a href="tel:+911146528894" className="hover:text-beacon text-paper/90 transition-colors font-mono">
+                            <span className="block text-xs font-mono text-slate-400 dark:text-paper/60 uppercase">Direct Tel:</span>
+                            <a href="tel:+911146528894" className="hover:text-beacon text-white transition-colors font-mono">
                                 +91 (11) 4652 8894–97
                             </a>
                         </p>
                         <p className="space-y-1">
-                            <span className="block text-xs font-mono text-paper/60 uppercase">Defense & Enterprise Inquiries:</span>
-                            <a href="mailto:info@sanchartelesystems.com" className="hover:text-beacon text-paper/90 transition-colors font-mono">
+                            <span className="block text-xs font-mono text-slate-400 dark:text-paper/60 uppercase">Defense & Enterprise Inquiries:</span>
+                            <a href="mailto:info@sanchartelesystems.com" className="hover:text-beacon text-white transition-colors font-mono">
                                 info@sanchartelesystems.com
                             </a>
                         </p>
@@ -111,8 +111,8 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="border-t border-navy-border relative z-10 bg-navy-dark">
-                <div className="container-content py-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-steel font-mono">
+            <div className="border-t border-slate-800 dark:border-navy-border relative z-10 bg-slate-950/80 dark:bg-navy-dark">
+                <div className="container-content py-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-500 dark:text-steel font-mono">
                     <p>© {new Date().getFullYear()} Sanchar Telesystems Limited. All rights reserved.</p>
                     <div className="flex items-center gap-6">
                         <Link href="/contact-us" className="hover:text-beacon transition-colors">
@@ -136,14 +136,14 @@ export default function Footer() {
 function FooterColumn({ title, links }) {
     return (
         <div>
-            <h3 className="text-sm font-semibold text-paper mb-4 font-mono uppercase tracking-wider">
+            <h3 className="text-sm font-semibold text-white mb-4 font-mono uppercase tracking-wider">
                 {title}
             </h3>
-            <ul className="space-y-2.5 text-sm text-steel">
-                {links.map((l) => (
-                    <li key={l.label}>
-                        <Link href={l.href} className="hover:text-beacon hover:translate-x-1 transition-all inline-block">
-                            {l.label}
+            <ul className="space-y-2.5 text-sm">
+                {links.map((link) => (
+                    <li key={link.label}>
+                        <Link href={link.href} className="text-slate-400 dark:text-steel hover:text-beacon transition-colors">
+                            {link.label}
                         </Link>
                     </li>
                 ))}
@@ -151,4 +151,3 @@ function FooterColumn({ title, links }) {
         </div>
     );
 }
-

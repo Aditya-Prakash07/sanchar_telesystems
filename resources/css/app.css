@@ -40,45 +40,65 @@
     }
 
     .btn-primary {
-        @apply inline-flex items-center justify-center gap-2 bg-beacon text-navy font-semibold px-6 py-3
-               rounded-sm shadow-sm hover:bg-beacon-dim hover:shadow-beacon/20 hover:shadow-md transition-all duration-150 active:scale-[0.99];
+        @apply inline-flex items-center justify-center gap-2 bg-beacon text-navy-dark font-semibold px-6 py-3
+               rounded-lg shadow-sm hover:bg-beacon-light hover:shadow-beacon/25 hover:shadow-lg transition-all duration-200 active:scale-[0.98];
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center gap-2 bg-slate-200 dark:bg-navy-surface text-slate-900 dark:text-paper font-semibold px-6 py-3
+               rounded-lg hover:bg-slate-300 dark:hover:bg-navy-light transition-all duration-200 active:scale-[0.98];
     }
 
     .btn-outline-dark {
-        @apply inline-flex items-center justify-center gap-2 border border-navy-border text-paper font-semibold
-               px-6 py-3 rounded-sm hover:border-beacon/80 hover:text-beacon hover:bg-white/[0.03] transition-all duration-150;
+        @apply inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-navy-border text-slate-800 dark:text-paper font-semibold
+               px-6 py-3 rounded-lg hover:border-beacon hover:text-beacon hover:bg-beacon/5 transition-all duration-200 active:scale-[0.98];
+    }
+
+    .btn-beacon {
+        @apply inline-flex items-center justify-center gap-2 bg-beacon text-navy-dark font-semibold px-6 py-3
+               rounded-lg shadow-md shadow-beacon/20 hover:bg-beacon-light hover:shadow-beacon/30 hover:shadow-xl transition-all duration-200 active:scale-[0.98];
+    }
+
+    .btn-outline-paper {
+        @apply inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-paper/20 text-slate-800 dark:text-paper font-semibold
+               px-5 py-2.5 rounded-lg hover:border-beacon hover:text-beacon transition-all duration-200 active:scale-[0.98];
+    }
+
+    .card-dual {
+        @apply bg-white dark:bg-navy-surface border border-slate-200/90 dark:border-navy-border/60 rounded-xl shadow-sm transition-all duration-200;
     }
 
     .panel {
-        @apply border border-steel/20 bg-white transition-all duration-200;
+        @apply border border-slate-200/90 dark:border-navy-border/60 bg-white dark:bg-navy-surface rounded-xl shadow-sm transition-all duration-200;
     }
 
     .panel-hover {
-        @apply border border-steel/20 bg-white hover:border-beacon/60 hover:shadow-lg hover:shadow-navy/5 transition-all duration-200;
+        @apply border border-slate-200/90 dark:border-navy-border/60 bg-white dark:bg-navy-surface rounded-xl shadow-sm
+               hover:border-beacon/50 dark:hover:border-beacon/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300;
     }
 
     .panel-dark {
-        @apply border border-navy-border bg-navy-surface/80 backdrop-blur-sm transition-all duration-200;
+        @apply border border-navy-border/70 bg-navy-surface/90 backdrop-blur-sm rounded-xl transition-all duration-200;
     }
 
     .badge-rf {
         @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono tracking-wide uppercase font-semibold
-               rounded-full border border-beacon/30 bg-beacon/10 text-beacon;
+               rounded-full border border-beacon/30 bg-beacon/10 text-amber-600 dark:text-beacon;
     }
 
     .badge-navy {
         @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono tracking-wide uppercase font-semibold
-               rounded-full border border-navy-border bg-navy-light text-paper/80;
+               rounded-full border border-slate-300 dark:border-navy-border bg-slate-100 dark:bg-navy-light text-slate-700 dark:text-paper/80;
     }
 
     .badge-steel {
         @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono tracking-wide font-medium
-               rounded border border-steel/20 bg-paper text-steel-dark;
+               rounded border border-slate-200 dark:border-steel/20 bg-slate-100 dark:bg-paper/5 text-slate-600 dark:text-steel-light;
     }
 
     .input {
-        @apply w-full border border-steel/30 bg-white px-4 py-3 text-sm text-ink placeholder:text-steel/60
-               focus:border-beacon focus:ring-1 focus:ring-beacon/30 outline-none transition-colors;
+        @apply w-full border border-slate-300 dark:border-steel/30 bg-white dark:bg-navy-surface px-4 py-3 text-sm text-slate-900 dark:text-paper
+               placeholder:text-slate-400 dark:placeholder:text-steel/60 rounded-lg focus:border-beacon focus:ring-2 focus:ring-beacon/20 outline-none transition-all;
     }
 
     .bg-grid-pattern {
@@ -91,7 +111,7 @@
     .bg-grid-paper {
         background-size: 28px 28px;
         background-image: 
-            linear-gradient(to right, rgba(16, 21, 28, 0.03) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(16, 21, 28, 0.03) 1px, transparent 1px);
+            linear-gradient(to right, rgba(16, 21, 28, 0.04) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(16, 21, 28, 0.04) 1px, transparent 1px);
     }
 }

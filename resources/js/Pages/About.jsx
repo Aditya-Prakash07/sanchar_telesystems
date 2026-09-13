@@ -3,88 +3,127 @@ import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
 
 const PROCESS = [
-    { 
-        step: '01', 
-        title: 'Operational Needs & Spectrum Feasibility', 
-        description: 'Analyzing terrain, fleet topology, channel congestion, and regulatory frequency availability (VHF, UHF, Band 8/28).' 
+    {
+        step: '01',
+        title: 'RF Propagation Survey & Spectrum Modeling',
+        description: 'Comprehensive topographic and RF propagation analysis using calibrated spectrum analyzers to map terrain obstacles, Fresnel zone clearance, and signal attenuation.',
     },
-    { 
-        step: '02', 
-        title: 'RF Propagation & Network Design', 
-        description: 'Computer-aided radio frequency coverage simulation, tower site selection, repeater link budgets, and fail-safe redundancy planning.' 
+    {
+        step: '02',
+        title: 'WPC & Government Frequency Clearances',
+        description: 'End-to-end statutory assistance with the Wireless Planning & Coordination (WPC) Wing of the Ministry of Communications for frequency allocation and ETA approvals.',
     },
-    { 
-        step: '03', 
-        title: 'Hardware Engineering & Encryption', 
-        description: 'Provisioning mission terminals, base stations, and dispatch servers with AES-256 / ARC4 cryptographic keys and custom firmware.' 
+    {
+        step: '03',
+        title: 'Custom Hardware Calibration & R&D',
+        description: 'Frequency retuning, duplexer cavity filter alignment, and MIL-STD compliance validation performed at our New Delhi laboratory before equipment deployment.',
     },
-    { 
-        step: '04', 
-        title: 'Field Commissioning & Site Turn-up', 
-        description: 'On-site mast erection, antenna azimuth alignment, VSWR calibration, base station integration, and coverage drive-testing.' 
+    {
+        step: '04',
+        title: 'Tower, Mast & Repeater Infrastructure',
+        description: 'Civil and structural engineering for repeater base masts, high-gain Diamond antenna arrays, lightning arrestors, and uninterrupted solar/battery power backups.',
     },
-    { 
-        step: '05', 
-        title: 'Dispatch & CAD Interoperability', 
-        description: 'Interfacing wireless talkgroups into existing emergency command centers, CAD platforms, and telephone interconnect systems.' 
+    {
+        step: '05',
+        title: 'Factory Acceptance & Commissioning (FAT/SAT)',
+        description: 'Full-duplex stress testing, voice logging verification, and formal handover to client technical commanders with operational field training.',
     },
-    { 
-        step: '06', 
-        title: '24/7 Operations & AMC Maintenance', 
-        description: 'Dedicated national field engineering SLA, spare-parts depots, firmware upgrades, and periodic RF health audits.' 
+    {
+        step: '06',
+        title: '24/7 Level-3 AMC & Spares Inventory',
+        description: 'Dedicated nationwide annual maintenance contracts with a New Delhi spares depot guaranteeing rapid board-level turnaround and firmware lifecycle support.',
     },
 ];
 
-export default function About({ team, seo }) {
+export default function About({ team = [], seo = {} }) {
     return (
         <MainLayout>
-            <Seo title={seo.title} description={seo.description} canonicalPath="/about-us" />
+            <Seo
+                title={seo?.title || 'About Sanchar Telesystems — Mission-Critical Telecommunications Leader'}
+                description={seo?.description || 'Learn about Sanchar Telesystems, our 30+ year history, executive leadership, engineering standards, and turnkey wireless network delivery.'}
+                canonicalPath="/about-us"
+            />
 
-            {/* ---------- Hero ---------- */}
-            <section className="relative bg-navy-dark text-paper pt-36 pb-20 border-b border-navy-border overflow-hidden">
-                <div className="absolute inset-0 bg-grid-pattern opacity-50 pointer-events-none" />
-                <div className="container-content relative z-10 max-w-3xl">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-beacon/30 bg-beacon/10 text-beacon text-xs font-mono uppercase tracking-wider mb-4">
-                        PIONEERING CRITICAL WIRELESS SINCE 1990s
-                    </div>
-                    <h1 className="text-4xl sm:text-5xl font-display font-bold leading-tight">
-                        Engineering India’s Most Resilient Communication Networks
-                    </h1>
-                    <p className="mt-6 text-lg text-paper/80 leading-relaxed font-sans">
-                        From securing the Parliament of India to enabling real-time tactical communications for Delhi Police and high-speed rail corridors, Sanchar Telesystems is dedicated to zero-fail wireless engineering.
-                    </p>
+            {/* Header with Original Inner Banner */}
+            <header className="relative bg-slate-950 text-paper pt-36 pb-20 overflow-hidden">
+                <div className="absolute inset-0 z-0 opacity-30">
+                    <img 
+                        src="/storage/media/banners/inner_about.jpg" 
+                        alt="About Sanchar Telesystems" 
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = '/storage/media/banners/banner1.png';
+                        }}
+                    />
+                    <div className="absolute inset-0 bg-slate-950/80" />
+                    <div className="absolute inset-0 bg-grid-pattern opacity-30" />
                 </div>
-            </section>
 
-            {/* ---------- Core Story & Capabilities ---------- */}
-            <section className="py-20 bg-paper">
+                <div className="container-content relative z-10">
+                    <div className="max-w-3xl">
+                        <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-400 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
+                            <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
+                            <span>ESTABLISHED IN THE 1990s &bull; NEW DELHI HQ</span>
+                        </div>
+                        <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-white leading-tight">
+                            Mobility, Efficiency, and Reliability in Wireless Communications.
+                        </h1>
+                        <p className="mt-5 text-lg text-slate-300 leading-relaxed font-sans">
+                            Sanchar Telesystems is a market leader in mission-critical wireless communications in India. We pioneer in offering world-class wireless communication solutions to customers around the country.
+                        </p>
+                    </div>
+
+                    <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-white/10 pt-8 max-w-4xl text-xs font-mono">
+                        <div>
+                            <span className="text-slate-400 block">ESTABLISHED</span>
+                            <span className="text-white font-bold mt-1 block">30+ YEARS OF EXCELLENCE</span>
+                        </div>
+                        <div>
+                            <span className="text-slate-400 block">STANDARDS</span>
+                            <span className="text-white font-bold mt-1 block">DMR &bull; TETRA &bull; PoC &bull; LTE-R</span>
+                        </div>
+                        <div>
+                            <span className="text-slate-400 block">PROCUREMENT</span>
+                            <span className="text-white font-bold mt-1 block">GeM PORTAL VENDOR</span>
+                        </div>
+                        <div>
+                            <span className="text-slate-400 block">COVERAGE</span>
+                            <span className="text-white font-bold mt-1 block">PAN-INDIA 500+ DEALERS</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            {/* Corporate Narrative */}
+            <section className="py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
                 <div className="container-content">
                     <div className="grid lg:grid-cols-12 gap-12 items-center">
-                        <div className="lg:col-span-6 space-y-6 text-steel leading-relaxed">
-                            <span className="text-xs font-mono uppercase tracking-widest text-beacon font-semibold block">
+                        <div className="lg:col-span-6 space-y-5 text-slate-700 dark:text-steel leading-relaxed text-sm sm:text-base">
+                            <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block">
                                 OUR PURPOSE & HERITAGE
                             </span>
-                            <h2 className="text-3xl font-display font-bold text-ink">
-                                Three Decades of Relentless RF Innovation
+                            <h2 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-paper">
+                                Engineering Turnkey Networks Where Failure is Not an Option
                             </h2>
                             <p>
-                                Sanchar has invested continuously in wireless product engineering and field deployment to provide customized communication solutions for organizations where downtime can mean catastrophic loss.
+                                Mobility, Efficiency, and Reliability are the three core principles that Sanchar Telesystems products and solutions are designed to meet. Cutting-edge technologies and OPEN standards are supported across all of our systems.
                             </p>
                             <p>
-                                As an authorized technology partner to the world's leading OEMs — including <strong>JVC Kenwood</strong>, <strong>Nokia</strong>, and <strong>Diamond Antennas Japan</strong> — we unite global component standards with Indian field ruggedization.
+                                Sanchar has been investing continuously in product and solution research and development because it understands the need to provide customized solutions for users in critical industries. Additionally, devices are an essential component of any solution, and Sanchar collaborates with reputable global OEMs to supply equipment optimized for Indian spectrum conditions.
                             </p>
                             <p>
-                                Headquartered in New Delhi with a nationwide channel-partner network spanning 28 States and Union Territories, we deliver rapid doorstep technical assistance, proof-of-concept demonstrations, and factory-trained repairs.
+                                Sanchar offers Kenwood products on the <strong>GeM (Government e-Marketplace)</strong> portal for ease of public and defense procurement.
                             </p>
 
-                            <div className="pt-2 flex flex-wrap gap-3 text-xs font-mono text-ink">
-                                <span className="px-3 py-1.5 bg-white border border-steel/20 rounded font-semibold">
-                                    ✓ Make in India / Atmanirbhar Bharat
+                            <div className="pt-2 flex flex-wrap gap-2 text-xs font-mono">
+                                <span className="px-3 py-1.5 bg-white dark:bg-navy-surface border border-slate-200 dark:border-navy-border rounded-lg font-semibold text-slate-800 dark:text-paper">
+                                    ✓ Make in India Partner
                                 </span>
-                                <span className="px-3 py-1.5 bg-white border border-steel/20 rounded font-semibold">
-                                    ✓ ISO 9001:2015 Certified
+                                <span className="px-3 py-1.5 bg-white dark:bg-navy-surface border border-slate-200 dark:border-navy-border rounded-lg font-semibold text-slate-800 dark:text-paper">
+                                    ✓ ISO 9001:2015 Quality Management
                                 </span>
-                                <span className="px-3 py-1.5 bg-white border border-steel/20 rounded font-semibold">
+                                <span className="px-3 py-1.5 bg-white dark:bg-navy-surface border border-slate-200 dark:border-navy-border rounded-lg font-semibold text-slate-800 dark:text-paper">
                                     ✓ WPC & TEC Approved
                                 </span>
                             </div>
@@ -92,25 +131,25 @@ export default function About({ team, seo }) {
 
                         <div className="lg:col-span-6">
                             <div className="grid grid-cols-2 gap-4">
-                                <div className="panel p-6 bg-white space-y-2">
-                                    <div className="font-display text-3xl font-bold text-beacon">50K+</div>
-                                    <h3 className="font-display font-semibold text-sm text-ink">Terminals Deployed</h3>
-                                    <p className="text-xs text-steel">Active digital transceivers and PoC smart devices across defense and industry.</p>
+                                <div className="panel p-6 space-y-2">
+                                    <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">80K+</div>
+                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Units Sold</h3>
+                                    <p className="text-xs text-slate-500 dark:text-steel">Digital transceivers and PoC smart devices deployed nationwide.</p>
                                 </div>
-                                <div className="panel p-6 bg-white space-y-2">
-                                    <div className="font-display text-3xl font-bold text-beacon">150+</div>
-                                    <h3 className="font-display font-semibold text-sm text-ink">Critical Projects</h3>
-                                    <p className="text-xs text-steel">Completed infrastructure installations for government, rail, and energy sectors.</p>
+                                <div className="panel p-6 space-y-2">
+                                    <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">150+</div>
+                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Critical Projects</h3>
+                                    <p className="text-xs text-slate-500 dark:text-steel">Completed infrastructure installations for government, rail, and industry.</p>
                                 </div>
-                                <div className="panel p-6 bg-white space-y-2">
-                                    <div className="font-display text-3xl font-bold text-beacon">500+</div>
-                                    <h3 className="font-display font-semibold text-sm text-ink">Dealer Network</h3>
-                                    <p className="text-xs text-steel">Authorized regional distributors ensuring nationwide sales and immediate field assistance.</p>
+                                <div className="panel p-6 space-y-2">
+                                    <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">500+</div>
+                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Dealer Network</h3>
+                                    <p className="text-xs text-slate-500 dark:text-steel">Authorized regional distributors ensuring nationwide sales and field support.</p>
                                 </div>
-                                <div className="panel p-6 bg-white space-y-2">
-                                    <div className="font-display text-3xl font-bold text-beacon">30+</div>
-                                    <h3 className="font-display font-semibold text-sm text-ink">Years Experience</h3>
-                                    <p className="text-xs text-steel">Unbroken track record in high-security two-way radio and cellular networks.</p>
+                                <div className="panel p-6 space-y-2">
+                                    <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">30+</div>
+                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Years Experience</h3>
+                                    <p className="text-xs text-slate-500 dark:text-steel">Pioneering two-way radio and cellular telecom technologies since the 1990s.</p>
                                 </div>
                             </div>
                         </div>
@@ -118,31 +157,31 @@ export default function About({ team, seo }) {
                 </div>
             </section>
 
-            {/* ---------- Turnkey 6-Step Delivery Lifecycle ---------- */}
-            <section className="py-24 bg-white border-y border-steel/15">
+            {/* Turnkey 6-Step Execution Methodology */}
+            <section className="py-20 bg-white dark:bg-navy border-y border-slate-200 dark:border-navy-border transition-colors duration-300">
                 <div className="container-content">
-                    <div className="max-w-2xl mb-16">
-                        <span className="text-xs font-mono uppercase tracking-widest text-beacon font-semibold block mb-2">
-                            TURNKEY EXECUTION METHODOLOGY
+                    <div className="max-w-2xl mb-14">
+                        <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-2">
+                            TURNKEY PROJECT PIPELINE
                         </span>
-                        <h2 className="text-3xl font-display font-bold text-ink">
+                        <h2 className="text-3xl font-display font-bold text-slate-900 dark:text-paper">
                             How We Deliver Turnkey Wireless Projects
                         </h2>
-                        <p className="mt-3 text-steel leading-relaxed">
-                            From initial RF site surveys and government frequency clearances to ongoing 24/7 mission maintenance, our engineers handle the entire project lifecycle.
+                        <p className="mt-3 text-slate-600 dark:text-steel leading-relaxed text-sm">
+                            From initial RF site propagation surveys and government frequency clearances to final commissioning and 24/7 maintenance, our engineers manage the complete lifecycle.
                         </p>
                     </div>
 
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {PROCESS.map((p) => (
-                            <div key={p.step} className="panel p-8 bg-paper/50 hover:bg-white hover:border-beacon/40 transition-all group">
-                                <span className="font-mono text-sm text-beacon font-bold block mb-2">
-                                    STAGE {p.step}
+                            <div key={p.step} className="panel-hover p-8 group">
+                                <span className="font-mono text-sm text-amber-500 dark:text-beacon font-bold block mb-2">
+                                    PHASE {p.step}
                                 </span>
-                                <h3 className="font-display font-semibold text-lg text-ink group-hover:text-beacon transition-colors mb-3">
+                                <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper mb-2 group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors">
                                     {p.title}
                                 </h3>
-                                <p className="text-sm text-steel leading-relaxed">
+                                <p className="text-xs sm:text-sm text-slate-600 dark:text-steel leading-relaxed">
                                     {p.description}
                                 </p>
                             </div>
@@ -151,69 +190,90 @@ export default function About({ team, seo }) {
                 </div>
             </section>
 
-            {/* ---------- Leadership Team ---------- */}
-            {team?.length > 0 && (
-                <section className="py-24 bg-paper">
-                    <div className="container-content">
-                        <div className="max-w-2xl mb-14">
-                            <span className="text-xs font-mono uppercase tracking-widest text-beacon font-semibold block mb-2">
-                                EXECUTIVE DIRECTORS & LEADERSHIP
-                            </span>
-                            <h2 className="text-3xl font-display font-bold text-ink">
-                                Guided by Industry Veterans
-                            </h2>
-                            <p className="mt-3 text-steel">
-                                Meet the leadership team driving corporate direction, technical compliance, and customer alliances.
-                            </p>
-                        </div>
-
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {team.map((member) => (
-                                <div key={member.name} className="panel p-6 bg-white flex flex-col justify-between group">
-                                    <div>
-                                        <div className="aspect-[4/5] w-full overflow-hidden bg-navy-surface rounded mb-5 relative">
-                                            {member.photo_path ? (
-                                                <img
-                                                    src={`/storage/${member.photo_path}`}
-                                                    alt={member.name}
-                                                    className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
-                                                    loading="lazy"
-                                                />
-                                            ) : (
-                                                <div className="h-full w-full flex items-center justify-center text-steel font-mono text-xs">
-                                                    EXECUTIVE PHOTO
-                                                </div>
-                                            )}
-                                            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-dark/90 to-transparent p-4">
-                                                <span className="text-xs font-mono text-beacon font-semibold tracking-wide uppercase">
-                                                    {member.title}
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <h3 className="font-display font-bold text-xl text-ink mb-1">{member.name}</h3>
-                                        <p className="text-xs font-mono text-steel mb-3">{member.title}</p>
-                                        {member.bio && (
-                                            <p className="text-sm text-steel leading-relaxed">{member.bio}</p>
-                                        )}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+            {/* Executive Leadership Gallery */}
+            <section className="py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
+                <div className="container-content">
+                    <div className="max-w-2xl mb-14">
+                        <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-2">
+                            LEADERSHIP TEAM
+                        </span>
+                        <h2 className="text-3xl font-display font-bold text-slate-900 dark:text-paper">
+                            Guided by Telecom Industry Veterans
+                        </h2>
+                        <p className="mt-2 text-slate-600 dark:text-steel text-sm">
+                            Meet the executive directors and technical leadership steering corporate strategy and customer success.
+                        </p>
                     </div>
-                </section>
-            )}
 
-            {/* ---------- Consultation Banner ---------- */}
-            <section className="py-20 bg-navy-dark text-paper border-t border-navy-border relative">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {(team.length > 0 ? team : [
+                            {
+                                name: 'Mr. Suresh Gupta',
+                                title: 'Founder & Director',
+                                bio: 'Founder director bringing in more than 30 years of technology industry leadership. Pivotal in managing corporate direction and strategy with deep technical knowledge.',
+                                photo_path: 'media/team/MrSureshGupta_1.jpg'
+                            },
+                            {
+                                name: 'Ms. Priyanka Gupta',
+                                title: 'Director',
+                                bio: 'Holds a bachelor degree in engineering and MBA with over a decade of experience spearheading marketing, OEM alliances, and channel distribution.',
+                                photo_path: 'media/team/PriyankaGupta.jpg'
+                            },
+                            {
+                                name: 'Mr. Amit Goyal',
+                                title: 'Vice President',
+                                bio: 'Holds a bachelor degree in engineering and MBA with over two decades of experience in software development, partnership development, and project management.',
+                                photo_path: 'media/team/Amit_goyal.jpeg'
+                            },
+                            {
+                                name: 'Ms. Ritu Goel',
+                                title: 'General Manager – Technical',
+                                bio: 'Core technical expertise providing technical direction to the company with over two decades of RF experience.',
+                                photo_path: 'media/team/ritugoel.jpg'
+                            },
+                            {
+                                name: 'Mr. Amit Bhardwaj',
+                                title: 'General Manager – Finance & Imports',
+                                bio: 'Veteran in finance & EXIM heading corporate finance and strategic fiscal planning with over 17 years of hands-on experience.',
+                                photo_path: 'media/team/AmitBhardwaj.jpg'
+                            }
+                        ]).map((member) => (
+                            <div key={member.name} className="panel p-6 flex flex-col justify-between group">
+                                <div>
+                                    <div className="aspect-[4/5] w-full overflow-hidden bg-slate-200 dark:bg-navy-dark rounded-lg mb-5 relative">
+                                        <img
+                                            src={`/storage/${member.photo_path}`}
+                                            alt={member.name}
+                                            className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                                            loading="lazy"
+                                        />
+                                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                                            <span className="text-xs font-mono text-beacon font-bold tracking-wide uppercase">
+                                                {member.title}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <h3 className="font-display font-bold text-xl text-slate-900 dark:text-paper mb-1">{member.name}</h3>
+                                    <p className="text-xs font-mono text-slate-500 dark:text-steel mb-3">{member.title}</p>
+                                    <p className="text-sm text-slate-600 dark:text-steel leading-relaxed">{member.bio}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Bottom Contact CTA */}
+            <section className="py-20 bg-white dark:bg-navy border-t border-slate-200 dark:border-navy-border transition-colors duration-300">
                 <div className="container-content text-center max-w-2xl mx-auto space-y-6">
-                    <h2 className="text-3xl font-display font-bold">Partner with Sanchar Telesystems</h2>
-                    <p className="text-paper/80 text-sm sm:text-base leading-relaxed">
+                    <h2 className="text-3xl font-display font-bold text-slate-900 dark:text-paper">Partner with Sanchar Telesystems</h2>
+                    <p className="text-slate-600 dark:text-steel text-sm sm:text-base leading-relaxed">
                         Discover how our technical team can help design, upgrade, or maintain your mission-critical communications infrastructure.
                     </p>
                     <div>
-                        <Link href="/contact-us" className="btn-primary">
-                            Connect with Our Technical Operations Team
+                        <Link href="/contact-us" className="btn-beacon !py-3.5 !px-8 text-sm font-mono uppercase tracking-wider">
+                            Connect with Our Technical Team &rarr;
                         </Link>
                     </div>
                 </div>
@@ -221,4 +281,3 @@ export default function About({ team, seo }) {
         </MainLayout>
     );
 }
-

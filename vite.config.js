@@ -13,7 +13,7 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, 'resources/js'),
+            '@': path.resolve(import.meta.dirname ?? __dirname, 'resources/js'),
         },
     },
     // HostGator shared hosting has no persistent Node process — we only ever

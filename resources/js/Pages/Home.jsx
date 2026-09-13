@@ -1,130 +1,259 @@
 import { Link } from '@inertiajs/react';
-import { useEffect, useRef, useState } from 'react';
+import { useState, useEffect } from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
 import SignalWave from '@/Components/SignalWave';
 
-export default function Home({ banners, categories, featuredProducts, stats, testimonials, oemPartners, seo }) {
-    const hero = banners?.[0];
+const SECTOR_DATA = [
+    {
+        title: 'Homeland Security & Defense',
+        tag: 'MISSION CRITICAL TIER-1',
+        headline: 'Tactical Voice, Encrypted DMR & P25 Networks',
+        description: 'Secure, zero-interruption radio communication topologies engineered for defense forces, tactical SWAT squads, and central police organizations operating in hostile RF environments.',
+        features: [
+            'AES-256 Bit Hardware Encryption',
+            'Full Duplex Interoperability Gateways',
+            'MIL-STD-810G Rugged Handsets',
+            'Sub-300ms Call Setup Latency'
+        ],
+        image: '/storage/media/sectors/p1.jpg',
+        specs: { coverage: '35–50 km Direct Line-of-Sight', channels: '1024 Secure Digital Channels', frequency: 'VHF 136-174 / UHF 400-470 MHz' }
+    },
+    {
+        title: 'Railways & Metro Transit',
+        tag: 'LTE-R & CAB RADIO',
+        headline: 'Train-to-Trackside Broadband & Passenger Security',
+        description: 'Railway-certified wireless solutions conforming to EN 50155. Providing continuous high-speed voice dispatch, train collision avoidance telemetry, and mission-critical cab communications.',
+        features: [
+            'Doppler Compensation up to 500 km/h',
+            'MCPTT Mission Critical Push-to-Talk',
+            'Dual Redundant RF Hot Standby',
+            'Driver-Guard Emergency Intercom'
+        ],
+        image: '/storage/media/sectors/LTTE-R.jpeg',
+        specs: { coverage: 'Continuous Corridor Coverage', speed: 'Up to 500 km/h Operation', latency: '< 50ms Priority Call Setup' }
+    },
+    {
+        title: 'Oil, Gas & Petrochemical',
+        tag: 'ATEX & INTRINSICALLY SAFE',
+        headline: 'Explosion-Proof Terminals for Hazardous Zones',
+        description: 'Zone 1 & Zone 2 certified communications equipment designed to prevent electrical sparks in flammable refineries, offshore drilling platforms, and chemical storage facilities.',
+        features: [
+            'ATEX / IECEx Certified Handhelds',
+            'Gas Group IIA, IIB, IIC Protection',
+            'IP68 Submersible Ingress Proofing',
+            'Emergency Man-Down & Lone-Worker Alarms'
+        ],
+        image: '/storage/media/sectors/back1.png',
+        specs: { cert: 'ATEX Zone 1 / 21 Certified', ingress: 'IP68 (2m Submersion for 4h)', audio: 'Noise-Cancelling Boom Mics' }
+    },
+    {
+        title: 'Mining & Heavy Industries',
+        tag: 'DEEP MINE & HIGH-NOISE',
+        headline: 'Underground Leaky Feeder & Repeater Topologies',
+        description: 'Ruggedized repeater and telemetry systems ensuring continuous communication through subterranean tunnels, open-cast mines, steel mills, and heavy logistics yards.',
+        features: [
+            'Leaky Feeder Distributed Antenna Arrays',
+            'Heavy Equipment Anti-Vibration Mounts',
+            'Ultra-Loud 3W Acoustic Speaker Drivers',
+            'High-Gain Diamond Mast Antennas'
+        ],
+        image: '/storage/media/sectors/Diamond_Antenna_1.jpg',
+        specs: { penetration: 'Subterranean Multi-Shaft RF', chassis: 'Die-cast Aluminum Alloy', battery: 'High-Capacity 3000mAh Lithium' }
+    }
+];
+
+export default function Home({ banners = [], categories = [], featuredProducts = [], stats = [], testimonials = [], oemPartners = [], seo = {} }) {
     const [selectedSector, setSelectedSector] = useState(0);
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+
+    // Default hero slides if none in database
+    const slides = banners.length > 0 ? banners : [
+        {
+            heading: 'CONNECTION EVERYWHERE',
+            subheading: 'World-class wireless communication solutions engineered for India’s defense, homeland security, and critical industrial sectors.',
+            image_path: 'media/banners/banner1.png',
+            cta_label: 'Explore Products',
+            cta_url: '/products'
+        },
+        {
+            heading: 'SEAMLESS COMMUNICATION',
+            subheading: 'Integrated DMR, TETRA, and P25 trunking architectures built for zero failure in high-risk operational environments.',
+            image_path: 'media/banners/banner2.jpg',
+            cta_label: 'View DMR Systems',
+            cta_url: '/products'
+        },
+        {
+            heading: 'PTT OVER CELLULAR',
+            subheading: 'Nationwide instant group voice and live dispatch over LTE & Wi-Fi networks — keeping emergency forces connected without range limits.',
+            image_path: 'media/banners/banner3.jpg',
+            cta_label: 'Discover PoC Platforms',
+            cta_url: '/products'
+        },
+        {
+            heading: 'STAY CONNECTED',
+            subheading: 'Over three decades of mission-critical engineering excellence trusted by the Parliament of India, Delhi Police, and Indian Railways.',
+            image_path: 'media/banners/banner4.jpg',
+            cta_label: 'Consult with Engineering Desk',
+            cta_url: '/contact-us'
+        }
+    ];
+
+    // Carousel auto-advance
+    useEffect(() => {
+        if (isPaused || slides.length <= 1) return;
+        const interval = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % slides.length);
+        }, 6500);
+        return () => clearInterval(interval);
+    }, [isPaused, slides.length]);
+
+    const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
+    const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
     return (
         <MainLayout>
-            <Seo title={seo.title} description={seo.description} canonicalPath="/" />
+            <Seo
+                title={seo?.title || 'Sanchar Telesystems — Mission-Critical Wireless Communication Systems'}
+                description={seo?.description || 'India’s premier supplier and turnkey contractor for DMR, TETRA, PoC over Cellular, and Railway LTE-R communication networks.'}
+                canonicalPath="/"
+            />
 
             {/* =========================================================================
-                1. COMMAND-CENTER HERO SECTION
+                1. HERO SECTION WITH ORIGINAL LIVE BANNERS CAROUSEL
             ========================================================================= */}
-            <section className="relative bg-navy-dark text-paper overflow-hidden pt-36 pb-24 border-b border-navy-border">
-                {/* Background telemetry grid & radial illumination */}
-                <div className="absolute inset-0 bg-grid-pattern opacity-60 pointer-events-none" />
-                <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-beacon/10 rounded-full blur-3xl pointer-events-none" />
-                <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
-
-                {/* Animated RF wave anchored to bottom */}
-                <SignalWave className="absolute inset-x-0 bottom-0 h-32 sm:h-44 w-full opacity-80 pointer-events-none" />
+            <section 
+                className="relative bg-slate-950 text-paper overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28"
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+            >
+                {/* Background Slider Imagery */}
+                <div className="absolute inset-0 z-0">
+                    {slides.map((s, idx) => (
+                        <div
+                            key={s.id || idx}
+                            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                                currentSlide === idx ? 'opacity-35 scale-100' : 'opacity-0 scale-105 pointer-events-none'
+                            } transform transition-transform duration-[7000ms]`}
+                        >
+                            <img
+                                src={`/storage/${s.image_path}`}
+                                alt={s.heading}
+                                className="w-full h-full object-cover object-center"
+                                onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.src = '/storage/media/banners/banner1.png';
+                                }}
+                            />
+                        </div>
+                    ))}
+                    {/* Dark gradient overlay for typography readability */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/60" />
+                    <div className="absolute inset-0 bg-grid-pattern opacity-25" />
+                </div>
 
                 <div className="container-content relative z-10">
-                    <div className="grid lg:grid-cols-12 gap-12 items-center">
-                        {/* Left Hero Narrative */}
-                        <div className="lg:col-span-7 space-y-6">
-                            {/* Mission Status Badge */}
-                            <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-beacon/30 bg-beacon/10 text-beacon text-xs font-mono tracking-wider uppercase">
-                                <span className="relative flex h-2 w-2">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-beacon opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-beacon"></span>
-                                </span>
-                                <span>CRITICAL TELECOM • TRUSTED SINCE 1990s</span>
+                    <div className="grid lg:grid-cols-12 gap-12 items-center min-h-[480px]">
+                        {/* Slide Content */}
+                        <div className="lg:col-span-8 space-y-6">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-beacon/30 bg-beacon/10 text-beacon font-mono text-xs tracking-wider uppercase">
+                                <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
+                                <span>TELECOM ENGINEERING &bull; WPC TYPE APPROVED</span>
                             </div>
 
-                            {/* Headline */}
-                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-[1.08] tracking-tight text-paper">
-                                {hero?.heading || 'Mission-Critical Wireless When Every Second Counts.'}
+                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-white leading-[1.12]">
+                                {slides[currentSlide].heading}
                             </h1>
 
-                            {/* Subtitle */}
-                            <p className="text-lg sm:text-xl text-paper/80 leading-relaxed max-w-2xl font-sans font-normal">
-                                {hero?.subheading ||
-                                    'Sanchar Telesystems engineers, deploys, and supports DMR, TETRA, PoC over Cellular, and Railway LTE-R networks for law enforcement, railways, defense, and high-hazard industry across India.'}
+                            <p className="text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed font-sans">
+                                {slides[currentSlide].subheading}
                             </p>
 
-                            {/* Key Security / Standards Highlights */}
-                            <div className="flex flex-wrap items-center gap-3 pt-1 text-xs font-mono text-steel-light">
-                                <span className="inline-flex items-center gap-1.5 bg-navy-surface/90 px-2.5 py-1 border border-navy-border rounded">
-                                    <svg className="w-3.5 h-3.5 text-beacon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-                                    AES-256 E2E Encryption
-                                </span>
-                                <span className="inline-flex items-center gap-1.5 bg-navy-surface/90 px-2.5 py-1 border border-navy-border rounded">
-                                    <svg className="w-3.5 h-3.5 text-beacon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                                    Sub-300ms Call Latency
-                                </span>
-                                <span className="inline-flex items-center gap-1.5 bg-navy-surface/90 px-2.5 py-1 border border-navy-border rounded">
-                                    <svg className="w-3.5 h-3.5 text-beacon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
-                                    IP68 Submersible / MIL-STD
-                                </span>
+                            <div className="pt-4 flex flex-wrap items-center gap-4">
+                                <Link 
+                                    href={slides[currentSlide].cta_url || '/products'} 
+                                    className="btn-beacon !py-3.5 !px-8 text-sm uppercase tracking-wider font-mono font-bold"
+                                >
+                                    {slides[currentSlide].cta_label || 'Explore Products'} &rarr;
+                                </Link>
+
+                                <Link 
+                                    href="/contact-us" 
+                                    className="btn-outline-paper !py-3.5 !px-6 text-sm font-mono uppercase tracking-wider text-white"
+                                >
+                                    Engineering Consultation
+                                </Link>
                             </div>
 
-                            {/* Hero Action Buttons */}
-                            <div className="pt-4 flex flex-wrap items-center gap-4">
-                                <Link href="/products" className="btn-primary text-sm sm:text-base">
-                                    <span>Explore Mission Hardware</span>
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                    </svg>
-                                </Link>
-                                <Link href="/contact-us" className="btn-outline-dark text-sm sm:text-base">
-                                    <span>Consult an RF Architect</span>
-                                </Link>
+                            {/* Slide Controls & Progress Dots */}
+                            <div className="pt-8 flex items-center gap-4">
+                                <button 
+                                    onClick={prevSlide}
+                                    className="h-9 w-9 rounded-lg border border-white/20 text-white/80 hover:text-beacon hover:border-beacon flex items-center justify-center transition-colors"
+                                    aria-label="Previous Slide"
+                                >
+                                    &larr;
+                                </button>
+                                <button 
+                                    onClick={nextSlide}
+                                    className="h-9 w-9 rounded-lg border border-white/20 text-white/80 hover:text-beacon hover:border-beacon flex items-center justify-center transition-colors"
+                                    aria-label="Next Slide"
+                                >
+                                    &rarr;
+                                </button>
+
+                                <div className="flex items-center gap-2 ml-2">
+                                    {slides.map((_, dotIdx) => (
+                                        <button
+                                            key={dotIdx}
+                                            onClick={() => setCurrentSlide(dotIdx)}
+                                            className={`h-2 rounded-full transition-all duration-300 ${
+                                                currentSlide === dotIdx ? 'w-8 bg-beacon' : 'w-2 bg-white/30 hover:bg-white/60'
+                                            }`}
+                                            aria-label={`Go to slide ${dotIdx + 1}`}
+                                        />
+                                    ))}
+                                </div>
                             </div>
                         </div>
 
-                        {/* Right Hero Hardware Telemetry Showcase */}
-                        <div className="lg:col-span-5 relative">
-                            <div className="relative mx-auto max-w-md bg-navy-surface/90 border border-navy-border rounded-lg p-6 shadow-2xl backdrop-blur-md">
-                                {/* Header bar inside card */}
-                                <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-5">
-                                    <div className="flex items-center gap-2">
-                                        <span className="h-2.5 w-2.5 rounded-full bg-beacon animate-pulse" />
-                                        <span className="text-xs font-mono font-semibold tracking-wider text-paper uppercase">
-                                            LIVE HARDWARE TELEMETRY
-                                        </span>
-                                    </div>
-                                    <span className="text-[11px] font-mono text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">
-                                        ACTIVE CARRIER
+                        {/* Right: Real-time Telemetry Status Card */}
+                        <div className="lg:col-span-4 hidden lg:block">
+                            <div className="card-dual !bg-slate-900/90 dark:!bg-navy-surface/90 border border-slate-700 dark:border-navy-border p-6 space-y-5 shadow-2xl backdrop-blur-md">
+                                <div className="flex items-center justify-between border-b border-white/10 pb-3 font-mono text-xs">
+                                    <span className="text-beacon font-bold">SYSTEM TELEMETRY</span>
+                                    <span className="flex items-center gap-1.5 text-emerald-400">
+                                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                                        ONLINE
                                     </span>
                                 </div>
 
-                                {/* Terminal Graphic Preview */}
-                                <div className="relative aspect-[4/3] bg-navy-dark/90 rounded border border-white/5 overflow-hidden flex items-center justify-center p-4 group">
-                                    <img 
-                                        src="/storage/media/50kpoc.png" 
-                                        alt="Sanchar Mission Terminal"
-                                        className="max-h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                                        onError={(e) => {
-                                            e.target.onerror = null;
-                                            e.target.src = '/storage/media/p1.jpg';
-                                        }}
-                                    />
-                                    {/* Overlay specs tag */}
-                                    <div className="absolute bottom-2 left-2 right-2 bg-navy-dark/90 backdrop-blur-md border border-white/10 p-2.5 rounded text-xs font-mono">
-                                        <div className="flex justify-between items-center text-paper">
-                                            <span className="font-semibold text-beacon">SANCHAR ST-POC50K</span>
-                                            <span className="text-steel-light">4G LTE / PTT</span>
-                                        </div>
-                                        <p className="text-[11px] text-steel mt-0.5">2,500+ Active Terminals in Delhi Police Fleet</p>
+                                <div className="space-y-3 font-mono text-xs text-slate-300">
+                                    <div className="flex justify-between py-1 border-b border-white/5">
+                                        <span className="text-slate-400">DISPATCH PROTOCOL</span>
+                                        <span className="text-white font-semibold">DMR TIER III / TETRA</span>
+                                    </div>
+                                    <div className="flex justify-between py-1 border-b border-white/5">
+                                        <span className="text-slate-400">SPECTRUM CLEARANCE</span>
+                                        <span className="text-white font-semibold">WPC ETA VERIFIED</span>
+                                    </div>
+                                    <div className="flex justify-between py-1 border-b border-white/5">
+                                        <span className="text-slate-400">LATENCY BENCHMARK</span>
+                                        <span className="text-beacon font-bold">&lt; 300 MS DIRECT PTT</span>
+                                    </div>
+                                    <div className="flex justify-between py-1 border-b border-white/5">
+                                        <span className="text-slate-400">SECURITY ENCRYPTION</span>
+                                        <span className="text-white font-semibold">AES-256 BIT E2EE</span>
                                     </div>
                                 </div>
 
-                                {/* Mini Telemetry Metrics Grid */}
-                                <div className="grid grid-cols-2 gap-3 mt-4 text-xs font-mono">
-                                    <div className="bg-navy-dark/60 p-2.5 rounded border border-white/5">
-                                        <span className="text-steel-light block text-[10px]">ENCRYPTION</span>
-                                        <span className="text-paper font-semibold">AES-256 Standard</span>
-                                    </div>
-                                    <div className="bg-navy-dark/60 p-2.5 rounded border border-white/5">
-                                        <span className="text-steel-light block text-[10px]">INGRESS RATING</span>
-                                        <span className="text-paper font-semibold">IP68 (2m / 2hr)</span>
-                                    </div>
+                                <div className="pt-2">
+                                    <SignalWave className="w-full h-12 text-beacon/80" />
+                                </div>
+
+                                <div className="text-[11px] font-mono text-slate-400 text-center">
+                                    Continuous Carrier Wave • Okhla RF Testing Lab
                                 </div>
                             </div>
                         </div>
@@ -134,45 +263,54 @@ export default function Home({ banners, categories, featuredProducts, stats, tes
 
 
             {/* =========================================================================
-                2. GOVERNMENT & CRITICAL INFRASTRUCTURE DEPLOYMENTS BAR
+                2. NATIONAL DEPLOYMENT PROOF BAR
             ========================================================================= */}
-            <section className="py-10 bg-navy border-b border-navy-border relative">
+            <section className="bg-white dark:bg-navy border-y border-slate-200 dark:border-navy-border/80 py-8 transition-colors duration-300">
                 <div className="container-content">
-                    <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-                        <div className="lg:w-1/4 text-center lg:text-left">
-                            <span className="text-xs font-mono uppercase tracking-widest text-beacon font-semibold block">
-                                PROVEN NATIONAL TRUST
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div className="shrink-0">
+                            <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-1">
+                                CRITICAL DEPLOYMENTS
                             </span>
-                            <h2 className="text-base font-display font-semibold text-paper mt-0.5">
-                                Critical Deployments Across India
+                            <h2 className="text-lg sm:text-xl font-display font-bold text-slate-900 dark:text-paper">
+                                Trusted by National Security & Key Infrastructure
                             </h2>
                         </div>
 
-                        <div className="lg:w-3/4 grid grid-cols-1 sm:grid-cols-3 gap-6">
-                            {/* Parliament */}
-                            <div className="flex items-center gap-3 bg-navy-surface/60 border border-navy-border p-3.5 rounded hover:border-beacon/40 transition-colors">
-                                <img src="/storage/media/Parliament.png" alt="Parliament of India" className="h-10 w-auto object-contain shrink-0" />
-                                <div>
-                                    <h3 className="text-xs font-display font-semibold text-paper">Parliament of India</h3>
-                                    <p className="text-[11px] text-steel font-mono">TETRA Network & 24/7 AMC</p>
+                        <div className="grid grid-cols-3 gap-6 sm:gap-10 items-center">
+                            <div className="flex items-center gap-3">
+                                <img 
+                                    src="/storage/media/clients/Parliament.png" 
+                                    alt="Parliament of India" 
+                                    className="h-10 sm:h-12 w-auto object-contain filter dark:brightness-100"
+                                />
+                                <div className="hidden sm:block">
+                                    <span className="block text-xs font-bold text-slate-900 dark:text-paper">Parliament of India</span>
+                                    <span className="block text-[10px] font-mono text-slate-500 dark:text-steel">New Delhi</span>
                                 </div>
                             </div>
 
-                            {/* Delhi Police */}
-                            <div className="flex items-center gap-3 bg-navy-surface/60 border border-navy-border p-3.5 rounded hover:border-beacon/40 transition-colors">
-                                <img src="/storage/media/DelhiPolice.png" alt="Delhi Police" className="h-10 w-auto object-contain shrink-0" />
-                                <div>
-                                    <h3 className="text-xs font-display font-semibold text-paper">Delhi Police HQ</h3>
-                                    <p className="text-[11px] text-steel font-mono">2,500+ Smart LTE Terminals</p>
+                            <div className="flex items-center gap-3">
+                                <img 
+                                    src="/storage/media/clients/DelhiPolice.png" 
+                                    alt="Delhi Police" 
+                                    className="h-10 sm:h-12 w-auto object-contain filter dark:brightness-100"
+                                />
+                                <div className="hidden sm:block">
+                                    <span className="block text-xs font-bold text-slate-900 dark:text-paper">Delhi Police</span>
+                                    <span className="block text-[10px] font-mono text-slate-500 dark:text-steel">2,500+ PoC Radios</span>
                                 </div>
                             </div>
 
-                            {/* Surat Diamond Bourse */}
-                            <div className="flex items-center gap-3 bg-navy-surface/60 border border-navy-border p-3.5 rounded hover:border-beacon/40 transition-colors">
-                                <img src="/storage/media/sdb.png" alt="Surat Diamond Bourse" className="h-10 w-auto object-contain shrink-0" />
-                                <div>
-                                    <h3 className="text-xs font-display font-semibold text-paper">Surat Diamond Bourse</h3>
-                                    <p className="text-[11px] text-steel font-mono">Private Captive LTE Network</p>
+                            <div className="flex items-center gap-3">
+                                <img 
+                                    src="/storage/media/clients/sdb.png" 
+                                    alt="Surat Diamond Bourse" 
+                                    className="h-10 sm:h-12 w-auto object-contain filter dark:brightness-100"
+                                />
+                                <div className="hidden sm:block">
+                                    <span className="block text-xs font-bold text-slate-900 dark:text-paper">Surat Diamond Bourse</span>
+                                    <span className="block text-[10px] font-mono text-slate-500 dark:text-steel">Private LTE Grid</span>
                                 </div>
                             </div>
                         </div>
@@ -182,34 +320,32 @@ export default function Home({ banners, categories, featuredProducts, stats, tes
 
 
             {/* =========================================================================
-                3. INTERACTIVE INDUSTRY VERTICALS & SECTOR SOLUTIONS
+                3. TAILORED INDUSTRY SECTORS (INTERACTIVE TABS)
             ========================================================================= */}
-            <section className="py-24 bg-paper relative">
-                <div className="absolute inset-0 bg-grid-paper opacity-70 pointer-events-none" />
-                <div className="container-content relative z-10">
-                    <div className="max-w-2xl mb-14">
-                        <span className="text-xs font-mono uppercase tracking-widest text-beacon font-semibold block mb-2">
+            <section className="py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
+                <div className="container-content">
+                    <div className="max-w-3xl mb-12">
+                        <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-2">
                             TAILORED INDUSTRY ARCHITECTURE
                         </span>
-                        <h2 className="text-3xl sm:text-4xl font-display font-bold text-ink">
+                        <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-paper">
                             Engineered for Zero-Downtime Operations
                         </h2>
-                        <p className="mt-3 text-steel leading-relaxed">
-                            Every sector presents distinct RF propagation challenges and mission requirements. 
-                            Explore how Sanchar architects purpose-built networks for India’s most demanding environments.
+                        <p className="mt-3 text-slate-600 dark:text-steel leading-relaxed">
+                            Every operational environment presents unique RF propagation physics. Explore how Sanchar architects purpose-built networks for India’s most demanding sectors.
                         </p>
                     </div>
 
-                    {/* Sector Tabs Header */}
-                    <div className="flex flex-wrap gap-2 border-b border-steel/20 pb-4 mb-8">
+                    {/* Segmented Tab Controls */}
+                    <div className="flex flex-wrap gap-2 p-1.5 rounded-xl bg-slate-200/80 dark:bg-navy-surface border border-slate-300 dark:border-navy-border max-w-fit mb-8">
                         {SECTOR_DATA.map((sec, idx) => (
                             <button
                                 key={sec.title}
                                 onClick={() => setSelectedSector(idx)}
-                                className={`px-4 py-2.5 rounded text-sm font-medium transition-all ${
+                                className={`px-4 py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 ${
                                     selectedSector === idx
-                                        ? 'bg-navy text-beacon shadow-md font-semibold'
-                                        : 'bg-white text-steel hover:text-ink hover:bg-steel/10'
+                                        ? 'bg-white dark:bg-beacon text-slate-900 dark:text-navy-dark shadow-sm font-bold'
+                                        : 'text-slate-600 dark:text-paper/70 hover:text-slate-900 dark:hover:text-paper'
                                 }`}
                             >
                                 {sec.title}
@@ -218,22 +354,24 @@ export default function Home({ banners, categories, featuredProducts, stats, tes
                     </div>
 
                     {/* Selected Sector Showcase Card */}
-                    <div className="bg-white border border-steel/20 shadow-sm p-8 lg:p-10 rounded-sm">
+                    <div className="panel p-8 sm:p-12">
                         <div className="grid lg:grid-cols-12 gap-8 items-center">
-                            <div className="lg:col-span-7 space-y-4">
+                            <div className="lg:col-span-7 space-y-5">
                                 <span className="badge-rf font-mono text-xs">
                                     {SECTOR_DATA[selectedSector].tag}
                                 </span>
-                                <h3 className="text-2xl sm:text-3xl font-display font-bold text-ink">
+
+                                <h3 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-paper">
                                     {SECTOR_DATA[selectedSector].headline}
                                 </h3>
-                                <p className="text-steel leading-relaxed text-sm sm:text-base">
+
+                                <p className="text-slate-600 dark:text-steel leading-relaxed">
                                     {SECTOR_DATA[selectedSector].description}
                                 </p>
 
-                                <div className="grid sm:grid-cols-2 gap-4 pt-2">
+                                <div className="grid sm:grid-cols-2 gap-3 pt-2">
                                     {SECTOR_DATA[selectedSector].features.map((feat) => (
-                                        <div key={feat} className="flex items-start gap-2 text-sm text-ink font-medium">
+                                        <div key={feat} className="flex items-start gap-2.5 text-sm font-medium text-slate-800 dark:text-paper">
                                             <svg className="w-4 h-4 text-beacon shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                             </svg>
@@ -242,18 +380,18 @@ export default function Home({ banners, categories, featuredProducts, stats, tes
                                     ))}
                                 </div>
 
-                                <div className="pt-4">
-                                    <Link href="/contact-us" className="btn-primary text-sm">
-                                        Request {SECTOR_DATA[selectedSector].title} Architecture &rarr;
+                                <div className="pt-4 flex items-center gap-4">
+                                    <Link href="/contact-us" className="btn-primary text-sm font-mono uppercase tracking-wider">
+                                        Request {SECTOR_DATA[selectedSector].title.split('&')[0]} Architecture &rarr;
                                     </Link>
                                 </div>
                             </div>
 
-                            <div className="lg:col-span-5 bg-navy-light rounded overflow-hidden aspect-[4/3] flex items-center justify-center p-6 border border-steel/15">
+                            <div className="lg:col-span-5 bg-slate-100 dark:bg-navy-dark rounded-xl overflow-hidden aspect-[4/3] flex items-center justify-center p-6 border border-slate-200 dark:border-navy-border/60">
                                 <img 
                                     src={SECTOR_DATA[selectedSector].image} 
                                     alt={SECTOR_DATA[selectedSector].title}
-                                    className="max-h-full w-auto object-contain rounded transition-all duration-300"
+                                    className="max-h-full w-auto object-contain rounded-lg shadow-sm transition-all duration-300 transform hover:scale-105"
                                 />
                             </div>
                         </div>
@@ -265,22 +403,22 @@ export default function Home({ banners, categories, featuredProducts, stats, tes
             {/* =========================================================================
                 4. FEATURED HARDWARE SHOWCASE GRID
             ========================================================================= */}
-            <section className="py-24 bg-white border-y border-steel/15">
+            <section className="py-20 bg-white dark:bg-navy border-y border-slate-200 dark:border-navy-border transition-colors duration-300">
                 <div className="container-content">
-                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                         <div>
-                            <span className="text-xs font-mono uppercase tracking-widest text-beacon font-semibold block mb-2">
+                            <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-1">
                                 MISSION-READY TERMINALS & SYSTEMS
                             </span>
-                            <h2 className="text-3xl font-display font-bold text-ink">
+                            <h2 className="text-3xl font-display font-bold text-slate-900 dark:text-paper">
                                 Featured Wireless Hardware
                             </h2>
-                            <p className="mt-2 text-steel">
-                                High-durability handheld transceivers, dispatch consoles, and base stations.
+                            <p className="mt-2 text-slate-600 dark:text-steel text-sm">
+                                High-durability handheld transceivers, dispatch consoles, and base stations in active deployment.
                             </p>
                         </div>
-                        <Link href="/products" className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink border-b-2 border-beacon pb-0.5 hover:text-beacon transition-colors">
-                            <span>Browse Complete Catalog</span>
+                        <Link href="/products" className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-900 dark:text-paper border-b-2 border-amber-500 dark:border-beacon pb-0.5 hover:text-amber-600 dark:hover:text-beacon transition-colors">
+                            <span>Browse Complete 120+ Product Catalog</span>
                             <span>&rarr;</span>
                         </Link>
                     </div>
@@ -289,57 +427,61 @@ export default function Home({ banners, categories, featuredProducts, stats, tes
                         {(featuredProducts || []).map((item) => (
                             <div 
                                 key={item.id}
-                                className="group panel-hover flex flex-col justify-between overflow-hidden bg-white"
+                                className="panel-hover flex flex-col justify-between overflow-hidden group"
                             >
                                 <div>
-                                    {/* Image Container */}
-                                    <div className="aspect-[4/3] bg-navy-surface overflow-hidden relative flex items-center justify-center p-6 border-b border-steel/10">
-                                        {item.cover_image_path ? (
-                                            <img
-                                                src={`/storage/${item.cover_image_path}`}
-                                                alt={item.name}
-                                                className="max-h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                                                loading="lazy"
-                                                onError={(e) => {
-                                                    e.target.onerror = null;
-                                                    e.target.src = '/storage/media/p1.jpg';
-                                                }}
-                                            />
-                                        ) : (
-                                            <div className="text-steel font-mono text-xs">HARDWARE IMAGE</div>
-                                        )}
+                                    {/* Image Pedestal */}
+                                    <div className="aspect-[4/3] bg-slate-50 dark:bg-navy-dark overflow-hidden relative flex items-center justify-center p-6 border-b border-slate-100 dark:border-navy-border/40">
+                                        <img
+                                            src={`/storage/${item.cover_image_path}`}
+                                            alt={item.name}
+                                            className="max-h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                                            loading="lazy"
+                                            onError={(e) => {
+                                                e.target.onerror = null;
+                                                e.target.src = '/storage/media/products/1559989450_nx3220_ht.jpg';
+                                            }}
+                                        />
 
                                         {item.model_number && (
-                                            <span className="absolute top-3 right-3 text-[11px] font-mono px-2 py-0.5 rounded bg-navy-dark/80 text-beacon border border-white/10">
+                                            <span className="absolute top-3 right-3 text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900/80 dark:bg-navy-dark/90 text-amber-400 dark:text-beacon border border-white/10">
                                                 {item.model_number}
                                             </span>
                                         )}
                                     </div>
 
-                                    {/* Content Details */}
-                                    <div className="p-6">
-                                        <span className="text-xs font-mono text-steel uppercase tracking-wider block mb-1">
-                                            {item.subcategory?.name || 'WIRELESS SYSTEM'}
-                                        </span>
-                                        <h3 className="font-display font-semibold text-lg text-ink group-hover:text-beacon transition-colors line-clamp-1">
+                                    {/* Details */}
+                                    <div className="p-6 space-y-3">
+                                        <div className="flex items-center gap-2">
+                                            <span className="badge-steel text-[10px]">
+                                                {item.subcategory?.name || 'Radio System'}
+                                            </span>
+                                        </div>
+
+                                        <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors line-clamp-1">
                                             {item.name}
                                         </h3>
-                                        <p className="mt-2 text-sm text-steel line-clamp-2 leading-relaxed">
-                                            {item.short_description}
+
+                                        <p className="text-xs sm:text-sm text-slate-600 dark:text-steel line-clamp-2 leading-relaxed">
+                                            {item.short_description || 'High-reliability wireless communication equipment.'}
                                         </p>
                                     </div>
                                 </div>
 
-                                <div className="px-6 pb-6 pt-2 border-t border-steel/10 flex items-center justify-between">
-                                    <span className="text-xs font-mono text-steel-dark font-medium">
-                                        WPC & TEC Certified
-                                    </span>
-                                    <Link 
-                                        href={item.subcategory ? `/products/${item.subcategory.category?.slug}/${item.subcategory.slug}/${item.slug}` : '/products'}
-                                        className="text-xs font-semibold text-ink group-hover:text-beacon transition-colors flex items-center gap-1"
+                                <div className="p-6 pt-0 border-t border-slate-100 dark:border-navy-border/40 mt-4 flex items-center justify-between">
+                                    <Link
+                                        href={`/products/${item.subcategory?.category?.slug || 'professional-amateur-radio'}/${item.subcategory?.slug || 'dmr'}/${item.slug}`}
+                                        className="text-xs font-mono font-semibold text-slate-900 dark:text-paper hover:text-amber-600 dark:hover:text-beacon flex items-center gap-1"
                                     >
-                                        <span>View Specifications</span>
+                                        <span>Specifications</span>
                                         <span>&rarr;</span>
+                                    </Link>
+
+                                    <Link
+                                        href={`/contact-us?subject=Quote%20Request%20for%20${encodeURIComponent(item.name)}`}
+                                        className="btn-primary !py-1.5 !px-3 text-xs font-mono"
+                                    >
+                                        RFQ &rarr;
                                     </Link>
                                 </div>
                             </div>
@@ -350,15 +492,25 @@ export default function Home({ banners, categories, featuredProducts, stats, tes
 
 
             {/* =========================================================================
-                5. LIVE TELEMETRY & SCALE METRICS (STATS)
+                5. IMPACT METRICS (STATS)
             ========================================================================= */}
-            <section className="py-20 bg-navy-dark text-paper border-b border-navy-border relative overflow-hidden">
-                <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
+            <section className="py-20 bg-slate-950 text-paper relative overflow-hidden">
+                <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
                 <div className="container-content relative z-10">
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {(stats || []).map((stat) => (
-                            <div key={stat.label} className="bg-navy-surface/80 border border-navy-border p-6 rounded-sm text-center">
-                                <StatCounter label={stat.label} value={stat.value} suffix={stat.suffix} />
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                        {(stats.length > 0 ? stats : [
+                            { label: 'Units Sold', value: 80000, suffix: '+' },
+                            { label: 'Projects Delivered', value: 150, suffix: '+' },
+                            { label: 'Distributors / Dealers Network', value: 500, suffix: '+' },
+                            { label: 'Years of RF Engineering Excellence', value: 30, suffix: '+' },
+                        ]).map((stat) => (
+                            <div key={stat.label} className="space-y-2">
+                                <div className="font-display text-4xl sm:text-5xl font-bold text-beacon tracking-tight">
+                                    {stat.value.toLocaleString()}{stat.suffix}
+                                </div>
+                                <div className="text-xs sm:text-sm font-mono text-slate-300 uppercase tracking-wider">
+                                    {stat.label}
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -367,115 +519,70 @@ export default function Home({ banners, categories, featuredProducts, stats, tes
 
 
             {/* =========================================================================
-                6. PRESTIGIOUS CASE STUDIES / DEPLOYMENTS
+                6. OEM PARTNERS SHOWCASE
             ========================================================================= */}
-            {testimonials?.length > 0 && (
-                <section className="py-24 bg-paper">
-                    <div className="container-content">
-                        <div className="max-w-2xl mb-14">
-                            <span className="text-xs font-mono uppercase tracking-widest text-beacon font-semibold block mb-2">
-                                FIELD-PROVEN CASE STUDIES
+            <section className="py-20 bg-slate-50 dark:bg-navy-dark border-t border-slate-200 dark:border-navy-border transition-colors duration-300">
+                <div className="container-content">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                        <div>
+                            <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-1">
+                                GLOBAL TECHNOLOGY ALLIANCES
                             </span>
-                            <h2 className="text-3xl font-display font-bold text-ink">
-                                High-Consequence Deployments
+                            <h2 className="text-3xl font-display font-bold text-slate-900 dark:text-paper">
+                                Authorized OEM Ecosystem
                             </h2>
-                            <p className="mt-2 text-steel">
-                                Reliable mission communications deployed where failure is simply not an option.
+                            <p className="mt-2 text-slate-600 dark:text-steel text-sm">
+                                Direct factory relationships bringing global component standards to the Indian subcontinent.
                             </p>
                         </div>
-
-                        <div className="grid lg:grid-cols-3 gap-8">
-                            {testimonials.map((t) => (
-                                <article key={t.id} className="bg-white border border-steel/20 p-8 rounded-sm flex flex-col justify-between shadow-sm">
-                                    <div>
-                                        <div className="h-14 flex items-center mb-6 border-b border-steel/10 pb-4">
-                                            {t.logo_path && (
-                                                <img
-                                                    src={`/storage/${t.logo_path}`}
-                                                    alt={t.client_name}
-                                                    className="max-h-12 w-auto object-contain"
-                                                    loading="lazy"
-                                                />
-                                            )}
-                                        </div>
-                                        <p className="text-sm text-steel leading-relaxed">
-                                            "{t.story}"
-                                        </p>
-                                    </div>
-                                    <div className="mt-6 pt-4 border-t border-steel/10 flex items-center justify-between">
-                                        <span className="font-display font-bold text-sm text-ink">{t.client_name}</span>
-                                        <span className="text-[11px] font-mono text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                                            OPERATIONAL
-                                        </span>
-                                    </div>
-                                </article>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
-
-
-            {/* =========================================================================
-                7. GLOBAL OEM ALLIANCES
-            ========================================================================= */}
-            {oemPartners?.length > 0 && (
-                <section className="py-20 bg-white border-t border-steel/15">
-                    <div className="container-content text-center">
-                        <span className="text-xs font-mono uppercase tracking-widest text-steel font-semibold block mb-2">
-                            GLOBAL TECHNOLOGY PARTNERSHIPS
-                        </span>
-                        <h2 className="text-2xl font-display font-bold text-ink mb-10">
-                            Authorized OEM Collaboration
-                        </h2>
-
-                        <div className="flex flex-wrap items-center justify-center gap-10 lg:gap-16">
-                            {oemPartners.map((p) => (
-                                <a
-                                    key={p.name}
-                                    href={p.website_url || '#'}
-                                    target={p.website_url && p.website_url !== '#' ? '_blank' : undefined}
-                                    rel="noopener noreferrer"
-                                    className="p-4 border border-steel/15 rounded bg-paper/50 hover:bg-white hover:border-beacon/40 transition-all"
-                                >
-                                    <img
-                                        src={`/storage/${p.logo_path}`}
-                                        alt={p.name}
-                                        className="h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-200"
-                                        loading="lazy"
-                                    />
-                                </a>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            )}
-
-
-            {/* =========================================================================
-                8. FINAL RFQ / CONSULTATION CTA
-            ========================================================================= */}
-            <section className="py-24 bg-navy-dark text-paper relative border-t border-navy-border overflow-hidden">
-                <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
-                <div className="container-content text-center max-w-3xl mx-auto relative z-10 space-y-6">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-beacon/30 bg-beacon/10 text-beacon text-xs font-mono">
-                        ENGINEERING CONSULTATION DESK
-                    </div>
-                    <h2 className="text-3xl sm:text-4xl font-display font-bold leading-tight">
-                        Need a Mission-Critical Wireless Architecture You Can Trust?
-                    </h2>
-                    <p className="text-paper/80 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-                        Whether designing a nationwide PoC cellular fleet, a railway LTE-R corridor, or private TETRA coverage, our senior RF architects will assist your technical specifications and RFP requirements.
-                    </p>
-                    <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
-                        <Link href="/contact-us" className="btn-primary text-base px-8 py-3.5 shadow-lg shadow-beacon/20">
-                            Request Architecture Review & Quote
+                        <Link href="/oem-partners" className="text-sm font-semibold text-slate-900 dark:text-paper hover:text-amber-600 dark:hover:text-beacon font-mono">
+                            View All 10 Partners &rarr;
                         </Link>
-                        <a 
-                            href="tel:+911146528894" 
-                            className="btn-outline-dark text-base px-6 py-3.5"
-                        >
-                            Call Defense Desk: +91 (11) 4652 8894
+                    </div>
+
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+                        {(oemPartners || []).map((partner) => (
+                            <a
+                                key={partner.name}
+                                href={partner.website_url || '#'}
+                                target={partner.website_url && partner.website_url !== '#' ? '_blank' : '_self'}
+                                rel="noopener noreferrer"
+                                className="panel p-6 flex flex-col items-center justify-center min-h-[120px] text-center hover:border-amber-500/50 dark:hover:border-beacon/50 hover:shadow-lg transition-all group"
+                            >
+                                <img
+                                    src={`/storage/${partner.logo_path}`}
+                                    alt={partner.name}
+                                    className="max-h-12 max-w-[120px] w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-105"
+                                    loading="lazy"
+                                />
+                                <span className="mt-3 text-[11px] font-mono font-medium text-slate-500 dark:text-steel group-hover:text-slate-900 dark:group-hover:text-paper truncate w-full">
+                                    {partner.name}
+                                </span>
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+
+            {/* =========================================================================
+                7. BOTTOM CALL TO ACTION
+            ========================================================================= */}
+            <section className="py-20 bg-white dark:bg-navy border-t border-slate-200 dark:border-navy-border transition-colors duration-300">
+                <div className="container-content text-center max-w-2xl mx-auto space-y-6">
+                    <span className="badge-rf text-xs">GOVERNMENT & ENTERPRISE PROCUREMENT</span>
+                    <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-paper">
+                        Ready to Engineer Your Wireless Network?
+                    </h2>
+                    <p className="text-slate-600 dark:text-steel text-sm sm:text-base leading-relaxed">
+                        Connect with our New Delhi engineering and spectrum clearance team for technical consultations, RF site propagation surveys, or GeM portal procurement assistance.
+                    </p>
+                    <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
+                        <Link href="/contact-us" className="btn-beacon !py-3.5 !px-8 text-sm font-mono uppercase tracking-wider">
+                            Contact Technical Desk &rarr;
+                        </Link>
+                        <a href="tel:+911146528894" className="btn-secondary !py-3.5 !px-6 text-sm font-mono">
+                            Call +91 (11) 4652 8894
                         </a>
                     </div>
                 </div>
@@ -483,103 +590,3 @@ export default function Home({ banners, categories, featuredProducts, stats, tes
         </MainLayout>
     );
 }
-
-const SECTOR_DATA = [
-    {
-        title: 'Public Safety & Police',
-        tag: 'DMR TIER III • TETRA • REAL-TIME DISPATCH',
-        headline: 'Tactical Coordination with Zero Communication Gaps',
-        description: 'Instant group communication with GPS tracking, AES-256 encrypted voice channels, emergency SOS panic buttons, and central GIS dispatch console.',
-        features: [
-            '2,500+ Terminals deployed with Delhi Police',
-            'Sub-300ms Push-to-Talk latency across India',
-            'Full duplex emergency override & geo-fencing',
-            'MIL-STD-810G drop resistance & IP68 waterproofing'
-        ],
-        image: '/storage/media/50kpoc.png',
-    },
-    {
-        title: 'Railways & Metro Transit',
-        tag: 'LTE-R • MCPTT • 500 KM/H HANDOVER',
-        headline: 'Mission-Critical Rail Control & Cab Signaling',
-        description: 'Broadband communication standard engineered for train collision avoidance, railway telemetry, passenger safety, and high-speed Doppler compensation.',
-        features: [
-            'Seamless handovers at speeds up to 500 km/h',
-            'Integrated voice, train control, and trackside CCTV',
-            'EN 50155 certified railway rolling-stock compliant',
-            'Emergency cab-to-station priority pre-emption'
-        ],
-        image: '/storage/media/LTTE-R.jpeg',
-    },
-    {
-        title: 'Oil, Gas & Petrochemical',
-        tag: 'ATEX INTRINSICALLY SAFE • HIGH-HAZARD',
-        headline: 'Explosion-Proof Radios for Hazardous Atmospheres',
-        description: 'Engineered for refineries, chemical manufacturing, and offshore platforms where flammable gasses demand certified explosion-proof transceivers.',
-        features: [
-            'Zone 1 / Zone 2 ATEX & IECEx certification',
-            'Lone-worker and automatic man-down sensors',
-            'Superior noise-cancellation in heavy machinery',
-            'Robust long-life battery in extreme temperatures'
-        ],
-        image: '/storage/media/p1.jpg',
-    },
-    {
-        title: 'Enterprise & Hospitality',
-        tag: 'LICENSE-FREE • SMART POC • MULTI-FLOOR',
-        headline: 'Effortless Coordination for Hotels & Facilities',
-        description: 'WPC-approved royalty-free communications requiring no recurring license fees, delivering crystal audio across multi-acre campuses and high-rises.',
-        features: [
-            '100% royalty-free, legal and WPC approved in India',
-            'Multi-floor penetration up to 15 concrete levels',
-            'Rapid USB Type-C charging with long standby',
-            'Compact, lightweight ergonomic design'
-        ],
-        image: '/storage/media/p2.jpg',
-    },
-];
-
-function StatCounter({ label, value, suffix }) {
-    const [display, setDisplay] = useState(0);
-    const ref = useRef(null);
-    const [hasAnimated, setHasAnimated] = useState(false);
-
-    useEffect(() => {
-        const el = ref.current;
-        if (!el) return;
-
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting && !hasAnimated) {
-                    setHasAnimated(true);
-                    const duration = 1400;
-                    const start = performance.now();
-
-                    const tick = (now) => {
-                        const progress = Math.min((now - start) / duration, 1);
-                        // Ease out cubic
-                        const easeOut = 1 - Math.pow(1 - progress, 3);
-                        setDisplay(Math.floor(easeOut * value));
-                        if (progress < 1) requestAnimationFrame(tick);
-                    };
-                    requestAnimationFrame(tick);
-                }
-            },
-            { threshold: 0.3 }
-        );
-
-        observer.observe(el);
-        return () => observer.disconnect();
-    }, [value, hasAnimated]);
-
-    return (
-        <div ref={ref}>
-            <div className="font-display text-4xl sm:text-5xl font-bold text-beacon tracking-tight">
-                {display.toLocaleString()}
-                {suffix}
-            </div>
-            <p className="mt-2 text-xs sm:text-sm font-mono uppercase tracking-wider text-steel-light">{label}</p>
-        </div>
-    );
-}
-

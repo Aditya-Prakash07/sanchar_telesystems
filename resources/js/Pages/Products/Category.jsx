@@ -2,79 +2,79 @@ import { Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
 
-export default function ProductsCategory({ category, subcategory, items, seo }) {
+export default function ProductsCategory({ category, subcategory, items = [], seo = {} }) {
     return (
         <MainLayout>
-            <Seo title={seo.title} description={seo.description} />
+            <Seo
+                title={seo?.title || `${subcategory.name} — Sanchar Telesystems`}
+                description={seo?.description || `Explore ${subcategory.name} wireless communication equipment from Sanchar Telesystems.`}
+                canonicalPath={`/products/${category.slug}/${subcategory.slug}`}
+                breadcrumbs={[
+                    { name: 'Home', url: '/' },
+                    { name: 'Products', url: '/products' },
+                    { name: subcategory.name, url: `/products/${category.slug}/${subcategory.slug}` },
+                ]}
+            />
 
             {/* Header */}
-            <section className="bg-navy-dark text-paper pt-36 pb-20 border-b border-navy-border relative overflow-hidden">
-                <div className="absolute inset-0 bg-grid-pattern opacity-50 pointer-events-none" />
-                <div className="container-content relative z-10 max-w-3xl">
-                    <nav className="text-xs font-mono text-paper/60 mb-4 flex items-center gap-2">
-                        <Link href="/products" className="hover:text-beacon transition-colors">
-                            Catalog
-                        </Link>
+            <header className="relative bg-slate-950 text-paper pt-36 pb-20 overflow-hidden">
+                <div className="absolute inset-0 bg-grid-pattern opacity-25" />
+                <div className="container-content relative z-10">
+                    {/* Breadcrumbs */}
+                    <nav className="flex items-center gap-2 text-xs font-mono text-slate-400 mb-6">
+                        <Link href="/" className="hover:text-white transition-colors">HOME</Link>
                         <span>/</span>
-                        <Link href={`/products#${category.slug}`} className="hover:text-beacon transition-colors">
-                            {category.name}
-                        </Link>
+                        <Link href="/products" className="hover:text-white transition-colors">PRODUCTS</Link>
                         <span>/</span>
-                        <span className="text-beacon">{subcategory.name}</span>
+                        <span className="text-amber-400 dark:text-beacon uppercase font-bold">{subcategory.name}</span>
                     </nav>
 
-                    <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-navy-surface text-beacon border border-navy-border text-xs font-mono mb-3">
-                        {category.name.toUpperCase()} VERTICAL
-                    </div>
-
-                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold leading-tight">
-                        {subcategory.name}
-                    </h1>
-
-                    {subcategory.description && (
-                        <p className="mt-4 text-base text-paper/80 leading-relaxed font-sans">
-                            {subcategory.description}
+                    <div className="max-w-3xl">
+                        <span className="badge-rf text-xs mb-3">
+                            {category.name}
+                        </span>
+                        <h1 className="text-3xl sm:text-5xl font-display font-bold tracking-tight text-white leading-tight">
+                            {subcategory.name}
+                        </h1>
+                        <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed font-sans">
+                            {subcategory.description || `Browse high-durability ${subcategory.name} equipment and systems engineered for mission-critical deployments across India.`}
                         </p>
-                    )}
-
-                    <div className="mt-6 flex items-center gap-4 text-xs font-mono text-steel-light">
-                        <span>{items.length} Model{items.length === 1 ? '' : 's'} Published</span>
-                        <span>•</span>
-                        <span>Govt. WPC / TEC Compliant</span>
                     </div>
                 </div>
-            </section>
+            </header>
 
             {/* Items Grid */}
-            <div className="container-content py-20">
-                {items.length === 0 ? (
-                    <div className="panel p-12 text-center max-w-xl mx-auto space-y-4">
-                        <div className="h-12 w-12 rounded-full bg-beacon/10 text-beacon mx-auto flex items-center justify-center">
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                            </svg>
-                        </div>
-                        <h3 className="font-display font-bold text-xl text-ink">Catalog Models in Update</h3>
-                        <p className="text-steel text-sm leading-relaxed">
-                            New equipment models in this line are currently undergoing compliance updates. Contact our engineering desk for immediate stock and data sheets.
-                        </p>
-                        <div>
-                            <Link href="/contact-us" className="btn-primary text-sm">
-                                Inquire About {subcategory.name}
+            <div className="py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
+                <div className="container-content">
+                    <div className="flex items-center justify-between border-b border-slate-200 dark:border-navy-border pb-4 mb-10">
+                        <span className="text-xs font-mono uppercase text-slate-500 dark:text-steel font-bold">
+                            HARDWARE CATALOG &bull; {items.length} {items.length === 1 ? 'TERMINAL' : 'TERMINALS / UNITS'}
+                        </span>
+                        <Link href="/products" className="text-xs font-mono text-amber-600 dark:text-beacon hover:underline">
+                            &larr; Return to All Categories
+                        </Link>
+                    </div>
+
+                    {items.length === 0 ? (
+                        <div className="panel p-16 text-center space-y-4">
+                            <p className="font-mono text-sm text-slate-600 dark:text-steel">
+                                Direct supply models available via custom RFP quotation.
+                            </p>
+                            <Link href="/contact-us" className="btn-primary !py-2.5 !px-6 text-xs font-mono">
+                                Request Custom Hardware Specs &rarr;
                             </Link>
                         </div>
-                    </div>
-                ) : (
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {items.map((item) => (
-                            <Link
-                                key={item.id}
-                                href={`/products/${category.slug}/${subcategory.slug}/${item.slug}`}
-                                className="group panel-hover flex flex-col justify-between overflow-hidden bg-white"
-                            >
-                                <div>
-                                    <div className="aspect-[4/3] bg-navy-surface overflow-hidden relative flex items-center justify-center p-6 border-b border-steel/10">
-                                        {item.cover_image_path ? (
+                    ) : (
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {items.map((item) => (
+                                <Link
+                                    key={item.id}
+                                    href={`/products/${category.slug}/${subcategory.slug}/${item.slug}`}
+                                    className="panel-hover flex flex-col justify-between overflow-hidden group"
+                                >
+                                    <div>
+                                        {/* Image Pedestal */}
+                                        <div className="aspect-[4/3] bg-slate-100 dark:bg-navy-dark overflow-hidden relative flex items-center justify-center p-6 border-b border-slate-100 dark:border-navy-border/40">
                                             <img
                                                 src={`/storage/${item.cover_image_path}`}
                                                 alt={item.name}
@@ -82,60 +82,40 @@ export default function ProductsCategory({ category, subcategory, items, seo }) 
                                                 loading="lazy"
                                                 onError={(e) => {
                                                     e.target.onerror = null;
-                                                    e.target.src = '/storage/media/p1.jpg';
+                                                    e.target.src = '/storage/media/products/1559989450_nx3220_ht.jpg';
                                                 }}
                                             />
-                                        ) : (
-                                            <div className="text-steel font-mono text-xs">MODEL PREVIEW</div>
-                                        )}
 
-                                        {item.model_number && (
-                                            <span className="absolute top-3 right-3 text-[11px] font-mono px-2 py-0.5 rounded bg-navy-dark/80 text-beacon border border-white/10">
-                                                {item.model_number}
-                                            </span>
-                                        )}
+                                            {item.model_number && (
+                                                <span className="absolute top-3 right-3 text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900/80 dark:bg-navy-dark/90 text-amber-400 dark:text-beacon border border-white/10">
+                                                    {item.model_number}
+                                                </span>
+                                            )}
+                                        </div>
+
+                                        <div className="p-6 space-y-2">
+                                            <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors line-clamp-1">
+                                                {item.name}
+                                            </h3>
+
+                                            {item.short_description && (
+                                                <p className="text-xs sm:text-sm text-slate-600 dark:text-steel line-clamp-2 leading-relaxed">
+                                                    {item.short_description}
+                                                </p>
+                                            )}
+                                        </div>
                                     </div>
 
-                                    <div className="p-6">
-                                        {item.model_number && (
-                                            <span className="text-xs font-mono text-steel block mb-1">MODEL: {item.model_number}</span>
-                                        )}
-                                        <h3 className="font-display font-semibold text-lg text-ink group-hover:text-beacon transition-colors mb-2 line-clamp-1">
-                                            {item.name}
-                                        </h3>
-                                        {item.short_description && (
-                                            <p className="text-sm text-steel line-clamp-2 leading-relaxed">
-                                                {item.short_description}
-                                            </p>
-                                        )}
+                                    <div className="p-6 pt-0 border-t border-slate-100 dark:border-navy-border/40 mt-4 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-steel">
+                                        <span className="group-hover:text-slate-900 dark:group-hover:text-paper font-medium">Technical Specifications</span>
+                                        <span className="text-amber-500 dark:text-beacon font-bold">&rarr;</span>
                                     </div>
-                                </div>
-
-                                <div className="px-6 pb-6 pt-3 border-t border-steel/10 flex items-center justify-between text-xs">
-                                    <span className="font-mono text-steel">Rugged Spec</span>
-                                    <span className="font-semibold text-ink group-hover:text-beacon transition-colors flex items-center gap-1">
-                                        Full Datasheet &rarr;
-                                    </span>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-                )}
-            </div>
-
-            {/* Subcategory Technical Inquiry */}
-            <section className="bg-navy-dark text-paper py-14 border-t border-navy-border">
-                <div className="container-content flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div>
-                        <h3 className="text-xl font-display font-bold">Need a Tender or Bulk Fleet Quote for {subcategory.name}?</h3>
-                        <p className="text-steel-light text-sm mt-1">Our technical sales engineers provide formal tender documentation, WPC compliance letters, and volume pricing.</p>
-                    </div>
-                    <Link href="/contact-us" className="btn-primary shrink-0 text-sm">
-                        Request Formal Proposal
-                    </Link>
+                                </Link>
+                            ))}
+                        </div>
+                    )}
                 </div>
-            </section>
+            </div>
         </MainLayout>
     );
 }
-

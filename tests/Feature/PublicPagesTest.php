@@ -22,6 +22,15 @@ class PublicPagesTest extends TestCase
         $this->get('/contact-us')->assertStatus(200);
     }
 
+    public function test_sitemap_xml_loads_successfully(): void
+    {
+        $response = $this->get('/sitemap.xml');
+        $response->assertStatus(200);
+        $response->assertHeader('Content-Type', 'application/xml');
+        $this->assertStringContainsString('<urlset', $response->getContent());
+        $this->assertStringContainsString('/products', $response->getContent());
+    }
+
     public function test_product_detail_page_loads_successfully(): void
     {
         $cat = ProductCategory::create([

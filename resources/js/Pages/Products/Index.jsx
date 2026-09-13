@@ -3,32 +3,41 @@ import { useState } from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
 
-export default function ProductsIndex({ categories, seo }) {
+export default function ProductsIndex({ categories = [], seo = {} }) {
     const [search, setSearch] = useState('');
 
     const filteredCategories = categories.filter((cat) => {
         if (!search) return true;
         const q = search.toLowerCase();
-        const matchesCategory = cat.name.toLowerCase().includes(q) || (cat.description && cat.description.toLowerCase().includes(q));
-        const matchesSub = cat.subcategories?.some((s) => s.name.toLowerCase().includes(q));
+        const matchesCategory = cat.name?.toLowerCase().includes(q) || (cat.description && cat.description.toLowerCase().includes(q));
+        const matchesSub = cat.subcategories?.some((s) => s.name?.toLowerCase().includes(q));
         return matchesCategory || matchesSub;
     });
 
     return (
         <MainLayout>
-            <Seo title={seo.title} description={seo.description} canonicalPath="/products" />
+            <Seo
+                title={seo?.title || 'Wireless Communications Equipment Catalog | Sanchar Telesystems'}
+                description={seo?.description || 'Browse DMR, TETRA, P25, PoC over Cellular, LTE-R, and Diamond antenna equipment from Sanchar Telesystems.'}
+                canonicalPath="/products"
+                breadcrumbs={[
+                    { name: 'Home', url: '/' },
+                    { name: 'Products', url: '/products' },
+                ]}
+            />
 
             {/* Header */}
-            <section className="bg-navy-dark text-paper pt-36 pb-20 border-b border-navy-border relative overflow-hidden">
-                <div className="absolute inset-0 bg-grid-pattern opacity-50 pointer-events-none" />
+            <header className="relative bg-slate-950 text-paper pt-36 pb-20 overflow-hidden">
+                <div className="absolute inset-0 bg-grid-pattern opacity-25" />
                 <div className="container-content relative z-10 max-w-3xl">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-beacon/30 bg-beacon/10 text-beacon text-xs font-mono uppercase tracking-wider mb-4">
-                        TACTICAL HARDWARE & SYSTEMS CATALOG
+                    <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-400 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
+                        <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
+                        <span>TACTICAL HARDWARE & SYSTEMS CATALOG</span>
                     </div>
-                    <h1 className="text-4xl sm:text-5xl font-display font-bold leading-tight">
+                    <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-white leading-tight">
                         Wireless Communications Equipment
                     </h1>
-                    <p className="mt-4 text-base sm:text-lg text-paper/80 leading-relaxed font-sans">
+                    <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed font-sans">
                         Engineered for defense, public safety, high-speed rail, and hazardous environments.
                         Select a product vertical below to explore terminals, base stations, and accessories.
                     </p>
@@ -40,97 +49,110 @@ export default function ProductsIndex({ categories, seo }) {
                             placeholder="Filter systems (e.g. DMR, TETRA, PoC, Antennas)..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="input !bg-navy-surface/90 !border-navy-border !text-paper placeholder:text-steel focus:!border-beacon !pr-10"
+                            className="input !bg-slate-900 !border-slate-700 !text-white placeholder:text-slate-400 focus:!border-beacon !pr-12"
                         />
                         {search && (
                             <button 
                                 onClick={() => setSearch('')}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-steel hover:text-paper text-xs font-mono"
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs font-mono"
                             >
                                 CLEAR
                             </button>
                         )}
                     </div>
                 </div>
-            </section>
+            </header>
 
             {/* Catalog Grid */}
-            <div className="container-content py-20 space-y-20">
-                {filteredCategories.length === 0 ? (
-                    <div className="text-center py-16 text-steel">
-                        <p className="text-lg">No equipment found matching "{search}".</p>
-                        <button onClick={() => setSearch('')} className="mt-3 text-beacon font-semibold hover:underline">
-                            Clear search filter
-                        </button>
-                    </div>
-                ) : (
-                    filteredCategories.map((category) => (
-                        <section key={category.id} className="scroll-mt-28" id={category.slug}>
-                            {/* Vertical Header */}
-                            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-8 border-b border-steel/20 pb-4">
-                                <div>
-                                    <h2 className="text-2xl sm:text-3xl font-display font-bold text-ink flex items-center gap-3">
-                                        <span>{category.name}</span>
-                                        <span className="text-xs font-mono text-steel font-normal px-2.5 py-0.5 rounded-full bg-paper border border-steel/20">
-                                            {category.subcategories?.length || 0} Product Lines
-                                        </span>
-                                    </h2>
-                                    {category.description && (
-                                        <p className="text-sm text-steel mt-1 max-w-2xl">{category.description}</p>
-                                    )}
+            <div className="py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
+                <div className="container-content space-y-16">
+                    {filteredCategories.length === 0 ? (
+                        <div className="panel p-16 text-center text-slate-500 dark:text-steel">
+                            <p className="font-mono text-sm">No communication categories matched "{search}".</p>
+                            <button 
+                                onClick={() => setSearch('')}
+                                className="mt-3 text-xs font-mono text-amber-500 dark:text-beacon hover:underline"
+                            >
+                                Reset search filter
+                            </button>
+                        </div>
+                    ) : (
+                        filteredCategories.map((cat) => (
+                            <div key={cat.id} className="space-y-6">
+                                <div className="border-b border-slate-200 dark:border-navy-border pb-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+                                    <div>
+                                        <h2 className="text-2xl font-display font-bold text-slate-900 dark:text-paper">
+                                            {cat.name}
+                                        </h2>
+                                        {cat.description && (
+                                            <p className="text-xs sm:text-sm text-slate-600 dark:text-steel mt-1 max-w-2xl">
+                                                {cat.description}
+                                            </p>
+                                        )}
+                                    </div>
+                                    <span className="text-xs font-mono text-slate-500 dark:text-steel shrink-0">
+                                        {cat.subcategories?.length || 0} Subcategories
+                                    </span>
+                                </div>
+
+                                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    {cat.subcategories?.map((sub) => (
+                                        <Link
+                                            key={sub.id}
+                                            href={`/products/${cat.slug}/${sub.slug}`}
+                                            className="panel-hover p-6 flex flex-col justify-between group"
+                                        >
+                                            <div className="space-y-3">
+                                                <div className="flex items-center justify-between">
+                                                    <span className="badge-rf text-[10px]">
+                                                        WPC CERTIFIED
+                                                    </span>
+                                                    <span className="text-xs font-mono text-slate-400 group-hover:text-amber-500 dark:group-hover:text-beacon transition-colors">
+                                                        &rarr;
+                                                    </span>
+                                                </div>
+
+                                                <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors">
+                                                    {sub.name}
+                                                </h3>
+
+                                                <p className="text-xs sm:text-sm text-slate-600 dark:text-steel line-clamp-2 leading-relaxed">
+                                                    {sub.description || `High-reliability ${sub.name} equipment and turnkey accessories.`}
+                                                </p>
+                                            </div>
+
+                                            <div className="pt-4 mt-4 border-t border-slate-100 dark:border-navy-border/40 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-steel">
+                                                <span className="group-hover:text-slate-900 dark:group-hover:text-paper font-medium">Browse Products</span>
+                                                <span className="text-amber-500 dark:text-beacon font-bold">&rarr;</span>
+                                            </div>
+                                        </Link>
+                                    ))}
                                 </div>
                             </div>
+                        ))
+                    )}
 
-                            {/* Subcategory Cards Grid */}
-                            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {category.subcategories.map((sub) => (
-                                    <Link
-                                        key={sub.id}
-                                        href={`/products/${category.slug}/${sub.slug}`}
-                                        className="panel-hover p-6 rounded-sm flex flex-col justify-between group bg-white"
-                                    >
-                                        <div>
-                                            <div className="flex items-center justify-between mb-3">
-                                                <span className="badge-rf text-[10px]">VERIFIED LINE</span>
-                                                <span className="text-xs font-mono text-steel group-hover:text-beacon transition-colors">
-                                                    Explore &rarr;
-                                                </span>
-                                            </div>
-                                            <h3 className="font-display font-semibold text-lg text-ink group-hover:text-beacon transition-colors mb-2">
-                                                {sub.name}
-                                            </h3>
-                                            <p className="text-sm text-steel line-clamp-2 leading-relaxed">
-                                                {sub.description || `Browse high-reliability ${sub.name} systems and accessories.`}
-                                            </p>
-                                        </div>
-
-                                        <div className="mt-6 pt-3 border-t border-steel/10 flex items-center justify-between text-xs text-steel">
-                                            <span>WPC Approved</span>
-                                            <span className="font-semibold text-ink group-hover:text-beacon">
-                                                View Models &rarr;
-                                            </span>
-                                        </div>
-                                    </Link>
-                                ))}
-                            </div>
-                        </section>
-                    ))
-                )}
-            </div>
-
-            {/* Custom Architecture Assistance Banner */}
-            <section className="bg-navy-dark text-paper py-16 border-t border-navy-border">
-                <div className="container-content flex flex-col md:flex-row items-center justify-between gap-8">
-                    <div>
-                        <h2 className="text-2xl font-display font-bold">Require a Custom Frequency or Tender Specification?</h2>
-                        <p className="text-paper/75 text-sm mt-1">Our engineering team prepares frequency filings, link-budget calculations, and compliance matrices.</p>
+                    {/* Bottom Custom RFQ Banner */}
+                    <div className="card-dual !bg-slate-900 text-paper p-8 sm:p-12 border border-slate-800 dark:border-navy-border flex flex-col md:flex-row items-center justify-between gap-8">
+                        <div className="max-w-xl">
+                            <span className="text-xs font-mono text-beacon uppercase tracking-wider font-bold block mb-2">
+                                CUSTOM FREQUENCY TUNING & OEM SOURCING
+                            </span>
+                            <h3 className="text-2xl sm:text-3xl font-display font-bold text-white">
+                                Require a Specialized Frequency Band or GeM Quotation?
+                            </h3>
+                            <p className="mt-3 text-sm text-slate-300 leading-relaxed">
+                                Our RF engineering facility in Okhla, New Delhi calibrates custom frequency duplexers, cavity filters, and multi-tier repeater networks to meet client RFP specifications.
+                            </p>
+                        </div>
+                        <div className="shrink-0">
+                            <Link href="/contact-us" className="btn-beacon !py-3.5 !px-7 font-semibold font-mono text-sm uppercase tracking-wider">
+                                Contact Engineering Team &rarr;
+                            </Link>
+                        </div>
                     </div>
-                    <Link href="/contact-us" className="btn-primary shrink-0">
-                        Consult with Engineering Desk
-                    </Link>
                 </div>
-            </section>
+            </div>
         </MainLayout>
     );
 }
-
