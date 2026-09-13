@@ -40,20 +40,58 @@
     }
 
     .btn-primary {
-        @apply inline-flex items-center gap-2 bg-beacon text-navy font-semibold px-6 py-3
-               rounded-sm hover:bg-beacon-dim transition-colors duration-150;
+        @apply inline-flex items-center justify-center gap-2 bg-beacon text-navy font-semibold px-6 py-3
+               rounded-sm shadow-sm hover:bg-beacon-dim hover:shadow-beacon/20 hover:shadow-md transition-all duration-150 active:scale-[0.99];
     }
 
     .btn-outline-dark {
-        @apply inline-flex items-center gap-2 border border-navy-border text-paper font-semibold
-               px-6 py-3 rounded-sm hover:border-beacon hover:text-beacon transition-colors duration-150;
+        @apply inline-flex items-center justify-center gap-2 border border-navy-border text-paper font-semibold
+               px-6 py-3 rounded-sm hover:border-beacon/80 hover:text-beacon hover:bg-white/[0.03] transition-all duration-150;
     }
 
     .panel {
-        @apply border border-steel/20 bg-white;
+        @apply border border-steel/20 bg-white transition-all duration-200;
+    }
+
+    .panel-hover {
+        @apply border border-steel/20 bg-white hover:border-beacon/60 hover:shadow-lg hover:shadow-navy/5 transition-all duration-200;
+    }
+
+    .panel-dark {
+        @apply border border-navy-border bg-navy-surface/80 backdrop-blur-sm transition-all duration-200;
+    }
+
+    .badge-rf {
+        @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono tracking-wide uppercase font-semibold
+               rounded-full border border-beacon/30 bg-beacon/10 text-beacon;
+    }
+
+    .badge-navy {
+        @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono tracking-wide uppercase font-semibold
+               rounded-full border border-navy-border bg-navy-light text-paper/80;
+    }
+
+    .badge-steel {
+        @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono tracking-wide font-medium
+               rounded border border-steel/20 bg-paper text-steel-dark;
     }
 
     .input {
-        @apply w-full border border-steel/30 bg-white px-4 py-3 text-sm focus:border-beacon outline-none;
+        @apply w-full border border-steel/30 bg-white px-4 py-3 text-sm text-ink placeholder:text-steel/60
+               focus:border-beacon focus:ring-1 focus:ring-beacon/30 outline-none transition-colors;
+    }
+
+    .bg-grid-pattern {
+        background-size: 32px 32px;
+        background-image: 
+            linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    }
+
+    .bg-grid-paper {
+        background-size: 28px 28px;
+        background-image: 
+            linear-gradient(to right, rgba(16, 21, 28, 0.03) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(16, 21, 28, 0.03) 1px, transparent 1px);
     }
 }

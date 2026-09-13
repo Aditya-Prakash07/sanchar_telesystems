@@ -22,8 +22,14 @@ class HomeController extends Controller
 
             'categories' => ProductCategory::where('is_published', true)
                 ->orderBy('sort_order')
-                ->take(3)
-                ->get(['id', 'name', 'slug', 'thumbnail_path']),
+                ->withCount('subcategories')
+                ->get(['id', 'name', 'slug', 'description', 'thumbnail_path']),
+
+            'featuredProducts' => \App\Models\PortfolioItem::where('is_published', true)
+                ->orderBy('sort_order')
+                ->take(6)
+                ->with('subcategory.category')
+                ->get(['id', 'product_subcategory_id', 'name', 'slug', 'model_number', 'short_description', 'cover_image_path', 'specifications']),
 
             'stats' => CompanyStat::orderBy('sort_order')->get(['label', 'value', 'suffix']),
 

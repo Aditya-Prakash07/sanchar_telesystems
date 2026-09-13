@@ -34,6 +34,14 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'flash' => [
+                'success' => fn () => $request->session()->get('success'),
+                'error' => fn () => $request->session()->get('error'),
+            ],
+            'categoriesNav' => fn () => \App\Models\ProductCategory::where('is_published', true)
+                ->orderBy('sort_order')
+                ->with(['subcategories' => fn ($q) => $q->where('is_published', true)->orderBy('sort_order')])
+                ->get(['id', 'name', 'slug']),
         ];
     }
 }

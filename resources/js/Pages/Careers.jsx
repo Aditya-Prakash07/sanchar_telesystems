@@ -2,55 +2,219 @@ import { Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
 
-export default function Careers({ openings, seo }) {
+export default function Careers({ openings = [], seo = {} }) {
     return (
         <MainLayout>
-            <Seo title={seo.title} description={seo.description} canonicalPath="/careers" />
+            <Seo
+                title={seo?.title || 'Careers in Wireless & RF Engineering | Sanchar Telesystems'}
+                description={seo?.description || "Join Sanchar Telesystems. Build the wireless and telecom infrastructure that protects India's borders, public safety, and critical industries."}
+                canonicalPath="/careers"
+            />
 
-            <header className="bg-navy text-paper pt-32 pb-16">
-                <div className="container-content max-w-2xl">
-                    <h1 className="text-4xl font-semibold">Careers</h1>
-                    <p className="mt-4 text-paper/75 leading-relaxed">
-                        Build the wireless communication networks that keep India's public
-                        safety, railways and industry connected.
-                    </p>
+            {/* Telemetry Header */}
+            <header className="bg-navy text-paper pt-36 pb-20 relative overflow-hidden bg-grid-pattern">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-beacon/10 blur-[130px] pointer-events-none rounded-full" />
+                <div className="container-content relative z-10">
+                    <div className="flex items-center gap-3 text-xs font-mono text-beacon tracking-wider uppercase mb-4">
+                        <span className="inline-block w-2 h-2 rounded-full bg-beacon animate-pulse" />
+                        <span>CAREERS &bull; FIELD ENGINEERING &bull; RF RESEARCH</span>
+                    </div>
+
+                    <div className="max-w-3xl">
+                        <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-paper">
+                            Engineer communication systems where failure is not an option.
+                        </h1>
+                        <p className="mt-5 text-lg text-paper/75 leading-relaxed">
+                            Join our team of RF propagation specialists, embedded systems developers, and mission-critical network engineers building wireless networks for Parliament, Delhi Police, and India's vital infrastructure.
+                        </p>
+                    </div>
+
+                    <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-paper/10 pt-8 max-w-4xl text-xs font-mono">
+                        <div>
+                            <span className="text-paper/40 block">PRIMARY LOCATION</span>
+                            <span className="text-paper font-semibold mt-1 block">NEW DELHI (HQ & LAB)</span>
+                        </div>
+                        <div>
+                            <span className="text-paper/40 block">DOMAINS</span>
+                            <span className="text-paper font-semibold mt-1 block">DMR &bull; TETRA &bull; PoC &bull; 4G/5G</span>
+                        </div>
+                        <div>
+                            <span className="text-paper/40 block">INITIATIVE</span>
+                            <span className="text-paper font-semibold mt-1 block">MAKE IN INDIA / ATMANIRBHAR</span>
+                        </div>
+                        <div>
+                            <span className="text-paper/40 block">BENCH CULTURE</span>
+                            <span className="text-paper font-semibold mt-1 block">HANDS-ON SPECTRUM WORK</span>
+                        </div>
+                    </div>
                 </div>
             </header>
 
-            <div className="container-content py-20">
-                {openings.length === 0 ? (
-                    <p className="text-steel max-w-lg">
-                        We don't have any open roles listed right now. Send your resume to{' '}
-                        <a href="mailto:info@sanchartelesystems.com" className="text-beacon font-medium">
-                            info@sanchartelesystems.com
-                        </a>{' '}
-                        and we'll reach out when a fit comes up.
-                    </p>
-                ) : (
-                    <div className="divide-y divide-steel/20 max-w-3xl">
-                        {openings.map((job) => (
-                            <div key={job.id} className="py-8 flex items-start justify-between gap-6">
-                                <div>
-                                    <h2 className="font-display font-semibold text-ink text-lg">
-                                        {job.title}
-                                    </h2>
-                                    <p className="text-sm text-steel mt-1 flex flex-wrap gap-3">
-                                        {job.location && <span>{job.location}</span>}
-                                        {job.employment_type && <span>{job.employment_type}</span>}
-                                    </p>
-                                    <div
-                                        className="mt-3 text-sm text-steel leading-relaxed prose prose-sm max-w-none"
-                                        dangerouslySetInnerHTML={{ __html: job.description }}
-                                    />
-                                </div>
-                                <Link href="/contact-us" className="shrink-0 btn-primary !py-2.5 !px-5 text-sm">
-                                    Apply
-                                </Link>
-                            </div>
-                        ))}
+            {/* Why Sanchar Pillars */}
+            <section className="py-20 bg-paper border-b border-steel/15">
+                <div className="container-content">
+                    <div className="text-center max-w-2xl mx-auto mb-16">
+                        <span className="text-xs font-mono text-beacon uppercase tracking-wider font-semibold block mb-2">
+                            Engineering Mission
+                        </span>
+                        <h2 className="text-3xl font-display font-bold text-ink">
+                            Why build your career at Sanchar?
+                        </h2>
+                        <p className="text-steel text-sm mt-3">
+                            We don't build disposable software. We design and deploy high-reliability hardware and RF topologies that save lives during crises.
+                        </p>
                     </div>
-                )}
-            </div>
+
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <div className="p-8 bg-white border border-steel/15 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                            <div className="w-12 h-12 rounded-xl bg-navy/5 text-beacon flex items-center justify-center font-mono font-bold text-xl mb-5">
+                                01
+                            </div>
+                            <h3 className="font-display font-bold text-ink text-lg mb-3">
+                                National Critical Infrastructure
+                            </h3>
+                            <p className="text-sm text-steel leading-relaxed">
+                                Experience direct deployment impact at national landmark sites including the Parliament of India, Delhi Police tactical units, state emergency dispatchers, and metro networks.
+                            </p>
+                        </div>
+
+                        <div className="p-8 bg-white border border-steel/15 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                            <div className="w-12 h-12 rounded-xl bg-navy/5 text-beacon flex items-center justify-center font-mono font-bold text-xl mb-5">
+                                02
+                            </div>
+                            <h3 className="font-display font-bold text-ink text-lg mb-3">
+                                Indigenous R&D & Make in India
+                            </h3>
+                            <p className="text-sm text-steel leading-relaxed">
+                                Participate in the design of next-generation DMR handhelds, base repeaters, and tactical push-to-talk PoC terminals designed and manufactured right here in India.
+                            </p>
+                        </div>
+
+                        <div className="p-8 bg-white border border-steel/15 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                            <div className="w-12 h-12 rounded-xl bg-navy/5 text-beacon flex items-center justify-center font-mono font-bold text-xl mb-5">
+                                03
+                            </div>
+                            <h3 className="font-display font-bold text-ink text-lg mb-3">
+                                Deep Spectrum Mastery
+                            </h3>
+                            <p className="text-sm text-steel leading-relaxed">
+                                Work with spectrum analyzers, duplexer tuning benches, antenna modeling software, and carrier-grade Push-to-Talk over Cellular (PoC) cloud architectures.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Openings Section */}
+            <section className="py-20 bg-paper-light">
+                <div className="container-content max-w-4xl">
+                    <div className="flex items-center justify-between mb-10 pb-4 border-b border-steel/20">
+                        <div>
+                            <span className="text-xs font-mono text-beacon uppercase tracking-wider font-semibold block mb-1">
+                                Current Openings
+                            </span>
+                            <h2 className="text-2xl font-display font-bold text-ink">
+                                Active Positions
+                            </h2>
+                        </div>
+                        <span className="badge-navy text-xs font-mono">
+                            {openings.length} {openings.length === 1 ? 'Position' : 'Positions'} Open
+                        </span>
+                    </div>
+
+                    {openings.length === 0 ? (
+                        <div className="bg-white border border-steel/15 rounded-2xl p-10 text-center shadow-sm">
+                            <div className="w-14 h-14 rounded-full bg-navy/5 text-navy flex items-center justify-center mx-auto mb-4">
+                                <svg className="w-6 h-6 text-steel" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <h3 className="text-lg font-display font-bold text-ink">No Active Public Openings</h3>
+                            <p className="mt-2 text-sm text-steel max-w-md mx-auto leading-relaxed">
+                                We are always on the lookout for talented RF engineers, field technicians, and telecom sales leaders. Send your portfolio and resume directly to our engineering desk.
+                            </p>
+                            <div className="mt-6">
+                                <a
+                                    href="mailto:info@sanchartelesystems.com?subject=Job%20Application%20-%20Sanchar%20Telesystems"
+                                    className="btn-primary !py-2.5 !px-6 text-sm inline-flex items-center gap-2"
+                                >
+                                    <span>Email Resume (info@sanchartelesystems.com)</span>
+                                    <span>&rarr;</span>
+                                </a>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="space-y-6">
+                            {openings.map((job) => (
+                                <div
+                                    key={job.id}
+                                    className="bg-white border border-steel/15 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md hover:border-beacon/40 transition-all duration-200"
+                                >
+                                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                                        <div>
+                                            <div className="flex flex-wrap items-center gap-2 mb-2">
+                                                {job.department && (
+                                                    <span className="badge-rf text-xs font-mono">
+                                                        {job.department}
+                                                    </span>
+                                                )}
+                                                {job.employment_type && (
+                                                    <span className="badge-steel text-xs font-mono">
+                                                        {job.employment_type}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <h3 className="font-display font-bold text-ink text-xl">
+                                                {job.title}
+                                            </h3>
+                                            {job.location && (
+                                                <p className="text-xs font-mono text-steel mt-1 flex items-center gap-1.5">
+                                                    <svg className="w-3.5 h-3.5 text-beacon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                    </svg>
+                                                    <span>{job.location}</span>
+                                                </p>
+                                            )}
+                                        </div>
+
+                                        <Link
+                                            href={`/contact-us?subject=Application%20for%20${encodeURIComponent(job.title)}`}
+                                            className="shrink-0 btn-beacon !py-2.5 !px-5 text-sm font-semibold text-center"
+                                        >
+                                            Apply for Role &rarr;
+                                        </Link>
+                                    </div>
+
+                                    {job.description && (
+                                        <div
+                                            className="mt-5 pt-5 border-t border-steel/10 text-sm text-steel leading-relaxed prose prose-sm max-w-none"
+                                            dangerouslySetInnerHTML={{ __html: job.description }}
+                                        />
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {/* Spontaneous Application Card */}
+                    <div className="mt-12 bg-navy text-paper rounded-xl p-8 border border-paper/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+                        <div>
+                            <h4 className="font-display font-bold text-lg text-paper">Don't see your specific specialization?</h4>
+                            <p className="text-xs sm:text-sm text-paper/70 mt-1">
+                                We regularly recruit RF circuit designers, FPGA developers, and defense liaison specialists.
+                            </p>
+                        </div>
+                        <a
+                            href="mailto:info@sanchartelesystems.com?subject=Spontaneous%20Application%20-%20RF%20Engineering"
+                            className="shrink-0 btn-outline-paper !py-2.5 !px-5 text-xs font-mono uppercase tracking-wider"
+                        >
+                            Drop CV to HR &rarr;
+                        </a>
+                    </div>
+                </div>
+            </section>
         </MainLayout>
     );
 }
+
