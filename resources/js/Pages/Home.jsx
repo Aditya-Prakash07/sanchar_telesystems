@@ -65,6 +65,25 @@ const SECTOR_DATA = [
     }
 ];
 
+// Helper to format heading with dynamic dual-tone glowing gradient on the key phrase
+const formatHeading = (text) => {
+    if (!text) return null;
+    const words = text.trim().split(' ');
+    if (words.length <= 1) {
+        return <span className="text-white drop-shadow-xl">{text}</span>;
+    }
+    const lastWord = words.pop();
+    const leadWords = words.join(' ');
+    return (
+        <>
+            <span className="text-white drop-shadow-xl">{leadWords} </span>
+            <span className="bg-gradient-to-r from-amber-300 via-beacon to-amber-400 bg-clip-text text-transparent drop-shadow-[0_2px_16px_rgba(245,158,11,0.45)]">
+                {lastWord}
+            </span>
+        </>
+    );
+};
+
 export default function Home({ banners = [], categories = [], featuredProducts = [], stats = [], testimonials = [], oemPartners = [], seo = {} }) {
     const [selectedSector, setSelectedSector] = useState(0);
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -77,37 +96,47 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             subheading: 'World-class wireless communication solutions engineered for India’s defense, homeland security, and critical industrial sectors.',
             image_path: 'media/banners/banner1.png',
             cta_label: 'Explore Products',
-            cta_url: '/products'
+            cta_url: '/products',
+            badge: 'MISSION CRITICAL TIER-1 • WPC TYPE APPROVED',
+            chips: ['MIL-STD-810G Rugged', 'AES-256 Encryption', '35–50 km Range']
         },
         {
             heading: 'SEAMLESS COMMUNICATION',
             subheading: 'Integrated DMR, TETRA, and P25 trunking architectures built for zero failure in high-risk operational environments.',
             image_path: 'media/banners/banner2.jpg',
             cta_label: 'View DMR Systems',
-            cta_url: '/products'
+            cta_url: '/products',
+            badge: 'TACTICAL DMR & TETRA • ENCRYPTED VOICE',
+            chips: ['Zero-Interruption Voice', 'Sub-300ms Call Setup', 'Full Duplex Interop']
         },
         {
             heading: 'PTT OVER CELLULAR',
             subheading: 'Nationwide instant group voice and live dispatch over LTE & Wi-Fi networks — keeping emergency forces connected without range limits.',
             image_path: 'media/banners/banner3.jpg',
             cta_label: 'Discover PoC Platforms',
-            cta_url: '/products'
+            cta_url: '/products',
+            badge: 'BROADBAND PoC & LTE • NATIONWIDE CARRIER',
+            chips: ['Unlimited Range Dispatch', 'Live GPS Tracking', 'Instant SOS Emergency']
         },
         {
             heading: 'STAY CONNECTED',
             subheading: 'Over three decades of mission-critical engineering excellence trusted by the Parliament of India, Delhi Police, and Indian Railways.',
             image_path: 'media/banners/banner4.jpg',
             cta_label: 'Consult with Engineering Desk',
-            cta_url: '/contact-us'
+            cta_url: '/contact-us',
+            badge: 'GOVT. OF INDIA OEM SUPPLIER • 30+ YEARS',
+            chips: ['GeM Registered OEM', 'TEC & WPC Certified', 'Turnkey Network EPC']
         }
     ];
 
-    // Continuous smooth auto-advance every 5.5s, resetting when slide changes or paused
+    const SLIDE_DURATION = 3800; // 3.8s for lively, frequent transitions
+
+    // Continuous smooth auto-advance every 3.8s, resetting when slide changes or paused
     useEffect(() => {
         if (slides.length <= 1 || isPaused) return;
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides.length);
-        }, 5500);
+        }, SLIDE_DURATION);
         return () => clearInterval(timer);
     }, [currentSlide, slides.length, isPaused]);
 
@@ -130,20 +159,20 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
             >
-                {/* Background Slider Imagery */}
+                {/* Background Slider Imagery — Vivid, High-Visibility with Smooth Ken Burns Motion */}
                 <div className="absolute inset-0 z-0 overflow-hidden">
                     {slides.map((s, idx) => (
                         <div
                             key={s.id || idx}
-                            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                                currentSlide === idx ? 'opacity-40 z-10' : 'opacity-0 pointer-events-none z-0'
+                            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                                currentSlide === idx ? 'opacity-90 sm:opacity-95 z-10' : 'opacity-0 pointer-events-none z-0'
                             }`}
                         >
                             <img
                                 src={`/storage/${s.image_path}`}
                                 alt={s.heading}
-                                className={`w-full h-full object-cover object-center transform transition-transform duration-[6000ms] ease-out will-change-transform ${
-                                    currentSlide === idx ? 'scale-110' : 'scale-100'
+                                className={`w-full h-full object-cover object-center transform transition-transform duration-[4200ms] ease-out will-change-transform ${
+                                    currentSlide === idx ? 'scale-108' : 'scale-100'
                                 }`}
                                 onError={(e) => {
                                     e.target.onerror = null;
@@ -152,50 +181,84 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                             />
                         </div>
                     ))}
-                    {/* Dark gradient overlay for typography readability */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/60 z-10" />
+                    {/* Cinematic directional gradient: high contrast behind text on left, clear & vivid view of banner photo on center/right */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/60 sm:via-slate-950/35 to-slate-950/10 z-10 pointer-events-none" />
+                    {/* Bottom and top edge vignette blends */}
+                    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent z-10 pointer-events-none" />
+                    <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-slate-950/80 via-slate-950/30 to-transparent z-10 pointer-events-none" />
                 </div>
 
                 <div className="container-content relative z-10">
                     <div className="grid lg:grid-cols-12 gap-12 items-center min-h-[480px]">
-                        {/* Slide Content with Cinematic Staggered Entrance */}
+                        {/* Slide Content with Kinetic Masked Typography & Staggered Telemetry Entrance */}
                         <div className="lg:col-span-8">
                             <div key={currentSlide} className="space-y-6">
-                                <div className="animate-hero-fade inline-flex items-center gap-2 px-3 py-1 rounded-full border border-beacon/30 bg-beacon/10 text-beacon font-mono text-xs tracking-wider uppercase">
+                                {/* Top Operational Pill Badge */}
+                                <div className="animate-hero-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-beacon/35 bg-black/50 backdrop-blur-md text-beacon font-mono text-xs tracking-wider uppercase shadow-md">
                                     <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
-                                    <span>TELECOM ENGINEERING &bull; WPC TYPE APPROVED</span>
+                                    <span>{slides[currentSlide].badge || 'TELECOM ENGINEERING • WPC TYPE APPROVED'}</span>
                                 </div>
 
-                                <h1 className="animate-hero-fade-d1 text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-white leading-[1.12]">
-                                    {slides[currentSlide].heading}
-                                </h1>
+                                {/* Masked Kinetic Dual-Tone Heading */}
+                                <div className="overflow-hidden py-1">
+                                    <h1 className="animate-hero-title text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight leading-[1.12]">
+                                        {formatHeading(slides[currentSlide].heading)}
+                                    </h1>
+                                </div>
 
-                                <p className="animate-hero-fade-d2 text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed font-sans min-h-[3.5rem]">
+                                {/* Luminous Telemetry Tracer Accent Line */}
+                                <div className="relative h-1 w-28 overflow-hidden rounded-full bg-white/15 my-1">
+                                    <div className="animate-hero-tracer h-full w-full bg-gradient-to-r from-beacon via-amber-400 to-transparent rounded-full shadow-[0_0_10px_rgba(245,158,11,0.5)]" />
+                                </div>
+
+                                {/* Subtitle with Blur-to-Focus Motion */}
+                                <p className="animate-hero-subtitle text-lg sm:text-xl text-slate-200/95 max-w-2xl leading-relaxed font-sans min-h-[3.5rem] drop-shadow-md">
                                     {slides[currentSlide].subheading}
                                 </p>
 
-                                <div className="animate-hero-fade-d3 pt-4 flex flex-wrap items-center gap-4">
+                                {/* Animated Telemetry Capability Chips */}
+                                <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                                    {(slides[currentSlide].chips || ['WPC & TEC Approved', 'MIL-STD-810 Tested', 'Govt. of India OEM']).map((chip, chipIdx) => (
+                                        <div 
+                                            key={chipIdx} 
+                                            className={`animate-hero-chip-${chipIdx + 1} inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-black/45 backdrop-blur-md border border-white/15 text-[11px] font-mono text-white/90 shadow-sm`}
+                                        >
+                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                                            <span>{chip}</span>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Staggered CTA Buttons */}
+                                <div className="animate-hero-cta pt-3 flex flex-wrap items-center gap-4">
                                     <Link 
                                         href={slides[currentSlide].cta_url || '/products'} 
-                                        className="btn-shimmer !py-3.5 !px-8 text-sm uppercase tracking-wider font-mono font-bold"
+                                        className="btn-shimmer !py-3.5 !px-8 text-sm uppercase tracking-wider font-mono font-bold shadow-xl hover:shadow-amber-500/40"
                                     >
                                         {slides[currentSlide].cta_label || 'Explore Products'}
                                     </Link>
 
                                     <Link 
                                         href="/contact-us" 
-                                        className="btn-outline-paper !py-3.5 !px-6 text-sm font-mono uppercase tracking-wider text-white"
+                                        className="btn-outline-paper !py-3.5 !px-6 text-sm font-mono uppercase tracking-wider text-white bg-black/35 backdrop-blur-md hover:bg-black/60 border border-white/25 hover:border-white/50"
                                     >
                                         Engineering Consultation
                                     </Link>
                                 </div>
                             </div>
 
-                            {/* Slide Controls & Progress Dots */}
+                            {/* Slide Controls & Live Progress Telemetry */}
                             <div className="pt-8 flex items-center gap-4">
+                                {/* Slide Counter Badge */}
+                                <div className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-xs font-mono font-bold text-white/90 flex items-center gap-1.5 shadow-md select-none">
+                                    <span className="text-beacon">0{currentSlide + 1}</span>
+                                    <span className="text-white/40">/</span>
+                                    <span>0{slides.length}</span>
+                                </div>
+
                                 <button 
                                     onClick={prevSlide}
-                                    className="h-9 w-9 rounded-lg border border-white/20 text-white/80 hover:text-beacon hover:border-beacon flex items-center justify-center transition-colors"
+                                    className="h-9 w-9 rounded-full border border-white/20 bg-black/40 hover:bg-black/70 text-white/90 hover:text-beacon hover:border-beacon/60 flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
                                     aria-label="Previous Slide"
                                 >
                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -204,7 +267,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 </button>
                                 <button 
                                     onClick={nextSlide}
-                                    className="h-9 w-9 rounded-lg border border-white/20 text-white/80 hover:text-beacon hover:border-beacon flex items-center justify-center transition-colors"
+                                    className="h-9 w-9 rounded-full border border-white/20 bg-black/40 hover:bg-black/70 text-white/90 hover:text-beacon hover:border-beacon/60 flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
                                     aria-label="Next Slide"
                                 >
                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -212,19 +275,20 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                     </svg>
                                 </button>
 
-                                <div className="flex items-center gap-2 ml-2">
-                                    {slides.map((_, dotIdx) => (
+                                <div className="flex items-center gap-2 ml-1">
+                                    {slides.map((s, dotIdx) => (
                                         <button
                                             key={dotIdx}
                                             onClick={() => setCurrentSlide(dotIdx)}
-                                            className={`relative h-2 rounded-full overflow-hidden transition-all duration-300 ${
-                                                currentSlide === dotIdx ? 'w-12 bg-white/20' : 'w-2.5 bg-white/30 hover:bg-white/60'
+                                            className={`relative h-2 rounded-full overflow-hidden transition-all duration-300 cursor-pointer ${
+                                                currentSlide === dotIdx ? 'w-14 bg-white/25 shadow-sm' : 'w-3 bg-white/30 hover:bg-white/60 hover:w-5'
                                             }`}
-                                            aria-label={`Go to slide ${dotIdx + 1}`}
+                                            aria-label={`Go to slide ${dotIdx + 1}: ${s.heading}`}
+                                            title={`Slide ${dotIdx + 1}: ${s.heading}`}
                                         >
                                             {currentSlide === dotIdx && (
                                                 <span 
-                                                    className="absolute inset-0 bg-beacon rounded-full animate-slide-progress" 
+                                                    className="absolute inset-0 bg-beacon rounded-full animate-slide-progress shadow-sm shadow-beacon/50" 
                                                     style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
                                                 />
                                             )}
@@ -234,9 +298,9 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                             </div>
                         </div>
 
-                        {/* Right: Real-time Telemetry Status Card */}
+                        {/* Right: Real-time Telemetry Status Card (Floating Glass HUD) */}
                         <div className="lg:col-span-4 hidden lg:block">
-                            <div className="card-dual !bg-[#12151b]/90 dark:!bg-[#12151b]/90 border border-white/10 p-6 space-y-5 shadow-2xl backdrop-blur-md">
+                            <div className="card-dual !bg-slate-950/65 dark:!bg-[#12151b]/75 border border-white/15 p-6 space-y-5 shadow-2xl backdrop-blur-xl">
                                 <div className="flex items-center justify-between border-b border-white/10 pb-3 font-mono text-xs">
                                     <span className="text-beacon font-bold">SYSTEM TELEMETRY</span>
                                     <span className="flex items-center gap-1.5 text-emerald-400">

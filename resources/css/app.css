@@ -126,30 +126,143 @@
     }
 
     @keyframes heroFadeIn {
-        from {
+        0% {
             opacity: 0;
-            transform: translateY(12px);
+            transform: translateY(16px) scale(0.98);
+            filter: blur(4px);
         }
-        to {
+        100% {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
+            filter: blur(0);
         }
     }
 
     .animate-hero-fade {
-        animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+        animation: heroFadeIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
     .animate-hero-fade-d1 {
-        animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+        animation: heroFadeIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
     }
 
     .animate-hero-fade-d2 {
-        animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
+        animation: heroFadeIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
     }
 
     .animate-hero-fade-d3 {
-        animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+        animation: heroFadeIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+    }
+
+    /* Cinematic Banner Typography & Kinetic Reveal Suite */
+    @keyframes heroBadgeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(-16px) scale(0.92);
+            filter: blur(6px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+    }
+
+    .animate-hero-badge {
+        animation: heroBadgeIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes heroTitleIn {
+        0% {
+            opacity: 0;
+            transform: translateY(38px) scale(0.96);
+            filter: blur(10px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+    }
+
+    .animate-hero-title {
+        animation: heroTitleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.06s both;
+    }
+
+    @keyframes tracerExpand {
+        0% {
+            transform: scaleX(0);
+            opacity: 0;
+        }
+        40% {
+            opacity: 1;
+        }
+        100% {
+            transform: scaleX(1);
+            opacity: 1;
+        }
+    }
+
+    .animate-hero-tracer {
+        transform-origin: left;
+        animation: tracerExpand 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+    }
+
+    @keyframes heroSubtitleIn {
+        0% {
+            opacity: 0;
+            transform: translateY(22px);
+            filter: blur(8px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+    }
+
+    .animate-hero-subtitle {
+        animation: heroSubtitleIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    }
+
+    @keyframes heroChipIn {
+        0% {
+            opacity: 0;
+            transform: translateY(14px) scale(0.9);
+            filter: blur(4px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+    }
+
+    .animate-hero-chip-1 {
+        animation: heroChipIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+    }
+
+    .animate-hero-chip-2 {
+        animation: heroChipIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.40s both;
+    }
+
+    .animate-hero-chip-3 {
+        animation: heroChipIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
+    }
+
+    @keyframes heroCtaIn {
+        0% {
+            opacity: 0;
+            transform: translateY(18px) scale(0.94);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .animate-hero-cta {
+        animation: heroCtaIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.44s both;
     }
 
     @keyframes slideProgress {
@@ -162,7 +275,7 @@
     }
 
     .animate-slide-progress {
-        animation: slideProgress 5.5s linear forwards;
+        animation: slideProgress 3.8s linear forwards;
     }
 
     .stat-number-glow {
