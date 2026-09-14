@@ -25,8 +25,7 @@ export default function OemPartners({ partners = [], seo = {} }) {
                             as="h1"
                             immediate={true}
                             stagger={40}
-                            highlight="last"
-                            highlightCount={2}
+                            highlightPhrase="Indian Spectrum."
                             className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
                         >
                             World-Class Hardware, Calibrated for Indian Spectrum.
@@ -67,8 +66,7 @@ export default function OemPartners({ partners = [], seo = {} }) {
                             </span>
                             <AnimatedHeading
                                 as="h2"
-                                highlight="last"
-                                highlightCount={2}
+                                highlightPhrase="Technology Partners"
                                 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-paper"
                             >
                                 Global Technology Partners & Component Providers

@@ -18,6 +18,7 @@ export default function AnimatedHeading({
     className = '',
     highlight = 'last', // 'last' | 'none' | 'gradient' | string | array of strings
     highlightCount = 1, // how many words to highlight from the end when highlight='last'
+    highlightPhrase = null, // explicit multi-word phrase to highlight
     delay = 0, // initial delay in ms
     stagger = 38, // ms between consecutive words
     immediate = false, // if true, animate immediately without waiting for intersection
@@ -80,6 +81,31 @@ export default function AnimatedHeading({
     const words = plainText.split(/\s+/);
     const totalWords = words.length;
 
+    // Detect matched word indices for highlightPhrase or multi-word highlight string
+    const targetPhrase = highlightPhrase || (typeof highlight === 'string' && highlight.includes(' ') && highlight !== 'last' && highlight !== 'none' ? highlight : null);
+    const phraseMatchedIndices = new Set();
+    if (targetPhrase) {
+        const cleanWord = (w) => w.toLowerCase().replace(/[^a-z0-9]/g, '');
+        const phraseWords = targetPhrase.trim().split(/\s+/).map(cleanWord).filter(Boolean);
+        const normWords = words.map(cleanWord);
+        
+        for (let i = 0; i <= normWords.length - phraseWords.length; i++) {
+            let matches = true;
+            for (let j = 0; j < phraseWords.length; j++) {
+                if (normWords[i + j] !== phraseWords[j]) {
+                    matches = false;
+                    break;
+                }
+            }
+            if (matches) {
+                for (let j = 0; j < phraseWords.length; j++) {
+                    phraseMatchedIndices.add(i + j);
+                }
+                break;
+            }
+        }
+    }
+
     return (
         <Tag 
             ref={containerRef} 
@@ -90,7 +116,9 @@ export default function AnimatedHeading({
             {words.map((word, idx) => {
                 // Determine whether this word should receive the gradient highlight
                 let isHighlighted = false;
-                if (highlight === 'last') {
+                if (phraseMatchedIndices.size > 0) {
+                    isHighlighted = phraseMatchedIndices.has(idx);
+                } else if (highlight === 'last') {
                     isHighlighted = idx >= totalWords - highlightCount;
                 } else if (highlight === 'gradient' || highlight === 'all') {
                     isHighlighted = true;

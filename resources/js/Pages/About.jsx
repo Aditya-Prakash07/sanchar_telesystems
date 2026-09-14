@@ -59,8 +59,7 @@ export default function About({ team = [], seo = {} }) {
                             as="h1"
                             immediate={true}
                             stagger={40}
-                            highlight="last"
-                            highlightCount={2}
+                            highlightPhrase="Wireless Communications."
                             className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
                         >
                             Mobility, Efficiency, and Reliability in Wireless Communications.
@@ -101,8 +100,7 @@ export default function About({ team = [], seo = {} }) {
                             </span>
                             <AnimatedHeading
                                 as="h2"
-                                highlight="last"
-                                highlightCount={2}
+                                highlightPhrase="Failure is Not an Option"
                                 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-paper"
                             >
                                 Engineering Turnkey Networks Where Failure is Not an Option
@@ -154,7 +152,7 @@ export default function About({ team = [], seo = {} }) {
                                     <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">
                                         <span>100%</span>
                                     </div>
-                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">WPC & TEC Approved</h3>
+                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">WPC &amp; TEC Approved</h3>
                                     <p className="text-xs text-slate-500 dark:text-steel">All hardware systems fully certified under Government of India wireless regulatory standards.</p>
                                 </div>
                             </div>
@@ -163,9 +161,9 @@ export default function About({ team = [], seo = {} }) {
                 </div>
             </section>
 
-            {/* Official OEM Collaboration & GeM Portal Showcase */}
-            <section className="py-20 sm:py-24 bg-white dark:bg-navy border-t border-slate-200 dark:border-navy-border transition-colors duration-300 relative overflow-hidden">
-                <div className="container-content relative z-10">
+            {/* OEM Alliances & GeM Procurement */}
+            <section className="py-20 sm:py-24 bg-white dark:bg-navy border-t border-slate-200 dark:border-navy-border transition-colors duration-300">
+                <div className="container-content">
                     <div className="grid lg:grid-cols-12 gap-12 items-center">
                         <div className="lg:col-span-6 space-y-5 text-slate-700 dark:text-steel leading-relaxed text-sm sm:text-base">
                             <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block">
@@ -173,8 +171,7 @@ export default function About({ team = [], seo = {} }) {
                             </span>
                             <AnimatedHeading
                                 as="h2"
-                                highlight="last"
-                                highlightCount={2}
+                                highlightPhrase="Make In India Manufacturing"
                                 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-paper leading-snug"
                             >
                                 World-Class Technology Alliances & Make In India Manufacturing
@@ -238,8 +235,7 @@ export default function About({ team = [], seo = {} }) {
                             </span>
                             <AnimatedHeading
                                 as="h2"
-                                highlight="last"
-                                highlightCount={2}
+                                highlightPhrase="Service is our Motto"
                                 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-paper leading-snug"
                             >
                                 “Service is our Motto” — Telecom Experts & Advanced Lab Infrastructure
@@ -301,8 +297,7 @@ export default function About({ team = [], seo = {} }) {
                         </span>
                         <AnimatedHeading 
                             as="h2" 
-                            highlight="last"
-                            highlightCount={2}
+                            highlightPhrase="Turnkey Wireless Projects"
                             className="text-3xl font-display font-bold text-slate-900 dark:text-paper"
                         >
                             How We Deliver Turnkey Wireless Projects
@@ -341,8 +336,7 @@ export default function About({ team = [], seo = {} }) {
                         </span>
                         <AnimatedHeading 
                             as="h2" 
-                            highlight="last"
-                            highlightCount={2}
+                            highlightPhrase="Telecom Industry Veterans"
                             className="text-3xl font-display font-bold text-slate-900 dark:text-paper"
                         >
                             Guided by Telecom Industry Veterans

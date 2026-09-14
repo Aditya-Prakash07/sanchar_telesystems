@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
                 ],
             ],
             'PTT over Cellular (PoC)' => [
-                'thumbnail' => 'media/products/1560597371_poc.jpg',
+                'thumbnail' => 'media/products/poc_banner_11.jpg',
                 'description' => 'Nationwide instant group voice and video dispatch over 4G/LTE and Wi-Fi networks with sub-second latency.',
                 'subs' => [
                     'PoC Platform',
@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
                 'subs' => ['LTE-R'],
             ],
             'Captive LTE' => [
-                'thumbnail' => 'media/sectors/back1.png',
+                'thumbnail' => 'media/products/1709450160_Captive-LTE.jpeg',
                 'description' => 'Private, secure cellular infrastructure for airports, ports, mining operations, and critical utilities.',
                 'subs' => ['Captive LTE'],
             ],

@@ -55,8 +55,7 @@ export default function Contact({ seo = {}, flash = {} }) {
                             as="h1"
                             immediate={true}
                             stagger={40}
-                            highlight="last"
-                            highlightCount={1}
+                            highlightPhrase="Operations & Procurement"
                             className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
                         >
                             Contact Technical Operations & Procurement

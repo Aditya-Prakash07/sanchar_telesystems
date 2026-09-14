@@ -47,7 +47,7 @@ const SECTOR_DATA = [
             'IP68 Submersible Ingress Proofing',
             'Emergency Man-Down & Lone-Worker Alarms'
         ],
-        image: '/storage/media/sectors/back1.png',
+        image: '/storage/media/products/1707159990_ATEXV-710.png',
         specs: { cert: 'ATEX Zone 1 / 21 Certified', ingress: 'IP68 (2m Submersion for 4h)', audio: 'Noise-Cancelling Boom Mics' }
     },
     {
@@ -161,9 +161,9 @@ export default function Home({ banners = [], categories = [], featuredProducts =
         }
     ];
 
-    const SLIDE_DURATION = 3800; // 3.8s for lively, frequent transitions
+    const SLIDE_DURATION = 3400; // 3.4s fast transition
 
-    // Continuous smooth auto-advance every 3.8s, resetting when slide changes or paused
+    // Continuous smooth auto-advance every 3.4s, resetting when slide changes or paused
     useEffect(() => {
         if (slides.length <= 1 || isPaused) return;
         const timer = setInterval(() => {
@@ -184,12 +184,10 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             />
 
             {/* =========================================================================
-                1. HERO SECTION WITH ORIGINAL LIVE BANNERS CAROUSEL
+                1. HERO SECTION WITH ORIGINAL LIVE BANNERS CAROUSEL (EQUAL FULL VIEWPORT HEIGHT)
             ========================================================================= */}
             <section 
-                className="relative bg-slate-950 text-paper overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28"
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
+                className="relative bg-slate-950 text-paper overflow-hidden h-[100dvh] min-h-[640px] max-h-[980px] flex flex-col justify-center pt-20 pb-12 sm:pt-24 sm:pb-16"
             >
                 {/* Background Slider Imagery — Vivid, High-Visibility with Smooth Ken Burns Motion */}
                 <div className="absolute inset-0 z-0 overflow-hidden">
@@ -220,7 +218,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                     <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-slate-950/80 via-slate-950/30 to-transparent z-10 pointer-events-none" />
                 </div>
 
-                <div className="container-content relative z-10">
+                <div className="container-content relative z-10 my-auto">
                     <div className="grid lg:grid-cols-12 gap-12 items-center min-h-[480px]">
                         {/* Slide Content with Kinetic Masked Typography & Staggered Telemetry Entrance */}
                         <div className="lg:col-span-8">
@@ -262,8 +260,8 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 <div className="flex flex-wrap items-center gap-2.5 pt-1">
                                     {(slides[currentSlide].chips || ['WPC & TEC Approved', 'MIL-STD-810 Tested', 'Govt. of India OEM']).map((chip, chipIdx) => (
                                         <div 
-                                            key={chipIdx} 
-                                            className={`animate-hero-chip-${chipIdx + 1} inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-black/45 backdrop-blur-md border border-white/15 text-[11px] font-mono text-white/90 shadow-sm`}
+                                             key={chipIdx} 
+                                             className={`animate-hero-chip-${chipIdx + 1} inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-black/45 backdrop-blur-md border border-white/15 text-[11px] font-mono text-white/90 shadow-sm`}
                                         >
                                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                                             <span>{chip}</span>
@@ -289,7 +287,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 </div>
                             </div>
 
-                            {/* Slide Controls & Live Progress Telemetry */}
+                            {/* Slide Controls with Play/Pause and Live Progress */}
                             <div className="pt-8 flex items-center gap-4">
                                 {/* Slide Counter Badge */}
                                 <div className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-xs font-mono font-bold text-white/90 flex items-center gap-1.5 shadow-md select-none">
@@ -307,6 +305,25 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                     </svg>
                                 </button>
+
+                                {/* Dedicated Play / Pause Toggle Button */}
+                                <button 
+                                    onClick={() => setIsPaused((prev) => !prev)}
+                                    className="h-9 w-9 rounded-full border border-white/20 bg-black/40 hover:bg-black/70 text-white/90 hover:text-beacon hover:border-beacon/60 flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
+                                    aria-label={isPaused ? "Play slideshow" : "Pause slideshow"}
+                                    title={isPaused ? "Play" : "Pause"}
+                                >
+                                    {isPaused ? (
+                                        <svg className="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>
+                                    ) : (
+                                        <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                                        </svg>
+                                    )}
+                                </button>
+
                                 <button 
                                     onClick={nextSlide}
                                     className="h-9 w-9 rounded-full border border-white/20 bg-black/40 hover:bg-black/70 text-white/90 hover:text-beacon hover:border-beacon/60 flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
@@ -468,7 +485,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             {/* =========================================================================
                 3. TAILORED INDUSTRY SECTORS (INTERACTIVE TABS)
             ========================================================================= */}
-            <section className="py-20 sm:py-24 bg-slate-50 dark:bg-navy-dark transition-colors duration-300 relative overflow-hidden">
+            <section id="sectors" className="py-20 sm:py-24 bg-slate-50 dark:bg-navy-dark transition-colors duration-300 relative overflow-hidden">
                 <div className="container-content relative z-10">
                     <div className="max-w-3xl mb-12">
                         <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-2">
@@ -476,14 +493,13 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                         </span>
                         <AnimatedHeading 
                             as="h2" 
-                            highlight="last"
-                            highlightCount={2}
+                            highlightPhrase="Zero-Downtime Operations"
                             className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-paper"
                         >
                             Engineered for Zero-Downtime Operations
                         </AnimatedHeading>
                         <p className="mt-3 text-slate-600 dark:text-steel leading-relaxed">
-                            Every operational environment presents unique RF propagation physics. Explore how Sanchar architects purpose-built networks for India’s most demanding sectors.
+                            Sanchar excels in offering reliable wireless communication solutions tailored for mission-critical operations across public safety, railways, petrochemical facilities, and heavy industries with DMR, TETRA, analog radio, and LTE systems.
                         </p>
                     </div>
 
@@ -557,7 +573,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                         href="/contact-us" 
                                         className="btn-shimmer !py-3.5 !px-7 text-xs font-mono uppercase tracking-wider font-bold inline-flex items-center gap-2 group"
                                     >
-                                        <span>Request {SECTOR_DATA[selectedSector].title.split('&')[0]} Architecture</span>
+                                        <span>Inquire About {SECTOR_DATA[selectedSector].title.split('&')[0]} Solutions</span>
                                         <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                         </svg>
@@ -595,8 +611,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                             </span>
                             <AnimatedHeading 
                                 as="h2" 
-                                highlight="last"
-                                highlightCount={1}
+                                highlightPhrase="Wireless Hardware"
                                 className="text-3xl font-display font-bold text-slate-900 dark:text-paper"
                             >
                                 Featured Wireless Hardware
@@ -700,19 +715,18 @@ export default function Home({ banners = [], categories = [], featuredProducts =
 
 
             {/* =========================================================================
-                6. OEM PARTNERS SHOWCASE
+                6. OEM PARTNERS SHOWCASE — SINGLE ROW CONTINUOUS MARQUEE (LEFT TO RIGHT)
             ========================================================================= */}
-            <section className="py-20 sm:py-24 bg-slate-50 dark:bg-navy-dark border-t border-slate-200 dark:border-navy-border transition-colors duration-300">
+            <section id="oem" className="py-20 sm:py-24 bg-slate-50 dark:bg-navy-dark border-t border-slate-200 dark:border-navy-border transition-colors duration-300 overflow-hidden">
                 <div className="container-content">
-                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
                         <div>
                             <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-1">
                                 GLOBAL TECHNOLOGY ALLIANCES
                             </span>
                             <AnimatedHeading 
                                 as="h2" 
-                                highlight="last"
-                                highlightCount={1}
+                                highlightPhrase="OEM Ecosystem"
                                 className="text-3xl font-display font-bold text-slate-900 dark:text-paper"
                             >
                                 Authorized OEM Ecosystem
@@ -723,33 +737,41 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                         </div>
                         <Link 
                             href="/oem-partners" 
-                            className="group inline-flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-paper hover:text-amber-600 dark:hover:text-beacon font-mono"
+                            className="group inline-flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-paper hover:text-amber-600 dark:hover:text-beacon font-mono shrink-0"
                         >
-                            <span>View All 10 Partners</span>
+                            <span>View All Partners</span>
                             <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                             </svg>
                         </Link>
                     </div>
+                </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
-                        {(oemPartners || []).map((partner) => (
+                {/* Single Continuous Row Marquee (Left to Right) with Edge Gradient Feathering */}
+                <div className="relative w-full overflow-hidden py-4">
+                    {/* Left and Right Edge Fade Gradients */}
+                    <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 sm:w-32 z-10 bg-gradient-to-r from-slate-50 dark:from-navy-dark to-transparent" />
+                    <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 sm:w-32 z-10 bg-gradient-to-l from-slate-50 dark:from-navy-dark to-transparent" />
+
+                    <div className="animate-marquee-ltr flex items-center gap-5 sm:gap-6">
+                        {/* Duplicate array for continuous seamless infinite loop */}
+                        {[...(oemPartners || []), ...(oemPartners || [])].map((partner, pIdx) => (
                             <a
-                                key={partner.name}
+                                key={`${partner.name}-${pIdx}`}
                                 href={partner.website_url || '#'}
                                 target={partner.website_url && partner.website_url !== '#' ? '_blank' : '_self'}
                                 rel="noopener noreferrer"
-                                className="group relative p-4 rounded-2xl bg-white dark:bg-navy-surface border border-slate-200/90 dark:border-white/10 flex flex-col items-center justify-between min-h-[135px] text-center hover:border-amber-500/50 dark:hover:border-beacon/50 hover:shadow-xl hover:shadow-amber-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1.5 transition-all duration-300"
+                                className="group shrink-0 min-w-[190px] sm:min-w-[210px] h-[104px] p-3.5 rounded-2xl bg-white dark:bg-navy-surface border border-slate-200/90 dark:border-white/10 flex flex-col items-center justify-between text-center hover:border-amber-500/50 dark:hover:border-beacon/50 hover:shadow-xl hover:shadow-amber-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1 transition-all duration-300"
                             >
-                                <div className="w-full h-14 px-3 py-2 rounded-xl bg-white dark:bg-white/95 border border-slate-200/80 dark:border-slate-300 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-300">
+                                <div className="w-full h-12 px-3 py-1.5 rounded-xl bg-white dark:bg-white/95 border border-slate-200/80 dark:border-slate-300 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-300">
                                     <img
                                         src={`/storage/${partner.logo_path}`}
                                         alt={partner.name}
-                                        className="max-h-10 max-w-[120px] w-auto object-contain"
+                                        className="max-h-8 max-w-[130px] w-auto object-contain"
                                         loading="lazy"
                                     />
                                 </div>
-                                <span className="mt-2.5 text-[11px] font-mono font-medium text-slate-500 dark:text-steel group-hover:text-slate-900 dark:group-hover:text-paper truncate w-full transition-colors">
+                                <span className="text-[11px] font-mono font-medium text-slate-500 dark:text-steel group-hover:text-slate-900 dark:group-hover:text-paper truncate w-full transition-colors">
                                     {partner.name}
                                 </span>
                             </a>
@@ -770,18 +792,17 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                     <span className="badge-rf text-xs">GOVERNMENT & ENTERPRISE PROCUREMENT</span>
                     <AnimatedHeading 
                         as="h2" 
-                        highlight="last"
-                        highlightCount={2}
+                        highlightPhrase="Wireless Communication?"
                         className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-slate-900 dark:text-paper tracking-tight"
                     >
-                        Ready to Engineer Your Wireless Network?
+                        Ready to Upgrade Your Wireless Communication?
                     </AnimatedHeading>
                     <p className="text-slate-600 dark:text-steel text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
-                        Connect with our New Delhi engineering and spectrum clearance team for technical consultations, RF site propagation surveys, or GeM portal procurement assistance.
+                        Get in touch with our New Delhi technical and sales team for expert product advice, turnkey system design, or Government e-Marketplace (GeM) procurement support.
                     </p>
                     <div className="pt-3 flex flex-wrap items-center justify-center gap-4">
                         <Link href="/contact-us" className="btn-shimmer !py-3.5 !px-8 text-sm font-mono uppercase tracking-wider font-bold shadow-xl hover:shadow-amber-500/40">
-                            Contact Technical Desk
+                            Talk with Our Technical Team
                         </Link>
                         <a 
                             href="tel:+911146528894" 

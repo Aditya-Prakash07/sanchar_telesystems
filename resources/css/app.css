@@ -275,7 +275,27 @@
     }
 
     .animate-slide-progress {
-        animation: slideProgress 3.8s linear forwards;
+        animation: slideProgress 3.4s linear forwards;
+    }
+
+    @keyframes marqueeLtr {
+        0% {
+            transform: translateX(-50%);
+        }
+        100% {
+            transform: translateX(0%);
+        }
+    }
+
+    .animate-marquee-ltr {
+        display: flex;
+        width: max-content;
+        animation: marqueeLtr 32s linear infinite;
+        will-change: transform;
+    }
+
+    .animate-marquee-ltr:hover {
+        animation-play-state: paused;
     }
 
     .stat-number-glow {

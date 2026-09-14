@@ -1,9 +1,21 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#0a0d14">
+        <script>
+            (function() {
+                var theme = localStorage.getItem('theme') || 'light';
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.classList.remove('light');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.classList.add('light');
+                }
+            })();
+        </script>
+        <meta name="theme-color" content="#ffffff">
 
         <!-- Localized Search Engine Geo Metadata -->
         <meta name="geo.region" content="IN-DL">

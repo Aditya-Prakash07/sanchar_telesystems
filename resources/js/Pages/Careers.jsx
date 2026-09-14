@@ -25,8 +25,7 @@ export default function Careers({ openings = [], seo = {} }) {
                             as="h1"
                             immediate={true}
                             stagger={40}
-                            highlight="last"
-                            highlightCount={2}
+                            highlightPhrase="Failure is Not an Option."
                             className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
                         >
                             Engineer Systems Where Failure is Not an Option.
@@ -66,14 +65,13 @@ export default function Careers({ openings = [], seo = {} }) {
                         </span>
                         <AnimatedHeading 
                             as="h2" 
-                            highlight="last"
-                            highlightCount={2}
+                            highlightPhrase="Career at Sanchar?"
                             className="text-3xl font-display font-bold text-slate-900 dark:text-paper"
                         >
                             Why Build Your Career at Sanchar?
                         </AnimatedHeading>
                         <p className="text-slate-600 dark:text-steel text-sm mt-3">
-                            We design and deploy high-reliability hardware and RF topologies that protect critical national assets during emergencies.
+                            We design and deploy high-reliability hardware and RF systems that protect critical national infrastructure during emergencies.
                         </p>
                     </div>
 
@@ -133,8 +131,7 @@ export default function Careers({ openings = [], seo = {} }) {
                             </span>
                             <AnimatedHeading 
                                 as="h2" 
-                                highlight="last"
-                                highlightCount={1}
+                                highlightPhrase="Current Positions"
                                 className="text-2xl font-display font-bold text-slate-900 dark:text-paper"
                             >
                                 Current Positions

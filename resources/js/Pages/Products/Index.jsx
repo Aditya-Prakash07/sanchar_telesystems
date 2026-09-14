@@ -38,8 +38,7 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
                         as="h1"
                         immediate={true}
                         stagger={40}
-                        highlight="last"
-                        highlightCount={1}
+                        highlightPhrase="Wireless Communications"
                         className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
                     >
                         Wireless Communications Equipment

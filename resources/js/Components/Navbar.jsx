@@ -412,13 +412,6 @@ export default function Navbar() {
                             )}
                         </button>
 
-                        <Link
-                            href="/contact-us"
-                            className="hidden sm:inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 dark:from-beacon dark:to-beacon-dim text-slate-950 font-bold !py-2 !px-4 text-xs font-mono uppercase tracking-wider rounded-lg shadow-sm hover:shadow-md hover:shadow-amber-500/20 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 whitespace-nowrap cursor-pointer group"
-                        >
-                            Request Architecture
-                        </Link>
-
                         {/* Mobile Hamburger Button */}
                         <button
                             type="button"
@@ -478,18 +471,11 @@ export default function Navbar() {
                         ))}
                     </div>
 
-                    <div className="pt-4 border-t border-slate-200 dark:border-white/10 space-y-3">
+                    <div className="pt-4 border-t border-slate-200 dark:border-white/10">
                         <div className="text-xs font-mono text-slate-500 dark:text-steel space-y-1">
                             <div>Direct Tel: +91 (11) 4652 8894</div>
                             <div>Email: info@sanchartelesystems.com</div>
                         </div>
-                        <Link
-                            href="/contact-us"
-                            onClick={() => setMobileOpen(false)}
-                            className="btn-primary w-full text-center text-xs font-mono uppercase tracking-wider !py-3"
-                        >
-                            Request Architecture
-                        </Link>
                     </div>
                 </div>
             )}

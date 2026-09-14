@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const ThemeContext = createContext({
-    theme: 'dark',
+    theme: 'light',
     toggleTheme: () => {},
     setTheme: () => {},
 });
@@ -11,10 +11,9 @@ export function ThemeProvider({ children }) {
         if (typeof window !== 'undefined') {
             const saved = localStorage.getItem('theme');
             if (saved === 'dark' || saved === 'light') return saved;
-            // Default to dark for command-center look or match OS
-            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            return 'light';
         }
-        return 'dark';
+        return 'light';
     });
 
     useEffect(() => {
