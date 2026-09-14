@@ -120,11 +120,11 @@ export default function Home({ banners = [], categories = [], featuredProducts =
         },
         {
             heading: 'STAY CONNECTED',
-            subheading: 'Over three decades of mission-critical engineering excellence trusted by the Parliament of India, Delhi Police, and Indian Railways.',
+            subheading: 'Turnkey wireless communications and engineering excellence trusted by the Parliament of India, Delhi Police, and Indian Railways.',
             image_path: 'media/banners/banner4.jpg',
             cta_label: 'Consult with Engineering Desk',
             cta_url: '/contact-us',
-            badge: 'GOVT. OF INDIA OEM SUPPLIER • 30+ YEARS',
+            badge: 'GOVT. OF INDIA WPC & TEC APPROVED SUPPLIER',
             chips: ['GeM Registered OEM', 'TEC & WPC Certified', 'Turnkey Network EPC']
         }
     ];

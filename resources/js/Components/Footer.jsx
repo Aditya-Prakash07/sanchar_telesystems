@@ -40,7 +40,7 @@ export default function Footer() {
                         />
                     </Link>
                     <p className="text-sm leading-relaxed text-slate-400 dark:text-steel">
-                        India’s premier wireless communication systems provider since the 1990s.
+                        India’s premier wireless communication systems provider.
                         Delivering turnkey DMR, TETRA, PoC over Cellular, and Railway LTE-R networks.
                     </p>
                     <div className="pt-2 flex items-center gap-3 text-slate-400 dark:text-steel">

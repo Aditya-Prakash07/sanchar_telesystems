@@ -18,7 +18,7 @@ const PILLARS = [
         angle: -30,
         x: 430,
         y: 177,
-        description: 'Decades of certified RF engineering leadership, government liaison capabilities, and precision frequency alignment expertise.',
+        description: 'Certified RF engineering leadership, government liaison capabilities, and precision frequency alignment expertise.',
         icon: '★'
     },
     {

@@ -42,7 +42,7 @@ export default function About({ team = [], seo = {} }) {
         <MainLayout>
             <Seo
                 title={seo?.title || 'About Sanchar Telesystems — Mission-Critical Telecommunications Leader'}
-                description={seo?.description || 'Learn about Sanchar Telesystems, our 30+ year history, executive leadership, engineering standards, and turnkey wireless network delivery.'}
+                description={seo?.description || 'Learn about Sanchar Telesystems, executive leadership, engineering standards, and turnkey wireless network delivery across India.'}
                 canonicalPath="/about-us"
             />
 
@@ -52,7 +52,7 @@ export default function About({ team = [], seo = {} }) {
                     <div className="max-w-3xl">
                         <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
                             <span className="w-2 h-2 rounded-full bg-amber-500 dark:bg-beacon animate-pulse" />
-                            <span>ESTABLISHED IN THE 1990s &bull; NEW DELHI HQ</span>
+                            <span>GOVT. OF INDIA WPC & TEC APPROVED SUPPLIER &bull; NEW DELHI HQ</span>
                         </div>
                         <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
                             Mobility, Efficiency, and Reliability in Wireless Communications.
@@ -64,20 +64,20 @@ export default function About({ team = [], seo = {} }) {
 
                     <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-200 dark:border-navy-border/80 pt-8 max-w-4xl text-xs font-mono">
                         <div>
-                            <span className="text-slate-500 dark:text-slate-400 block">ESTABLISHED</span>
-                            <span className="text-slate-900 dark:text-white font-bold mt-1 block">30+ YEARS OF EXCELLENCE</span>
+                            <span className="text-slate-500 dark:text-slate-400 block">UNITS DEPLOYED</span>
+                            <span className="text-slate-900 dark:text-white font-bold mt-1 block">300,000+ UNITS SOLD</span>
                         </div>
                         <div>
                             <span className="text-slate-500 dark:text-slate-400 block">STANDARDS</span>
                             <span className="text-slate-900 dark:text-white font-bold mt-1 block">DMR &bull; TETRA &bull; PoC &bull; LTE-R</span>
                         </div>
                         <div>
-                            <span className="text-slate-500 dark:text-slate-400 block">PROCUREMENT</span>
-                            <span className="text-slate-900 dark:text-white font-bold mt-1 block">GeM PORTAL VENDOR</span>
+                            <span className="text-slate-500 dark:text-slate-400 block">PROJECTS</span>
+                            <span className="text-slate-900 dark:text-white font-bold mt-1 block">500+ DELIVERED</span>
                         </div>
                         <div>
-                            <span className="text-slate-500 dark:text-slate-400 block">COVERAGE</span>
-                            <span className="text-slate-900 dark:text-white font-bold mt-1 block">PAN-INDIA 500+ DEALERS</span>
+                            <span className="text-slate-500 dark:text-slate-400 block">NETWORK</span>
+                            <span className="text-slate-900 dark:text-white font-bold mt-1 block">50+ DISTRIBUTORS</span>
                         </div>
                     </div>
                 </div>
@@ -121,31 +121,31 @@ export default function About({ team = [], seo = {} }) {
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="card-symmetric p-6 space-y-2">
                                     <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">
-                                        <AnimatedNumber value={30} suffix="+" duration={1800} />
+                                        <AnimatedNumber value="300,000" suffix="+" duration={1800} />
                                     </div>
-                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Years Experience</h3>
-                                    <p className="text-xs text-slate-500 dark:text-steel">Pioneering wireless radio and cellular telecom technologies since the 1990s.</p>
+                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Units Sold</h3>
+                                    <p className="text-xs text-slate-500 dark:text-steel">Wireless communication units, terminals, and radio systems deployed nationwide.</p>
                                 </div>
                                 <div className="card-symmetric p-6 space-y-2">
                                     <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">
-                                        <AnimatedNumber value="2,500" suffix="+" duration={2200} />
+                                        <AnimatedNumber value={500} suffix="+" duration={2000} />
                                     </div>
-                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Delhi Police Terminals</h3>
-                                    <p className="text-xs text-slate-500 dark:text-steel">Single largest law-enforcement LTE dispatch order executed in 2022.</p>
+                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Projects Delivered</h3>
+                                    <p className="text-xs text-slate-500 dark:text-steel">Turnkey communication systems delivered for public safety, transit, and heavy industry.</p>
                                 </div>
                                 <div className="card-symmetric p-6 space-y-2">
                                     <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">
-                                        <AnimatedNumber value={150} suffix="+" duration={2000} />
+                                        <AnimatedNumber value={50} suffix="+" duration={1600} />
                                     </div>
-                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Critical Projects</h3>
-                                    <p className="text-xs text-slate-500 dark:text-steel">Completed infrastructure installations for Parliament, Rail, and Industry.</p>
+                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Distributor Network</h3>
+                                    <p className="text-xs text-slate-500 dark:text-steel">Nationwide network of authorized channel partners providing sales and engineering support.</p>
                                 </div>
                                 <div className="card-symmetric p-6 space-y-2">
                                     <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">
-                                        <AnimatedNumber value={10} suffix="+" duration={1600} />
+                                        <span>100%</span>
                                     </div>
-                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">OEM Principals</h3>
-                                    <p className="text-xs text-slate-500 dark:text-steel">Direct factory relationships with Kenwood, Diamond, Teltronics, and Nokia.</p>
+                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">WPC & TEC Approved</h3>
+                                    <p className="text-xs text-slate-500 dark:text-steel">All hardware systems fully certified under Government of India wireless regulatory standards.</p>
                                 </div>
                             </div>
                         </div>
