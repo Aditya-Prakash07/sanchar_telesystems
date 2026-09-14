@@ -23,7 +23,7 @@
             "name": "Sanchar Telesystems Limited",
             "alternateName": "Sanchar Telesystems",
             "url": "https://www.sanchartelesystems.com",
-            "logo": "https://www.sanchartelesystems.com/storage/media/branding/logo0.png",
+            "logo": "https://www.sanchartelesystems.com/storage/media/branding/logo.svg",
             "description": "Leading manufacturer and turnkey supplier of DMR, TETRA, PoC over Cellular, and Railway LTE-R communication systems in India.",
             "contactPoint": [
                 {

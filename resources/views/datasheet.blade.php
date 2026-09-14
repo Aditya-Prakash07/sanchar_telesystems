@@ -97,10 +97,10 @@
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div class="flex items-center gap-3.5">
                     <img 
-                        src="/storage/media/branding/logo0.png" 
+                        src="/storage/media/branding/logo-emblem.svg" 
                         alt="Sanchar Telesystems" 
                         class="h-12 w-auto object-contain"
-                        onerror="this.onerror=null; this.src='/storage/media/branding/logo1.jpeg';"
+                        onerror="this.onerror=null; this.src='/storage/media/branding/logo0.png';"
                     >
                     <div>
                         <h1 class="text-lg font-black tracking-tight text-slate-900 font-sans uppercase">SANCHAR TELESYSTEMS LIMITED</h1>

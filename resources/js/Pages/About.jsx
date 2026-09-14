@@ -3,6 +3,7 @@ import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
 import AnimatedNumber from '@/Components/AnimatedNumber';
 import WhySancharDiagram from '@/Components/WhySancharDiagram';
+import AnimatedHeading from '@/Components/AnimatedHeading';
 
 const PROCESS = [
     {
@@ -54,9 +55,16 @@ export default function About({ team = [], seo = {} }) {
                             <span className="w-2 h-2 rounded-full bg-amber-500 dark:bg-beacon animate-pulse" />
                             <span>GOVT. OF INDIA WPC & TEC APPROVED SUPPLIER &bull; NEW DELHI HQ</span>
                         </div>
-                        <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+                        <AnimatedHeading
+                            as="h1"
+                            immediate={true}
+                            stagger={40}
+                            highlight="last"
+                            highlightCount={2}
+                            className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
+                        >
                             Mobility, Efficiency, and Reliability in Wireless Communications.
-                        </h1>
+                        </AnimatedHeading>
                         <p className="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
                             Sanchar Telesystems is a market leader in mission-critical wireless communications in India. We pioneer in offering world-class wireless communication solutions to customers around the country.
                         </p>
@@ -91,9 +99,14 @@ export default function About({ team = [], seo = {} }) {
                             <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block">
                                 OUR PURPOSE & HERITAGE
                             </span>
-                            <h2 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-paper">
+                            <AnimatedHeading
+                                as="h2"
+                                highlight="last"
+                                highlightCount={2}
+                                className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-paper"
+                            >
                                 Engineering Turnkey Networks Where Failure is Not an Option
-                            </h2>
+                            </AnimatedHeading>
                             <p>
                                 Mobility, Efficiency, and Reliability are the three core principles that Sanchar Telesystems products and solutions are designed to meet. Cutting-edge technologies and OPEN standards are supported across all of our systems.
                             </p>
@@ -158,9 +171,14 @@ export default function About({ team = [], seo = {} }) {
                             <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block">
                                 OEM ALLIANCES & GeM PROCUREMENT
                             </span>
-                            <h2 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-paper leading-snug">
+                            <AnimatedHeading
+                                as="h2"
+                                highlight="last"
+                                highlightCount={2}
+                                className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-paper leading-snug"
+                            >
                                 World-Class Technology Alliances & Make In India Manufacturing
-                            </h2>
+                            </AnimatedHeading>
                             <p>
                                 We collaborate with world&rsquo;s leading Original Equipment Manufacturers (OEMs) and Technology providers to bring best-in-class communication solutions to India. We are a leading manufacturer of LTE MCX, LTE PoC, and DMR radios in India.
                             </p>
@@ -218,9 +236,14 @@ export default function About({ team = [], seo = {} }) {
                             <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block">
                                 IN-HOUSE TESTING & LEVEL-3 SERVICE DEPOT
                             </span>
-                            <h2 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-paper leading-snug">
-                                &ldquo;Service is our Motto&rdquo; &mdash; Telecom Experts & Advanced Lab Infrastructure
-                            </h2>
+                            <AnimatedHeading
+                                as="h2"
+                                highlight="last"
+                                highlightCount={2}
+                                className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-paper leading-snug"
+                            >
+                                “Service is our Motto” — Telecom Experts & Advanced Lab Infrastructure
+                            </AnimatedHeading>
                             <p>
                                 Sanchar excels in offering mission-critical communication solutions to diverse sectors such as public safety, railways, utility companies, and industrial houses with DMR, TETRA, analog radio, and LTE technologies.
                             </p>
@@ -276,9 +299,14 @@ export default function About({ team = [], seo = {} }) {
                         <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-2">
                             TURNKEY PROJECT PIPELINE
                         </span>
-                        <h2 className="text-3xl font-display font-bold text-slate-900 dark:text-paper">
+                        <AnimatedHeading 
+                            as="h2" 
+                            highlight="last"
+                            highlightCount={2}
+                            className="text-3xl font-display font-bold text-slate-900 dark:text-paper"
+                        >
                             How We Deliver Turnkey Wireless Projects
-                        </h2>
+                        </AnimatedHeading>
                         <p className="mt-3 text-slate-600 dark:text-steel leading-relaxed text-sm">
                             From initial RF site propagation surveys and government frequency clearances to final commissioning and 24/7 maintenance, our engineers manage the complete lifecycle.
                         </p>
@@ -311,9 +339,14 @@ export default function About({ team = [], seo = {} }) {
                         <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-2">
                             LEADERSHIP TEAM
                         </span>
-                        <h2 className="text-3xl font-display font-bold text-slate-900 dark:text-paper">
+                        <AnimatedHeading 
+                            as="h2" 
+                            highlight="last"
+                            highlightCount={2}
+                            className="text-3xl font-display font-bold text-slate-900 dark:text-paper"
+                        >
                             Guided by Telecom Industry Veterans
-                        </h2>
+                        </AnimatedHeading>
                         <p className="mt-2 text-slate-600 dark:text-steel text-sm">
                             Meet the executive directors and technical leadership steering corporate strategy and customer success.
                         </p>

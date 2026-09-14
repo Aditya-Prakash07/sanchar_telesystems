@@ -1,6 +1,7 @@
 import { Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
+import AnimatedHeading from '@/Components/AnimatedHeading';
 
 export default function ProductsCategory({ category, subcategory, items = [], seo = {} }) {
     return (
@@ -32,9 +33,16 @@ export default function ProductsCategory({ category, subcategory, items = [], se
                         <span className="badge-rf text-xs mb-3">
                             {category.name}
                         </span>
-                        <h1 className="text-3xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+                        <AnimatedHeading
+                            as="h1"
+                            immediate={true}
+                            stagger={40}
+                            highlight="last"
+                            highlightCount={1}
+                            className="text-3xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
+                        >
                             {subcategory.name}
-                        </h1>
+                        </AnimatedHeading>
                         <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-steel leading-relaxed font-sans">
                             {subcategory.description || `Browse high-durability ${subcategory.name} equipment and systems engineered for mission-critical deployments across India.`}
                         </p>

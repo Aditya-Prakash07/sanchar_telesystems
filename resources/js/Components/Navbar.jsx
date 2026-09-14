@@ -1,6 +1,7 @@
 import { Link, usePage } from '@inertiajs/react';
 import { useEffect, useState, useRef } from 'react';
 import { useTheme } from '@/Context/ThemeContext';
+import ApplicationLogo from '@/Components/ApplicationLogo';
 
 const NAV_LINKS = [
     { label: 'Home', href: '/' },
@@ -67,26 +68,12 @@ export default function Navbar() {
             }`}>
                 <nav className="container-content flex items-center justify-between">
                     {/* Brand Logo */}
-                    <Link href="/" className="flex items-center gap-3 group shrink-0">
-                        <img 
-                            src="/storage/media/branding/logo0.png" 
-                            alt="Sanchar Telesystems" 
-                            className="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-[1.02]"
-                            onError={(e) => {
-                                e.target.onerror = null;
-                                e.target.src = '/storage/media/branding/logo1.jpeg';
-                            }}
+                    <Link href="/" className="flex items-center group shrink-0" aria-label="Sanchar Telesystems">
+                        <ApplicationLogo 
+                            className="h-9 sm:h-10" 
+                            isOverBanner={isOverBanner} 
+                            theme={theme} 
                         />
-                        <div className={`hidden 2xl:block border-l pl-3 transition-colors duration-200 ${
-                            isOverBanner && theme === 'light' ? 'border-white/25' : 'border-slate-300 dark:border-white/15'
-                        }`}>
-                            <span className={`block text-[11px] font-mono tracking-widest uppercase font-semibold whitespace-nowrap transition-colors ${
-                                isOverBanner && theme === 'light' ? 'text-white drop-shadow-sm' : 'text-slate-900 dark:text-paper/90'
-                            }`}>SANCHAR</span>
-                            <span className={`block text-[9px] font-mono tracking-wide whitespace-nowrap transition-colors ${
-                                isOverBanner && theme === 'light' ? 'text-white/80' : 'text-slate-500 dark:text-steel'
-                            }`}>MISSION CRITICAL WIRELESS</span>
-                        </div>
                     </Link>
 
                     {/* Desktop Menu Links (Guaranteed Single-Line No Wrapping) */}

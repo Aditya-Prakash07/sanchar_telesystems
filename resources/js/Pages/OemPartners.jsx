@@ -1,6 +1,7 @@
 import { Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
+import AnimatedHeading from '@/Components/AnimatedHeading';
 
 export default function OemPartners({ partners = [], seo = {} }) {
     return (
@@ -20,9 +21,16 @@ export default function OemPartners({ partners = [], seo = {} }) {
                     </div>
 
                     <div className="max-w-3xl">
-                        <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+                        <AnimatedHeading
+                            as="h1"
+                            immediate={true}
+                            stagger={40}
+                            highlight="last"
+                            highlightCount={2}
+                            className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
+                        >
                             World-Class Hardware, Calibrated for Indian Spectrum.
-                        </h1>
+                        </AnimatedHeading>
                         <p className="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
                             We collaborate with Tier-1 international radio manufacturers, antenna specialists, and tactical audio engineers to engineer turnkey, WPC-certified communication systems for India's defense, public safety, and enterprise sectors.
                         </p>
@@ -57,9 +65,14 @@ export default function OemPartners({ partners = [], seo = {} }) {
                             <span className="text-xs font-mono text-amber-600 dark:text-beacon uppercase tracking-wider font-bold block mb-1">
                                 AUTHORIZED ECOSYSTEM
                             </span>
-                            <h2 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-paper">
+                            <AnimatedHeading
+                                as="h2"
+                                highlight="last"
+                                highlightCount={2}
+                                className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-paper"
+                            >
                                 Global Technology Partners & Component Providers
-                            </h2>
+                            </AnimatedHeading>
                         </div>
                         <p className="text-xs sm:text-sm text-slate-500 dark:text-steel mt-2 md:mt-0 font-mono">
                             {partners.length} Technology Principals Represented

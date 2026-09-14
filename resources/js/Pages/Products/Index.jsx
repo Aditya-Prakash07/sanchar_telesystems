@@ -2,6 +2,7 @@ import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
+import AnimatedHeading from '@/Components/AnimatedHeading';
 
 export default function ProductsIndex({ categories = [], seo = {} }) {
     const [search, setSearch] = useState('');
@@ -33,9 +34,16 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
                         <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
                         <span>TACTICAL HARDWARE & SYSTEMS CATALOG</span>
                     </div>
-                    <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+                    <AnimatedHeading
+                        as="h1"
+                        immediate={true}
+                        stagger={40}
+                        highlight="last"
+                        highlightCount={1}
+                        className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
+                    >
                         Wireless Communications Equipment
-                    </h1>
+                    </AnimatedHeading>
                     <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-steel leading-relaxed font-sans">
                         Engineered for defense, public safety, high-speed rail, and hazardous environments.
                         Select a product vertical below to explore terminals, base stations, and accessories.

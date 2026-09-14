@@ -294,4 +294,23 @@
     .animate-stat-pulse {
         animation: statPulse 3s ease-in-out infinite;
     }
+
+    /* Industry-Standard Kinetic Typography Animation Suite */
+    @keyframes textSheen {
+        0% {
+            background-position: 200% center;
+        }
+        100% {
+            background-position: -200% center;
+        }
+    }
+
+    .animate-text-sheen {
+        background-size: 200% auto;
+        animation: textSheen 6s ease-in-out infinite;
+    }
+
+    .text-glow-beacon {
+        text-shadow: 0 0 20px rgba(245, 158, 11, 0.35), 0 0 40px rgba(245, 158, 11, 0.12);
+    }
 }

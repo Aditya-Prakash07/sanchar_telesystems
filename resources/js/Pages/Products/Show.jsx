@@ -2,6 +2,7 @@ import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
+import AnimatedHeading from '@/Components/AnimatedHeading';
 
 export default function ProductsShow({ category, subcategory, item, seo = {} }) {
     const [activeTab, setActiveTab] = useState('specs');
@@ -113,9 +114,16 @@ export default function ProductsShow({ category, subcategory, item, seo = {} }) 
                                     </span>
                                 </div>
 
-                                <h1 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-paper leading-tight">
+                                <AnimatedHeading
+                                    as="h1"
+                                    immediate={true}
+                                    stagger={40}
+                                    highlight="last"
+                                    highlightCount={1}
+                                    className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-paper leading-tight"
+                                >
                                     {item.name}
-                                </h1>
+                                </AnimatedHeading>
 
                                 {item.short_description && (
                                     <p className="mt-4 text-base text-slate-600 dark:text-steel leading-relaxed font-sans">

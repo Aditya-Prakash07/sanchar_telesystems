@@ -5,6 +5,7 @@ import Seo from '@/Components/Seo';
 import SignalWave from '@/Components/SignalWave';
 import KeyStatsSection from '@/Components/KeyStatsSection';
 import WelcomeVideoSection from '@/Components/WelcomeVideoSection';
+import AnimatedHeading from '@/Components/AnimatedHeading';
 
 const SECTOR_DATA = [
     {
@@ -231,10 +232,20 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 </div>
 
                                 {/* Masked Kinetic Dual-Tone Heading */}
-                                <div className="overflow-hidden py-1">
-                                    <h1 className="animate-hero-title text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight leading-[1.12]">
-                                        {formatHeading(slides[currentSlide].heading)}
-                                    </h1>
+                                <div className="py-1">
+                                    <AnimatedHeading
+                                        key={currentSlide}
+                                        as="h1"
+                                        immediate={true}
+                                        delay={60}
+                                        stagger={42}
+                                        highlight="last"
+                                        highlightCount={1}
+                                        className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight leading-[1.12] text-white drop-shadow-xl"
+                                        gradientClass="bg-gradient-to-r from-amber-300 via-beacon to-amber-400 bg-clip-text text-transparent drop-shadow-[0_2px_16px_rgba(245,158,11,0.45)] animate-text-sheen"
+                                    >
+                                        {slides[currentSlide].heading}
+                                    </AnimatedHeading>
                                 </div>
 
                                 {/* Luminous Telemetry Tracer Accent Line */}
@@ -463,9 +474,14 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                         <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-2">
                             TAILORED INDUSTRY ARCHITECTURE
                         </span>
-                        <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-paper">
+                        <AnimatedHeading 
+                            as="h2" 
+                            highlight="last"
+                            highlightCount={2}
+                            className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-paper"
+                        >
                             Engineered for Zero-Downtime Operations
-                        </h2>
+                        </AnimatedHeading>
                         <p className="mt-3 text-slate-600 dark:text-steel leading-relaxed">
                             Every operational environment presents unique RF propagation physics. Explore how Sanchar architects purpose-built networks for India’s most demanding sectors.
                         </p>
@@ -577,9 +593,14 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                             <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-1">
                                 MISSION-READY TERMINALS & SYSTEMS
                             </span>
-                            <h2 className="text-3xl font-display font-bold text-slate-900 dark:text-paper">
+                            <AnimatedHeading 
+                                as="h2" 
+                                highlight="last"
+                                highlightCount={1}
+                                className="text-3xl font-display font-bold text-slate-900 dark:text-paper"
+                            >
                                 Featured Wireless Hardware
-                            </h2>
+                            </AnimatedHeading>
                             <p className="mt-2 text-slate-600 dark:text-steel text-sm">
                                 High-durability handheld transceivers, dispatch consoles, and base stations in active deployment.
                             </p>
@@ -688,9 +709,14 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                             <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-1">
                                 GLOBAL TECHNOLOGY ALLIANCES
                             </span>
-                            <h2 className="text-3xl font-display font-bold text-slate-900 dark:text-paper">
+                            <AnimatedHeading 
+                                as="h2" 
+                                highlight="last"
+                                highlightCount={1}
+                                className="text-3xl font-display font-bold text-slate-900 dark:text-paper"
+                            >
                                 Authorized OEM Ecosystem
-                            </h2>
+                            </AnimatedHeading>
                             <p className="mt-2 text-slate-600 dark:text-steel text-sm">
                                 Direct factory relationships bringing global component standards to the Indian subcontinent.
                             </p>
@@ -740,9 +766,14 @@ export default function Home({ banners = [], categories = [], featuredProducts =
 
                 <div className="container-content text-center max-w-3xl mx-auto space-y-6 relative z-10">
                     <span className="badge-rf text-xs">GOVERNMENT & ENTERPRISE PROCUREMENT</span>
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-slate-900 dark:text-paper tracking-tight">
-                        Ready to Engineer Your <span className="text-amber-600 dark:text-beacon whitespace-nowrap">Wireless Network?</span>
-                    </h2>
+                    <AnimatedHeading 
+                        as="h2" 
+                        highlight="last"
+                        highlightCount={2}
+                        className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-slate-900 dark:text-paper tracking-tight"
+                    >
+                        Ready to Engineer Your Wireless Network?
+                    </AnimatedHeading>
                     <p className="text-slate-600 dark:text-steel text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
                         Connect with our New Delhi engineering and spectrum clearance team for technical consultations, RF site propagation surveys, or GeM portal procurement assistance.
                     </p>

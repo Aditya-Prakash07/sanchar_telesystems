@@ -1,6 +1,7 @@
 import { Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
+import AnimatedHeading from '@/Components/AnimatedHeading';
 
 export default function Careers({ openings = [], seo = {} }) {
     return (
@@ -20,9 +21,16 @@ export default function Careers({ openings = [], seo = {} }) {
                     </div>
 
                     <div className="max-w-3xl">
-                        <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+                        <AnimatedHeading
+                            as="h1"
+                            immediate={true}
+                            stagger={40}
+                            highlight="last"
+                            highlightCount={2}
+                            className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
+                        >
                             Engineer Systems Where Failure is Not an Option.
-                        </h1>
+                        </AnimatedHeading>
                         <p className="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
                             Join our team of RF propagation specialists, embedded systems developers, and mission-critical network engineers building wireless networks for Parliament, Delhi Police, and India's vital infrastructure.
                         </p>
@@ -56,9 +64,14 @@ export default function Careers({ openings = [], seo = {} }) {
                         <span className="text-xs font-mono uppercase tracking-wider font-bold text-amber-600 dark:text-beacon block mb-2">
                             ENGINEERING PHILOSOPHY
                         </span>
-                        <h2 className="text-3xl font-display font-bold text-slate-900 dark:text-paper">
+                        <AnimatedHeading 
+                            as="h2" 
+                            highlight="last"
+                            highlightCount={2}
+                            className="text-3xl font-display font-bold text-slate-900 dark:text-paper"
+                        >
                             Why Build Your Career at Sanchar?
-                        </h2>
+                        </AnimatedHeading>
                         <p className="text-slate-600 dark:text-steel text-sm mt-3">
                             We design and deploy high-reliability hardware and RF topologies that protect critical national assets during emergencies.
                         </p>
@@ -118,9 +131,14 @@ export default function Careers({ openings = [], seo = {} }) {
                             <span className="text-xs font-mono text-amber-600 dark:text-beacon uppercase tracking-wider font-bold block mb-1">
                                 CAREER OPPORTUNITIES
                             </span>
-                            <h2 className="text-2xl font-display font-bold text-slate-900 dark:text-paper">
+                            <AnimatedHeading 
+                                as="h2" 
+                                highlight="last"
+                                highlightCount={1}
+                                className="text-2xl font-display font-bold text-slate-900 dark:text-paper"
+                            >
                                 Current Positions
-                            </h2>
+                            </AnimatedHeading>
                         </div>
                         <span className="badge-navy text-xs font-mono">
                             {openings.length} {openings.length === 1 ? 'Position' : 'Positions'} Open

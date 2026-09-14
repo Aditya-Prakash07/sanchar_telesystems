@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Link } from '@inertiajs/react';
+import AnimatedHeading from '@/Components/AnimatedHeading';
 
 export default function WelcomeVideoSection() {
     const [isPlaying, setIsPlaying] = useState(true);
@@ -38,9 +39,14 @@ export default function WelcomeVideoSection() {
                                 <span className="w-2 h-2 rounded-full bg-amber-500 dark:bg-beacon animate-pulse" />
                                 <span>CORPORATE OVERVIEW &bull; NEW DELHI HQ</span>
                             </div>
-                            <h2 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-display font-bold text-slate-900 dark:text-paper tracking-tight leading-tight">
-                                Welcome to <span className="text-amber-600 dark:text-beacon whitespace-nowrap">Sanchar Telesystems!</span>
-                            </h2>
+                            <AnimatedHeading
+                                as="h2"
+                                highlight="last"
+                                highlightCount={2}
+                                className="text-3xl sm:text-4xl lg:text-[2.6rem] font-display font-bold text-slate-900 dark:text-paper tracking-tight leading-tight"
+                            >
+                                Welcome to Sanchar Telesystems!
+                            </AnimatedHeading>
                             <h3 className="mt-3 text-base sm:text-lg font-semibold text-slate-800 dark:text-slate-200 leading-snug">
                                 We provide wireless communication equipments and services.
                             </h3>

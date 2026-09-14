@@ -2,6 +2,7 @@ import { useForm } from '@inertiajs/react';
 import { useState } from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
+import AnimatedHeading from '@/Components/AnimatedHeading';
 
 const REQUIREMENT_TYPES = [
     { id: 'system_architecture', label: 'System Architecture & Design' },
@@ -50,9 +51,16 @@ export default function Contact({ seo = {}, flash = {} }) {
                             <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
                             <span>DIRECT ENGINEERING DESK &bull; NEW DELHI HQ</span>
                         </div>
-                        <h1 className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+                        <AnimatedHeading
+                            as="h1"
+                            immediate={true}
+                            stagger={40}
+                            highlight="last"
+                            highlightCount={1}
+                            className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
+                        >
                             Contact Technical Operations & Procurement
-                        </h1>
+                        </AnimatedHeading>
                         <p className="mt-5 text-lg text-slate-600 dark:text-steel leading-relaxed font-sans">
                             Consult with our RF design team, request formal government tender authorizations, or schedule an onsite propagation survey.
                         </p>

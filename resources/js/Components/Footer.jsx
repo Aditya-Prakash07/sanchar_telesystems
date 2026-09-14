@@ -1,4 +1,5 @@
 import { Link } from '@inertiajs/react';
+import ApplicationLogo from '@/Components/ApplicationLogo';
 
 export default function Footer() {
     return (
@@ -28,16 +29,8 @@ export default function Footer() {
 
             <div className="container-content py-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-4 relative z-10">
                 <div className="space-y-4">
-                    <Link href="/" className="flex items-center gap-3">
-                        <img 
-                            src="/storage/media/branding/logo0.png" 
-                            alt="Sanchar Telesystems" 
-                            className="h-11 w-auto object-contain"
-                            onError={(e) => {
-                                e.target.onerror = null;
-                                e.target.src = '/storage/media/branding/logo1.jpeg';
-                            }}
-                        />
+                    <Link href="/" className="flex items-center group shrink-0" aria-label="Sanchar Telesystems">
+                        <ApplicationLogo variant="white" className="h-10" />
                     </Link>
                     <p className="text-sm leading-relaxed text-slate-400 dark:text-steel">
                         India’s premier wireless communication systems provider.
