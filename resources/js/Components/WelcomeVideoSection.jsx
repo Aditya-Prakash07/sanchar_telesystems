@@ -34,13 +34,14 @@ export default function WelcomeVideoSection() {
                     {/* Left Column: Welcome Narrative & Vision / Mission */}
                     <div className="lg:col-span-6 space-y-6">
                         <div>
-                            <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-2">
-                                CORPORATE OVERVIEW
-                            </span>
-                            <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-paper tracking-tight">
-                                Welcome To <span className="text-amber-600 dark:text-beacon">Sanchar Telesystems !</span>
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 dark:bg-beacon/10 border border-amber-500/25 dark:border-beacon/25 text-amber-700 dark:text-beacon font-mono text-xs tracking-wider uppercase font-semibold mb-3">
+                                <span className="w-2 h-2 rounded-full bg-amber-500 dark:bg-beacon animate-pulse" />
+                                <span>CORPORATE OVERVIEW &bull; NEW DELHI HQ</span>
+                            </div>
+                            <h2 className="text-3xl sm:text-4xl lg:text-[2.6rem] font-display font-bold text-slate-900 dark:text-paper tracking-tight leading-tight">
+                                Welcome to <span className="text-amber-600 dark:text-beacon whitespace-nowrap">Sanchar Telesystems!</span>
                             </h2>
-                            <h3 className="mt-3 text-lg font-semibold text-slate-800 dark:text-slate-200">
+                            <h3 className="mt-3 text-base sm:text-lg font-semibold text-slate-800 dark:text-slate-200 leading-snug">
                                 We provide wireless communication equipments and services.
                             </h3>
                         </div>
@@ -54,18 +55,18 @@ export default function WelcomeVideoSection() {
                             </p>
                         </div>
 
-                        {/* Vision & Mission Symmetrical Cards */}
+                        {/* Vision & Mission Symmetrical Cards with Interactive Hover Styles */}
                         <div className="grid sm:grid-cols-2 gap-4 pt-2">
                             {/* Vision Card */}
-                            <div className="card-symmetric p-5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50/80 dark:bg-navy-surface/60 space-y-2 group hover:border-amber-500/40 dark:hover:border-beacon/40 transition-all">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-7 h-7 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center">
+                            <div className="card-symmetric p-5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-navy-surface/50 hover:bg-slate-50/90 dark:hover:bg-navy-surface hover:border-amber-500/50 dark:hover:border-beacon/40 hover:shadow-xl hover:shadow-amber-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1.5 transition-all duration-300 space-y-2.5 group">
+                                <div className="flex items-center gap-2.5">
+                                    <div className="w-8 h-8 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all duration-300 shadow-sm">
                                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                         </svg>
                                     </div>
-                                    <h4 className="font-display font-bold text-slate-900 dark:text-paper text-sm uppercase tracking-wider">
+                                    <h4 className="font-display font-bold text-slate-900 dark:text-paper text-sm uppercase tracking-wider group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors">
                                         Vision
                                     </h4>
                                 </div>
@@ -75,16 +76,16 @@ export default function WelcomeVideoSection() {
                             </div>
 
                             {/* Mission Card */}
-                            <div className="card-symmetric p-5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50/80 dark:bg-navy-surface/60 space-y-2 group hover:border-amber-500/40 dark:hover:border-beacon/40 transition-all">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-7 h-7 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center">
+                            <div className="card-symmetric p-5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-navy-surface/50 hover:bg-slate-50/90 dark:hover:bg-navy-surface hover:border-amber-500/50 dark:hover:border-beacon/40 hover:shadow-xl hover:shadow-amber-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1.5 transition-all duration-300 space-y-2.5 group">
+                                <div className="flex items-center gap-2.5">
+                                    <div className="w-8 h-8 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all duration-300 shadow-sm">
                                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                             <circle cx="12" cy="12" r="9" />
                                             <circle cx="12" cy="12" r="5" />
                                             <circle cx="12" cy="12" r="1.5" fill="currentColor" />
                                         </svg>
                                     </div>
-                                    <h4 className="font-display font-bold text-slate-900 dark:text-paper text-sm uppercase tracking-wider">
+                                    <h4 className="font-display font-bold text-slate-900 dark:text-paper text-sm uppercase tracking-wider group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors">
                                         Mission
                                     </h4>
                                 </div>
@@ -94,13 +95,16 @@ export default function WelcomeVideoSection() {
                             </div>
                         </div>
 
-                        {/* CTA Button */}
+                        {/* Interactive Shimmer CTA Button */}
                         <div className="pt-2">
                             <Link 
                                 href="/about-us" 
-                                className="btn-primary !py-3.5 !px-8 text-sm uppercase tracking-wider font-mono font-bold inline-flex items-center gap-2"
+                                className="btn-shimmer !py-3 !px-7 text-xs font-mono uppercase tracking-wider font-bold shadow-md hover:shadow-xl transition-all duration-200 inline-flex items-center gap-2 group"
                             >
-                                Learn More
+                                <span>Learn More About Sanchar</span>
+                                <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
                             </Link>
                         </div>
                     </div>

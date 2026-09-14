@@ -83,7 +83,7 @@ export default function About({ team = [], seo = {} }) {
                 </div>
             </header>
 
-            {/* Corporate Narrative */}
+            {/* Corporate Narrative & Impact Metrics */}
             <section className="py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
                 <div className="container-content">
                     <div className="grid lg:grid-cols-12 gap-12 items-center">
@@ -100,9 +100,6 @@ export default function About({ team = [], seo = {} }) {
                             <p>
                                 Sanchar has been investing continuously in product and solution research and development because it understands the need to provide customized solutions for users in critical industries. Additionally, devices are an essential component of any solution, and Sanchar collaborates with reputable global OEMs to supply equipment optimized for Indian spectrum conditions.
                             </p>
-                            <p>
-                                Sanchar offers Kenwood products on the <strong>GeM (Government e-Marketplace)</strong> portal for ease of public and defense procurement.
-                            </p>
 
                             <div className="pt-2 flex flex-wrap gap-2 text-xs font-mono">
                                 <span className="px-3 py-1.5 bg-white dark:bg-navy-surface border border-slate-200 dark:border-navy-border rounded-lg font-semibold text-slate-800 dark:text-paper">
@@ -112,41 +109,157 @@ export default function About({ team = [], seo = {} }) {
                                     ✓ ISO 9001:2015 Quality Management
                                 </span>
                                 <span className="px-3 py-1.5 bg-white dark:bg-navy-surface border border-slate-200 dark:border-navy-border rounded-lg font-semibold text-slate-800 dark:text-paper">
-                                    ✓ WPC & TEC Approved
+                                    ✓ 100% WPC & TEC Approved
                                 </span>
                             </div>
                         </div>
 
                         <div className="lg:col-span-6">
                             <div className="grid grid-cols-2 gap-4">
-                                <div className="card-symmetric p-6 space-y-2">
+                                <div className="card-symmetric p-6 space-y-2 hover:border-amber-500/50 dark:hover:border-beacon/40 hover:shadow-xl transition-all duration-300">
                                     <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">
                                         <AnimatedNumber value="300,000" suffix="+" duration={1800} />
                                     </div>
                                     <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Units Sold</h3>
                                     <p className="text-xs text-slate-500 dark:text-steel">Wireless communication units, terminals, and radio systems deployed nationwide.</p>
                                 </div>
-                                <div className="card-symmetric p-6 space-y-2">
+                                <div className="card-symmetric p-6 space-y-2 hover:border-amber-500/50 dark:hover:border-beacon/40 hover:shadow-xl transition-all duration-300">
                                     <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">
                                         <AnimatedNumber value={500} suffix="+" duration={2000} />
                                     </div>
                                     <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Projects Delivered</h3>
                                     <p className="text-xs text-slate-500 dark:text-steel">Turnkey communication systems delivered for public safety, transit, and heavy industry.</p>
                                 </div>
-                                <div className="card-symmetric p-6 space-y-2">
+                                <div className="card-symmetric p-6 space-y-2 hover:border-amber-500/50 dark:hover:border-beacon/40 hover:shadow-xl transition-all duration-300">
                                     <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">
                                         <AnimatedNumber value={50} suffix="+" duration={1600} />
                                     </div>
                                     <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Distributor Network</h3>
                                     <p className="text-xs text-slate-500 dark:text-steel">Nationwide network of authorized channel partners providing sales and engineering support.</p>
                                 </div>
-                                <div className="card-symmetric p-6 space-y-2">
+                                <div className="card-symmetric p-6 space-y-2 hover:border-amber-500/50 dark:hover:border-beacon/40 hover:shadow-xl transition-all duration-300">
                                     <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">
                                         <span>100%</span>
                                     </div>
                                     <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">WPC & TEC Approved</h3>
                                     <p className="text-xs text-slate-500 dark:text-steel">All hardware systems fully certified under Government of India wireless regulatory standards.</p>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Official OEM Collaboration & GeM Portal Showcase */}
+            <section className="py-20 sm:py-24 bg-white dark:bg-navy border-t border-slate-200 dark:border-navy-border transition-colors duration-300 relative overflow-hidden">
+                <div className="container-content relative z-10">
+                    <div className="grid lg:grid-cols-12 gap-12 items-center">
+                        <div className="lg:col-span-6 space-y-5 text-slate-700 dark:text-steel leading-relaxed text-sm sm:text-base">
+                            <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block">
+                                OEM ALLIANCES & GeM PROCUREMENT
+                            </span>
+                            <h2 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-paper leading-snug">
+                                World-Class Technology Alliances & Make In India Manufacturing
+                            </h2>
+                            <p>
+                                We collaborate with world&rsquo;s leading Original Equipment Manufacturers (OEMs) and Technology providers to bring best-in-class communication solutions to India. We are a leading manufacturer of LTE MCX, LTE PoC, and DMR radios in India.
+                            </p>
+                            <p>
+                                We specialize in offering best communication solutions which are right for your business — configured for zero downtime across government, enterprise, and industrial deployments.
+                            </p>
+                            <p className="p-4 rounded-xl bg-amber-500/10 dark:bg-beacon/10 border border-amber-500/20 dark:border-beacon/20 text-slate-800 dark:text-slate-200">
+                                <strong>Government Procurement:</strong> Sanchar offers genuine Kenwood communication products on the <strong>GeM (Government e-Marketplace)</strong> portal for seamless public, defense, and paramilitary procurement.
+                            </p>
+                        </div>
+
+                        <div className="lg:col-span-6">
+                            <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-white/15 bg-slate-950 shadow-2xl group">
+                                <img
+                                    src="/storage/media/about/as03.png"
+                                    alt="Sanchar OEM Manufacturing & GeM Delivery"
+                                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                                <div className="absolute top-3 left-3 px-3 py-1 rounded-md bg-slate-900/80 backdrop-blur-md border border-white/10 text-[11px] font-mono font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                                    <span>OEM Manufacturing &bull; GeM Registered</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Official RF Testing Lab & Service Infrastructure ("Service is our Motto") */}
+            <section className="py-20 sm:py-24 bg-slate-50 dark:bg-navy-dark border-t border-slate-200 dark:border-navy-border transition-colors duration-300 relative overflow-hidden">
+                <div className="container-content relative z-10">
+                    <div className="grid lg:grid-cols-12 gap-12 items-center">
+                        {/* Left: Sanchar Lab Photo (From Official Website) */}
+                        <div className="lg:col-span-6 order-2 lg:order-1">
+                            <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-white/15 bg-slate-950 shadow-2xl group">
+                                <img
+                                    src="/storage/media/about/sancharlab.png"
+                                    alt="Sanchar Telesystems RF Engineering & Testing Lab"
+                                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                                <div className="absolute top-3 left-3 px-3 py-1 rounded-md bg-slate-900/80 backdrop-blur-md border border-white/10 text-[11px] font-mono font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                                    <span>SANCHAR RF TESTING LAB &bull; NEW DELHI</span>
+                                </div>
+                                <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/85 via-black/40 to-transparent">
+                                    <p className="text-xs font-mono text-white/90">
+                                        In-House Calibration, Component-Level Repair & Pre-Dispatch Testing Rig
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right: "Service is our Motto" Narrative from Official Website */}
+                        <div className="lg:col-span-6 order-1 lg:order-2 space-y-5 text-slate-700 dark:text-steel leading-relaxed text-sm sm:text-base">
+                            <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block">
+                                IN-HOUSE TESTING & LEVEL-3 SERVICE DEPOT
+                            </span>
+                            <h2 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-paper leading-snug">
+                                &ldquo;Service is our Motto&rdquo; &mdash; Telecom Experts & Advanced Lab Infrastructure
+                            </h2>
+                            <p>
+                                Sanchar excels in offering mission-critical communication solutions to diverse sectors such as public safety, railways, utility companies, and industrial houses with DMR, TETRA, analog radio, and LTE technologies.
+                            </p>
+                            <p>
+                                Sanchar is geographically spread across the country through our excellent and dedicated channel partners who excel in providing communication solutions right at your doorstep.
+                            </p>
+                            <p className="font-semibold text-slate-900 dark:text-paper border-l-4 border-amber-500 dark:border-beacon pl-4 italic">
+                                &ldquo;Service is our Motto&rdquo; &mdash; Sanchar&rsquo;s team of highly skilled telecom experts and best-in-class infrastructure ensures the right solution for each customer.
+                            </p>
+
+                            <div className="grid sm:grid-cols-2 gap-3 pt-2 font-mono text-xs">
+                                <div className="flex items-center gap-2 text-slate-800 dark:text-paper">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-beacon" />
+                                    <span>RF Spectrum Calibration</span>
+                                </div>
+                                <div className="flex items-center gap-2 text-slate-800 dark:text-paper">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-beacon" />
+                                    <span>Level-3 Board Repair Depot</span>
+                                </div>
+                                <div className="flex items-center gap-2 text-slate-800 dark:text-paper">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-beacon" />
+                                    <span>MIL-STD & IP68 Stress Testing</span>
+                                </div>
+                                <div className="flex items-center gap-2 text-slate-800 dark:text-paper">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-beacon" />
+                                    <span>Rapid Nationwide Turnaround</span>
+                                </div>
+                            </div>
+
+                            <div className="pt-2">
+                                <Link 
+                                    href="/contact-us" 
+                                    className="btn-shimmer !py-3 !px-7 text-xs font-mono uppercase tracking-wider font-bold inline-flex items-center gap-2 group"
+                                >
+                                    <span>Consult Lab Technical Desk</span>
+                                    <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </Link>
                             </div>
                         </div>
                     </div>
