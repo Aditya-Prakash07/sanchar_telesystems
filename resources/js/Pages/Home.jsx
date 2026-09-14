@@ -732,22 +732,24 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                         </Link>
                     </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
                         {(oemPartners || []).map((partner) => (
                             <a
                                 key={partner.name}
                                 href={partner.website_url || '#'}
                                 target={partner.website_url && partner.website_url !== '#' ? '_blank' : '_self'}
                                 rel="noopener noreferrer"
-                                className="group relative p-6 rounded-2xl bg-white dark:bg-navy-surface border border-slate-200/90 dark:border-white/10 flex flex-col items-center justify-center min-h-[130px] text-center hover:border-amber-500/50 dark:hover:border-beacon/50 hover:shadow-xl hover:shadow-amber-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1.5 transition-all duration-300"
+                                className="group relative p-4 rounded-2xl bg-white dark:bg-navy-surface border border-slate-200/90 dark:border-white/10 flex flex-col items-center justify-between min-h-[135px] text-center hover:border-amber-500/50 dark:hover:border-beacon/50 hover:shadow-xl hover:shadow-amber-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1.5 transition-all duration-300"
                             >
-                                <img
-                                    src={`/storage/${partner.logo_path}`}
-                                    alt={partner.name}
-                                    className="max-h-12 max-w-[120px] w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110"
-                                    loading="lazy"
-                                />
-                                <span className="mt-3 text-[11px] font-mono font-medium text-slate-500 dark:text-steel group-hover:text-slate-900 dark:group-hover:text-paper truncate w-full transition-colors">
+                                <div className="w-full h-14 px-3 py-2 rounded-xl bg-white dark:bg-white/95 border border-slate-200/80 dark:border-slate-300 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-300">
+                                    <img
+                                        src={`/storage/${partner.logo_path}`}
+                                        alt={partner.name}
+                                        className="max-h-10 max-w-[120px] w-auto object-contain"
+                                        loading="lazy"
+                                    />
+                                </div>
+                                <span className="mt-2.5 text-[11px] font-mono font-medium text-slate-500 dark:text-steel group-hover:text-slate-900 dark:group-hover:text-paper truncate w-full transition-colors">
                                     {partner.name}
                                 </span>
                             </a>
