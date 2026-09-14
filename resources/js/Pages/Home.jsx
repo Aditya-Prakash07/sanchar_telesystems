@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
 import SignalWave from '@/Components/SignalWave';
@@ -174,6 +174,54 @@ export default function Home({ banners = [], categories = [], featuredProducts =
 
     const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
     const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+
+    // Featured Hardware single-row interactive shelf controls & telemetry
+    const hardwareScrollRef = useRef(null);
+    const [canScrollLeft, setCanScrollLeft] = useState(false);
+    const [canScrollRight, setCanScrollRight] = useState(true);
+    const [activeHardwareIndex, setActiveHardwareIndex] = useState(0);
+
+    const updateHardwareScrollState = () => {
+        if (!hardwareScrollRef.current) return;
+        const { scrollLeft, scrollWidth, clientWidth } = hardwareScrollRef.current;
+        setCanScrollLeft(scrollLeft > 15);
+        setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 15);
+
+        const cardWidth = hardwareScrollRef.current.firstElementChild?.clientWidth || 360;
+        const index = Math.round(scrollLeft / (cardWidth + 24));
+        setActiveHardwareIndex(Math.min(Math.max(0, index), (featuredProducts?.length || 1) - 1));
+    };
+
+    useEffect(() => {
+        const el = hardwareScrollRef.current;
+        if (!el) return;
+        updateHardwareScrollState();
+        el.addEventListener('scroll', updateHardwareScrollState, { passive: true });
+        window.addEventListener('resize', updateHardwareScrollState);
+        return () => {
+            el.removeEventListener('scroll', updateHardwareScrollState);
+            window.removeEventListener('resize', updateHardwareScrollState);
+        };
+    }, [featuredProducts]);
+
+    const scrollHardware = (direction) => {
+        if (!hardwareScrollRef.current) return;
+        const cardWidth = hardwareScrollRef.current.firstElementChild?.clientWidth || 360;
+        const scrollDistance = cardWidth + 24;
+        hardwareScrollRef.current.scrollBy({
+            left: direction === 'next' ? scrollDistance : -scrollDistance,
+            behavior: 'smooth'
+        });
+    };
+
+    const scrollToIndex = (idx) => {
+        if (!hardwareScrollRef.current) return;
+        const cardWidth = hardwareScrollRef.current.firstElementChild?.clientWidth || 360;
+        hardwareScrollRef.current.scrollTo({
+            left: idx * (cardWidth + 24),
+            behavior: 'smooth'
+        });
+    };
 
     return (
         <MainLayout>
@@ -600,11 +648,12 @@ export default function Home({ banners = [], categories = [], featuredProducts =
 
 
             {/* =========================================================================
-                4. FEATURED HARDWARE SHOWCASE GRID
+                4. FEATURED HARDWARE SHOWCASE — SINGLE ROW INTERACTIVE SHELF
             ========================================================================= */}
-            <section className="py-20 sm:py-24 bg-white dark:bg-navy border-y border-slate-200 dark:border-navy-border transition-colors duration-300">
+            <section id="hardware" className="py-20 sm:py-24 bg-white dark:bg-navy border-y border-slate-200 dark:border-navy-border transition-colors duration-300 relative overflow-hidden">
                 <div className="container-content">
-                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                    {/* Header with Title, Browse Catalog Link & Interactive Controls */}
+                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-6">
                         <div>
                             <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-1">
                                 MISSION-READY TERMINALS & SYSTEMS
@@ -616,93 +665,169 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                             >
                                 Featured Wireless Hardware
                             </AnimatedHeading>
-                            <p className="mt-2 text-slate-600 dark:text-steel text-sm">
+                            <p className="mt-2 text-slate-600 dark:text-steel text-sm max-w-2xl">
                                 High-durability handheld transceivers, dispatch consoles, and base stations in active deployment.
                             </p>
                         </div>
-                        <Link 
-                            href="/products" 
-                            className="group inline-flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-paper border-b-2 border-amber-500 dark:border-beacon pb-1 hover:text-amber-600 dark:hover:text-beacon transition-colors font-mono"
-                        >
-                            <span>Browse Complete 120+ Product Catalog</span>
-                            <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                        </Link>
+
+                        <div className="flex items-center gap-4 shrink-0">
+                            <Link 
+                                href="/products" 
+                                className="group inline-flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-paper hover:text-amber-600 dark:hover:text-beacon transition-colors font-mono"
+                            >
+                                <span>Browse 120+ Products</span>
+                                <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </Link>
+
+                            {/* Interactive Shelf Navigation Controls */}
+                            <div className="flex items-center gap-2 border-l border-slate-200 dark:border-white/10 pl-4">
+                                <button 
+                                    onClick={() => scrollHardware('prev')}
+                                    disabled={!canScrollLeft}
+                                    className={`h-9 w-9 rounded-full border flex items-center justify-center transition-all shadow-xs ${
+                                        canScrollLeft
+                                            ? 'border-slate-300 dark:border-white/20 bg-white dark:bg-navy-surface text-slate-800 dark:text-white hover:border-amber-500 hover:text-amber-600 dark:hover:border-beacon dark:hover:text-beacon active:scale-95 cursor-pointer shadow-sm'
+                                            : 'border-slate-200 dark:border-white/5 bg-slate-100 dark:bg-white/[0.03] text-slate-300 dark:text-white/20 cursor-not-allowed'
+                                    }`}
+                                    aria-label="Previous hardware"
+                                    title="Previous"
+                                >
+                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+
+                                <button 
+                                    onClick={() => scrollHardware('next')}
+                                    disabled={!canScrollRight}
+                                    className={`h-9 w-9 rounded-full border flex items-center justify-center transition-all shadow-xs ${
+                                        canScrollRight
+                                            ? 'border-slate-300 dark:border-white/20 bg-white dark:bg-navy-surface text-slate-800 dark:text-white hover:border-amber-500 hover:text-amber-600 dark:hover:border-beacon dark:hover:text-beacon active:scale-95 cursor-pointer shadow-sm'
+                                            : 'border-slate-200 dark:border-white/5 bg-slate-100 dark:bg-white/[0.03] text-slate-300 dark:text-white/20 cursor-not-allowed'
+                                    }`}
+                                    aria-label="Next hardware"
+                                    title="Next"
+                                >
+                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {(featuredProducts || []).map((item) => (
-                            <div 
-                                key={item.id}
-                                className="group relative flex flex-col justify-between border border-slate-200/90 dark:border-white/10 bg-white dark:bg-navy-surface rounded-2xl shadow-sm hover:border-amber-500/50 dark:hover:border-beacon/40 hover:shadow-2xl hover:shadow-amber-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1.5 transition-all duration-300 overflow-hidden"
-                            >
-                                <div className="flex-1 flex flex-col">
-                                    {/* Image Pedestal with interactive zoom & ambient glow */}
-                                    <div className="aspect-[4/3] w-full bg-slate-50/80 dark:bg-navy-dark/90 overflow-hidden relative flex items-center justify-center p-8 border-b border-slate-100 dark:border-navy-border/40">
-                                        <img
-                                            src={`/storage/${item.cover_image_path}`}
-                                            alt={item.name}
-                                            className="max-h-full w-auto object-contain transition-transform duration-500 group-hover:scale-110 drop-shadow-md"
-                                            loading="lazy"
-                                            onError={(e) => {
-                                                e.target.onerror = null;
-                                                e.target.src = '/storage/media/products/1559989450_nx3220_ht.jpg';
-                                            }}
-                                        />
+                    {/* Single Row Hardware Shelf with Interactive Scroll Snap & Dynamic Edge Overlays */}
+                    <div className="relative group/shelf">
+                        {canScrollLeft && (
+                            <div className="pointer-events-none absolute left-0 top-0 bottom-6 w-12 z-10 bg-gradient-to-r from-white dark:from-navy to-transparent transition-opacity duration-300" />
+                        )}
+                        {canScrollRight && (
+                            <div className="pointer-events-none absolute right-0 top-0 bottom-6 w-12 z-10 bg-gradient-to-l from-white dark:from-navy to-transparent transition-opacity duration-300" />
+                        )}
 
-                                        {item.model_number && (
-                                            <span className="absolute top-3 right-3 text-[11px] font-mono px-2.5 py-1 rounded-md bg-slate-900/85 dark:bg-slate-950/90 text-amber-400 dark:text-beacon border border-amber-500/25 shadow-sm font-semibold">
-                                                {item.model_number}
-                                            </span>
-                                        )}
-                                        
-                                        <div className="absolute bottom-3 left-3">
-                                            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider font-semibold bg-white/90 dark:bg-navy/90 text-slate-700 dark:text-paper/80 border border-slate-200 dark:border-white/10 shadow-xs">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                                                WPC Approved
-                                            </span>
+                        <div 
+                            ref={hardwareScrollRef}
+                            className="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pt-2 pb-6 px-1"
+                        >
+                            {(featuredProducts || []).map((item) => (
+                                <div 
+                                    key={item.id}
+                                    className="hardware-card-shelf snap-start shrink-0 w-[300px] sm:w-[340px] lg:w-[380px] group relative flex flex-col justify-between border border-slate-200/90 dark:border-white/10 bg-white dark:bg-navy-surface rounded-2xl shadow-sm hover:border-amber-500/50 dark:hover:border-beacon/40 overflow-hidden"
+                                >
+                                    <div className="flex-1 flex flex-col">
+                                        {/* Image Pedestal with interactive zoom & ambient glow */}
+                                        <div className="aspect-[4/3] w-full bg-slate-50/80 dark:bg-navy-dark/90 overflow-hidden relative flex items-center justify-center p-8 border-b border-slate-100 dark:border-navy-border/40">
+                                            <img
+                                                src={`/storage/${item.cover_image_path}`}
+                                                alt={item.name}
+                                                className="max-h-full w-auto object-contain transition-transform duration-500 group-hover:scale-110 drop-shadow-md"
+                                                loading="lazy"
+                                                onError={(e) => {
+                                                    e.target.onerror = null;
+                                                    e.target.src = '/storage/media/products/1559989450_nx3220_ht.jpg';
+                                                }}
+                                            />
+
+                                            {item.model_number && (
+                                                <span className="absolute top-3 right-3 text-[11px] font-mono px-2.5 py-1 rounded-md bg-slate-900/85 dark:bg-slate-950/90 text-amber-400 dark:text-beacon border border-amber-500/25 shadow-sm font-semibold">
+                                                    {item.model_number}
+                                                </span>
+                                            )}
+                                            
+                                            <div className="absolute bottom-3 left-3">
+                                                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider font-semibold bg-white/90 dark:bg-navy/90 text-slate-700 dark:text-paper/80 border border-slate-200 dark:border-white/10 shadow-xs">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                                                    WPC Approved
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        {/* Details */}
+                                        <div className="p-6 space-y-3 flex-1 flex flex-col">
+                                            <div className="flex items-center gap-2">
+                                                <span className="badge-rf text-[10px]">
+                                                    {item.subcategory?.name || 'Radio System'}
+                                                </span>
+                                            </div>
+
+                                            <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors min-h-[3.25rem] line-clamp-2 leading-snug">
+                                                {item.name}
+                                            </h3>
+
+                                            <p className="text-xs sm:text-sm text-slate-600 dark:text-steel min-h-[2.5rem] line-clamp-2 leading-relaxed">
+                                                {item.short_description || 'High-reliability wireless communication equipment engineered for critical infrastructure.'}
+                                            </p>
                                         </div>
                                     </div>
 
-                                    {/* Details */}
-                                    <div className="p-6 space-y-3 flex-1 flex flex-col">
-                                        <div className="flex items-center gap-2">
-                                            <span className="badge-rf text-[10px]">
-                                                {item.subcategory?.name || 'Radio System'}
-                                            </span>
-                                        </div>
+                                    <div className="p-6 pt-4 border-t border-slate-100 dark:border-navy-border/40 mt-auto flex items-center justify-between bg-slate-50/50 dark:bg-navy-surface/30">
+                                        <Link
+                                            href={`/products/${item.subcategory?.category?.slug || 'professional-amateur-radio'}/${item.subcategory?.slug || 'dmr'}/${item.slug}`}
+                                            className="text-xs font-mono font-semibold text-slate-900 dark:text-paper hover:text-amber-600 dark:hover:text-beacon flex items-center gap-1.5 group/link"
+                                        >
+                                            <span>Specifications</span>
+                                            <svg className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </Link>
 
-                                        <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors min-h-[3.25rem] line-clamp-2 leading-snug">
-                                            {item.name}
-                                        </h3>
-
-                                        <p className="text-xs sm:text-sm text-slate-600 dark:text-steel min-h-[2.5rem] line-clamp-2 leading-relaxed">
-                                            {item.short_description || 'High-reliability wireless communication equipment engineered for critical infrastructure.'}
-                                        </p>
+                                        <Link
+                                            href={`/contact-us?subject=Quote%20Request%20for%20${encodeURIComponent(item.name)}`}
+                                            className="btn-shimmer !py-2 !px-4 text-xs font-mono uppercase font-bold shadow-sm hover:shadow-md"
+                                        >
+                                            RFQ
+                                        </Link>
                                     </div>
                                 </div>
+                            ))}
+                        </div>
+                    </div>
 
-                                <div className="p-6 pt-4 border-t border-slate-100 dark:border-navy-border/40 mt-auto flex items-center justify-between bg-slate-50/50 dark:bg-navy-surface/30">
-                                    <Link
-                                        href={`/products/${item.subcategory?.category?.slug || 'professional-amateur-radio'}/${item.subcategory?.slug || 'dmr'}/${item.slug}`}
-                                        className="text-xs font-mono font-semibold text-slate-900 dark:text-paper hover:text-amber-600 dark:hover:text-beacon flex items-center gap-1.5 group/link"
-                                    >
-                                        <span>Specifications</span>
-                                        <svg className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                        </svg>
-                                    </Link>
+                    {/* Interactive Dot Indicators & Overview Counter */}
+                    <div className="mt-4 flex items-center justify-between pt-2 border-t border-slate-100 dark:border-white/5">
+                        <div className="flex items-center gap-2">
+                            {(featuredProducts || []).map((_, dotIdx) => (
+                                <button
+                                    key={dotIdx}
+                                    onClick={() => scrollToIndex(dotIdx)}
+                                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                                        activeHardwareIndex === dotIdx 
+                                            ? 'w-8 bg-amber-500 dark:bg-beacon shadow-sm shadow-amber-500/30' 
+                                            : 'w-2.5 bg-slate-200 dark:bg-white/20 hover:bg-slate-300 dark:hover:bg-white/40'
+                                    }`}
+                                    aria-label={`Scroll to product ${dotIdx + 1}`}
+                                    title={`Product ${dotIdx + 1}`}
+                                />
+                            ))}
+                        </div>
 
-                                    <Link
-                                        href={`/contact-us?subject=Quote%20Request%20for%20${encodeURIComponent(item.name)}`}
-                                        className="btn-shimmer !py-2 !px-4 text-xs font-mono uppercase font-bold shadow-sm hover:shadow-md"
-                                    >
-                                        RFQ
-                                    </Link>
-                                </div>
-                            </div>
-                        ))}
+                        <span className="text-xs font-mono text-slate-400 dark:text-steel flex items-center gap-1.5 select-none">
+                            <span>0{activeHardwareIndex + 1}</span>
+                            <span className="opacity-40">/</span>
+                            <span>0{(featuredProducts || []).length}</span>
+                        </span>
                     </div>
                 </div>
             </section>
