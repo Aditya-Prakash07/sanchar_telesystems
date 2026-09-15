@@ -29,10 +29,12 @@ export default {
                     dark: '#334155',
                 },
                 beacon: {
-                    light: '#FBBF24',
-                    DEFAULT: '#E8A33D', // the one accent — CTAs + status indicators
-                    dim: '#C98A2B',
-                    glow: 'rgba(232, 163, 61, 0.2)',
+                    light: '#93c5fd',
+                    DEFAULT: '#3b82f6', // electric blue accent
+                    royal: '#3a52a4',   // brand royal blue
+                    electric: '#5172dc',
+                    dim: '#1d4ed8',
+                    glow: 'rgba(59, 130, 246, 0.25)',
                 },
             },
             fontFamily: {

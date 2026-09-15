@@ -94,15 +94,15 @@ export default function Navbar() {
                                             href={link.href}
                                             className={`text-sm font-medium transition-colors flex items-center gap-1.5 py-2 whitespace-nowrap ${
                                                 isOverBanner && theme === 'light'
-                                                    ? (isActive ? 'text-amber-400 font-bold drop-shadow-sm' : 'text-white/95 hover:text-amber-300 font-medium drop-shadow-sm')
-                                                    : (isActive ? 'text-amber-600 dark:text-beacon font-semibold' : 'text-slate-700 dark:text-paper/85 hover:text-amber-600 dark:hover:text-beacon')
+                                                    ? (isActive ? 'text-sky-300 font-bold drop-shadow-sm' : 'text-white/95 hover:text-sky-200 font-medium drop-shadow-sm')
+                                                    : (isActive ? 'text-blue-600 dark:text-beacon font-semibold' : 'text-slate-700 dark:text-paper/85 hover:text-blue-600 dark:hover:text-beacon')
                                             }`}
                                         >
                                             <span className="whitespace-nowrap">{link.label}</span>
                                             <svg 
                                                 className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${
                                                     productsDropdown 
-                                                        ? (isOverBanner && theme === 'light' ? 'rotate-180 text-amber-400' : 'rotate-180 text-amber-500 dark:text-beacon') 
+                                                        ? (isOverBanner && theme === 'light' ? 'rotate-180 text-sky-300' : 'rotate-180 text-blue-600 dark:text-beacon') 
                                                         : (isOverBanner && theme === 'light' ? 'text-white/80' : 'opacity-60')
                                                 }`} 
                                                 fill="none" 
@@ -135,14 +135,14 @@ export default function Navbar() {
                                                         
                                                         {/* Top Telemetry Header */}
                                                         <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/10 pb-3.5 mb-5">
-                                                            <div className="flex items-center gap-2.5 text-xs font-mono uppercase tracking-wider text-amber-600 dark:text-beacon font-bold">
-                                                                <span className="w-2 h-2 rounded-full bg-amber-500 dark:bg-beacon animate-pulse" />
+                                                            <div className="flex items-center gap-2.5 text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-beacon font-bold">
+                                                                <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-beacon animate-pulse" />
                                                                 <span>SANCHAR WIRELESS ECOSYSTEM &bull; 121 MISSION-CRITICAL HARDWARE SYSTEMS</span>
                                                             </div>
                                                             <Link 
                                                                 href="/products" 
                                                                 onClick={() => setProductsDropdown(false)}
-                                                                className="text-xs font-mono text-slate-500 dark:text-steel hover:text-amber-600 dark:hover:text-beacon transition-colors font-semibold"
+                                                                className="text-xs font-mono text-slate-500 dark:text-steel hover:text-blue-600 dark:hover:text-beacon transition-colors font-semibold"
                                                             >
                                                                 Browse All 121 Products
                                                             </Link>
@@ -152,10 +152,10 @@ export default function Navbar() {
                                                         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                                                             
                                                             {/* Pillar 1: Land Mobile Radio (LMR) */}
-                                                            <div className="group/col flex flex-col justify-between p-4 rounded-xl border border-slate-200/70 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.02] hover:border-amber-500/40 dark:hover:border-beacon/30 hover:bg-white dark:hover:bg-white/[0.04] transition-all duration-200">
+                                                            <div className="group/col flex flex-col justify-between p-4 rounded-xl border border-slate-200/70 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.02] hover:border-blue-500/40 dark:hover:border-beacon/30 hover:bg-white dark:hover:bg-white/[0.04] transition-all duration-200">
                                                                 <div>
                                                                     <div className="flex items-center gap-3 mb-3">
-                                                                        <div className="w-9 h-9 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center shrink-0 group-hover/col:bg-amber-500 group-hover/col:text-slate-950 transition-all duration-200">
+                                                                        <div className="w-9 h-9 rounded-lg bg-blue-500/10 dark:bg-beacon/10 text-blue-600 dark:text-beacon flex items-center justify-center shrink-0 group-hover/col:bg-blue-600 group-hover/col:text-white transition-all duration-200">
                                                                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                                                             </svg>
@@ -164,10 +164,10 @@ export default function Navbar() {
                                                                             <Link 
                                                                                 href={`/products`}
                                                                                 onClick={() => setProductsDropdown(false)}
-                                                                                className="text-sm font-bold text-slate-900 dark:text-paper group-hover/col:text-amber-600 dark:group-hover/col:text-beacon transition-colors flex items-center gap-1.5"
+                                                                                className="text-sm font-bold text-slate-900 dark:text-paper group-hover/col:text-blue-600 dark:group-hover/col:text-beacon transition-colors flex items-center gap-1.5"
                                                                             >
                                                                                 <span>Radio Communications</span>
-                                                                                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-100 dark:bg-beacon/20 text-amber-700 dark:text-beacon font-bold">
+                                                                                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-100 dark:bg-beacon/20 text-blue-700 dark:text-beacon font-bold">
                                                                                     {radioCat?.items_count ?? 41}
                                                                                 </span>
                                                                             </Link>
@@ -186,11 +186,11 @@ export default function Navbar() {
                                                                                 className="group/item flex items-center justify-between py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-700 dark:text-steel hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.07] hover:translate-x-0.5 active:scale-[0.98] transition-all duration-150"
                                                                             >
                                                                                 <div className="flex items-center gap-2 truncate">
-                                                                                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-white/20 group-hover/item:bg-amber-500 dark:group-hover/item:bg-beacon transition-colors shrink-0" />
+                                                                                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-white/20 group-hover/item:bg-blue-600 dark:group-hover/item:bg-beacon transition-colors shrink-0" />
                                                                                     <span className="truncate">{sub.name}</span>
                                                                                 </div>
                                                                                 {sub.items_count !== undefined && (
-                                                                                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-steel group-hover/item:bg-amber-500/15 group-hover/item:text-amber-700 dark:group-hover/item:text-beacon transition-colors shrink-0">
+                                                                                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-steel group-hover/item:bg-blue-500/15 group-hover/item:text-blue-700 dark:group-hover/item:text-beacon transition-colors shrink-0">
                                                                                         {sub.items_count}
                                                                                     </span>
                                                                                 )}
@@ -203,7 +203,7 @@ export default function Navbar() {
                                                                     <Link
                                                                         href="/products"
                                                                         onClick={() => setProductsDropdown(false)}
-                                                                        className="text-[11px] font-mono font-semibold text-amber-600 dark:text-beacon hover:underline"
+                                                                        className="text-[11px] font-mono font-semibold text-blue-600 dark:text-beacon hover:underline"
                                                                     >
                                                                         Explore all {radioCat?.items_count ?? 41} Radio terminals
                                                                     </Link>
@@ -211,10 +211,10 @@ export default function Navbar() {
                                                             </div>
 
                                                             {/* Pillar 2: Broadband PoC, LTE-R & Captive LTE */}
-                                                            <div className="group/col flex flex-col justify-between p-4 rounded-xl border border-slate-200/70 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.02] hover:border-amber-500/40 dark:hover:border-beacon/30 hover:bg-white dark:hover:bg-white/[0.04] transition-all duration-200">
+                                                            <div className="group/col flex flex-col justify-between p-4 rounded-xl border border-slate-200/70 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.02] hover:border-blue-500/40 dark:hover:border-beacon/30 hover:bg-white dark:hover:bg-white/[0.04] transition-all duration-200">
                                                                 <div>
                                                                     <div className="flex items-center gap-3 mb-3">
-                                                                        <div className="w-9 h-9 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center shrink-0 group-hover/col:bg-amber-500 group-hover/col:text-slate-950 transition-all duration-200">
+                                                                        <div className="w-9 h-9 rounded-lg bg-blue-500/10 dark:bg-beacon/10 text-blue-600 dark:text-beacon flex items-center justify-center shrink-0 group-hover/col:bg-blue-600 group-hover/col:text-white transition-all duration-200">
                                                                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z" />
                                                                             </svg>
@@ -223,10 +223,10 @@ export default function Navbar() {
                                                                             <Link 
                                                                                 href={`/products`}
                                                                                 onClick={() => setProductsDropdown(false)}
-                                                                                className="text-sm font-bold text-slate-900 dark:text-paper group-hover/col:text-amber-600 dark:group-hover/col:text-beacon transition-colors flex items-center gap-1.5"
+                                                                                className="text-sm font-bold text-slate-900 dark:text-paper group-hover/col:text-blue-600 dark:group-hover/col:text-beacon transition-colors flex items-center gap-1.5"
                                                                             >
                                                                                 <span>PoC & Dedicated LTE</span>
-                                                                                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-100 dark:bg-beacon/20 text-amber-700 dark:text-beacon font-bold">
+                                                                                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-100 dark:bg-beacon/20 text-blue-700 dark:text-beacon font-bold">
                                                                                     {broadbandCount || 12}
                                                                                 </span>
                                                                             </Link>
@@ -245,11 +245,11 @@ export default function Navbar() {
                                                                                 className="group/item flex items-center justify-between py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-700 dark:text-steel hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.07] hover:translate-x-0.5 active:scale-[0.98] transition-all duration-150"
                                                                             >
                                                                                 <div className="flex items-center gap-2 truncate">
-                                                                                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-white/20 group-hover/item:bg-amber-500 dark:group-hover/item:bg-beacon transition-colors shrink-0" />
+                                                                                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-white/20 group-hover/item:bg-blue-600 dark:group-hover/item:bg-beacon transition-colors shrink-0" />
                                                                                     <span className="truncate">{sub.name}</span>
                                                                                 </div>
                                                                                 {sub.items_count !== undefined && (
-                                                                                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-steel group-hover/item:bg-amber-500/15 group-hover/item:text-amber-700 dark:group-hover/item:text-beacon transition-colors shrink-0">
+                                                                                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-steel group-hover/item:bg-blue-500/15 group-hover/item:text-blue-700 dark:group-hover/item:text-beacon transition-colors shrink-0">
                                                                                         {sub.items_count}
                                                                                     </span>
                                                                                 )}
@@ -262,7 +262,7 @@ export default function Navbar() {
                                                                     <Link
                                                                         href="/products"
                                                                         onClick={() => setProductsDropdown(false)}
-                                                                        className="text-[11px] font-mono font-semibold text-amber-600 dark:text-beacon hover:underline"
+                                                                        className="text-[11px] font-mono font-semibold text-blue-600 dark:text-beacon hover:underline"
                                                                     >
                                                                         Explore all {broadbandCount || 12} Cellular / LTE systems
                                                                     </Link>
@@ -270,10 +270,10 @@ export default function Navbar() {
                                                             </div>
 
                                                             {/* Pillar 3: OEM RF Accessories & Antennas */}
-                                                            <div className="group/col flex flex-col justify-between p-4 rounded-xl border border-slate-200/70 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.02] hover:border-amber-500/40 dark:hover:border-beacon/30 hover:bg-white dark:hover:bg-white/[0.04] transition-all duration-200">
+                                                            <div className="group/col flex flex-col justify-between p-4 rounded-xl border border-slate-200/70 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.02] hover:border-blue-500/40 dark:hover:border-beacon/30 hover:bg-white dark:hover:bg-white/[0.04] transition-all duration-200">
                                                                 <div>
                                                                     <div className="flex items-center gap-3 mb-3">
-                                                                        <div className="w-9 h-9 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center shrink-0 group-hover/col:bg-amber-500 group-hover/col:text-slate-950 transition-all duration-200">
+                                                                        <div className="w-9 h-9 rounded-lg bg-blue-500/10 dark:bg-beacon/10 text-blue-600 dark:text-beacon flex items-center justify-center shrink-0 group-hover/col:bg-blue-600 group-hover/col:text-white transition-all duration-200">
                                                                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                                                             </svg>
@@ -282,10 +282,10 @@ export default function Navbar() {
                                                                             <Link 
                                                                                 href={`/products`}
                                                                                 onClick={() => setProductsDropdown(false)}
-                                                                                className="text-sm font-bold text-slate-900 dark:text-paper group-hover/col:text-amber-600 dark:group-hover/col:text-beacon transition-colors flex items-center gap-1.5"
+                                                                                className="text-sm font-bold text-slate-900 dark:text-paper group-hover/col:text-blue-600 dark:group-hover/col:text-beacon transition-colors flex items-center gap-1.5"
                                                                             >
                                                                                 <span>OEM Accessories</span>
-                                                                                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-100 dark:bg-beacon/20 text-amber-700 dark:text-beacon font-bold">
+                                                                                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-100 dark:bg-beacon/20 text-blue-700 dark:text-beacon font-bold">
                                                                                     {accessoriesCat?.items_count ?? 68}
                                                                                 </span>
                                                                             </Link>
@@ -304,11 +304,11 @@ export default function Navbar() {
                                                                                 className="group/item flex items-center justify-between py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-700 dark:text-steel hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.07] hover:translate-x-0.5 active:scale-[0.98] transition-all duration-150"
                                                                             >
                                                                                 <div className="flex items-center gap-2 truncate">
-                                                                                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-white/20 group-hover/item:bg-amber-500 dark:group-hover/item:bg-beacon transition-colors shrink-0" />
+                                                                                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-white/20 group-hover/item:bg-blue-600 dark:group-hover/item:bg-beacon transition-colors shrink-0" />
                                                                                     <span className="truncate">{sub.name}</span>
                                                                                 </div>
                                                                                 {sub.items_count !== undefined && (
-                                                                                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-steel group-hover/item:bg-amber-500/15 group-hover/item:text-amber-700 dark:group-hover/item:text-beacon transition-colors shrink-0">
+                                                                                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-steel group-hover/item:bg-blue-500/15 group-hover/item:text-blue-700 dark:group-hover/item:text-beacon transition-colors shrink-0">
                                                                                         {sub.items_count}
                                                                                     </span>
                                                                                 )}
@@ -321,7 +321,7 @@ export default function Navbar() {
                                                                     <Link
                                                                         href="/products"
                                                                         onClick={() => setProductsDropdown(false)}
-                                                                        className="text-[11px] font-mono font-semibold text-amber-600 dark:text-beacon hover:underline"
+                                                                        className="text-[11px] font-mono font-semibold text-blue-600 dark:text-beacon hover:underline"
                                                                     >
                                                                         Explore all {accessoriesCat?.items_count ?? 68} OEM Accessories
                                                                     </Link>
@@ -347,7 +347,7 @@ export default function Navbar() {
                                                             <Link 
                                                                 href="/contact-us" 
                                                                 onClick={() => setProductsDropdown(false)}
-                                                                className="text-amber-600 dark:text-beacon font-bold hover:underline font-mono text-xs"
+                                                                className="text-blue-600 dark:text-beacon font-bold hover:underline font-mono text-xs"
                                                             >
                                                                 Direct RFQ & Frequency Tuning Desk
                                                             </Link>
@@ -367,8 +367,8 @@ export default function Navbar() {
                                         href={link.href}
                                         className={`text-sm font-medium transition-colors py-2 whitespace-nowrap ${
                                             isOverBanner && theme === 'light'
-                                                ? (isActive ? 'text-amber-400 font-bold drop-shadow-sm' : 'text-white/95 hover:text-amber-300 font-medium drop-shadow-sm')
-                                                : (isActive ? 'text-amber-600 dark:text-beacon font-semibold' : 'text-slate-700 dark:text-paper/85 hover:text-amber-600 dark:hover:text-beacon')
+                                                ? (isActive ? 'text-sky-300 font-bold drop-shadow-sm' : 'text-white/95 hover:text-sky-200 font-medium drop-shadow-sm')
+                                                : (isActive ? 'text-blue-600 dark:text-beacon font-semibold' : 'text-slate-700 dark:text-paper/85 hover:text-blue-600 dark:hover:text-beacon')
                                         }`}
                                     >
                                         <span className="whitespace-nowrap">{link.label}</span>
@@ -386,8 +386,8 @@ export default function Navbar() {
                             onClick={toggleTheme}
                             className={`p-2 rounded-lg border transition-all duration-200 active:scale-95 ${
                                 isOverBanner && theme === 'light'
-                                    ? 'border-white/30 text-white hover:text-amber-300 hover:border-amber-400/60 bg-black/25 backdrop-blur-sm shadow-sm'
-                                    : 'border-slate-200 dark:border-navy-border text-slate-600 dark:text-paper/80 hover:text-amber-600 dark:hover:text-beacon hover:border-amber-500/40 dark:hover:border-beacon/40'
+                                    ? 'border-white/30 text-white hover:text-sky-200 hover:border-blue-400/60 bg-black/25 backdrop-blur-sm shadow-sm'
+                                    : 'border-slate-200 dark:border-navy-border text-slate-600 dark:text-paper/80 hover:text-blue-600 dark:hover:text-beacon hover:border-blue-500/40 dark:hover:border-beacon/40'
                             }`}
                             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
                             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
@@ -439,7 +439,7 @@ export default function Navbar() {
             {mobileOpen && (
                 <div className="lg:hidden bg-white dark:bg-navy border-b border-slate-200 dark:border-navy-border shadow-2xl px-6 py-6 space-y-4 animate-in fade-in slide-in-from-top-4 duration-200">
                     <div className="flex items-center justify-between border-b border-slate-200 dark:border-white/10 pb-3">
-                        <span className="text-xs font-mono text-amber-600 dark:text-beacon uppercase tracking-wider font-semibold">
+                        <span className="text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider font-semibold">
                             NAVIGATION MENU
                         </span>
                         <div className="flex items-center gap-2">
@@ -462,7 +462,7 @@ export default function Navbar() {
                                 onClick={() => setMobileOpen(false)}
                                 className={`block py-2.5 text-base font-medium rounded-lg px-3 transition-colors ${
                                     url === link.href
-                                        ? 'bg-amber-50 dark:bg-beacon/10 text-amber-600 dark:text-beacon font-semibold'
+                                        ? 'bg-blue-50 dark:bg-beacon/10 text-blue-600 dark:text-beacon font-semibold'
                                         : 'text-slate-800 dark:text-paper hover:bg-slate-100 dark:hover:bg-white/5'
                                 }`}
                             >

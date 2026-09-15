@@ -47,7 +47,7 @@ export default function Contact({ seo = {}, flash = {} }) {
             <header className="relative bg-white dark:bg-navy border-b border-slate-200/80 dark:border-navy-border pt-36 pb-16 overflow-hidden transition-colors duration-300">
                 <div className="container-content relative z-10">
                     <div className="max-w-3xl">
-                        <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
+                        <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
                             <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
                             <span>DIRECT ENGINEERING DESK &bull; NEW DELHI HQ</span>
                         </div>
@@ -101,7 +101,7 @@ export default function Contact({ seo = {}, flash = {} }) {
                                                     onClick={() => setSelectedType(type.id)}
                                                     className={`p-3 rounded-lg border text-left text-xs font-mono transition-all duration-200 ${
                                                         selectedType === type.id
-                                                            ? 'border-amber-500 dark:border-beacon bg-amber-50 dark:bg-beacon/10 text-amber-900 dark:text-beacon font-bold'
+                                                            ? 'border-blue-500 dark:border-beacon bg-blue-50 dark:bg-beacon/10 text-blue-900 dark:text-beacon font-bold'
                                                             : 'border-slate-200 dark:border-navy-border/80 text-slate-700 dark:text-paper/80 hover:bg-slate-50 dark:hover:bg-white/5'
                                                     }`}
                                                 >
@@ -218,7 +218,7 @@ export default function Contact({ seo = {}, flash = {} }) {
                              {/* Headquarters Card */}
                              <div className="card-dual !bg-white dark:!bg-navy-surface p-8 space-y-5 border border-slate-200/80 dark:border-navy-border shadow-md">
                                  <div className="flex items-center justify-between border-b border-slate-100 dark:border-navy-border/60 pb-3">
-                                     <span className="text-xs font-mono uppercase tracking-wider text-amber-600 dark:text-beacon font-bold">
+                                     <span className="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-beacon font-bold">
                                          NATIONAL HEADQUARTERS
                                      </span>
                                      <span className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-medium">OPEN 09:30 - 18:00 IST</span>
@@ -237,19 +237,19 @@ export default function Contact({ seo = {}, flash = {} }) {
                                  <div className="space-y-3 pt-3 border-t border-slate-100 dark:border-navy-border/60 text-xs font-mono">
                                      <div>
                                          <span className="text-slate-500 dark:text-slate-400 block mb-0.5">DIRECT SALES & MARKETING:</span>
-                                         <a href="tel:+911146528894" className="text-amber-600 dark:text-beacon hover:underline text-sm font-bold">
+                                         <a href="tel:+911146528894" className="text-blue-600 dark:text-beacon hover:underline text-sm font-bold">
                                              +91 (11) 4652 8894–97
                                          </a>
                                      </div>
                                      <div>
                                          <span className="text-slate-500 dark:text-slate-400 block mb-0.5">TECHNICAL SUPPORT & AMC:</span>
-                                         <a href="tel:+911146528892" className="text-slate-800 dark:text-white hover:text-amber-600 dark:hover:text-beacon transition-colors text-sm font-bold">
+                                         <a href="tel:+911146528892" className="text-slate-800 dark:text-white hover:text-blue-600 dark:hover:text-beacon transition-colors text-sm font-bold">
                                              +91 (11) 4652 8892–93
                                          </a>
                                      </div>
                                      <div>
                                          <span className="text-slate-500 dark:text-slate-400 block mb-0.5">PRIMARY INQUIRIES:</span>
-                                         <a href="mailto:info@sanchartelesystems.com" className="text-slate-800 dark:text-white hover:text-amber-600 dark:hover:text-beacon transition-colors text-sm">
+                                         <a href="mailto:info@sanchartelesystems.com" className="text-slate-800 dark:text-white hover:text-blue-600 dark:hover:text-beacon transition-colors text-sm">
                                              info@sanchartelesystems.com
                                          </a>
                                      </div>

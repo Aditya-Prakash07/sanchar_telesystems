@@ -27,7 +27,7 @@ export default function WelcomeVideoSection() {
     return (
         <section className="py-20 sm:py-24 bg-white dark:bg-navy border-b border-slate-200 dark:border-navy-border transition-colors duration-300 relative overflow-hidden">
             {/* Ambient Background Glow */}
-            <div className="absolute top-1/2 right-10 -translate-y-1/2 w-96 h-96 bg-amber-500/5 dark:bg-beacon/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-1/2 right-10 -translate-y-1/2 w-96 h-96 bg-blue-500/5 dark:bg-beacon/5 rounded-full blur-3xl pointer-events-none" />
 
             <div className="container-content relative z-10">
                 <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -35,8 +35,8 @@ export default function WelcomeVideoSection() {
                     {/* Left Column: Welcome Narrative & Vision / Mission */}
                     <div className="lg:col-span-6 space-y-6">
                         <div>
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 dark:bg-beacon/10 border border-amber-500/25 dark:border-beacon/25 text-amber-700 dark:text-beacon font-mono text-xs tracking-wider uppercase font-semibold mb-3">
-                                <span className="w-2 h-2 rounded-full bg-amber-500 dark:bg-beacon animate-pulse" />
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 dark:bg-beacon/10 border border-blue-500/25 dark:border-beacon/25 text-blue-700 dark:text-beacon font-mono text-xs tracking-wider uppercase font-semibold mb-3">
+                                <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-beacon animate-pulse" />
                                 <span>CORPORATE OVERVIEW &bull; NEW DELHI HQ</span>
                             </div>
                             <AnimatedHeading
@@ -64,15 +64,15 @@ export default function WelcomeVideoSection() {
                         {/* Vision & Mission Symmetrical Cards with Interactive Hover Styles */}
                         <div className="grid sm:grid-cols-2 gap-4 pt-2">
                             {/* Vision Card */}
-                            <div className="card-symmetric p-5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-navy-surface/50 hover:bg-slate-50/90 dark:hover:bg-navy-surface hover:border-amber-500/50 dark:hover:border-beacon/40 hover:shadow-xl hover:shadow-amber-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1.5 transition-all duration-300 space-y-2.5 group">
+                            <div className="card-symmetric p-5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-navy-surface/50 hover:bg-slate-50/90 dark:hover:bg-navy-surface hover:border-blue-500/50 dark:hover:border-beacon/40 hover:shadow-xl hover:shadow-blue-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1.5 transition-all duration-300 space-y-2.5 group">
                                 <div className="flex items-center gap-2.5">
-                                    <div className="w-8 h-8 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all duration-300 shadow-sm">
+                                    <div className="w-8 h-8 rounded-lg bg-blue-500/10 dark:bg-beacon/10 text-blue-600 dark:text-beacon flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">
                                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                         </svg>
                                     </div>
-                                    <h4 className="font-display font-bold text-slate-900 dark:text-paper text-sm uppercase tracking-wider group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors">
+                                    <h4 className="font-display font-bold text-slate-900 dark:text-paper text-sm uppercase tracking-wider group-hover:text-blue-600 dark:group-hover:text-beacon transition-colors">
                                         Vision
                                     </h4>
                                 </div>
@@ -82,16 +82,16 @@ export default function WelcomeVideoSection() {
                             </div>
 
                             {/* Mission Card */}
-                            <div className="card-symmetric p-5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-navy-surface/50 hover:bg-slate-50/90 dark:hover:bg-navy-surface hover:border-amber-500/50 dark:hover:border-beacon/40 hover:shadow-xl hover:shadow-amber-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1.5 transition-all duration-300 space-y-2.5 group">
+                            <div className="card-symmetric p-5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-navy-surface/50 hover:bg-slate-50/90 dark:hover:bg-navy-surface hover:border-blue-500/50 dark:hover:border-beacon/40 hover:shadow-xl hover:shadow-blue-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1.5 transition-all duration-300 space-y-2.5 group">
                                 <div className="flex items-center gap-2.5">
-                                    <div className="w-8 h-8 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all duration-300 shadow-sm">
+                                    <div className="w-8 h-8 rounded-lg bg-blue-500/10 dark:bg-beacon/10 text-blue-600 dark:text-beacon flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">
                                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                             <circle cx="12" cy="12" r="9" />
                                             <circle cx="12" cy="12" r="5" />
                                             <circle cx="12" cy="12" r="1.5" fill="currentColor" />
                                         </svg>
                                     </div>
-                                    <h4 className="font-display font-bold text-slate-900 dark:text-paper text-sm uppercase tracking-wider group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors">
+                                    <h4 className="font-display font-bold text-slate-900 dark:text-paper text-sm uppercase tracking-wider group-hover:text-blue-600 dark:group-hover:text-beacon transition-colors">
                                         Mission
                                     </h4>
                                 </div>
@@ -170,13 +170,13 @@ export default function WelcomeVideoSection() {
                                     <button
                                         type="button"
                                         onClick={toggleMute}
-                                        className="group/mute px-3.5 py-1.5 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md border border-white/20 hover:border-amber-500/60 dark:hover:border-beacon/60 text-white transition-all duration-200 flex items-center gap-2 shadow-lg active:scale-95 cursor-pointer select-none"
+                                        className="group/mute px-3.5 py-1.5 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md border border-white/20 hover:border-blue-500/60 dark:hover:border-beacon/60 text-white transition-all duration-200 flex items-center gap-2 shadow-lg active:scale-95 cursor-pointer select-none"
                                         aria-label={isMuted ? 'Unmute Video Audio' : 'Mute Video Audio'}
                                         title={isMuted ? 'Click to enable audio' : 'Click to mute audio'}
                                     >
                                         {isMuted ? (
                                             <>
-                                                <svg className="w-4 h-4 text-slate-300 group-hover/mute:text-amber-400 dark:group-hover/mute:text-beacon transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                <svg className="w-4 h-4 text-slate-300 group-hover/mute:text-sky-300 dark:group-hover/mute:text-beacon transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 14l4-4m0 4l-4-4" />
                                                 </svg>
@@ -187,12 +187,12 @@ export default function WelcomeVideoSection() {
                                         ) : (
                                             <>
                                                 <div className="relative flex items-center">
-                                                    <svg className="w-4 h-4 text-amber-400 dark:text-beacon" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                    <svg className="w-4 h-4 text-sky-400 dark:text-beacon" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
                                                     </svg>
                                                     <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                                                 </div>
-                                                <span className="text-[11px] font-mono tracking-wider uppercase font-semibold text-amber-400 dark:text-beacon">
+                                                <span className="text-[11px] font-mono tracking-wider uppercase font-semibold text-sky-400 dark:text-beacon">
                                                     Sound On
                                                 </span>
                                             </>

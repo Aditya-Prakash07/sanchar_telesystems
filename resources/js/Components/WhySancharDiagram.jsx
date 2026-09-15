@@ -34,7 +34,7 @@ const PILLARS = [
     {
         id: 'security',
         title: 'Secure Solutions',
-        color: '#f59e0b', // Golden Amber (6 o'clock)
+        color: '#2563eb', // Royal/Electric Blue (6 o'clock)
         angle: 90,
         x: 270,
         y: 455,
@@ -74,12 +74,12 @@ export default function WhySancharDiagram() {
     return (
         <section className="py-20 bg-slate-50 dark:bg-navy-dark border-y border-slate-200 dark:border-navy-border transition-colors duration-300 relative overflow-hidden">
             {/* Soft Ambient Radial Background Aura */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/5 dark:bg-beacon/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 dark:bg-beacon/5 rounded-full blur-3xl pointer-events-none" />
 
             <div className="container-content relative z-10">
                 {/* Section Header */}
                 <div className="text-center max-w-2xl mx-auto mb-14">
-                    <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-2">
+                    <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-2">
                         OUR CORE VALUE PROPOSITION
                     </span>
                     <h2 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-paper tracking-tight">
@@ -261,7 +261,7 @@ export default function WhySancharDiagram() {
 
                             <div className="mt-6 pt-5 border-t border-slate-200 dark:border-navy-border/60 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-steel">
                                 <span>INTERACTIVE VALUE MATRIX</span>
-                                <span className="text-amber-600 dark:text-beacon font-semibold">
+                                <span className="text-blue-600 dark:text-beacon font-semibold">
                                     {activePillar ? 'ACTIVE PILLAR' : '6 VALUE DRIVERS'}
                                 </span>
                             </div>
@@ -278,7 +278,7 @@ export default function WhySancharDiagram() {
                                         onMouseEnter={() => setActivePillar(p)}
                                         className={`p-3 rounded-xl border text-left transition-all text-xs font-medium flex items-center gap-2.5 ${
                                             isSelected 
-                                                ? 'border-amber-500/80 bg-white dark:bg-navy-surface shadow-md scale-[1.02]' 
+                                                ? 'border-blue-500/80 bg-white dark:bg-navy-surface shadow-md scale-[1.02]' 
                                                 : 'border-slate-200 dark:border-navy-border/80 bg-white dark:bg-navy-surface/80 hover:border-slate-300 dark:hover:border-navy-border'
                                         }`}
                                     >

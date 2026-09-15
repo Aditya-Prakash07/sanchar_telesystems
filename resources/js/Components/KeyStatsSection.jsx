@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import AnimatedHeading from '@/Components/AnimatedHeading';
 
 // Exact SVG Icons matching user's live reference
 function BriefcaseIcon({ className = "w-10 h-10" }) {
@@ -165,10 +166,16 @@ export default function KeyStatsSection({ stats = [] }) {
                         Data Facts
                     </div>
 
-                    {/* Exact Title "Key Stats" */}
-                    <h2 className="relative z-10 text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight">
-                        Key <span className="text-sky-400">Stats</span>
-                    </h2>
+                    {/* Exact Title "Key Stats" with Kinetic Typography */}
+                    <AnimatedHeading
+                        as="h2"
+                        highlight="last"
+                        highlightCount={1}
+                        className="relative z-10 text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight"
+                        gradientClass="bg-gradient-to-r from-sky-400 to-cyan-300 bg-clip-text text-transparent"
+                    >
+                        Key Stats
+                    </AnimatedHeading>
 
                     <div className="relative z-10 mt-3 flex items-center justify-center gap-2">
                         <span className="h-0.5 w-12 bg-sky-500/30 rounded-full" />

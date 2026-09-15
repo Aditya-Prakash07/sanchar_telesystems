@@ -15,8 +15,8 @@ export default function Careers({ openings = [], seo = {} }) {
             {/* Header */}
             <header className="relative bg-white dark:bg-navy border-b border-slate-200/80 dark:border-navy-border pt-36 pb-20 overflow-hidden transition-colors duration-300">
                 <div className="container-content relative z-10">
-                    <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
-                        <span className="w-2 h-2 rounded-full bg-amber-500 dark:bg-beacon animate-pulse" />
+                    <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
+                        <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-beacon animate-pulse" />
                         <span>CAREERS &bull; FIELD ENGINEERING &bull; RF RESEARCH</span>
                     </div>
 
@@ -60,7 +60,7 @@ export default function Careers({ openings = [], seo = {} }) {
             <section className="py-20 bg-slate-50 dark:bg-navy-dark border-b border-slate-200 dark:border-navy-border transition-colors duration-300">
                 <div className="container-content">
                     <div className="text-center max-w-2xl mx-auto mb-16">
-                        <span className="text-xs font-mono uppercase tracking-wider font-bold text-amber-600 dark:text-beacon block mb-2">
+                        <span className="text-xs font-mono uppercase tracking-wider font-bold text-blue-600 dark:text-beacon block mb-2">
                             ENGINEERING PHILOSOPHY
                         </span>
                         <AnimatedHeading 
@@ -78,7 +78,7 @@ export default function Careers({ openings = [], seo = {} }) {
                     <div className="grid md:grid-cols-3 gap-8">
                         <div className="card-symmetric p-8 flex flex-col justify-between">
                             <div>
-                                <div className="w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center font-mono font-bold text-xl mb-5">
+                                <div className="w-12 h-12 rounded-xl bg-blue-500/10 dark:bg-beacon/10 text-blue-600 dark:text-beacon flex items-center justify-center font-mono font-bold text-xl mb-5">
                                     01
                                 </div>
                                 <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-3">
@@ -92,7 +92,7 @@ export default function Careers({ openings = [], seo = {} }) {
 
                         <div className="card-symmetric p-8 flex flex-col justify-between">
                             <div>
-                                <div className="w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center font-mono font-bold text-xl mb-5">
+                                <div className="w-12 h-12 rounded-xl bg-blue-500/10 dark:bg-beacon/10 text-blue-600 dark:text-beacon flex items-center justify-center font-mono font-bold text-xl mb-5">
                                     02
                                 </div>
                                 <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-3">
@@ -106,7 +106,7 @@ export default function Careers({ openings = [], seo = {} }) {
 
                         <div className="card-symmetric p-8 flex flex-col justify-between">
                             <div>
-                                <div className="w-12 h-12 rounded-xl bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon flex items-center justify-center font-mono font-bold text-xl mb-5">
+                                <div className="w-12 h-12 rounded-xl bg-blue-500/10 dark:bg-beacon/10 text-blue-600 dark:text-beacon flex items-center justify-center font-mono font-bold text-xl mb-5">
                                     03
                                 </div>
                                 <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-3">
@@ -126,7 +126,7 @@ export default function Careers({ openings = [], seo = {} }) {
                 <div className="container-content max-w-4xl">
                     <div className="flex items-center justify-between mb-10 pb-4 border-b border-slate-200 dark:border-navy-border/80">
                         <div>
-                            <span className="text-xs font-mono text-amber-600 dark:text-beacon uppercase tracking-wider font-bold block mb-1">
+                            <span className="text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider font-bold block mb-1">
                                 CAREER OPPORTUNITIES
                             </span>
                             <AnimatedHeading 
@@ -188,7 +188,7 @@ export default function Careers({ openings = [], seo = {} }) {
                                             </h3>
                                             {job.location && (
                                                 <p className="text-xs font-mono text-slate-500 dark:text-steel mt-1 flex items-center gap-1.5">
-                                                    <svg className="w-3.5 h-3.5 text-amber-500 dark:text-beacon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg className="w-3.5 h-3.5 text-blue-600 dark:text-beacon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                                     </svg>

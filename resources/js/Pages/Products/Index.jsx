@@ -30,7 +30,7 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
             {/* Header */}
             <header className="relative bg-white dark:bg-navy border-b border-slate-200/80 dark:border-navy-border pt-36 pb-16 overflow-hidden">
                 <div className="container-content relative z-10 max-w-3xl">
-                    <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
+                    <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
                         <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
                         <span>TACTICAL HARDWARE & SYSTEMS CATALOG</span>
                     </div>
@@ -55,7 +55,7 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
                             placeholder="Filter systems (e.g. DMR, TETRA, PoC, Antennas)..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="input !bg-slate-50 dark:!bg-navy-surface !border-slate-300 dark:!border-navy-border !text-slate-900 dark:!text-white placeholder:text-slate-400 focus:!border-amber-500 dark:focus:!border-beacon !pr-12"
+                            className="input !bg-slate-50 dark:!bg-navy-surface !border-slate-300 dark:!border-navy-border !text-slate-900 dark:!text-white placeholder:text-slate-400 focus:!border-blue-500 dark:focus:!border-beacon !pr-12"
                         />
                         {search && (
                             <button 
@@ -77,7 +77,7 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
                             <p className="font-mono text-sm">No communication categories matched "{search}".</p>
                             <button 
                                 onClick={() => setSearch('')}
-                                className="mt-3 text-xs font-mono text-amber-500 dark:text-beacon hover:underline"
+                                className="mt-3 text-xs font-mono text-blue-600 dark:text-beacon hover:underline"
                             >
                                 Reset search filter
                             </button>
@@ -119,12 +119,12 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
                                                     <span className="badge-rf text-[10px]">
                                                         WPC CERTIFIED
                                                     </span>
-                                                    <svg className="w-4 h-4 text-slate-400 group-hover:text-amber-500 dark:group-hover:text-beacon transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg className="w-4 h-4 text-slate-400 group-hover:text-blue-500 dark:group-hover:text-beacon transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                                     </svg>
                                                 </div>
 
-                                                <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors min-h-[1.75rem]">
+                                                <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-blue-600 dark:group-hover:text-beacon transition-colors min-h-[1.75rem]">
                                                     {sub.name}
                                                 </h3>
 
@@ -135,7 +135,7 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
 
                                             <div className="pt-4 mt-auto border-t border-slate-100 dark:border-navy-border/40 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-steel">
                                                 <span className="group-hover:text-slate-900 dark:group-hover:text-paper font-medium">Browse Products</span>
-                                                <svg className="w-4 h-4 text-amber-500 dark:text-beacon transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg className="w-4 h-4 text-blue-600 dark:text-beacon transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                                 </svg>
                                             </div>
@@ -149,7 +149,7 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
                     {/* Bottom Custom RFQ Banner */}
                     <div className="card-dual !bg-white dark:!bg-navy-surface p-8 sm:p-12 border border-slate-200/80 dark:border-navy-border shadow-md flex flex-col md:flex-row items-center justify-between gap-8">
                         <div className="max-w-xl">
-                            <span className="text-xs font-mono text-amber-600 dark:text-beacon uppercase tracking-wider font-bold block mb-2">
+                            <span className="text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider font-bold block mb-2">
                                 CUSTOM FREQUENCY TUNING & OEM SOURCING
                             </span>
                             <h3 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-white">

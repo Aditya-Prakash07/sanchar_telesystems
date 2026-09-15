@@ -4,13 +4,15 @@ import React, { useEffect, useRef, useState } from 'react';
  * AnimatedHeading — Industry-Standard Kinetic Typography Reveal
  * 
  * Features:
- * - Word-by-word staggered reveal sliding up smoothly through masked invisible baselines
- * - Apple / Linear grade cubic-bezier easing curve
- * - Viewport-aware IntersectionObserver (triggers automatically on scroll)
- * - Dynamic accent gradient with animated sheen sweep on key/highlighted words
- * - Semantic tag selection (h1, h2, h3, etc.) with preserved accessibility (aria-label)
- * - Zero layout shift & full responsive word wrapping
- * - Native prefers-reduced-motion compliance
+ * - Dynamic Mode Detection: Very large text (h1, text-4xl/5xl/6xl/etc.) uses sequential
+ *   letter-by-letter kinetic entrance ("in words, letters coming one after another")
+ *   with 3D perspective tilt, spring-curve acceleration, and micro-blur dissolution.
+ * - Standard headings retain smooth masked word-by-word reveal.
+ * - Viewport-aware IntersectionObserver (triggers automatically on scroll) or immediate mount.
+ * - Dynamic accent gradient with animated sheen sweep on key/highlighted words/letters.
+ * - Semantic tag selection (h1, h2, h3, etc.) with preserved accessibility (aria-label).
+ * - Zero layout shift & full responsive word wrapping (words never split across linebreaks).
+ * - Native prefers-reduced-motion compliance.
  */
 export default function AnimatedHeading({
     children,
@@ -20,22 +22,19 @@ export default function AnimatedHeading({
     highlightCount = 1, // how many words to highlight from the end when highlight='last'
     highlightPhrase = null, // explicit multi-word phrase to highlight
     delay = 0, // initial delay in ms
-    stagger = 38, // ms between consecutive words
+    stagger = 38, // ms between consecutive words (for word mode)
+    letterStagger = 24, // ms between consecutive letters (for very large text letter mode)
+    animateBy = 'auto', // 'auto' | 'letter' | 'word'
     immediate = false, // if true, animate immediately without waiting for intersection
     threshold = 0.15,
-    gradientClass = 'bg-gradient-to-r from-amber-500 via-amber-300 to-amber-600 dark:from-beacon dark:via-amber-200 dark:to-beacon-dim bg-clip-text text-transparent animate-text-sheen',
+    gradientClass = 'bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-500 dark:from-sky-400 dark:via-blue-300 dark:to-indigo-300 bg-clip-text text-transparent animate-text-sheen',
     ...props
 }) {
     const containerRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
 
-    // Viewport IntersectionObserver
+    // Viewport IntersectionObserver or Immediate Trigger
     useEffect(() => {
-        if (immediate) {
-            setIsVisible(true);
-            return;
-        }
-
         if (typeof window === 'undefined') return;
 
         // Respect user accessibility preferences
@@ -43,6 +42,14 @@ export default function AnimatedHeading({
         if (mediaQuery.matches) {
             setIsVisible(true);
             return;
+        }
+
+        if (immediate) {
+            // Allow initial hidden frame to register in browser layout before triggering transition
+            const timer = requestAnimationFrame(() => {
+                setIsVisible(true);
+            });
+            return () => cancelAnimationFrame(timer);
         }
 
         const el = containerRef.current;
@@ -62,8 +69,16 @@ export default function AnimatedHeading({
         return () => observer.disconnect();
     }, [immediate, threshold]);
 
-    // If children is not a plain string (e.g. nested JSX elements)
-    if (typeof children !== 'string') {
+    // Handle string extraction from children
+    let plainText = '';
+    if (typeof children === 'string') {
+        plainText = children;
+    } else if (Array.isArray(children)) {
+        plainText = children.map(c => (typeof c === 'string' ? c : '')).join('');
+    }
+
+    // If children cannot be parsed into a plain string, fallback to container transition
+    if (!plainText) {
         return (
             <Tag 
                 ref={containerRef} 
@@ -77,9 +92,22 @@ export default function AnimatedHeading({
         );
     }
 
-    const plainText = children.trim();
+    plainText = plainText.trim();
     const words = plainText.split(/\s+/);
     const totalWords = words.length;
+
+    // Detect if this heading qualifies as "Very Large Text"
+    const isLargeText = 
+        animateBy === 'letter' || 
+        (animateBy !== 'word' && (
+            Tag === 'h1' || 
+            /\btext-([4-9]xl|hero)\b/.test(className) ||
+            className.includes('text-4xl') ||
+            className.includes('text-5xl') ||
+            className.includes('text-6xl') ||
+            className.includes('text-7xl') ||
+            className.includes('text-8xl')
+        ));
 
     // Detect matched word indices for highlightPhrase or multi-word highlight string
     const targetPhrase = highlightPhrase || (typeof highlight === 'string' && highlight.includes(' ') && highlight !== 'last' && highlight !== 'none' ? highlight : null);
@@ -106,6 +134,9 @@ export default function AnimatedHeading({
         }
     }
 
+    // Track cumulative character offset for letter-by-letter staggering
+    let globalCharOffset = 0;
+
     return (
         <Tag 
             ref={containerRef} 
@@ -113,13 +144,13 @@ export default function AnimatedHeading({
             aria-label={plainText}
             {...props}
         >
-            {words.map((word, idx) => {
+            {words.map((word, wordIdx) => {
                 // Determine whether this word should receive the gradient highlight
                 let isHighlighted = false;
                 if (phraseMatchedIndices.size > 0) {
-                    isHighlighted = phraseMatchedIndices.has(idx);
+                    isHighlighted = phraseMatchedIndices.has(wordIdx);
                 } else if (highlight === 'last') {
-                    isHighlighted = idx >= totalWords - highlightCount;
+                    isHighlighted = wordIdx >= totalWords - highlightCount;
                 } else if (highlight === 'gradient' || highlight === 'all') {
                     isHighlighted = true;
                 } else if (typeof highlight === 'string' && highlight !== 'none') {
@@ -128,9 +159,51 @@ export default function AnimatedHeading({
                     isHighlighted = highlight.some(h => word.toLowerCase().includes(h.toLowerCase()));
                 }
 
+                if (isLargeText) {
+                    const letters = word.split('');
+                    const currentWordOffset = globalCharOffset;
+                    globalCharOffset += letters.length;
+
+                    return (
+                        <span 
+                            key={wordIdx} 
+                            className="inline-block whitespace-nowrap overflow-hidden py-1.5 align-bottom mr-[0.28em] last:mr-0 leading-tight"
+                            style={{ perspective: '800px' }}
+                            aria-hidden="true"
+                        >
+                            {letters.map((char, charIdx) => {
+                                const charDelay = delay + (currentWordOffset + charIdx) * letterStagger + (wordIdx * 18);
+                                return (
+                                    <span 
+                                        key={charIdx} 
+                                        className={`inline-block will-change-transform ${
+                                            isHighlighted ? gradientClass : ''
+                                        }`}
+                                        style={{
+                                            transform: isVisible 
+                                                ? 'translate3d(0, 0, 0) rotateX(0deg) scale(1)' 
+                                                : 'translate3d(0, 115%, 0) rotateX(-40deg) scale(0.85)',
+                                            opacity: isVisible ? 1 : 0,
+                                            filter: isVisible ? 'blur(0px)' : 'blur(4px)',
+                                            transformOrigin: '50% 100%',
+                                            transitionProperty: 'transform, opacity, filter',
+                                            transitionDuration: '520ms',
+                                            transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+                                            transitionDelay: `${charDelay}ms`
+                                        }}
+                                    >
+                                        {char}
+                                    </span>
+                                );
+                            })}
+                        </span>
+                    );
+                }
+
+                // Standard Word-by-Word Mode for smaller/standard headings
                 return (
                     <span 
-                        key={idx} 
+                        key={wordIdx} 
                         className="inline-block overflow-hidden py-1 align-bottom mr-[0.28em] last:mr-0 leading-tight"
                         aria-hidden="true"
                     >
@@ -141,7 +214,7 @@ export default function AnimatedHeading({
                                     : 'translate-y-[115%] opacity-0 blur-[6px]'
                             } ${isHighlighted ? gradientClass : ''}`}
                             style={{
-                                transitionDelay: `${delay + idx * stagger}ms`,
+                                transitionDelay: `${delay + wordIdx * stagger}ms`,
                                 transitionProperty: 'transform, opacity, filter'
                             }}
                         >

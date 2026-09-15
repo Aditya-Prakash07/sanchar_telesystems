@@ -15,8 +15,8 @@ export default function OemPartners({ partners = [], seo = {} }) {
             {/* Header */}
             <header className="relative bg-white dark:bg-navy border-b border-slate-200/80 dark:border-navy-border pt-36 pb-20 overflow-hidden transition-colors duration-300">
                 <div className="container-content relative z-10">
-                    <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
-                        <span className="w-2 h-2 rounded-full bg-amber-500 dark:bg-beacon animate-pulse" />
+                    <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
+                        <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-beacon animate-pulse" />
                         <span>GLOBAL TECHNOLOGY ALLIANCES &bull; OEM NETWORK</span>
                     </div>
 
@@ -61,7 +61,7 @@ export default function OemPartners({ partners = [], seo = {} }) {
                 <div className="container-content">
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-slate-200 dark:border-steel/20 pb-6">
                         <div>
-                            <span className="text-xs font-mono text-amber-600 dark:text-beacon uppercase tracking-wider font-bold block mb-1">
+                            <span className="text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider font-bold block mb-1">
                                 AUTHORIZED ECOSYSTEM
                             </span>
                             <AnimatedHeading
@@ -85,7 +85,7 @@ export default function OemPartners({ partners = [], seo = {} }) {
                             return (
                                 <div
                                     key={p.name || p.id}
-                                    className="card-symmetric p-8 flex flex-col justify-between group hover:border-amber-500/40 dark:hover:border-beacon/40 transition-all shadow-md hover:shadow-xl"
+                                    className="card-symmetric p-8 flex flex-col justify-between group hover:border-blue-500/40 dark:hover:border-beacon/40 transition-all shadow-md hover:shadow-xl"
                                 >
                                     <div>
                                         {/* Card Top: Logo Container & Status Chip */}
@@ -98,13 +98,13 @@ export default function OemPartners({ partners = [], seo = {} }) {
                                                     loading="lazy"
                                                 />
                                             </div>
-                                            <span className="px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold bg-amber-500/10 dark:bg-beacon/10 text-amber-700 dark:text-beacon border border-amber-500/20 dark:border-beacon/20">
+                                            <span className="px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold bg-blue-500/10 dark:bg-beacon/10 text-blue-700 dark:text-beacon border border-blue-500/20 dark:border-beacon/20">
                                                 Authorized OEM
                                             </span>
                                         </div>
 
                                         {/* Partner Name */}
-                                        <h3 className="font-display font-bold text-xl text-slate-900 dark:text-paper mb-3 group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors">
+                                        <h3 className="font-display font-bold text-xl text-slate-900 dark:text-paper mb-3 group-hover:text-blue-600 dark:group-hover:text-beacon transition-colors">
                                             {p.name}
                                         </h3>
 
@@ -125,10 +125,10 @@ export default function OemPartners({ partners = [], seo = {} }) {
                                                 href={p.website_url}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-amber-600 dark:text-beacon hover:underline"
+                                                className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-blue-600 dark:text-beacon hover:underline"
                                             >
                                                 <span>Visit Official Website</span>
-                                                <svg className="w-3.5 h-3.5 text-amber-600 dark:text-beacon shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg className="w-3.5 h-3.5 text-blue-600 dark:text-beacon shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                                 </svg>
                                             </a>
@@ -143,7 +143,7 @@ export default function OemPartners({ partners = [], seo = {} }) {
                     <div className="mt-20 grid md:grid-cols-3 gap-8">
                         <div className="card-symmetric p-8 flex flex-col justify-between">
                             <div>
-                                <div className="w-10 h-10 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon font-mono font-bold flex items-center justify-center mb-5 text-sm">
+                                <div className="w-10 h-10 rounded-lg bg-blue-500/10 dark:bg-beacon/10 text-blue-600 dark:text-beacon font-mono font-bold flex items-center justify-center mb-5 text-sm">
                                     01
                                 </div>
                                 <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-2">
@@ -157,7 +157,7 @@ export default function OemPartners({ partners = [], seo = {} }) {
 
                         <div className="card-symmetric p-8 flex flex-col justify-between">
                             <div>
-                                <div className="w-10 h-10 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon font-mono font-bold flex items-center justify-center mb-5 text-sm">
+                                <div className="w-10 h-10 rounded-lg bg-blue-500/10 dark:bg-beacon/10 text-blue-600 dark:text-beacon font-mono font-bold flex items-center justify-center mb-5 text-sm">
                                     02
                                 </div>
                                 <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-2">
@@ -171,7 +171,7 @@ export default function OemPartners({ partners = [], seo = {} }) {
 
                         <div className="card-symmetric p-8 flex flex-col justify-between">
                             <div>
-                                <div className="w-10 h-10 rounded-lg bg-amber-500/10 dark:bg-beacon/10 text-amber-600 dark:text-beacon font-mono font-bold flex items-center justify-center mb-5 text-sm">
+                                <div className="w-10 h-10 rounded-lg bg-blue-500/10 dark:bg-beacon/10 text-blue-600 dark:text-beacon font-mono font-bold flex items-center justify-center mb-5 text-sm">
                                     03
                                 </div>
                                 <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-2">
@@ -187,7 +187,7 @@ export default function OemPartners({ partners = [], seo = {} }) {
                     {/* Partnership Inquiry Banner */}
                     <div className="mt-16 card-dual !bg-white dark:!bg-navy-surface p-8 sm:p-12 border border-slate-200 dark:border-navy-border flex flex-col md:flex-row items-center justify-between gap-8">
                         <div className="max-w-xl">
-                            <span className="text-xs font-mono text-amber-600 dark:text-beacon uppercase tracking-wider font-bold block mb-2">
+                            <span className="text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider font-bold block mb-2">
                                 GLOBAL TECHNOLOGY PROVIDERS
                             </span>
                             <h3 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-white">

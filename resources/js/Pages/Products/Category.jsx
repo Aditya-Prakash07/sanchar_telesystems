@@ -26,7 +26,7 @@ export default function ProductsCategory({ category, subcategory, items = [], se
                         <span>/</span>
                         <Link href="/products" className="hover:text-slate-900 dark:hover:text-white transition-colors">PRODUCTS</Link>
                         <span>/</span>
-                        <span className="text-amber-600 dark:text-beacon uppercase font-bold">{subcategory.name}</span>
+                        <span className="text-blue-600 dark:text-beacon uppercase font-bold">{subcategory.name}</span>
                     </nav>
 
                     <div className="max-w-3xl">
@@ -57,7 +57,7 @@ export default function ProductsCategory({ category, subcategory, items = [], se
                         <span className="text-xs font-mono uppercase text-slate-500 dark:text-steel font-bold">
                             HARDWARE CATALOG &bull; {items.length} {items.length === 1 ? 'TERMINAL' : 'TERMINALS / UNITS'}
                         </span>
-                        <Link href="/products" className="text-xs font-mono text-amber-600 dark:text-beacon hover:underline inline-flex items-center gap-1.5 font-medium">
+                        <Link href="/products" className="text-xs font-mono text-blue-600 dark:text-beacon hover:underline inline-flex items-center gap-1.5 font-medium">
                             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                             </svg>
@@ -103,14 +103,14 @@ export default function ProductsCategory({ category, subcategory, items = [], se
                                             />
 
                                             {item.model_number && (
-                                                <span className="absolute top-3 right-3 text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900/80 dark:bg-navy-dark/90 text-amber-400 dark:text-beacon border border-white/10">
+                                                <span className="absolute top-3 right-3 text-[11px] font-mono px-2 py-0.5 rounded bg-slate-900/80 dark:bg-navy-dark/90 text-sky-300 dark:text-beacon border border-white/10">
                                                     {item.model_number}
                                                 </span>
                                             )}
                                         </div>
 
                                         <div className="p-6 space-y-2 flex-1 flex flex-col">
-                                            <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors min-h-[3.25rem] line-clamp-2 leading-snug">
+                                            <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-blue-600 dark:group-hover:text-beacon transition-colors min-h-[3.25rem] line-clamp-2 leading-snug">
                                                 {item.name}
                                             </h3>
 
@@ -122,7 +122,7 @@ export default function ProductsCategory({ category, subcategory, items = [], se
 
                                     <div className="p-6 pt-4 border-t border-slate-100 dark:border-navy-border/40 mt-auto flex items-center justify-between text-xs font-mono text-slate-500 dark:text-steel">
                                         <span className="group-hover:text-slate-900 dark:group-hover:text-paper font-medium">Technical Specifications</span>
-                                        <svg className="w-4 h-4 text-amber-500 dark:text-beacon transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="w-4 h-4 text-blue-600 dark:text-beacon transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                         </svg>
                                     </div>

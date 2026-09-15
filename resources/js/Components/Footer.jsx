@@ -88,21 +88,21 @@ export default function Footer() {
                         <div className="space-y-2 pt-1 text-xs font-mono">
                             <div>
                                 <span className="block text-slate-400 dark:text-paper/60 uppercase text-[10px]">Sales & Marketing:</span>
-                                <a href="tel:+911146528894" className="hover:text-amber-400 dark:hover:text-beacon text-white transition-colors">
+                                <a href="tel:+911146528894" className="hover:text-sky-300 dark:hover:text-beacon text-white transition-colors">
                                     +91 (11) 4652 8894–97
                                 </a>
                                 <br />
-                                <a href="mailto:info@sanchartelesystems.com" className="hover:text-amber-400 dark:hover:text-beacon text-slate-300 transition-colors">
+                                <a href="mailto:info@sanchartelesystems.com" className="hover:text-sky-300 dark:hover:text-beacon text-slate-300 transition-colors">
                                     info@sanchartelesystems.com
                                 </a>
                             </div>
                             <div className="pt-1">
                                 <span className="block text-slate-400 dark:text-paper/60 uppercase text-[10px]">Support & Repair Bench:</span>
-                                <a href="tel:+911146528892" className="hover:text-amber-400 dark:hover:text-beacon text-white transition-colors">
+                                <a href="tel:+911146528892" className="hover:text-sky-300 dark:hover:text-beacon text-white transition-colors">
                                     +91 (11) 4652 8892–93
                                 </a>
                                 <br />
-                                <a href="mailto:service@sanchartelesystems.com" className="hover:text-amber-400 dark:hover:text-beacon text-slate-300 transition-colors">
+                                <a href="mailto:service@sanchartelesystems.com" className="hover:text-sky-300 dark:hover:text-beacon text-slate-300 transition-colors">
                                     service@sanchartelesystems.com
                                 </a>
                             </div>

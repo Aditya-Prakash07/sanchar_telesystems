@@ -67,7 +67,7 @@
                 <span>&larr;</span> Close / Back
             </a>
             <span class="text-slate-600">|</span>
-            <span class="text-xs font-mono uppercase tracking-wider text-amber-400 font-bold flex items-center gap-2">
+            <span class="text-xs font-mono uppercase tracking-wider text-sky-400 font-bold flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                 Official Technical Datasheet &bull; {{ $item->name }}
             </span>
@@ -79,7 +79,7 @@
             </span>
             <button 
                 onclick="window.print()" 
-                class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-mono font-bold text-xs uppercase tracking-wider px-4 py-2 rounded shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer"
+                class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-mono font-bold text-xs uppercase tracking-wider px-4 py-2 rounded shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer"
             >
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
@@ -109,7 +109,7 @@
                 </div>
 
                 <div class="text-left sm:text-right border-t sm:border-t-0 pt-2 sm:pt-0 border-slate-200">
-                    <span class="inline-block bg-slate-900 text-amber-400 text-[9px] font-mono uppercase tracking-widest font-bold px-2.5 py-1 rounded">
+                    <span class="inline-block bg-slate-900 text-sky-400 text-[9px] font-mono uppercase tracking-widest font-bold px-2.5 py-1 rounded">
                         TECHNICAL SPECIFICATION SHEET
                     </span>
                     <div class="text-[10px] font-mono text-slate-600 mt-1">
@@ -139,7 +139,7 @@
             <div class="sm:col-span-8 space-y-3">
                 <div class="flex items-center gap-2">
                     @if($category)
-                        <span class="text-[11px] font-mono uppercase tracking-wider font-bold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded border border-amber-200">
+                        <span class="text-[11px] font-mono uppercase tracking-wider font-bold text-blue-800 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">
                             {{ $category->name }}
                         </span>
                     @endif
@@ -203,7 +203,7 @@
         <section class="mt-6">
             <div class="flex items-center justify-between mb-3 border-b border-slate-900 pb-1.5">
                 <h3 class="text-sm font-black font-mono uppercase tracking-wider text-slate-900 flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    <span class="w-2 h-2 rounded-full bg-blue-600"></span>
                     TECHNICAL SPECIFICATIONS & PARAMETERS
                 </h3>
                 <span class="text-[10px] font-mono text-slate-600">
@@ -287,7 +287,7 @@
             <!-- Box 2: Standard Box Inclusions -->
             <div class="p-4 rounded-lg border border-slate-300 bg-slate-50 space-y-2">
                 <h4 class="text-xs font-bold font-mono uppercase tracking-wider text-slate-900 flex items-center gap-1.5">
-                    <svg class="w-4 h-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg class="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
                     </svg>
                     STANDARD SHIPMENT PACKAGE INCLUSIONS

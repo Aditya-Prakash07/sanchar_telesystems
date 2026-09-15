@@ -51,8 +51,8 @@ export default function About({ team = [], seo = {} }) {
             <header className="relative bg-white dark:bg-navy border-b border-slate-200/80 dark:border-navy-border pt-36 pb-20 overflow-hidden transition-colors duration-300">
                 <div className="container-content relative z-10">
                     <div className="max-w-3xl">
-                        <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
-                            <span className="w-2 h-2 rounded-full bg-amber-500 dark:bg-beacon animate-pulse" />
+                        <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
+                            <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-beacon animate-pulse" />
                             <span>GOVT. OF INDIA WPC & TEC APPROVED SUPPLIER &bull; NEW DELHI HQ</span>
                         </div>
                         <AnimatedHeading
@@ -95,7 +95,7 @@ export default function About({ team = [], seo = {} }) {
                 <div className="container-content">
                     <div className="grid lg:grid-cols-12 gap-12 items-center">
                         <div className="lg:col-span-6 space-y-5 text-slate-700 dark:text-steel leading-relaxed text-sm sm:text-base">
-                            <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block">
+                            <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block">
                                 OUR PURPOSE & HERITAGE
                             </span>
                             <AnimatedHeading
@@ -127,29 +127,29 @@ export default function About({ team = [], seo = {} }) {
 
                         <div className="lg:col-span-6">
                             <div className="grid grid-cols-2 gap-4">
-                                <div className="card-symmetric p-6 space-y-2 hover:border-amber-500/50 dark:hover:border-beacon/40 hover:shadow-xl transition-all duration-300">
-                                    <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">
+                                <div className="card-symmetric p-6 space-y-2 hover:border-blue-500/50 dark:hover:border-beacon/40 hover:shadow-xl transition-all duration-300">
+                                    <div className="font-display text-3xl font-bold text-blue-600 dark:text-beacon">
                                         <AnimatedNumber value="300,000" suffix="+" duration={1800} />
                                     </div>
                                     <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Units Sold</h3>
                                     <p className="text-xs text-slate-500 dark:text-steel">Wireless communication units, terminals, and radio systems deployed nationwide.</p>
                                 </div>
-                                <div className="card-symmetric p-6 space-y-2 hover:border-amber-500/50 dark:hover:border-beacon/40 hover:shadow-xl transition-all duration-300">
-                                    <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">
+                                <div className="card-symmetric p-6 space-y-2 hover:border-blue-500/50 dark:hover:border-beacon/40 hover:shadow-xl transition-all duration-300">
+                                    <div className="font-display text-3xl font-bold text-blue-600 dark:text-beacon">
                                         <AnimatedNumber value={500} suffix="+" duration={2000} />
                                     </div>
                                     <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Projects Delivered</h3>
                                     <p className="text-xs text-slate-500 dark:text-steel">Turnkey communication systems delivered for public safety, transit, and heavy industry.</p>
                                 </div>
-                                <div className="card-symmetric p-6 space-y-2 hover:border-amber-500/50 dark:hover:border-beacon/40 hover:shadow-xl transition-all duration-300">
-                                    <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">
+                                <div className="card-symmetric p-6 space-y-2 hover:border-blue-500/50 dark:hover:border-beacon/40 hover:shadow-xl transition-all duration-300">
+                                    <div className="font-display text-3xl font-bold text-blue-600 dark:text-beacon">
                                         <AnimatedNumber value={50} suffix="+" duration={1600} />
                                     </div>
                                     <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">Distributor Network</h3>
                                     <p className="text-xs text-slate-500 dark:text-steel">Nationwide network of authorized channel partners providing sales and engineering support.</p>
                                 </div>
-                                <div className="card-symmetric p-6 space-y-2 hover:border-amber-500/50 dark:hover:border-beacon/40 hover:shadow-xl transition-all duration-300">
-                                    <div className="font-display text-3xl font-bold text-amber-500 dark:text-beacon">
+                                <div className="card-symmetric p-6 space-y-2 hover:border-blue-500/50 dark:hover:border-beacon/40 hover:shadow-xl transition-all duration-300">
+                                    <div className="font-display text-3xl font-bold text-blue-600 dark:text-beacon">
                                         <span>100%</span>
                                     </div>
                                     <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">WPC &amp; TEC Approved</h3>
@@ -166,7 +166,7 @@ export default function About({ team = [], seo = {} }) {
                 <div className="container-content">
                     <div className="grid lg:grid-cols-12 gap-12 items-center">
                         <div className="lg:col-span-6 space-y-5 text-slate-700 dark:text-steel leading-relaxed text-sm sm:text-base">
-                            <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block">
+                            <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block">
                                 OEM ALLIANCES & GeM PROCUREMENT
                             </span>
                             <AnimatedHeading
@@ -182,7 +182,7 @@ export default function About({ team = [], seo = {} }) {
                             <p>
                                 We specialize in offering best communication solutions which are right for your business — configured for zero downtime across government, enterprise, and industrial deployments.
                             </p>
-                            <p className="p-4 rounded-xl bg-amber-500/10 dark:bg-beacon/10 border border-amber-500/20 dark:border-beacon/20 text-slate-800 dark:text-slate-200">
+                            <p className="p-4 rounded-xl bg-blue-500/10 dark:bg-beacon/10 border border-blue-500/20 dark:border-beacon/20 text-slate-800 dark:text-slate-200">
                                 <strong>Government Procurement:</strong> Sanchar offers genuine Kenwood communication products on the <strong>GeM (Government e-Marketplace)</strong> portal for seamless public, defense, and paramilitary procurement.
                             </p>
                         </div>
@@ -230,7 +230,7 @@ export default function About({ team = [], seo = {} }) {
 
                         {/* Right: "Service is our Motto" Narrative from Official Website */}
                         <div className="lg:col-span-6 order-1 lg:order-2 space-y-5 text-slate-700 dark:text-steel leading-relaxed text-sm sm:text-base">
-                            <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block">
+                            <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block">
                                 IN-HOUSE TESTING & LEVEL-3 SERVICE DEPOT
                             </span>
                             <AnimatedHeading
@@ -246,7 +246,7 @@ export default function About({ team = [], seo = {} }) {
                             <p>
                                 Sanchar is geographically spread across the country through our excellent and dedicated channel partners who excel in providing communication solutions right at your doorstep.
                             </p>
-                            <p className="font-semibold text-slate-900 dark:text-paper border-l-4 border-amber-500 dark:border-beacon pl-4 italic">
+                            <p className="font-semibold text-slate-900 dark:text-paper border-l-4 border-blue-600 dark:border-beacon pl-4 italic">
                                 &ldquo;Service is our Motto&rdquo; &mdash; Sanchar&rsquo;s team of highly skilled telecom experts and best-in-class infrastructure ensures the right solution for each customer.
                             </p>
 
@@ -261,11 +261,11 @@ export default function About({ team = [], seo = {} }) {
                                 </div>
                                 <div className="flex items-center gap-2 text-slate-800 dark:text-paper">
                                     <span className="w-1.5 h-1.5 rounded-full bg-beacon" />
-                                    <span>MIL-STD & IP68 Stress Testing</span>
+                                    <span>Pre-Commissioning Burn-In</span>
                                 </div>
                                 <div className="flex items-center gap-2 text-slate-800 dark:text-paper">
                                     <span className="w-1.5 h-1.5 rounded-full bg-beacon" />
-                                    <span>Rapid Nationwide Turnaround</span>
+                                    <span>Spares Inventory Management</span>
                                 </div>
                             </div>
 
@@ -292,7 +292,7 @@ export default function About({ team = [], seo = {} }) {
             <section className="py-20 bg-white dark:bg-navy border-y border-slate-200 dark:border-navy-border transition-colors duration-300">
                 <div className="container-content">
                     <div className="max-w-2xl mb-14">
-                        <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-2">
+                        <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-2">
                             TURNKEY PROJECT PIPELINE
                         </span>
                         <AnimatedHeading 
@@ -311,10 +311,10 @@ export default function About({ team = [], seo = {} }) {
                         {PROCESS.map((p) => (
                             <div key={p.step} className="card-symmetric p-8 group">
                                 <div>
-                                    <span className="font-mono text-xs tracking-wider text-amber-500 dark:text-beacon font-bold block mb-2">
+                                    <span className="font-mono text-xs tracking-wider text-blue-600 dark:text-beacon font-bold block mb-2">
                                         PHASE {p.step}
                                     </span>
-                                    <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper mb-2 group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors min-h-[1.75rem]">
+                                    <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper mb-2 group-hover:text-blue-600 dark:group-hover:text-beacon transition-colors min-h-[1.75rem]">
                                         {p.title}
                                     </h3>
                                     <p className="text-xs sm:text-sm text-slate-600 dark:text-steel leading-relaxed">
@@ -331,7 +331,7 @@ export default function About({ team = [], seo = {} }) {
             <section className="py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
                 <div className="container-content">
                     <div className="max-w-2xl mb-14 text-center md:text-left">
-                        <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-2">
+                        <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-2">
                             LEADERSHIP TEAM
                         </span>
                         <AnimatedHeading 
@@ -391,11 +391,6 @@ export default function About({ team = [], seo = {} }) {
                                         className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
                                         loading="lazy"
                                     />
-                                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4">
-                                        <span className="text-xs font-mono text-amber-400 dark:text-beacon font-bold tracking-wide uppercase">
-                                            {member.title}
-                                        </span>
-                                    </div>
                                 </div>
 
                                 <div className="flex-1 flex flex-col justify-between">
@@ -403,7 +398,7 @@ export default function About({ team = [], seo = {} }) {
                                         <h3 className="font-display font-bold text-xl text-slate-900 dark:text-paper mb-1 line-clamp-1">
                                             {member.name}
                                         </h3>
-                                        <p className="text-xs font-mono text-amber-600 dark:text-beacon/90 font-medium mb-3 line-clamp-1">
+                                        <p className="text-xs font-mono text-blue-600 dark:text-beacon/90 font-medium mb-3 line-clamp-1">
                                             {member.title}
                                         </p>
                                     </div>

@@ -78,7 +78,7 @@ const formatHeading = (text) => {
     return (
         <>
             <span className="text-white drop-shadow-xl">{leadWords} </span>
-            <span className="bg-gradient-to-r from-amber-300 via-beacon to-amber-400 bg-clip-text text-transparent drop-shadow-[0_2px_16px_rgba(245,158,11,0.45)]">
+            <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-sky-400 bg-clip-text text-transparent drop-shadow-[0_2px_16px_rgba(59,130,246,0.55)]">
                 {lastWord}
             </span>
         </>
@@ -288,7 +288,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                         highlight="last"
                                         highlightCount={1}
                                         className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight leading-[1.12] text-white drop-shadow-xl"
-                                        gradientClass="bg-gradient-to-r from-amber-300 via-beacon to-amber-400 bg-clip-text text-transparent drop-shadow-[0_2px_16px_rgba(245,158,11,0.45)] animate-text-sheen"
+                                        gradientClass="bg-gradient-to-r from-blue-300 via-cyan-300 to-sky-400 bg-clip-text text-transparent drop-shadow-[0_2px_16px_rgba(59,130,246,0.55)] animate-text-sheen"
                                     >
                                         {slides[currentSlide].heading}
                                     </AnimatedHeading>
@@ -296,7 +296,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
 
                                 {/* Luminous Telemetry Tracer Accent Line */}
                                 <div className="relative h-1 w-28 overflow-hidden rounded-full bg-white/15 my-1">
-                                    <div className="animate-hero-tracer h-full w-full bg-gradient-to-r from-beacon via-amber-400 to-transparent rounded-full shadow-[0_0_10px_rgba(245,158,11,0.5)]" />
+                                    <div className="animate-hero-tracer h-full w-full bg-gradient-to-r from-beacon via-sky-400 to-transparent rounded-full shadow-[0_0_10px_rgba(59,130,246,0.6)]" />
                                 </div>
 
                                 {/* Subtitle with Blur-to-Focus Motion */}
@@ -321,7 +321,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 <div className="animate-hero-cta pt-3 flex flex-wrap items-center gap-4">
                                     <Link 
                                         href={slides[currentSlide].cta_url || '/products'} 
-                                        className="btn-shimmer !py-3.5 !px-8 text-sm uppercase tracking-wider font-mono font-bold shadow-xl hover:shadow-amber-500/40"
+                                        className="btn-shimmer !py-3.5 !px-8 text-sm uppercase tracking-wider font-mono font-bold shadow-xl hover:shadow-blue-500/40"
                                     >
                                         {slides[currentSlide].cta_label || 'Explore Products'}
                                     </Link>
@@ -456,7 +456,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                 <div className="container-content">
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
                         <div className="shrink-0 max-w-sm">
-                            <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-1">
+                            <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-1">
                                 CRITICAL DEPLOYMENTS
                             </span>
                             <h2 className="text-lg sm:text-xl font-display font-bold text-slate-900 dark:text-paper leading-snug">
@@ -465,7 +465,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6 items-center flex-1">
-                            <div className="flex items-center gap-3.5 p-3.5 sm:p-4 rounded-xl border border-slate-200/80 dark:border-white/10 bg-slate-50/60 dark:bg-navy-surface/50 hover:bg-white dark:hover:bg-navy-surface hover:border-amber-500/40 dark:hover:border-beacon/30 hover:shadow-lg hover:shadow-amber-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1 transition-all duration-300 group">
+                            <div className="flex items-center gap-3.5 p-3.5 sm:p-4 rounded-xl border border-slate-200/80 dark:border-white/10 bg-slate-50/60 dark:bg-navy-surface/50 hover:bg-white dark:hover:bg-navy-surface hover:border-blue-500/40 dark:hover:border-beacon/30 hover:shadow-lg hover:shadow-blue-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1 transition-all duration-300 group">
                                 <div className="w-12 h-12 rounded-lg bg-white dark:bg-white/10 p-1.5 flex items-center justify-center border border-slate-200/60 dark:border-white/10 shadow-sm shrink-0 group-hover:scale-105 transition-transform">
                                     <img 
                                         src="/storage/media/clients/Parliament.png" 
@@ -474,7 +474,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                     />
                                 </div>
                                 <div className="min-w-0">
-                                    <span className="block text-xs font-bold text-slate-900 dark:text-paper group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors truncate">
+                                    <span className="block text-xs font-bold text-slate-900 dark:text-paper group-hover:text-blue-600 dark:group-hover:text-beacon transition-colors truncate">
                                         Parliament of India
                                     </span>
                                     <span className="block text-[10px] font-mono text-slate-500 dark:text-steel uppercase tracking-wider">
@@ -483,7 +483,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-3.5 p-3.5 sm:p-4 rounded-xl border border-slate-200/80 dark:border-white/10 bg-slate-50/60 dark:bg-navy-surface/50 hover:bg-white dark:hover:bg-navy-surface hover:border-amber-500/40 dark:hover:border-beacon/30 hover:shadow-lg hover:shadow-amber-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1 transition-all duration-300 group">
+                            <div className="flex items-center gap-3.5 p-3.5 sm:p-4 rounded-xl border border-slate-200/80 dark:border-white/10 bg-slate-50/60 dark:bg-navy-surface/50 hover:bg-white dark:hover:bg-navy-surface hover:border-blue-500/40 dark:hover:border-beacon/30 hover:shadow-lg hover:shadow-blue-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1 transition-all duration-300 group">
                                 <div className="w-12 h-12 rounded-lg bg-white dark:bg-white/10 p-1.5 flex items-center justify-center border border-slate-200/60 dark:border-white/10 shadow-sm shrink-0 group-hover:scale-105 transition-transform">
                                     <img 
                                         src="/storage/media/clients/DelhiPolice.png" 
@@ -492,7 +492,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                     />
                                 </div>
                                 <div className="min-w-0">
-                                    <span className="block text-xs font-bold text-slate-900 dark:text-paper group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors truncate">
+                                    <span className="block text-xs font-bold text-slate-900 dark:text-paper group-hover:text-blue-600 dark:group-hover:text-beacon transition-colors truncate">
                                         Delhi Police
                                     </span>
                                     <span className="block text-[10px] font-mono text-slate-500 dark:text-steel uppercase tracking-wider">
@@ -501,7 +501,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-3.5 p-3.5 sm:p-4 rounded-xl border border-slate-200/80 dark:border-white/10 bg-slate-50/60 dark:bg-navy-surface/50 hover:bg-white dark:hover:bg-navy-surface hover:border-amber-500/40 dark:hover:border-beacon/30 hover:shadow-lg hover:shadow-amber-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1 transition-all duration-300 group">
+                            <div className="flex items-center gap-3.5 p-3.5 sm:p-4 rounded-xl border border-slate-200/80 dark:border-white/10 bg-slate-50/60 dark:bg-navy-surface/50 hover:bg-white dark:hover:bg-navy-surface hover:border-blue-500/40 dark:hover:border-beacon/30 hover:shadow-lg hover:shadow-blue-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1 transition-all duration-300 group">
                                 <div className="w-12 h-12 rounded-lg bg-white dark:bg-white/10 p-1.5 flex items-center justify-center border border-slate-200/60 dark:border-white/10 shadow-sm shrink-0 group-hover:scale-105 transition-transform">
                                     <img 
                                         src="/storage/media/clients/sdb.png" 
@@ -510,7 +510,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                     />
                                 </div>
                                 <div className="min-w-0">
-                                    <span className="block text-xs font-bold text-slate-900 dark:text-paper group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors truncate">
+                                    <span className="block text-xs font-bold text-slate-900 dark:text-paper group-hover:text-blue-600 dark:group-hover:text-beacon transition-colors truncate">
                                         Surat Diamond Bourse
                                     </span>
                                     <span className="block text-[10px] font-mono text-slate-500 dark:text-steel uppercase tracking-wider">
@@ -536,17 +536,17 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             <section id="sectors" className="py-20 sm:py-24 bg-slate-50 dark:bg-navy-dark transition-colors duration-300 relative overflow-hidden">
                 <div className="container-content relative z-10">
                     <div className="max-w-3xl mb-12">
-                        <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-2">
-                            TAILORED INDUSTRY ARCHITECTURE
+                        <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-2">
+                            CROSS-INDUSTRY DOMAINS
                         </span>
                         <AnimatedHeading 
                             as="h2" 
-                            highlightPhrase="Zero-Downtime Operations"
+                            highlightPhrase="Industry Verticals"
                             className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-paper"
                         >
-                            Engineered for Zero-Downtime Operations
+                            Specialized Telecom for Critical Industry Verticals
                         </AnimatedHeading>
-                        <p className="mt-3 text-slate-600 dark:text-steel leading-relaxed">
+                        <p className="mt-4 text-slate-600 dark:text-steel max-w-2xl text-base leading-relaxed">
                             Sanchar excels in offering reliable wireless communication solutions tailored for mission-critical operations across public safety, railways, petrochemical facilities, and heavy industries with DMR, TETRA, analog radio, and LTE systems.
                         </p>
                     </div>
@@ -559,11 +559,11 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 onClick={() => setSelectedSector(idx)}
                                 className={`flex items-center gap-2.5 px-4 sm:px-5 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
                                     selectedSector === idx
-                                        ? 'bg-white dark:bg-beacon text-slate-950 dark:text-slate-950 shadow-md shadow-amber-500/10 dark:shadow-beacon/20 scale-[1.02]'
+                                        ? 'bg-white dark:bg-beacon text-slate-950 dark:text-white shadow-md shadow-blue-500/10 dark:shadow-beacon/20 scale-[1.02]'
                                         : 'text-slate-600 dark:text-steel hover:text-slate-950 dark:hover:text-paper hover:bg-white/60 dark:hover:bg-white/5'
                                 }`}
                             >
-                                <span className={selectedSector === idx ? 'text-amber-600 dark:text-slate-950' : 'text-slate-400 dark:text-steel'}>
+                                <span className={selectedSector === idx ? 'text-blue-600 dark:text-white' : 'text-slate-400 dark:text-steel'}>
                                     {getSectorIcon(idx)}
                                 </span>
                                 <span>{sec.title}</span>
@@ -591,10 +591,10 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 <div className="grid sm:grid-cols-2 gap-3 pt-2">
                                     {SECTOR_DATA[selectedSector].features.map((feat) => (
                                         <div 
-                                            key={feat} 
-                                            className="flex items-start gap-2.5 text-sm font-medium text-slate-800 dark:text-paper p-2 rounded-lg hover:bg-amber-500/5 dark:hover:bg-beacon/5 transition-colors group"
+                                             key={feat} 
+                                             className="flex items-start gap-2.5 text-sm font-medium text-slate-800 dark:text-paper p-2 rounded-lg hover:bg-blue-500/5 dark:hover:bg-beacon/5 transition-colors group"
                                         >
-                                            <div className="w-5 h-5 rounded-full bg-amber-500/15 dark:bg-beacon/15 text-amber-600 dark:text-beacon flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
+                                            <div className="w-5 h-5 rounded-full bg-blue-500/15 dark:bg-beacon/15 text-blue-600 dark:text-beacon flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                                                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                                 </svg>
@@ -655,7 +655,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                     {/* Header with Title, Browse Catalog Link & Interactive Controls */}
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-6">
                         <div>
-                            <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-1">
+                            <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-1">
                                 MISSION-READY TERMINALS & SYSTEMS
                             </span>
                             <AnimatedHeading 
@@ -673,7 +673,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                         <div className="flex items-center gap-4 shrink-0">
                             <Link 
                                 href="/products" 
-                                className="group inline-flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-paper hover:text-amber-600 dark:hover:text-beacon transition-colors font-mono"
+                                className="group inline-flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-paper hover:text-blue-600 dark:hover:text-beacon transition-colors font-mono"
                             >
                                 <span>Browse 120+ Products</span>
                                 <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -688,7 +688,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                     disabled={!canScrollLeft}
                                     className={`h-9 w-9 rounded-full border flex items-center justify-center transition-all shadow-xs ${
                                         canScrollLeft
-                                            ? 'border-slate-300 dark:border-white/20 bg-white dark:bg-navy-surface text-slate-800 dark:text-white hover:border-amber-500 hover:text-amber-600 dark:hover:border-beacon dark:hover:text-beacon active:scale-95 cursor-pointer shadow-sm'
+                                            ? 'border-slate-300 dark:border-white/20 bg-white dark:bg-navy-surface text-slate-800 dark:text-white hover:border-blue-500 hover:text-blue-600 dark:hover:border-beacon dark:hover:text-beacon active:scale-95 cursor-pointer shadow-sm'
                                             : 'border-slate-200 dark:border-white/5 bg-slate-100 dark:bg-white/[0.03] text-slate-300 dark:text-white/20 cursor-not-allowed'
                                     }`}
                                     aria-label="Previous hardware"
@@ -704,7 +704,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                     disabled={!canScrollRight}
                                     className={`h-9 w-9 rounded-full border flex items-center justify-center transition-all shadow-xs ${
                                         canScrollRight
-                                            ? 'border-slate-300 dark:border-white/20 bg-white dark:bg-navy-surface text-slate-800 dark:text-white hover:border-amber-500 hover:text-amber-600 dark:hover:border-beacon dark:hover:text-beacon active:scale-95 cursor-pointer shadow-sm'
+                                            ? 'border-slate-300 dark:border-white/20 bg-white dark:bg-navy-surface text-slate-800 dark:text-white hover:border-blue-500 hover:text-blue-600 dark:hover:border-beacon dark:hover:text-beacon active:scale-95 cursor-pointer shadow-sm'
                                             : 'border-slate-200 dark:border-white/5 bg-slate-100 dark:bg-white/[0.03] text-slate-300 dark:text-white/20 cursor-not-allowed'
                                     }`}
                                     aria-label="Next hardware"
@@ -734,7 +734,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                             {(featuredProducts || []).map((item) => (
                                 <div 
                                     key={item.id}
-                                    className="hardware-card-shelf snap-start shrink-0 w-[300px] sm:w-[340px] lg:w-[380px] group relative flex flex-col justify-between border border-slate-200/90 dark:border-white/10 bg-white dark:bg-navy-surface rounded-2xl shadow-sm hover:border-amber-500/50 dark:hover:border-beacon/40 overflow-hidden"
+                                    className="hardware-card-shelf snap-start shrink-0 w-[300px] sm:w-[340px] lg:w-[380px] group relative flex flex-col justify-between border border-slate-200/90 dark:border-white/10 bg-white dark:bg-navy-surface rounded-2xl shadow-sm hover:border-blue-500/50 dark:hover:border-beacon/40 overflow-hidden"
                                 >
                                     <div className="flex-1 flex flex-col">
                                         {/* Image Pedestal with interactive zoom & ambient glow */}
@@ -751,7 +751,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                             />
 
                                             {item.model_number && (
-                                                <span className="absolute top-3 right-3 text-[11px] font-mono px-2.5 py-1 rounded-md bg-slate-900/85 dark:bg-slate-950/90 text-amber-400 dark:text-beacon border border-amber-500/25 shadow-sm font-semibold">
+                                                <span className="absolute top-3 right-3 text-[11px] font-mono px-2.5 py-1 rounded-md bg-slate-900/85 dark:bg-slate-950/90 text-sky-400 dark:text-beacon border border-blue-500/25 shadow-sm font-semibold">
                                                     {item.model_number}
                                                 </span>
                                             )}
@@ -772,7 +772,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                                 </span>
                                             </div>
 
-                                            <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-amber-600 dark:group-hover:text-beacon transition-colors min-h-[3.25rem] line-clamp-2 leading-snug">
+                                            <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-blue-600 dark:group-hover:text-beacon transition-colors min-h-[3.25rem] line-clamp-2 leading-snug">
                                                 {item.name}
                                             </h3>
 
@@ -785,7 +785,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                     <div className="p-6 pt-4 border-t border-slate-100 dark:border-navy-border/40 mt-auto flex items-center justify-between bg-slate-50/50 dark:bg-navy-surface/30">
                                         <Link
                                             href={`/products/${item.subcategory?.category?.slug || 'professional-amateur-radio'}/${item.subcategory?.slug || 'dmr'}/${item.slug}`}
-                                            className="text-xs font-mono font-semibold text-slate-900 dark:text-paper hover:text-amber-600 dark:hover:text-beacon flex items-center gap-1.5 group/link"
+                                            className="text-xs font-mono font-semibold text-slate-900 dark:text-paper hover:text-blue-600 dark:hover:text-beacon flex items-center gap-1.5 group/link"
                                         >
                                             <span>Specifications</span>
                                             <svg className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -814,7 +814,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                     onClick={() => scrollToIndex(dotIdx)}
                                     className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                                         activeHardwareIndex === dotIdx 
-                                            ? 'w-8 bg-amber-500 dark:bg-beacon shadow-sm shadow-amber-500/30' 
+                                            ? 'w-8 bg-blue-600 dark:bg-beacon shadow-sm shadow-blue-500/30' 
                                             : 'w-2.5 bg-slate-200 dark:bg-white/20 hover:bg-slate-300 dark:hover:bg-white/40'
                                     }`}
                                     aria-label={`Scroll to product ${dotIdx + 1}`}
@@ -846,7 +846,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                 <div className="container-content">
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
                         <div>
-                            <span className="text-xs font-mono uppercase tracking-widest text-amber-600 dark:text-beacon font-bold block mb-1">
+                            <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-1">
                                 GLOBAL TECHNOLOGY ALLIANCES
                             </span>
                             <AnimatedHeading 
@@ -862,7 +862,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                         </div>
                         <Link 
                             href="/oem-partners" 
-                            className="group inline-flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-paper hover:text-amber-600 dark:hover:text-beacon font-mono shrink-0"
+                            className="group inline-flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-paper hover:text-blue-600 dark:hover:text-beacon font-mono shrink-0"
                         >
                             <span>View All Partners</span>
                             <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -886,7 +886,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 href={partner.website_url || '#'}
                                 target={partner.website_url && partner.website_url !== '#' ? '_blank' : '_self'}
                                 rel="noopener noreferrer"
-                                className="group shrink-0 min-w-[190px] sm:min-w-[210px] h-[104px] p-3.5 rounded-2xl bg-white dark:bg-navy-surface border border-slate-200/90 dark:border-white/10 flex flex-col items-center justify-between text-center hover:border-amber-500/50 dark:hover:border-beacon/50 hover:shadow-xl hover:shadow-amber-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1 transition-all duration-300"
+                                className="group shrink-0 min-w-[190px] sm:min-w-[210px] h-[104px] p-3.5 rounded-2xl bg-white dark:bg-navy-surface border border-slate-200/90 dark:border-white/10 flex flex-col items-center justify-between text-center hover:border-blue-500/50 dark:hover:border-beacon/50 hover:shadow-xl hover:shadow-blue-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1 transition-all duration-300"
                             >
                                 <div className="w-full h-12 px-3 py-1.5 rounded-xl bg-white dark:bg-white/95 border border-slate-200/80 dark:border-slate-300 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-300">
                                     <img
@@ -894,6 +894,10 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                         alt={partner.name}
                                         className="max-h-8 max-w-[130px] w-auto object-contain"
                                         loading="lazy"
+                                        onError={(e) => {
+                                            e.target.onerror = null;
+                                            e.target.src = '/storage/media/branding/logo-emblem.svg';
+                                        }}
                                     />
                                 </div>
                                 <span className="text-[11px] font-mono font-medium text-slate-500 dark:text-steel group-hover:text-slate-900 dark:group-hover:text-paper truncate w-full transition-colors">
@@ -911,7 +915,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             ========================================================================= */}
             <section className="py-24 bg-white dark:bg-navy border-t border-slate-200 dark:border-navy-border transition-colors duration-300 relative overflow-hidden">
                 {/* Ambient Radial Backdrop Glow */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-amber-500/5 dark:bg-beacon/5 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-blue-500/5 dark:bg-beacon/5 rounded-full blur-3xl pointer-events-none" />
 
                 <div className="container-content text-center max-w-3xl mx-auto space-y-6 relative z-10">
                     <span className="badge-rf text-xs">GOVERNMENT & ENTERPRISE PROCUREMENT</span>
@@ -926,14 +930,14 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                         Get in touch with our New Delhi technical and sales team for expert product advice, turnkey system design, or Government e-Marketplace (GeM) procurement support.
                     </p>
                     <div className="pt-3 flex flex-wrap items-center justify-center gap-4">
-                        <Link href="/contact-us" className="btn-shimmer !py-3.5 !px-8 text-sm font-mono uppercase tracking-wider font-bold shadow-xl hover:shadow-amber-500/40">
+                        <Link href="/contact-us" className="btn-shimmer !py-3.5 !px-8 text-sm font-mono uppercase tracking-wider font-bold shadow-xl hover:shadow-blue-500/40">
                             Talk with Our Technical Team
                         </Link>
                         <a 
                             href="tel:+911146528894" 
                             className="btn-secondary !py-3.5 !px-6 text-sm font-mono inline-flex items-center gap-2 group"
                         >
-                            <svg className="w-4 h-4 text-amber-600 dark:text-beacon transition-transform duration-200 group-hover:rotate-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="w-4 h-4 text-blue-600 dark:text-beacon transition-transform duration-200 group-hover:rotate-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                             </svg>
                             <span>Call +91 (11) 4652 8894</span>

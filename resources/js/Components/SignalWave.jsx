@@ -12,10 +12,10 @@ export default function SignalWave({ className = '' }) {
         >
             <defs>
                 <linearGradient id="rf-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#E8A33D" stopOpacity="0.1" />
-                    <stop offset="30%" stopColor="#FBBF24" stopOpacity="0.8" />
-                    <stop offset="70%" stopColor="#E8A33D" stopOpacity="0.9" />
-                    <stop offset="100%" stopColor="#C98A2B" stopOpacity="0.1" />
+                    <stop offset="0%" stopColor="#2563EB" stopOpacity="0.1" />
+                    <stop offset="30%" stopColor="#60A5FA" stopOpacity="0.8" />
+                    <stop offset="70%" stopColor="#3B82F6" stopOpacity="0.9" />
+                    <stop offset="100%" stopColor="#1D4ED8" stopOpacity="0.1" />
                 </linearGradient>
                 <linearGradient id="sub-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.05" />

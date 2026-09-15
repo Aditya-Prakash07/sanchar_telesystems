@@ -9,7 +9,7 @@ export default function ApplicationLogo({
     ...props
 }) {
     const rawId = useId();
-    const gradId = `sancharLogoGold_${rawId.replace(/:/g, '')}`;
+    const gradId = `sancharLogoBlue_${rawId.replace(/:/g, '')}`;
 
     // Determine context for dark vs light color scheme
     const isDarkContext = 
@@ -18,28 +18,33 @@ export default function ApplicationLogo({
         (variant === 'auto' && (theme === 'dark' || isOverBanner));
 
     return (
-        <div className={`flex items-center gap-3 shrink-0 select-none group/logo ${className}`} {...props}>
-            {/* Vector Sanchar Emblem with Golden Yellow Theme & Ambient Aura */}
+        <div className={`flex items-center gap-3 shrink-0 select-none ${className}`} {...props}>
+            {/* Vector Sanchar Emblem with Blue Brand Theme (Zero Animation, Zero Glow) */}
             <div className="relative flex items-center justify-center shrink-0 h-8 w-8 sm:h-9 sm:w-9">
-                {/* Subtle ambient golden backglow */}
-                <div 
-                    className="absolute -inset-1 rounded-full bg-amber-400/30 blur-md pointer-events-none opacity-70 group-hover/logo:opacity-100 group-hover/logo:scale-125 transition-all duration-500"
-                    aria-hidden="true"
-                />
-
                 <svg 
                     viewBox="0 0 252 271" 
-                    className="w-full h-full object-contain shrink-0 relative z-10 animate-logo-pulse transition-all duration-300 group-hover/logo:scale-105 group-hover/logo:-rotate-2 group-hover/logo:drop-shadow-[0_0_14px_rgba(245,158,11,0.9)]"
+                    className="w-full h-full object-contain shrink-0 relative z-10"
                     fill="none" 
                     xmlns="http://www.w3.org/2000/svg"
                     aria-label="Sanchar Emblem"
                 >
                     <defs>
                         <linearGradient id={gradId} x1="0%" y1="100%" x2="100%" y2="0%">
-                            <stop offset="0%" stopColor="#d97706" />
-                            <stop offset="35%" stopColor="#f59e0b" />
-                            <stop offset="70%" stopColor="#fbbf24" />
-                            <stop offset="100%" stopColor="#fef08a" />
+                            {isDarkContext ? (
+                                <>
+                                    <stop offset="0%" stopColor="#1d4ed8" />
+                                    <stop offset="35%" stopColor="#3b82f6" />
+                                    <stop offset="70%" stopColor="#60a5fa" />
+                                    <stop offset="100%" stopColor="#93c5fd" />
+                                </>
+                            ) : (
+                                <>
+                                    <stop offset="0%" stopColor="#1e3a8a" />
+                                    <stop offset="40%" stopColor="#3a52a4" />
+                                    <stop offset="75%" stopColor="#2563eb" />
+                                    <stop offset="100%" stopColor="#60a5fa" />
+                                </>
+                            )}
                         </linearGradient>
                     </defs>
                     <g transform="translate(-38.2, 288.6) scale(0.1, -0.1)" fill={`url(#${gradId})`}>
@@ -49,21 +54,36 @@ export default function ApplicationLogo({
                 </svg>
             </div>
 
-            {/* Typography */}
+            {/* Complete Company Name Beside Emblem: Sanchar Telesystems Limited. (Zero Animation) */}
             {showText && (
-                <div className="flex flex-col justify-center leading-none">
-                    <span className={`font-mono text-base sm:text-lg font-bold tracking-wider uppercase transition-all duration-300 ${
-                        isDarkContext 
-                            ? 'bg-gradient-to-r from-amber-200 via-amber-400 to-yellow-300 bg-clip-text text-transparent drop-shadow-sm group-hover/logo:from-yellow-200 group-hover/logo:to-amber-300' 
-                            : 'bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-600 bg-clip-text text-transparent group-hover/logo:from-amber-500 group-hover/logo:to-yellow-500'
-                    }`}>
-                        SANCHAR
-                    </span>
-                    <span className={`text-[8.5px] sm:text-[9.5px] font-sans font-semibold tracking-widest uppercase transition-colors duration-200 mt-0.5 ${
-                        isDarkContext ? 'text-amber-400/80 group-hover/logo:text-amber-300' : 'text-amber-700/80 dark:text-amber-400/80 group-hover/logo:text-amber-600'
-                    }`}>
-                        TELESYSTEMS
-                    </span>
+                <div className="flex flex-col justify-center leading-none select-none">
+                    {/* Top: SANCHAR with space between letters to span width of TELESYSTEMS LIMITED. */}
+                    <div 
+                        className={`w-full flex justify-between items-center text-[12px] sm:text-[13.5px] font-display font-extrabold uppercase leading-tight ${
+                            isDarkContext 
+                                ? 'text-white' 
+                                : 'text-[#3a52a4]'
+                        }`}
+                    >
+                        <span>S</span>
+                        <span>A</span>
+                        <span>N</span>
+                        <span>C</span>
+                        <span>H</span>
+                        <span>A</span>
+                        <span>R</span>
+                    </div>
+
+                    {/* Bottom: TELESYSTEMS LIMITED. */}
+                    <div 
+                        className={`text-[7.5px] sm:text-[8.5px] font-sans font-bold tracking-[0.08em] uppercase whitespace-nowrap leading-none mt-0.5 ${
+                            isDarkContext 
+                                ? 'text-blue-200' 
+                                : 'text-[#3a52a4]'
+                        }`}
+                    >
+                        TELESYSTEMS LIMITED.
+                    </div>
                 </div>
             )}
         </div>

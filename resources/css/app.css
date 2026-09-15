@@ -40,28 +40,28 @@
     }
 
     .btn-primary {
-        @apply inline-flex items-center justify-center gap-2 bg-gradient-to-b from-amber-400 to-amber-500 dark:from-beacon dark:to-beacon-dim text-slate-950 font-bold px-6 py-3
-               rounded-lg shadow-md shadow-amber-500/15 hover:shadow-xl hover:shadow-amber-500/25 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
+        @apply inline-flex items-center justify-center gap-2 bg-gradient-to-b from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 text-white font-bold px-6 py-3
+               rounded-lg shadow-md shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/35 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
     }
 
     .btn-secondary {
         @apply inline-flex items-center justify-center gap-2 bg-white dark:bg-navy-surface border border-slate-300 dark:border-white/10 text-slate-800 dark:text-paper font-semibold px-6 py-3
-               rounded-lg shadow-sm hover:border-amber-500/50 dark:hover:border-beacon/50 hover:bg-slate-50 dark:hover:bg-white/[0.04] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
+               rounded-lg shadow-sm hover:border-blue-500/50 dark:hover:border-beacon/50 hover:bg-slate-50 dark:hover:bg-white/[0.04] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
     }
 
     .btn-outline-dark {
         @apply inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-white/15 text-slate-800 dark:text-paper font-semibold
-               px-6 py-3 rounded-lg hover:border-amber-500 dark:hover:border-beacon hover:text-amber-600 dark:hover:text-beacon hover:bg-amber-500/5 dark:hover:bg-beacon/5 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
+               px-6 py-3 rounded-lg hover:border-blue-500 dark:hover:border-beacon hover:text-blue-600 dark:hover:text-beacon hover:bg-blue-500/5 dark:hover:bg-beacon/5 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
     }
 
     .btn-beacon {
-        @apply inline-flex items-center justify-center gap-2 bg-gradient-to-b from-amber-400 to-amber-500 dark:from-beacon dark:to-beacon-dim text-slate-950 font-bold px-6 py-3
-               rounded-lg shadow-md shadow-amber-500/15 hover:shadow-xl hover:shadow-amber-500/25 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
+        @apply inline-flex items-center justify-center gap-2 bg-gradient-to-b from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 text-white font-bold px-6 py-3
+               rounded-lg shadow-md shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/35 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
     }
 
     .btn-outline-paper {
         @apply inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-white/20 text-slate-800 dark:text-paper font-semibold
-               px-5 py-2.5 rounded-lg hover:border-amber-500 dark:hover:border-beacon hover:text-amber-600 dark:hover:text-beacon hover:bg-amber-500/5 dark:hover:bg-beacon/5 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
+               px-5 py-2.5 rounded-lg hover:border-blue-500 dark:hover:border-beacon hover:text-blue-600 dark:hover:text-beacon hover:bg-blue-500/5 dark:hover:bg-beacon/5 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
     }
 
     .card-dual {
@@ -74,17 +74,17 @@
 
     .panel-hover {
         @apply border border-slate-200/90 dark:border-navy-border/60 bg-white dark:bg-navy-surface rounded-xl shadow-sm
-               hover:border-amber-500/50 dark:hover:border-beacon/50 hover:shadow-xl hover:shadow-amber-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1.5 transition-all duration-300 ease-out;
+               hover:border-blue-500/50 dark:hover:border-beacon/50 hover:shadow-xl hover:shadow-blue-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1.5 transition-all duration-300 ease-out;
     }
 
     .card-symmetric {
         @apply h-full flex flex-col justify-between border border-slate-200/90 dark:border-navy-border/60 bg-white dark:bg-navy-surface rounded-xl shadow-sm
-               hover:border-amber-500/50 dark:hover:border-beacon/50 hover:shadow-2xl hover:shadow-amber-500/10 dark:hover:shadow-beacon/5 hover:-translate-y-1.5 transition-all duration-300 ease-out overflow-hidden;
+               hover:border-blue-500/50 dark:hover:border-beacon/50 hover:shadow-2xl hover:shadow-blue-500/10 dark:hover:shadow-beacon/5 hover:-translate-y-1.5 transition-all duration-300 ease-out overflow-hidden;
     }
 
     .btn-shimmer {
-        @apply inline-flex items-center justify-center gap-2 bg-gradient-to-b from-amber-400 to-amber-500 dark:from-beacon dark:to-beacon-dim text-slate-950 font-bold px-6 py-3
-               rounded-lg shadow-md shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/35 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
+        @apply inline-flex items-center justify-center gap-2 bg-gradient-to-b from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 text-white font-bold px-6 py-3
+               rounded-lg shadow-md shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 cursor-pointer;
     }
 
     .panel-dark {
@@ -93,7 +93,7 @@
 
     .badge-rf {
         @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono tracking-wide uppercase font-semibold
-               rounded-full border border-beacon/30 bg-beacon/10 text-amber-600 dark:text-beacon;
+               rounded-full border border-beacon/30 bg-beacon/10 text-blue-600 dark:text-beacon;
     }
 
     .badge-navy {
@@ -331,7 +331,7 @@
     }
 
     .text-glow-beacon {
-        text-shadow: 0 0 20px rgba(245, 158, 11, 0.35), 0 0 40px rgba(245, 158, 11, 0.12);
+        text-shadow: 0 0 20px rgba(59, 130, 246, 0.45), 0 0 40px rgba(59, 130, 246, 0.2);
     }
 
     /* Hide scrollbar utility */
@@ -348,23 +348,7 @@
     }
     .hardware-card-shelf:hover {
         transform: translateY(-6px);
-        box-shadow: 0 20px 30px -10px rgba(245, 158, 11, 0.12), 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 20px 30px -10px rgba(59, 130, 246, 0.18), 0 10px 15px -3px rgba(0, 0, 0, 0.05);
     }
 
-    /* Company Logo Golden Glow & Shimmer Animation */
-    @keyframes logoAuraPulse {
-        0%, 100% {
-            filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.35)) drop-shadow(0 0 6px rgba(251, 191, 36, 0.15));
-            transform: scale(1);
-        }
-        50% {
-            filter: drop-shadow(0 0 7px rgba(245, 158, 11, 0.7)) drop-shadow(0 0 14px rgba(251, 191, 36, 0.4));
-            transform: scale(1.025);
-        }
-    }
-
-    .animate-logo-pulse {
-        animation: logoAuraPulse 3.8s ease-in-out infinite;
-        will-change: transform, filter;
-    }
 }
