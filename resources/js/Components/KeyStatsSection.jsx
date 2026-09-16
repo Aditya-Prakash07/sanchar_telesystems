@@ -75,19 +75,19 @@ function StatCard({ stat, isVisible, index }) {
         const label = (stat.label || '').toUpperCase();
 
         if (iconKey === 'clipboard' || label.includes('PROJECT')) {
-            return <ClipboardGearIcon className="w-9 h-9 sm:w-11 sm:h-11 text-white" />;
+            return <ClipboardGearIcon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />;
         }
         if (iconKey === 'network' || label.includes('DISTRIBUTOR') || label.includes('DEALER')) {
-            return <GearBadgeIcon className="w-9 h-9 sm:w-11 sm:h-11 text-white" />;
+            return <GearBadgeIcon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />;
         }
-        return <BriefcaseIcon className="w-9 h-9 sm:w-11 sm:h-11 text-white" />;
+        return <BriefcaseIcon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />;
     };
 
     const suffix = stat.suffix ? stat.suffix.trim() : '+';
 
     return (
         <div 
-            className="group relative flex flex-col items-center justify-between p-8 sm:p-10 rounded-2xl bg-white/[0.02] dark:bg-white/[0.02] border border-white/10 hover:border-sky-500/50 hover:bg-white/[0.04] transition-all duration-500 hover:-translate-y-2 shadow-2xl hover:shadow-[0_20px_50px_rgba(56,189,248,0.2)] overflow-hidden"
+            className="group relative flex flex-col items-center justify-between p-6 sm:p-8 rounded-2xl bg-white/[0.02] dark:bg-white/[0.02] border border-white/10 hover:border-sky-500/50 hover:bg-white/[0.04] transition-all duration-500 hover:-translate-y-1.5 shadow-xl hover:shadow-[0_20px_45px_rgba(56,189,248,0.2)] overflow-hidden"
         >
             {/* Top illuminated line on hover */}
             <div className="absolute top-0 inset-x-8 h-[2px] bg-gradient-to-r from-transparent via-sky-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl pointer-events-none" />
@@ -96,23 +96,23 @@ function StatCard({ stat, isVisible, index }) {
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-sky-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
             {/* Icon Pedestal with Hover Spring */}
-            <div className="relative z-10 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:border-sky-400/60 group-hover:shadow-[0_0_25px_rgba(56,189,248,0.25)] transition-all duration-500 shadow-inner">
+            <div className="relative z-10 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:border-sky-400/60 group-hover:shadow-[0_0_24px_rgba(56,189,248,0.25)] transition-all duration-500 shadow-inner">
                 {getIcon()}
             </div>
 
             {/* Gradually Increasing Counter with Glow */}
-            <div className="relative z-10 font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#4a90e2] dark:text-sky-400 tracking-tight tabular-nums drop-shadow-[0_4px_16px_rgba(59,130,246,0.35)] flex items-baseline justify-center transition-transform duration-300 group-hover:scale-105">
+            <div className="relative z-10 font-display text-4xl sm:text-5xl lg:text-5xl font-extrabold text-[#4a90e2] dark:text-sky-400 tracking-tight tabular-nums drop-shadow-[0_4px_16px_rgba(59,130,246,0.35)] flex items-baseline justify-center transition-transform duration-300 group-hover:scale-105">
                 <span>{count}</span>
-                <span className="ml-2 text-3xl sm:text-4xl lg:text-5xl text-sky-400/90 font-light">{suffix}</span>
+                <span className="ml-2 text-2xl sm:text-3xl lg:text-4xl text-sky-400/90 font-light">{suffix}</span>
             </div>
 
             {/* Stat Label */}
-            <div className="relative z-10 mt-4 text-xs sm:text-sm font-mono tracking-widest font-semibold text-slate-300 dark:text-slate-300 uppercase text-center leading-relaxed">
+            <div className="relative z-10 mt-3.5 text-xs sm:text-[13px] font-mono tracking-wider font-semibold text-slate-300 dark:text-slate-300 uppercase text-center leading-snug">
                 {stat.label}
             </div>
 
             {/* Bottom Glow Indicator */}
-            <div className="relative z-10 mt-6 h-0.5 w-10 bg-white/10 group-hover:w-20 group-hover:bg-sky-400 transition-all duration-500 rounded-full" />
+            <div className="relative z-10 mt-5 h-0.5 w-10 group-hover:w-18 group-hover:bg-sky-400 bg-white/10 transition-all duration-500 rounded-full" />
         </div>
     );
 }
@@ -153,14 +153,14 @@ export default function KeyStatsSection({ stats = [] }) {
     return (
         <section 
             ref={sectionRef}
-            className="py-24 sm:py-28 bg-[#12151b] text-paper relative overflow-hidden border-y border-slate-800/80 transition-colors duration-300"
+            className="py-16 sm:py-20 bg-[#12151b] text-paper relative overflow-hidden border-y border-slate-800/80 transition-colors duration-300"
         >
             {/* Ambient Background Grid Pattern */}
             <div className="absolute inset-0 bg-grid-pattern opacity-15 pointer-events-none" />
 
             {/* Watermark "Data Facts" + Foreground "Key Stats" Header */}
             <div className="container-content relative z-10">
-                <div className="relative text-center mb-16 sm:mb-20">
+                <div className="relative text-center mb-10 sm:mb-12">
                     {/* Atmospheric Watermark behind Title */}
                     <div 
                         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none text-white/[0.04] text-6xl sm:text-8xl md:text-9xl font-black uppercase tracking-widest whitespace-nowrap blur-[0.5px]"
@@ -174,16 +174,16 @@ export default function KeyStatsSection({ stats = [] }) {
                         as="h2"
                         highlight="last"
                         highlightCount={1}
-                        className="relative z-10 text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white tracking-tight"
+                        className="relative z-10 text-2xl sm:text-3xl lg:text-[34px] font-display font-bold text-white tracking-tight"
                         gradientClass="bg-gradient-to-r from-sky-400 to-cyan-300 bg-clip-text text-transparent"
                     >
                         Key Stats
                     </AnimatedHeading>
 
-                    <div className="relative z-10 mt-3 flex items-center justify-center gap-2">
-                        <span className="h-0.5 w-12 bg-sky-500/30 rounded-full" />
+                    <div className="relative z-10 mt-2.5 flex items-center justify-center gap-2">
+                        <span className="h-0.5 w-10 bg-sky-500/30 rounded-full" />
                         <span className="h-1.5 w-1.5 bg-sky-400 rounded-full animate-ping" />
-                        <span className="h-0.5 w-12 bg-sky-500/30 rounded-full" />
+                        <span className="h-0.5 w-10 bg-sky-500/30 rounded-full" />
                     </div>
                 </div>
 

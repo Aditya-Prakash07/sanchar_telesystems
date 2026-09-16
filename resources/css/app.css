@@ -351,4 +351,257 @@
         box-shadow: 0 20px 30px -10px rgba(59, 130, 246, 0.18), 0 10px 15px -3px rgba(0, 0, 0, 0.05);
     }
 
+    /* =========================================================================
+       CSS-TRICKS STYLE OVERLAPPING & FANNING CARD DECK (OPTIMIZED)
+       Faithful implementation of the iconic CSS-Tricks "Popular this month":
+       - Independent, fixed Left Anchor Card with animated flowing gradient border
+       - Dedicated spacing ensuring Anchor Card NEVER overlaps with deck cards
+       - Overlapping card deck with negative left margins on md/lg/xl screens
+       - Exact cancellation shift: hover ~ .csstricks-card shifts by the exact overlap
+       - Deep directional drop shadows (-2rem 0 3rem -2rem #000)
+       - All 6 cards visible simultaneously on About Us viewport
+       - Responsive mobile snap-scroll fallback
+    ========================================================================= */
+
+    @keyframes anchorGradientFlow {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    @keyframes anchorAuraPulse {
+        0%, 100% {
+            box-shadow: 0 12px 32px -6px rgba(37, 99, 235, 0.35), 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+        50% {
+            box-shadow: 0 16px 45px -4px rgba(2, 132, 199, 0.55), 0 0 25px rgba(6, 182, 212, 0.4);
+        }
+    }
+
+    .csstricks-anchor {
+        flex-shrink: 0;
+        border-radius: 1.5rem;
+        padding: 3px;
+        background: linear-gradient(135deg, #1d4ed8, #0284c7 25%, #06b6d4 50%, #6366f1 75%, #2563eb 100%);
+        background-size: 250% 250%;
+        animation: anchorGradientFlow 7s ease infinite, anchorAuraPulse 4s ease-in-out infinite;
+        display: flex;
+        position: relative;
+    }
+
+    .csstricks-anchor-inner {
+        background: #000000;
+        border-radius: calc(1.5rem - 3px);
+        padding: 1.75rem 1.5rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        overflow: hidden;
+        z-index: 2;
+    }
+
+    /* Overlapping Deck Track */
+    .csstricks-deck {
+        display: flex;
+        align-items: stretch;
+        position: relative;
+    }
+
+    .csstricks-card {
+        flex-shrink: 0;
+        position: relative;
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                    box-shadow 0.35s ease, 
+                    border-color 0.25s ease, 
+                    opacity 0.3s ease;
+    }
+
+    /* Invisible hover hit-bridge extending below and around the card to prevent vibration/jitter when hovering near edges */
+    .csstricks-card::after {
+        content: '';
+        position: absolute;
+        inset: -0.75rem -0.5rem -1.75rem -0.5rem;
+        pointer-events: auto;
+        z-index: -1;
+    }
+
+    /* Standard Hardware Deck (Home page): Sized so at least 6 cards are visible on viewport */
+    @media (min-width: 768px) {
+        /* 1. First Card: Independent centered elevation shadow (no card to the left, so no negative X offset or clipping) */
+        .hardware-deck .csstricks-card:first-child {
+            box-shadow: 0 8px 22px -5px rgba(0, 0, 0, 0.16), 0 3px 8px -2px rgba(0, 0, 0, 0.08);
+        }
+
+        .dark .hardware-deck .csstricks-card:first-child,
+        :is(.dark) .hardware-deck .csstricks-card:first-child {
+            box-shadow: 0 10px 28px -5px rgba(0, 0, 0, 0.9), 0 4px 12px -2px #000;
+        }
+
+        /* 2. Subsequent Cards: Leftward overlap shadow to cast onto the previous card */
+        .hardware-deck .csstricks-card:not(:first-child) {
+            margin-left: -3.5rem;
+            box-shadow: -2rem 0.65rem 2rem -1.25rem rgba(0, 0, 0, 0.45);
+        }
+
+        .dark .hardware-deck .csstricks-card:not(:first-child),
+        :is(.dark) .hardware-deck .csstricks-card:not(:first-child) {
+            box-shadow: -2.5rem 0.65rem 2rem -1.25rem #000;
+        }
+
+        /* 3. Hover on First Card: Pure upward lift & tilt (NO negative translateX, zero clipping, z-50 for complete visibility) */
+        .hardware-deck .csstricks-card:first-child:focus-within,
+        .hardware-deck .csstricks-card:first-child:hover {
+            transform: translateY(-0.85rem) rotate(2.5deg);
+            z-index: 50 !important;
+            box-shadow: 0 20px 38px -8px rgba(0, 0, 0, 0.28), 0 6px 16px -4px rgba(0, 0, 0, 0.15);
+        }
+
+        .dark .hardware-deck .csstricks-card:first-child:focus-within,
+        .dark .hardware-deck .csstricks-card:first-child:hover,
+        :is(.dark) .hardware-deck .csstricks-card:first-child:focus-within,
+        :is(.dark) .hardware-deck .csstricks-card:first-child:hover {
+            box-shadow: 0 24px 45px -8px rgba(0, 0, 0, 0.95), 0 8px 20px -4px #000;
+        }
+
+        /* 4. Hover on Subsequent Cards: Upward lift & tilt with leftward overlap + elevation (z-50 for complete visibility) */
+        .hardware-deck .csstricks-card:not(:first-child):focus-within,
+        .hardware-deck .csstricks-card:not(:first-child):hover {
+            transform: translateY(-0.85rem) rotate(2.5deg);
+            z-index: 50 !important;
+            box-shadow: -2rem 1rem 2rem -1rem rgba(0, 0, 0, 0.4), 
+                        0 22px 35px -8px rgba(0, 0, 0, 0.28);
+        }
+
+        .dark .hardware-deck .csstricks-card:not(:first-child):focus-within,
+        .dark .hardware-deck .csstricks-card:not(:first-child):hover,
+        :is(.dark) .hardware-deck .csstricks-card:not(:first-child):focus-within,
+        :is(.dark) .hardware-deck .csstricks-card:not(:first-child):hover {
+            box-shadow: -2.5rem 1rem 2rem -1.25rem #000, 
+                        0 24px 42px -8px rgba(0, 0, 0, 0.95);
+        }
+
+        .hardware-deck .csstricks-card:hover ~ .csstricks-card,
+        .hardware-deck .csstricks-card:focus-within ~ .csstricks-card {
+            transform: translateX(4.5rem);
+        }
+
+        .hardware-deck:hover .csstricks-card {
+            opacity: 0.88;
+        }
+        .hardware-deck:hover .csstricks-card:hover {
+            opacity: 1 !important;
+        }
+        .hardware-deck:hover .csstricks-card:hover ~ .csstricks-card {
+            opacity: 0.96;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .hardware-deck .csstricks-card {
+            width: 210px;
+        }
+        .hardware-deck .csstricks-card:not(:first-child) {
+            margin-left: -4.5rem; /* -72px overlap: each card adds 138px */
+        }
+        .hardware-deck .csstricks-card:hover ~ .csstricks-card,
+        .hardware-deck .csstricks-card:focus-within ~ .csstricks-card {
+            transform: translateX(5.25rem);
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .hardware-deck .csstricks-card {
+            width: 220px;
+        }
+        .hardware-deck .csstricks-card:not(:first-child) {
+            margin-left: -5.25rem; /* -84px overlap: each card adds 136px. 220 + 5*136 = 900px total deck */
+        }
+        .hardware-deck .csstricks-card:hover ~ .csstricks-card,
+        .hardware-deck .csstricks-card:focus-within ~ .csstricks-card {
+            transform: translateX(6rem);
+        }
+    }
+
+    /* About Us Turnkey 6-Card Pipeline: All 6 cards visible on viewport */
+    @media (min-width: 1024px) {
+        .pipeline-deck .csstricks-card:first-child {
+            box-shadow: 0 8px 22px -5px rgba(0, 0, 0, 0.16), 0 3px 8px -2px rgba(0, 0, 0, 0.08);
+        }
+        .dark .pipeline-deck .csstricks-card:first-child,
+        :is(.dark) .pipeline-deck .csstricks-card:first-child {
+            box-shadow: 0 10px 28px -5px rgba(0, 0, 0, 0.9), 0 4px 12px -2px #000;
+        }
+
+        .pipeline-deck .csstricks-card:not(:first-child) {
+            margin-left: -4.5rem; /* -72px overlap: each card adds 143px */
+            box-shadow: -2.5rem 0.65rem 2rem -1.25rem rgba(0, 0, 0, 0.4);
+        }
+        .dark .pipeline-deck .csstricks-card:not(:first-child),
+        :is(.dark) .pipeline-deck .csstricks-card:not(:first-child) {
+            box-shadow: -3rem 0.65rem 2rem -1.25rem #000;
+        }
+
+        .pipeline-deck .csstricks-card:first-child:focus-within,
+        .pipeline-deck .csstricks-card:first-child:hover {
+            transform: translateY(-0.85rem) rotate(2.5deg);
+            z-index: 50 !important;
+            box-shadow: 0 20px 38px -8px rgba(0, 0, 0, 0.28), 0 6px 16px -4px rgba(0, 0, 0, 0.15);
+        }
+        .dark .pipeline-deck .csstricks-card:first-child:focus-within,
+        .dark .pipeline-deck .csstricks-card:first-child:hover,
+        :is(.dark) .pipeline-deck .csstricks-card:first-child:focus-within,
+        :is(.dark) .pipeline-deck .csstricks-card:first-child:hover {
+            box-shadow: 0 24px 45px -8px rgba(0, 0, 0, 0.95), 0 8px 20px -4px #000;
+        }
+
+        .pipeline-deck .csstricks-card:not(:first-child):focus-within,
+        .pipeline-deck .csstricks-card:not(:first-child):hover {
+            transform: translateY(-0.85rem) rotate(2.5deg);
+            z-index: 50 !important;
+            box-shadow: -2rem 1rem 2rem -1rem rgba(0, 0, 0, 0.4), 
+                        0 22px 35px -8px rgba(0, 0, 0, 0.28);
+        }
+        .dark .pipeline-deck .csstricks-card:not(:first-child):focus-within,
+        .dark .pipeline-deck .csstricks-card:not(:first-child):hover,
+        :is(.dark) .pipeline-deck .csstricks-card:not(:first-child):focus-within,
+        :is(.dark) .pipeline-deck .csstricks-card:not(:first-child):hover {
+            box-shadow: -2.5rem 1rem 2rem -1.25rem #000, 
+                        0 24px 42px -8px rgba(0, 0, 0, 0.95);
+        }
+        .pipeline-deck .csstricks-card:hover ~ .csstricks-card,
+        .pipeline-deck .csstricks-card:focus-within ~ .csstricks-card {
+            transform: translateX(5.25rem);
+        }
+        .pipeline-deck:hover .csstricks-card {
+            opacity: 0.88;
+        }
+        .pipeline-deck:hover .csstricks-card:hover {
+            opacity: 1 !important;
+        }
+        .pipeline-deck:hover .csstricks-card:hover ~ .csstricks-card {
+            opacity: 0.96;
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .pipeline-deck .csstricks-card {
+            width: 230px;
+        }
+        .pipeline-deck .csstricks-card:not(:first-child) {
+            margin-left: -5rem; /* -80px overlap: each card adds 150px. 230 + 5*150 = 980px total deck */
+        }
+        .pipeline-deck .csstricks-card:hover ~ .csstricks-card,
+        .pipeline-deck .csstricks-card:focus-within ~ .csstricks-card {
+            transform: translateX(5.75rem);
+        }
+    }
 }
+

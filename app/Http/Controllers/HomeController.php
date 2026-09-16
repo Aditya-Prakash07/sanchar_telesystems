@@ -27,7 +27,7 @@ class HomeController extends Controller
 
             'featuredProducts' => \App\Models\PortfolioItem::where('is_published', true)
                 ->orderBy('sort_order')
-                ->take(6)
+                ->take(8)
                 ->with('subcategory.category')
                 ->get(['id', 'product_subcategory_id', 'name', 'slug', 'model_number', 'short_description', 'cover_image_path', 'specifications']),
 

@@ -533,31 +533,31 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             {/* =========================================================================
                 3. TAILORED INDUSTRY SECTORS (INTERACTIVE TABS)
             ========================================================================= */}
-            <section id="sectors" className="py-20 sm:py-24 bg-slate-50 dark:bg-navy-dark transition-colors duration-300 relative overflow-hidden">
+            <section id="sectors" className="py-12 sm:py-14 bg-slate-50 dark:bg-navy-dark transition-colors duration-300 relative overflow-hidden">
                 <div className="container-content relative z-10">
-                    <div className="max-w-3xl mb-12">
-                        <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-2">
+                    <div className="max-w-3xl mb-6 sm:mb-8">
+                        <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-1.5">
                             CROSS-INDUSTRY DOMAINS
                         </span>
                         <AnimatedHeading 
                             as="h2" 
                             highlightPhrase="Industry Verticals"
-                            className="text-3xl sm:text-4xl font-display font-bold text-slate-900 dark:text-paper"
+                            className="text-2xl sm:text-3xl lg:text-[34px] font-display font-bold text-slate-900 dark:text-paper"
                         >
                             Specialized Telecom for Critical Industry Verticals
                         </AnimatedHeading>
-                        <p className="mt-4 text-slate-600 dark:text-steel max-w-2xl text-base leading-relaxed">
+                        <p className="mt-2.5 text-slate-600 dark:text-steel max-w-2xl text-sm sm:text-base leading-relaxed">
                             Sanchar excels in offering reliable wireless communication solutions tailored for mission-critical operations across public safety, railways, petrochemical facilities, and heavy industries with DMR, TETRA, analog radio, and LTE systems.
                         </p>
                     </div>
 
                     {/* Interactive Icon-Enhanced Tab Controls */}
-                    <div className="flex flex-wrap gap-2.5 p-2 rounded-2xl bg-slate-200/70 dark:bg-navy-surface border border-slate-300/80 dark:border-navy-border max-w-full mb-8 shadow-xs">
+                    <div className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-slate-200/70 dark:bg-navy-surface border border-slate-300/80 dark:border-navy-border max-w-full mb-6 shadow-xs">
                         {SECTOR_DATA.map((sec, idx) => (
                             <button
                                 key={sec.title}
                                 onClick={() => setSelectedSector(idx)}
-                                className={`flex items-center gap-2.5 px-4 sm:px-5 py-3 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
+                                className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
                                     selectedSector === idx
                                         ? 'bg-white dark:bg-beacon text-slate-950 dark:text-white shadow-md shadow-blue-500/10 dark:shadow-beacon/20 scale-[1.02]'
                                         : 'text-slate-600 dark:text-steel hover:text-slate-950 dark:hover:text-paper hover:bg-white/60 dark:hover:bg-white/5'
@@ -572,7 +572,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                     </div>
 
                     {/* Selected Sector Showcase Card with Telemetry Specs */}
-                    <div className="panel p-8 sm:p-12 border border-slate-200 dark:border-white/10 shadow-xl dark:shadow-black/30">
+                    <div className="panel p-5 sm:p-8 border border-slate-200 dark:border-white/10 shadow-xl dark:shadow-black/30">
                         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                             <div className="lg:col-span-7 space-y-5">
                                 <span className="badge-rf font-mono text-xs">
@@ -651,10 +651,10 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             {/* =========================================================================
                 4. FEATURED HARDWARE SHOWCASE — SINGLE ROW INTERACTIVE SHELF
             ========================================================================= */}
-            <section id="hardware" className="py-20 sm:py-24 bg-white dark:bg-navy border-y border-slate-200 dark:border-navy-border transition-colors duration-300 relative overflow-hidden">
+            <section id="hardware" className="py-12 sm:py-14 bg-white dark:bg-navy border-y border-slate-200 dark:border-navy-border transition-colors duration-300 relative overflow-hidden">
                 <div className="container-content">
                     {/* Header with Title, Browse Catalog Link & Interactive Controls */}
-                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-6">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-6">
                         <div>
                             <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-1">
                                 MISSION-READY TERMINALS & SYSTEMS
@@ -662,7 +662,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                             <AnimatedHeading 
                                 as="h2" 
                                 highlightPhrase="Wireless Hardware"
-                                className="text-3xl font-display font-bold text-slate-900 dark:text-paper"
+                                className="text-2xl sm:text-3xl lg:text-[34px] font-display font-bold text-slate-900 dark:text-paper"
                             >
                                 Featured Wireless Hardware
                             </AnimatedHeading>
@@ -719,96 +719,134 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                         </div>
                     </div>
 
-                    {/* Single Row Hardware Shelf with Interactive Scroll Snap & Dynamic Edge Overlays */}
-                    <div className="relative group/shelf">
-                        {canScrollLeft && (
-                            <div className="pointer-events-none absolute left-0 top-0 bottom-6 w-12 z-10 bg-gradient-to-r from-white dark:from-navy to-transparent transition-opacity duration-300" />
-                        )}
-                        {canScrollRight && (
-                            <div className="pointer-events-none absolute right-0 top-0 bottom-6 w-12 z-10 bg-gradient-to-l from-white dark:from-navy to-transparent transition-opacity duration-300" />
-                        )}
-
-                        <div 
-                            ref={hardwareScrollRef}
-                            className="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pt-2 pb-6 px-1"
-                        >
-                            {(featuredProducts || []).map((item) => (
-                                <div 
-                                    key={item.id}
-                                    className="hardware-card-shelf snap-start shrink-0 w-[300px] sm:w-[340px] lg:w-[380px] group relative flex flex-col justify-between border border-slate-200/90 dark:border-white/10 bg-white dark:bg-navy-surface rounded-2xl shadow-sm hover:shadow-2xl hover:border-blue-500/60 dark:hover:border-beacon/50 hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden"
-                                >
-                                    {/* Top specular accent line on hover */}
-                                    <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-blue-500/0 dark:via-beacon/0 to-transparent group-hover:via-blue-500 dark:group-hover:via-beacon transition-all duration-500 z-20" />
-
-                                    <div className="flex-1 flex flex-col">
-                                        {/* Image Pedestal with interactive zoom, deep black in dark mode */}
-                                        <div className="aspect-[4/3] w-full bg-gradient-to-b from-slate-100/70 via-slate-50/40 to-slate-100/80 dark:bg-black dark:from-black dark:via-black dark:to-black overflow-hidden relative flex items-center justify-center p-8 border-b border-slate-100 dark:border-white/10">
-                                            {/* Subtle radial spotlight in light mode */}
-                                            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.12),transparent_70%)] dark:hidden pointer-events-none" />
-
-                                            <img
-                                                src={`/storage/${item.cover_image_path}`}
-                                                alt={item.name}
-                                                className="max-h-full w-auto object-contain transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-1.5 drop-shadow-[0_8px_16px_rgba(0,0,0,0.12)] dark:drop-shadow-[0_14px_28px_rgba(0,0,0,0.9)] relative z-10"
-                                                loading="lazy"
-                                                onError={(e) => {
-                                                    e.target.onerror = null;
-                                                    e.target.src = '/storage/media/products/1559989450_nx3220_ht.jpg';
-                                                }}
-                                            />
-
-                                            {item.model_number && (
-                                                <span className="absolute top-3 right-3 z-20 text-[11px] font-mono px-2.5 py-1 rounded-md bg-slate-900/85 dark:bg-neutral-900/90 text-sky-400 dark:text-beacon border border-blue-500/25 shadow-sm font-semibold">
-                                                    {item.model_number}
-                                                </span>
-                                            )}
-                                            
-                                            <div className="absolute bottom-3 left-3 z-20">
-                                                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider font-semibold bg-white/90 dark:bg-black/90 text-slate-700 dark:text-paper/80 border border-slate-200 dark:border-white/10 shadow-xs">
-                                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                                                    WPC Approved
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        {/* Details */}
-                                        <div className="p-6 space-y-3 flex-1 flex flex-col">
-                                            <div className="flex items-center gap-2">
-                                                <span className="badge-rf text-[10px]">
-                                                    {item.subcategory?.name || 'Radio System'}
-                                                </span>
-                                            </div>
-
-                                            <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-blue-600 dark:group-hover:text-beacon transition-colors min-h-[3.25rem] line-clamp-2 leading-snug">
-                                                {item.name}
-                                            </h3>
-
-                                            <p className="text-xs sm:text-sm text-slate-600 dark:text-steel min-h-[2.5rem] line-clamp-2 leading-relaxed">
-                                                {item.short_description || 'High-reliability wireless communication equipment engineered for critical infrastructure.'}
-                                            </p>
-                                        </div>
+                    {/* CSS-Tricks Style Hardware Showcase: Left Fixed Animated Anchor Card + Separate Overlapping Fanning Deck */}
+                    <div className="flex flex-col lg:flex-row lg:items-center gap-5 xl:gap-6 relative">
+                        {/* 1. Left Fixed Anchor Card (Visibly larger, taller framing anchor, continuous flowing gradient animation) */}
+                        <div className="csstricks-anchor shrink-0 w-full lg:w-[250px] xl:w-[265px] h-auto lg:h-[385px] xl:h-[395px]">
+                            <div className="csstricks-anchor-inner h-full flex flex-col justify-between p-6 xl:p-7">
+                                {/* Top Glowing Header */}
+                                <div className="space-y-3.5">
+                                    <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-[10px] font-mono font-bold text-sky-300 uppercase tracking-widest shadow-xs">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+                                        <span>Field Proven</span>
                                     </div>
-
-                                    <div className="p-6 pt-4 border-t border-slate-100 dark:border-navy-border/40 mt-auto flex items-center justify-between bg-slate-50/50 dark:bg-navy-surface/30">
-                                        <Link
-                                            href={`/products/${item.subcategory?.category?.slug || 'professional-amateur-radio'}/${item.subcategory?.slug || 'dmr'}/${item.slug}`}
-                                            className="text-xs font-mono font-semibold text-slate-900 dark:text-paper hover:text-blue-600 dark:hover:text-beacon flex items-center gap-1.5 group/link"
-                                        >
-                                            <span>Specifications</span>
-                                            <svg className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                            </svg>
-                                        </Link>
-
-                                        <Link
-                                            href={`/contact-us?subject=Quote%20Request%20for%20${encodeURIComponent(item.name)}`}
-                                            className="btn-shimmer !py-2 !px-4 text-xs font-mono uppercase font-bold shadow-sm hover:shadow-md"
-                                        >
-                                            RFQ
-                                        </Link>
+                                    <div className="font-display font-black text-2xl sm:text-3xl xl:text-[28px] text-white tracking-tight leading-tight pt-1">
+                                        Mission-Critical<br />Wireless Systems<br />
+                                        <span className="bg-gradient-to-r from-sky-400 via-cyan-300 to-teal-300 bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(56,189,248,0.5)]">
+                                            Field Deployed
+                                        </span>
                                     </div>
+                                    <p className="text-xs text-slate-300 leading-relaxed pt-1">
+                                        Standardized RF platforms and transceivers deployed nationwide across defense and rail.
+                                    </p>
                                 </div>
-                            ))}
+
+                                {/* Bottom Info & Link */}
+                                <div className="pt-5 border-t border-white/10 space-y-3 mt-4">
+                                    <div className="text-[11px] font-mono text-slate-400 flex items-center gap-2">
+                                        <span className="text-emerald-400 font-bold">✓</span>
+                                        <span>WPC &amp; TEC Approved</span>
+                                    </div>
+                                    <Link
+                                        href="/products"
+                                        className="group/cta inline-flex items-center gap-2 text-xs font-mono font-bold text-sky-400 hover:text-white transition-colors"
+                                    >
+                                        <span>Explore 120+ Products</span>
+                                        <svg className="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* 2. Overlapping Product Deck (Squarish cards vertically centered with the larger black card) */}
+                        <div className="relative flex-1 min-w-0 group/shelf overflow-hidden">
+                            {canScrollLeft && (
+                                <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 z-30 bg-gradient-to-r from-white dark:from-navy to-transparent transition-opacity duration-300" />
+                            )}
+                            {canScrollRight && (
+                                <div className="pointer-events-none absolute right-2 top-0 bottom-0 w-12 z-30 bg-gradient-to-l from-white dark:from-navy to-transparent transition-opacity duration-300" />
+                            )}
+
+                            <div 
+                                ref={hardwareScrollRef}
+                                className="flex overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory py-8 pl-6 pr-8 csstricks-deck hardware-deck items-center"
+                            >
+                                {(featuredProducts || []).map((item, index) => (
+                                    <div 
+                                        key={item.id}
+                                        style={{ zIndex: index + 1 }}
+                                        className="csstricks-card snap-start shrink-0 w-[220px] sm:w-[225px] lg:w-auto h-[285px] sm:h-[290px] group/card flex flex-col justify-between border border-slate-200/90 dark:border-white/10 bg-white dark:bg-navy-surface rounded-2xl overflow-hidden cursor-pointer"
+                                    >
+                                        <div className="flex-1 flex flex-col">
+                                            {/* Square Image Pedestal with horizontally centered product image & deep black in dark mode */}
+                                            <div className="h-28 sm:h-30 w-full bg-gradient-to-b from-slate-100/70 via-slate-50/40 to-slate-100/80 dark:bg-black dark:from-black dark:via-black dark:to-black overflow-hidden relative flex items-center justify-center p-2 border-b border-slate-100 dark:border-white/10 shrink-0">
+                                                {/* Subtle radial spotlight in light mode */}
+                                                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.12),transparent_70%)] dark:hidden pointer-events-none" />
+
+                                                <div className="w-20 h-20 sm:w-22 sm:h-22 flex items-center justify-center relative mx-auto">
+                                                    <img
+                                                        src={`/storage/${item.cover_image_path}`}
+                                                        alt={item.name}
+                                                        className="max-h-full max-w-full object-contain transition-all duration-500 group-hover/card:scale-110 group-hover/card:-translate-y-1 drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_8px_16px_rgba(0,0,0,0.9)] relative z-10"
+                                                        loading="lazy"
+                                                        onError={(e) => {
+                                                            e.target.onerror = null;
+                                                            e.target.src = '/storage/media/products/1559989450_nx3220_ht.jpg';
+                                                        }}
+                                                    />
+                                                </div>
+
+                                                <div className="absolute bottom-2 left-2 z-20">
+                                                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[8px] font-mono uppercase tracking-wider font-semibold bg-white/90 dark:bg-black/90 text-slate-700 dark:text-paper/80 border border-slate-200 dark:border-white/10 shadow-xs">
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                                                        WPC
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            {/* Details with Complete Text Visible (Zero ... Truncation) */}
+                                            <div className="p-2.5 sm:p-3 space-y-1 flex-1 flex flex-col justify-between">
+                                                <div>
+                                                    <div className="flex items-center gap-2 mb-1">
+                                                        <span className="badge-rf text-[8px] px-1.5 py-0.5">
+                                                            {item.subcategory?.name || 'Radio System'}
+                                                        </span>
+                                                    </div>
+
+                                                    <h3 className="font-display font-bold text-xs sm:text-[13px] text-slate-900 dark:text-paper group-hover/card:text-blue-600 dark:group-hover/card:text-beacon transition-colors leading-snug">
+                                                        {item.name}
+                                                    </h3>
+
+                                                    <p className="text-[10px] text-slate-500 dark:text-steel leading-relaxed mt-1">
+                                                        {item.short_description || 'High-reliability wireless communication equipment engineered for critical infrastructure.'}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="p-2 sm:p-2 px-3 border-t border-slate-100 dark:border-navy-border/40 mt-auto flex items-center justify-between bg-slate-50/50 dark:bg-navy-surface/30 shrink-0">
+                                            <Link
+                                                href={`/products/${item.subcategory?.category?.slug || 'professional-amateur-radio'}/${item.subcategory?.slug || 'dmr'}/${item.slug}`}
+                                                className="text-[10px] font-mono font-semibold text-slate-900 dark:text-paper hover:text-blue-600 dark:hover:text-beacon flex items-center gap-1 group/link"
+                                            >
+                                                <span>Specs</span>
+                                                <svg className="w-3 h-3 transition-transform duration-200 group-hover/link:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </Link>
+
+                                            <Link
+                                                href={`/contact-us?subject=Quote%20Request%20for%20${encodeURIComponent(item.name)}`}
+                                                className="btn-shimmer !py-0.5 !px-2.5 text-[9px] font-mono uppercase font-bold shadow-xs hover:shadow-sm"
+                                            >
+                                                RFQ
+                                            </Link>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
@@ -849,9 +887,9 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             {/* =========================================================================
                 6. OEM PARTNERS SHOWCASE — SINGLE ROW CONTINUOUS MARQUEE (LEFT TO RIGHT)
             ========================================================================= */}
-            <section id="oem" className="py-20 sm:py-24 bg-slate-50 dark:bg-navy-dark border-t border-slate-200 dark:border-navy-border transition-colors duration-300 overflow-hidden">
+            <section id="oem" className="py-12 sm:py-14 bg-slate-50 dark:bg-navy-dark border-t border-slate-200 dark:border-navy-border transition-colors duration-300 overflow-hidden">
                 <div className="container-content">
-                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-4">
                         <div>
                             <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-1">
                                 GLOBAL TECHNOLOGY ALLIANCES
@@ -859,7 +897,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                             <AnimatedHeading 
                                 as="h2" 
                                 highlightPhrase="OEM Ecosystem"
-                                className="text-3xl font-display font-bold text-slate-900 dark:text-paper"
+                                className="text-2xl sm:text-3xl lg:text-[34px] font-display font-bold text-slate-900 dark:text-paper"
                             >
                                 Authorized OEM Ecosystem
                             </AnimatedHeading>
@@ -880,7 +918,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                 </div>
 
                 {/* Single Continuous Row Marquee (Left to Right) with Edge Gradient Feathering */}
-                <div className="relative w-full overflow-hidden py-4">
+                <div className="relative w-full overflow-hidden py-3">
                     {/* Left and Right Edge Fade Gradients */}
                     <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 sm:w-32 z-10 bg-gradient-to-r from-slate-50 dark:from-navy-dark to-transparent" />
                     <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 sm:w-32 z-10 bg-gradient-to-l from-slate-50 dark:from-navy-dark to-transparent" />
@@ -920,7 +958,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             {/* =========================================================================
                 7. BOTTOM CALL TO ACTION
             ========================================================================= */}
-            <section className="py-24 bg-white dark:bg-navy border-t border-slate-200 dark:border-navy-border transition-colors duration-300 relative overflow-hidden">
+            <section className="py-14 sm:py-16 bg-white dark:bg-navy border-t border-slate-200 dark:border-navy-border transition-colors duration-300 relative overflow-hidden">
                 {/* Ambient Radial Backdrop Glow */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-blue-500/5 dark:bg-beacon/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -929,7 +967,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                     <AnimatedHeading 
                         as="h2" 
                         highlightPhrase="Wireless Communication?"
-                        className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-slate-900 dark:text-paper tracking-tight"
+                        className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-slate-900 dark:text-paper tracking-tight"
                     >
                         Ready to Upgrade Your Wireless Communication?
                     </AnimatedHeading>

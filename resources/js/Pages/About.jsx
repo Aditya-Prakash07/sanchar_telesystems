@@ -289,57 +289,122 @@ export default function About({ team = [], seo = {} }) {
             <WhySancharDiagram />
 
             {/* Turnkey 6-Step Execution Methodology */}
-            <section className="py-20 bg-white dark:bg-navy border-y border-slate-200 dark:border-navy-border transition-colors duration-300">
+            <section className="py-12 sm:py-14 bg-white dark:bg-navy border-y border-slate-200 dark:border-navy-border transition-colors duration-300">
                 <div className="container-content">
-                    <div className="max-w-2xl mb-14">
-                        <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-2">
+                    {/* Header */}
+                    <div className="max-w-2xl mb-6 sm:mb-8">
+                        <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-1.5">
                             TURNKEY PROJECT PIPELINE
                         </span>
                         <AnimatedHeading 
                             as="h2" 
                             highlightPhrase="Turnkey Wireless Projects"
-                            className="text-3xl font-display font-bold text-slate-900 dark:text-paper"
+                            className="text-2xl sm:text-3xl lg:text-[34px] font-display font-bold text-slate-900 dark:text-paper"
                         >
                             How We Deliver Turnkey Wireless Projects
                         </AnimatedHeading>
-                        <p className="mt-3 text-slate-600 dark:text-steel leading-relaxed text-sm">
+                        <p className="mt-2 text-slate-600 dark:text-steel leading-relaxed text-sm">
                             From initial RF site propagation surveys and government frequency clearances to final commissioning and 24/7 maintenance, our engineers manage the complete lifecycle.
                         </p>
                     </div>
 
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {PROCESS.map((p) => (
-                            <div key={p.step} className="card-symmetric p-8 group relative hover:border-blue-500/50 dark:hover:border-beacon/40 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 overflow-hidden">
-                                {/* Top illuminated line on hover */}
-                                <div className="absolute top-0 inset-x-6 h-[2px] bg-gradient-to-r from-transparent via-blue-500/0 dark:via-beacon/0 to-transparent group-hover:via-blue-500 dark:group-hover:via-beacon transition-all duration-500" />
-                                <div>
-                                    <span className="font-mono text-xs tracking-wider text-blue-600 dark:text-beacon font-bold block mb-2">
-                                        PHASE {p.step}
-                                    </span>
-                                    <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper mb-2 group-hover:text-blue-600 dark:group-hover:text-beacon transition-colors min-h-[1.75rem]">
-                                        {p.title}
-                                    </h3>
-                                    <p className="text-xs sm:text-sm text-slate-600 dark:text-steel leading-relaxed">
-                                        {p.description}
+                    {/* CSS-Tricks Style Turnkey Pipeline: Left Fixed Animated Anchor Card + All 6 Phases Visible Deck */}
+                    <div className="flex flex-col lg:flex-row lg:items-center gap-5 xl:gap-6">
+                        {/* 1. Left Fixed Anchor Card (Visibly larger, taller framing anchor, flowing gradient animation) */}
+                        <div className="csstricks-anchor shrink-0 w-full lg:w-[250px] xl:w-[265px] h-auto lg:h-[370px] xl:h-[380px]">
+                            <div className="csstricks-anchor-inner h-full flex flex-col justify-between p-6 xl:p-7">
+                                <div className="space-y-3">
+                                    <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-[10px] font-mono font-bold text-sky-300 uppercase tracking-widest shadow-xs">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+                                        <span>Full Lifecycle</span>
+                                    </div>
+                                    <div className="font-display font-black text-2xl sm:text-3xl xl:text-[28px] text-white tracking-tight leading-tight pt-1">
+                                        Turnkey<br />Pipeline<br />
+                                        <span className="bg-gradient-to-r from-sky-400 via-cyan-300 to-teal-300 bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(56,189,248,0.5)]">
+                                            Execution
+                                        </span>
+                                    </div>
+                                    <p className="text-xs text-slate-300 leading-relaxed pt-1">
+                                        6-phase systematic engineering pipeline guaranteeing zero downtime and complete statutory compliance.
                                     </p>
                                 </div>
+
+                                <div className="pt-5 border-t border-white/10 space-y-3 mt-4">
+                                    <div className="text-[11px] font-mono text-slate-400 flex items-center gap-2">
+                                        <span className="text-sky-400 font-bold">01 &rarr; 06</span>
+                                        <span>Phased Handover</span>
+                                    </div>
+                                    <Link
+                                        href="/contact-us?subject=Turnkey%20Project%20Consultation"
+                                        className="group/cta inline-flex items-center gap-2 text-xs font-mono font-bold text-sky-400 hover:text-white transition-colors"
+                                    >
+                                        <span>Consult Project Desk</span>
+                                        <svg className="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </Link>
+                                </div>
                             </div>
-                        ))}
+                        </div>
+
+                        {/* 2. Overlapping Phase Deck: All 6 cards visible simultaneously on the viewport */}
+                        <div className="relative flex-1 min-w-0 group/pipeline overflow-x-auto lg:overflow-x-visible no-scrollbar pb-6 lg:pb-0">
+                            <div className="flex items-center csstricks-deck pipeline-deck py-8 px-1">
+                                {PROCESS.map((p, index) => (
+                                    <div 
+                                        key={p.step}
+                                        style={{ zIndex: index + 1 }}
+                                        className="csstricks-card snap-start shrink-0 h-[260px] sm:h-[270px] group/phase flex flex-col justify-between border border-slate-200/90 dark:border-white/10 bg-white dark:bg-navy-surface rounded-2xl overflow-hidden cursor-pointer"
+                                    >
+                                        <div className="p-3.5 sm:p-4 flex-1 flex flex-col justify-between">
+                                            <div>
+                                                <div className="flex items-center justify-between mb-2">
+                                                    <span className="font-mono text-[10px] sm:text-[11px] tracking-wider text-blue-600 dark:text-beacon font-bold px-1.5 py-0.5 rounded bg-blue-500/10 dark:bg-beacon/10 border border-blue-500/20 dark:border-beacon/20">
+                                                        PHASE {p.step}
+                                                    </span>
+                                                    <span className="text-[10px] font-mono uppercase text-slate-400 dark:text-steel tracking-wider">
+                                                        {index + 1}/6
+                                                    </span>
+                                                </div>
+
+                                                <h3 className="font-display font-bold text-xs sm:text-sm text-slate-900 dark:text-paper mb-1.5 group-hover/phase:text-blue-600 dark:group-hover/phase:text-beacon transition-colors leading-snug">
+                                                    {p.title}
+                                                </h3>
+
+                                                <p className="text-[11px] sm:text-xs text-slate-600 dark:text-steel leading-relaxed">
+                                                    {p.description}
+                                                </p>
+                                            </div>
+
+                                            <div className="pt-2.5 mt-2 border-t border-slate-100 dark:border-white/10 flex items-center justify-between text-xs font-mono">
+                                                <span className="text-slate-500 dark:text-steel text-[10px] flex items-center gap-1.5">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                                                    Milestone
+                                                </span>
+                                                <span className="text-blue-600 dark:text-beacon group-hover/phase:translate-x-1 transition-transform">
+                                                    &rarr;
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
             {/* Executive Leadership Gallery */}
-            <section className="py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
+            <section className="py-12 sm:py-14 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
                 <div className="container-content">
-                    <div className="max-w-2xl mb-14 text-center md:text-left">
-                        <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-2">
+                    <div className="max-w-2xl mb-8 sm:mb-10 text-center md:text-left">
+                        <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-1.5">
                             LEADERSHIP TEAM
                         </span>
                         <AnimatedHeading 
                             as="h2" 
                             highlightPhrase="Telecom Industry Veterans"
-                            className="text-3xl font-display font-bold text-slate-900 dark:text-paper"
+                            className="text-2xl sm:text-3xl lg:text-[34px] font-display font-bold text-slate-900 dark:text-paper"
                         >
                             Guided by Telecom Industry Veterans
                         </AnimatedHeading>
@@ -348,79 +413,118 @@ export default function About({ team = [], seo = {} }) {
                         </p>
                     </div>
 
-                    {/* Symmetrically Centered Team Gallery (Row 1: 3 cards, Row 2: 2 cards centered) */}
-                    <div className="flex flex-wrap justify-center gap-8">
+                    {/* Single Line 5-Column Interactive Executive Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 xl:gap-5 items-stretch">
                         {(team.length > 0 ? team : [
                             {
                                 name: 'Mr. Suresh Gupta',
                                 title: 'Founder & Director',
+                                exp: '30+ Yrs Exp',
                                 bio: 'Founder director bringing in more than 30 years of technology industry leadership. Pivotal in managing corporate direction and strategy with deep technical knowledge.',
                                 photo_path: 'media/team/MrSureshGupta_1.jpg'
                             },
                             {
                                 name: 'Ms. Priyanka Gupta',
                                 title: 'Director',
+                                exp: '10+ Yrs Exp',
                                 bio: 'Holds a bachelor degree in engineering and MBA with over a decade of experience spearheading marketing, OEM alliances, and channel distribution.',
                                 photo_path: 'media/team/PriyankaGupta.jpg'
                             },
                             {
                                 name: 'Mr. Amit Goyal',
                                 title: 'Vice President',
+                                exp: '20+ Yrs Exp',
                                 bio: 'Holds a bachelor degree in engineering and MBA with over two decades of experience in software development, partnership development, and project management.',
                                 photo_path: 'media/team/Amit_goyal.jpeg'
                             },
                             {
                                 name: 'Ms. Ritu Goel',
                                 title: 'General Manager – Technical',
+                                exp: '20+ Yrs Exp',
                                 bio: 'Core technical expertise providing technical direction to the company with over two decades of RF experience.',
                                 photo_path: 'media/team/ritugoel.jpg'
                             },
                             {
                                 name: 'Mr. Amit Bhardwaj',
                                 title: 'General Manager – Finance & Imports',
+                                exp: '17+ Yrs Exp',
                                 bio: 'Veteran in finance & EXIM heading corporate finance and strategic fiscal planning with over 17 years of hands-on experience.',
                                 photo_path: 'media/team/AmitBhardwaj.jpg'
                             }
-                        ]).map((member) => (
-                            <div 
-                                key={member.name} 
-                                className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm card-symmetric p-6 group flex flex-col justify-between h-[520px] sm:h-[540px] relative hover:border-blue-500/50 dark:hover:border-beacon/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden"
-                            >
-                                {/* Top specular accent line on hover */}
-                                <div className="absolute top-0 inset-x-6 h-[2px] bg-gradient-to-r from-transparent via-blue-500/0 dark:via-beacon/0 to-transparent group-hover:via-blue-500 dark:group-hover:via-beacon transition-all duration-500" />
+                        ]).map((member, idx) => {
+                            const expBadges = ['30+ Yrs Exp', '10+ Yrs Exp', '20+ Yrs Exp', '20+ Yrs Exp', '17+ Yrs Exp'];
+                            const exp = member.exp || expBadges[idx % expBadges.length];
 
-                                <div className="h-64 sm:h-72 w-full overflow-hidden bg-slate-200 dark:bg-navy-dark rounded-xl mb-5 relative shrink-0">
-                                    <img
-                                        src={`/storage/${member.photo_path}`}
-                                        alt={member.name}
-                                        className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-108"
-                                        loading="lazy"
-                                    />
-                                </div>
+                            return (
+                                <div 
+                                    key={member.name} 
+                                    className="group/member relative flex flex-col justify-between p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-navy-surface border border-slate-200/90 dark:border-white/10 hover:border-blue-500/50 dark:hover:border-beacon/50 shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 dark:hover:shadow-beacon/10 hover:-translate-y-1.5 transition-all duration-300 overflow-hidden"
+                                >
+                                    {/* Top specular neon illuminated line on hover */}
+                                    <div className="absolute top-0 inset-x-4 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent dark:via-beacon opacity-0 group-hover/member:opacity-100 transition-opacity duration-500 rounded-t-2xl pointer-events-none" />
 
-                                <div className="flex-1 flex flex-col justify-between">
+                                    {/* Ambient Backlight Hover Glow */}
+                                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-blue-500/[0.04] dark:from-beacon/[0.04] via-transparent to-transparent opacity-0 group-hover/member:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
                                     <div>
-                                        <h3 className="font-display font-bold text-xl text-slate-900 dark:text-paper mb-1 line-clamp-1 group-hover:text-blue-600 dark:group-hover:text-beacon transition-colors">
+                                        {/* 1:1 Complete Square Photo (Zero Cropping of Faces) */}
+                                        <div className="aspect-square w-full rounded-xl overflow-hidden bg-slate-100 dark:bg-black/60 relative mb-3.5 border border-slate-200/80 dark:border-white/10 group-hover/member:border-blue-500/40 dark:group-hover/member:border-beacon/40 transition-colors duration-500 shadow-xs">
+                                            <img
+                                                src={`/storage/${member.photo_path}`}
+                                                alt={member.name}
+                                                className="h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover/member:scale-105"
+                                                loading="lazy"
+                                            />
+
+                                            {/* Executive Experience Chip */}
+                                            <div className="absolute top-2 right-2 z-10">
+                                                <span className="px-1.5 py-0.5 rounded-md bg-slate-950/85 dark:bg-black/90 backdrop-blur-md border border-white/15 text-[8.5px] font-mono font-bold text-sky-300 dark:text-beacon uppercase tracking-wider shadow-xs">
+                                                    {exp}
+                                                </span>
+                                            </div>
+
+                                            {/* Subtle Vignette Gradient on Lower Image Edge */}
+                                            <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+                                        </div>
+
+                                        {/* Name & Title */}
+                                        <h3 className="font-display font-bold text-sm sm:text-[15px] text-slate-900 dark:text-paper group-hover/member:text-blue-600 dark:group-hover/member:text-beacon transition-colors leading-snug">
                                             {member.name}
                                         </h3>
-                                        <p className="text-xs font-mono text-blue-600 dark:text-beacon/90 font-medium mb-3 line-clamp-1">
+                                        <p className="text-[10px] sm:text-[11px] font-mono text-blue-600 dark:text-beacon font-semibold tracking-tight uppercase mt-0.5 mb-2 leading-tight">
                                             {member.title}
                                         </p>
+
+                                        {/* Dynamic Accent Divider */}
+                                        <div className="h-0.5 w-6 bg-slate-200 dark:bg-white/10 group-hover/member:w-10 group-hover/member:bg-blue-500 dark:group-hover/member:bg-beacon transition-all duration-300 rounded-full mb-2.5" />
+
+                                        {/* Complete Bio (100% Visible, Zero Truncation) */}
+                                        <p className="text-[11px] text-slate-600 dark:text-steel leading-relaxed font-normal">
+                                            {member.bio}
+                                        </p>
                                     </div>
-                                    <p className="text-sm text-slate-600 dark:text-steel leading-relaxed line-clamp-4 overflow-hidden">
-                                        {member.bio}
-                                    </p>
+
+                                    {/* Bottom Verification Footer */}
+                                    <div className="pt-2.5 mt-3 border-t border-slate-100 dark:border-white/10 flex items-center justify-between text-[10px] font-mono text-slate-400 dark:text-steel">
+                                        <span className="flex items-center gap-1 text-[9.5px]">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                                            Leadership
+                                        </span>
+                                        <span className="text-blue-600 dark:text-beacon opacity-0 group-hover/member:opacity-100 group-hover/member:translate-x-0.5 transition-all font-semibold text-[9.5px]">
+                                            Verified &rarr;
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </section>
 
             {/* Bottom Contact CTA */}
-            <section className="py-20 bg-white dark:bg-navy border-t border-slate-200 dark:border-navy-border transition-colors duration-300">
+            <section className="py-12 sm:py-14 bg-white dark:bg-navy border-t border-slate-200 dark:border-navy-border transition-colors duration-300">
                 <div className="container-content text-center max-w-2xl mx-auto space-y-6">
-                    <h2 className="text-3xl font-display font-bold text-slate-900 dark:text-paper">Partner with Sanchar Telesystems</h2>
+                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-slate-900 dark:text-paper">Partner with Sanchar Telesystems</h2>
                     <p className="text-slate-600 dark:text-steel text-sm sm:text-base leading-relaxed">
                         Discover how our technical team can help design, upgrade, or maintain your mission-critical communications infrastructure.
                     </p>
