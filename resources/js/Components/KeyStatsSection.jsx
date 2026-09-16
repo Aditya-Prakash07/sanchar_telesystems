@@ -87,18 +87,21 @@ function StatCard({ stat, isVisible, index }) {
 
     return (
         <div 
-            className="group relative flex flex-col items-center justify-between p-8 sm:p-10 rounded-2xl bg-white/[0.02] dark:bg-white/[0.02] border border-white/10 hover:border-sky-500/50 hover:bg-white/[0.04] transition-all duration-500 hover:-translate-y-2 shadow-2xl hover:shadow-[0_20px_50px_rgba(56,189,248,0.2)]"
+            className="group relative flex flex-col items-center justify-between p-8 sm:p-10 rounded-2xl bg-white/[0.02] dark:bg-white/[0.02] border border-white/10 hover:border-sky-500/50 hover:bg-white/[0.04] transition-all duration-500 hover:-translate-y-2 shadow-2xl hover:shadow-[0_20px_50px_rgba(56,189,248,0.2)] overflow-hidden"
         >
+            {/* Top illuminated line on hover */}
+            <div className="absolute top-0 inset-x-8 h-[2px] bg-gradient-to-r from-transparent via-sky-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl pointer-events-none" />
+
             {/* Ambient Backlight Hover Glow */}
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-sky-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
             {/* Icon Pedestal with Hover Spring */}
-            <div className="relative z-10 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:border-sky-400/60 transition-all duration-500 shadow-inner">
+            <div className="relative z-10 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:border-sky-400/60 group-hover:shadow-[0_0_25px_rgba(56,189,248,0.25)] transition-all duration-500 shadow-inner">
                 {getIcon()}
             </div>
 
             {/* Gradually Increasing Counter with Glow */}
-            <div className="relative z-10 font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#4a90e2] dark:text-sky-400 tracking-tight tabular-nums drop-shadow-[0_4px_16px_rgba(59,130,246,0.35)] flex items-baseline justify-center">
+            <div className="relative z-10 font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#4a90e2] dark:text-sky-400 tracking-tight tabular-nums drop-shadow-[0_4px_16px_rgba(59,130,246,0.35)] flex items-baseline justify-center transition-transform duration-300 group-hover:scale-105">
                 <span>{count}</span>
                 <span className="ml-2 text-3xl sm:text-4xl lg:text-5xl text-sky-400/90 font-light">{suffix}</span>
             </div>

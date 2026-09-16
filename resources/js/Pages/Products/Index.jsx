@@ -112,8 +112,11 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
                                         <Link
                                             key={sub.id}
                                             href={`/products/${cat.slug}/${sub.slug}`}
-                                            className="card-symmetric p-6 group"
+                                            className="card-symmetric p-6 group relative hover:border-blue-500/60 dark:hover:border-beacon/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden"
                                         >
+                                            {/* Top specular accent line on hover */}
+                                            <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-blue-500/0 dark:via-beacon/0 to-transparent group-hover:via-blue-500 dark:group-hover:via-beacon transition-all duration-500 z-20" />
+
                                             <div className="flex-1 flex flex-col space-y-3">
                                                 <div className="flex items-center justify-between">
                                                     <span className="badge-rf text-[10px]">
@@ -135,7 +138,7 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
 
                                             <div className="pt-4 mt-auto border-t border-slate-100 dark:border-navy-border/40 flex items-center justify-between text-xs font-mono text-slate-500 dark:text-steel">
                                                 <span className="group-hover:text-slate-900 dark:group-hover:text-paper font-medium">Browse Products</span>
-                                                <svg className="w-4 h-4 text-blue-600 dark:text-beacon transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg className="w-4 h-4 text-blue-600 dark:text-beacon transform group-hover:translate-x-1.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                                 </svg>
                                             </div>

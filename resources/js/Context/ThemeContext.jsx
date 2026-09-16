@@ -9,6 +9,8 @@ const ThemeContext = createContext({
 export function ThemeProvider({ children }) {
     const [theme, setThemeState] = useState(() => {
         if (typeof window !== 'undefined') {
+            const urlTheme = new URLSearchParams(window.location.search).get('theme');
+            if (urlTheme === 'dark' || urlTheme === 'light') return urlTheme;
             const saved = localStorage.getItem('theme');
             if (saved === 'dark' || saved === 'light') return saved;
             return 'light';

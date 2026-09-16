@@ -592,7 +592,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                     {SECTOR_DATA[selectedSector].features.map((feat) => (
                                         <div 
                                              key={feat} 
-                                             className="flex items-start gap-2.5 text-sm font-medium text-slate-800 dark:text-paper p-2 rounded-lg hover:bg-blue-500/5 dark:hover:bg-beacon/5 transition-colors group"
+                                             className="flex items-start gap-2.5 text-sm font-medium text-slate-800 dark:text-paper p-2 rounded-lg hover:bg-blue-500/5 dark:hover:bg-beacon/5 hover:translate-x-1.5 transition-all duration-200 group cursor-default"
                                         >
                                             <div className="w-5 h-5 rounded-full bg-blue-500/15 dark:bg-beacon/15 text-blue-600 dark:text-beacon flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                                                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
@@ -608,7 +608,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 {SECTOR_DATA[selectedSector].specs && (
                                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-slate-200 dark:border-white/10 font-mono text-xs">
                                         {Object.entries(SECTOR_DATA[selectedSector].specs).map(([key, value]) => (
-                                            <div key={key} className="p-3 rounded-lg bg-slate-100/80 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/10">
+                                            <div key={key} className="p-3 rounded-lg bg-slate-100/80 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/10 hover:border-blue-500/40 dark:hover:border-beacon/40 hover:-translate-y-0.5 transition-all duration-200">
                                                 <span className="block text-[10px] uppercase text-slate-500 dark:text-steel font-semibold tracking-wider">{key}</span>
                                                 <span className="block text-xs font-bold text-slate-900 dark:text-paper truncate mt-0.5" title={value}>{value}</span>
                                             </div>
@@ -629,14 +629,15 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 </div>
                             </div>
 
-                            {/* Sector Imagery with Interactive Zoom & Verified Deployment Badge */}
-                            <div className="lg:col-span-5 relative bg-slate-100 dark:bg-navy-dark rounded-2xl overflow-hidden aspect-[4/3] flex items-center justify-center p-6 border border-slate-200 dark:border-navy-border/60 group shadow-lg">
+                            {/* Sector Imagery with deep black pedestal in dark mode, Interactive Zoom & Verified Deployment Badge */}
+                            <div className="lg:col-span-5 relative bg-gradient-to-b from-slate-100/80 via-slate-50/50 to-slate-100/90 dark:bg-black dark:from-black dark:via-black dark:to-black rounded-2xl overflow-hidden aspect-[4/3] flex items-center justify-center p-6 border border-slate-200 dark:border-white/10 group shadow-xl">
+                                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.12),transparent_70%)] dark:hidden pointer-events-none" />
                                 <img 
                                     src={SECTOR_DATA[selectedSector].image} 
                                     alt={SECTOR_DATA[selectedSector].title}
-                                    className="max-h-full w-auto object-contain rounded-lg shadow-sm transition-transform duration-500 group-hover:scale-105"
+                                    className="max-h-full w-auto object-contain rounded-lg transition-transform duration-500 group-hover:scale-105 drop-shadow-[0_10px_20px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_16px_32px_rgba(0,0,0,0.65)] relative z-10"
                                 />
-                                <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-slate-900/80 backdrop-blur-md border border-white/10 text-[10px] font-mono font-bold text-white uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
+                                <div className="absolute top-3 right-3 z-20 px-2.5 py-1 rounded-md bg-slate-900/80 backdrop-blur-md border border-white/10 text-[10px] font-mono font-bold text-white uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
                                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
                                     <span>Field Proven</span>
                                 </div>
@@ -734,15 +735,21 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                             {(featuredProducts || []).map((item) => (
                                 <div 
                                     key={item.id}
-                                    className="hardware-card-shelf snap-start shrink-0 w-[300px] sm:w-[340px] lg:w-[380px] group relative flex flex-col justify-between border border-slate-200/90 dark:border-white/10 bg-white dark:bg-navy-surface rounded-2xl shadow-sm hover:border-blue-500/50 dark:hover:border-beacon/40 overflow-hidden"
+                                    className="hardware-card-shelf snap-start shrink-0 w-[300px] sm:w-[340px] lg:w-[380px] group relative flex flex-col justify-between border border-slate-200/90 dark:border-white/10 bg-white dark:bg-navy-surface rounded-2xl shadow-sm hover:shadow-2xl hover:border-blue-500/60 dark:hover:border-beacon/50 hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden"
                                 >
+                                    {/* Top specular accent line on hover */}
+                                    <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-blue-500/0 dark:via-beacon/0 to-transparent group-hover:via-blue-500 dark:group-hover:via-beacon transition-all duration-500 z-20" />
+
                                     <div className="flex-1 flex flex-col">
-                                        {/* Image Pedestal with interactive zoom & ambient glow */}
-                                        <div className="aspect-[4/3] w-full bg-slate-50/80 dark:bg-navy-dark/90 overflow-hidden relative flex items-center justify-center p-8 border-b border-slate-100 dark:border-navy-border/40">
+                                        {/* Image Pedestal with interactive zoom, deep black in dark mode */}
+                                        <div className="aspect-[4/3] w-full bg-gradient-to-b from-slate-100/70 via-slate-50/40 to-slate-100/80 dark:bg-black dark:from-black dark:via-black dark:to-black overflow-hidden relative flex items-center justify-center p-8 border-b border-slate-100 dark:border-white/10">
+                                            {/* Subtle radial spotlight in light mode */}
+                                            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.12),transparent_70%)] dark:hidden pointer-events-none" />
+
                                             <img
                                                 src={`/storage/${item.cover_image_path}`}
                                                 alt={item.name}
-                                                className="max-h-full w-auto object-contain transition-transform duration-500 group-hover:scale-110 drop-shadow-md"
+                                                className="max-h-full w-auto object-contain transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-1.5 drop-shadow-[0_8px_16px_rgba(0,0,0,0.12)] dark:drop-shadow-[0_14px_28px_rgba(0,0,0,0.9)] relative z-10"
                                                 loading="lazy"
                                                 onError={(e) => {
                                                     e.target.onerror = null;
@@ -751,13 +758,13 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                             />
 
                                             {item.model_number && (
-                                                <span className="absolute top-3 right-3 text-[11px] font-mono px-2.5 py-1 rounded-md bg-slate-900/85 dark:bg-slate-950/90 text-sky-400 dark:text-beacon border border-blue-500/25 shadow-sm font-semibold">
+                                                <span className="absolute top-3 right-3 z-20 text-[11px] font-mono px-2.5 py-1 rounded-md bg-slate-900/85 dark:bg-neutral-900/90 text-sky-400 dark:text-beacon border border-blue-500/25 shadow-sm font-semibold">
                                                     {item.model_number}
                                                 </span>
                                             )}
                                             
-                                            <div className="absolute bottom-3 left-3">
-                                                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider font-semibold bg-white/90 dark:bg-navy/90 text-slate-700 dark:text-paper/80 border border-slate-200 dark:border-white/10 shadow-xs">
+                                            <div className="absolute bottom-3 left-3 z-20">
+                                                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider font-semibold bg-white/90 dark:bg-black/90 text-slate-700 dark:text-paper/80 border border-slate-200 dark:border-white/10 shadow-xs">
                                                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                                                     WPC Approved
                                                 </span>

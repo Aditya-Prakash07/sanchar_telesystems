@@ -49,11 +49,14 @@ export default function ProductsShow({ category, subcategory, item, seo = {} }) 
                     <div className="grid lg:grid-cols-12 gap-12 items-start">
                         {/* Hardware Image Showcase */}
                         <div className="lg:col-span-5">
-                            <div className="panel p-8 sm:p-12 aspect-square flex items-center justify-center relative group overflow-hidden">
+                            <div className="aspect-square flex items-center justify-center relative group overflow-hidden bg-gradient-to-b from-slate-100/70 via-slate-50/40 to-slate-100/80 dark:bg-black dark:from-black dark:via-black dark:to-black border border-slate-200/90 dark:border-white/10 rounded-2xl shadow-xl">
+                                {/* Radial Spotlight in light mode */}
+                                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.14),transparent_70%)] dark:hidden pointer-events-none" />
+
                                 <img
                                     src={`/storage/${item.cover_image_path}`}
                                     alt={item.name}
-                                    className="max-h-full max-w-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                                    className="max-h-full max-w-full w-auto object-contain transition-all duration-500 group-hover:scale-108 drop-shadow-[0_12px_24px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_16px_32px_rgba(0,0,0,0.9)] relative z-10"
                                     onError={(e) => {
                                         e.target.onerror = null;
                                         e.target.src = '/storage/media/products/1559989450_nx3220_ht.jpg';
@@ -61,7 +64,7 @@ export default function ProductsShow({ category, subcategory, item, seo = {} }) 
                                 />
 
                                 {item.model_number && (
-                                    <span className="absolute top-4 right-4 text-xs font-mono px-3 py-1 rounded-full bg-slate-900/90 dark:bg-navy-dark/90 text-sky-300 dark:text-beacon border border-white/10 font-bold">
+                                    <span className="absolute top-4 right-4 z-20 text-xs font-mono px-3 py-1 rounded-full bg-slate-900/90 dark:bg-neutral-900/90 text-sky-300 dark:text-beacon border border-white/10 font-bold">
                                         MODEL: {item.model_number}
                                     </span>
                                 )}

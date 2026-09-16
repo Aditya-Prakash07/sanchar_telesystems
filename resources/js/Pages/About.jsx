@@ -188,11 +188,11 @@ export default function About({ team = [], seo = {} }) {
                         </div>
 
                         <div className="lg:col-span-6">
-                            <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-white/15 bg-slate-950 shadow-2xl group">
+                            <div className="relative rounded-2xl overflow-hidden border border-slate-200/90 dark:border-white/10 bg-slate-100/70 dark:bg-navy-dark/80 shadow-2xl group p-6 flex items-center justify-center">
                                 <img
                                     src="/storage/media/about/as03.png"
                                     alt="Sanchar OEM Manufacturing & GeM Delivery"
-                                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                                    className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105 drop-shadow-[0_10px_20px_rgba(0,0,0,0.15)] dark:drop-shadow-[0_14px_28px_rgba(0,0,0,0.6)]"
                                 />
                                 <div className="absolute top-3 left-3 px-3 py-1 rounded-md bg-slate-900/80 backdrop-blur-md border border-white/10 text-[11px] font-mono font-bold text-white uppercase tracking-wider flex items-center gap-2">
                                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -309,7 +309,9 @@ export default function About({ team = [], seo = {} }) {
 
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {PROCESS.map((p) => (
-                            <div key={p.step} className="card-symmetric p-8 group">
+                            <div key={p.step} className="card-symmetric p-8 group relative hover:border-blue-500/50 dark:hover:border-beacon/40 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 overflow-hidden">
+                                {/* Top illuminated line on hover */}
+                                <div className="absolute top-0 inset-x-6 h-[2px] bg-gradient-to-r from-transparent via-blue-500/0 dark:via-beacon/0 to-transparent group-hover:via-blue-500 dark:group-hover:via-beacon transition-all duration-500" />
                                 <div>
                                     <span className="font-mono text-xs tracking-wider text-blue-600 dark:text-beacon font-bold block mb-2">
                                         PHASE {p.step}
@@ -382,20 +384,23 @@ export default function About({ team = [], seo = {} }) {
                         ]).map((member) => (
                             <div 
                                 key={member.name} 
-                                className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm card-symmetric p-6 group flex flex-col justify-between h-[520px] sm:h-[540px]"
+                                className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm card-symmetric p-6 group flex flex-col justify-between h-[520px] sm:h-[540px] relative hover:border-blue-500/50 dark:hover:border-beacon/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden"
                             >
+                                {/* Top specular accent line on hover */}
+                                <div className="absolute top-0 inset-x-6 h-[2px] bg-gradient-to-r from-transparent via-blue-500/0 dark:via-beacon/0 to-transparent group-hover:via-blue-500 dark:group-hover:via-beacon transition-all duration-500" />
+
                                 <div className="h-64 sm:h-72 w-full overflow-hidden bg-slate-200 dark:bg-navy-dark rounded-xl mb-5 relative shrink-0">
                                     <img
                                         src={`/storage/${member.photo_path}`}
                                         alt={member.name}
-                                        className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                                        className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-108"
                                         loading="lazy"
                                     />
                                 </div>
 
                                 <div className="flex-1 flex flex-col justify-between">
                                     <div>
-                                        <h3 className="font-display font-bold text-xl text-slate-900 dark:text-paper mb-1 line-clamp-1">
+                                        <h3 className="font-display font-bold text-xl text-slate-900 dark:text-paper mb-1 line-clamp-1 group-hover:text-blue-600 dark:group-hover:text-beacon transition-colors">
                                             {member.name}
                                         </h3>
                                         <p className="text-xs font-mono text-blue-600 dark:text-beacon/90 font-medium mb-3 line-clamp-1">
