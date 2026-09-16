@@ -10,3 +10,8 @@
 /storage/framework/views/*
 /storage/app/public/*
 /public/hot
+/.rembg
+/.venv
+/.env*
+*.log
+.DS_Store
