@@ -59,7 +59,7 @@ export default function WelcomeVideoSection() {
                 <video
                     ref={videoRef}
                     className="w-full h-full object-contain object-center"
-                    style={{ transform: 'translateY(-1.4%) scaleY(1.028)', transformOrigin: 'center center' }}
+                    style={{ transform: 'translateY(-0.8%) scale(1.045)', transformOrigin: 'center center' }}
                     autoPlay
                     loop
                     muted={isMuted}
