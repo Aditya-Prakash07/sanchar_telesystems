@@ -28,7 +28,7 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
             />
 
             {/* Header */}
-            <header className="relative bg-white dark:bg-navy border-b border-slate-200/80 dark:border-navy-border pt-36 pb-16 overflow-hidden">
+            <header className="relative bg-white dark:bg-navy pt-36 pb-16 overflow-hidden">
                 <div className="container-content relative z-10 max-w-3xl">
                     <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
                         <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />

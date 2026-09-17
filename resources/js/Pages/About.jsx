@@ -48,7 +48,7 @@ export default function About({ team = [], seo = {} }) {
             />
 
             {/* Header */}
-            <header className="relative bg-white dark:bg-navy border-b border-slate-200/80 dark:border-navy-border pt-36 pb-20 overflow-hidden transition-colors duration-300">
+            <header className="relative bg-white dark:bg-navy pt-36 pb-20 overflow-hidden transition-colors duration-300">
                 <div className="container-content relative z-10">
                     <div className="max-w-3xl">
                         <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
@@ -162,7 +162,7 @@ export default function About({ team = [], seo = {} }) {
             </section>
 
             {/* OEM Alliances & GeM Procurement */}
-            <section className="py-20 sm:py-24 bg-white dark:bg-navy border-t border-slate-200 dark:border-navy-border transition-colors duration-300">
+            <section className="py-20 sm:py-24 bg-white dark:bg-navy transition-colors duration-300">
                 <div className="container-content">
                     <div className="grid lg:grid-cols-12 gap-12 items-center">
                         <div className="lg:col-span-6 space-y-5 text-slate-700 dark:text-steel leading-relaxed text-sm sm:text-base">
@@ -205,7 +205,7 @@ export default function About({ team = [], seo = {} }) {
             </section>
 
             {/* Official RF Testing Lab & Service Infrastructure ("Service is our Motto") */}
-            <section className="py-20 sm:py-24 bg-slate-50 dark:bg-navy-dark border-t border-slate-200 dark:border-navy-border transition-colors duration-300 relative overflow-hidden">
+            <section className="py-20 sm:py-24 bg-slate-50 dark:bg-navy-dark transition-colors duration-300 relative overflow-hidden">
                 <div className="container-content relative z-10">
                     <div className="grid lg:grid-cols-12 gap-12 items-center">
                         {/* Left: Sanchar Lab Photo (From Official Website) */}
@@ -289,7 +289,7 @@ export default function About({ team = [], seo = {} }) {
             <WhySancharDiagram />
 
             {/* Turnkey 6-Step Execution Methodology */}
-            <section className="py-12 sm:py-14 bg-white dark:bg-navy border-y border-slate-200 dark:border-navy-border transition-colors duration-300">
+            <section className="py-12 sm:py-14 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
                 <div className="container-content">
                     {/* Header */}
                     <div className="max-w-2xl mb-6 sm:mb-8">
@@ -395,7 +395,7 @@ export default function About({ team = [], seo = {} }) {
             </section>
 
             {/* Executive Leadership Gallery */}
-            <section className="py-12 sm:py-14 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
+            <section className="py-12 sm:py-14 bg-white dark:bg-navy transition-colors duration-300">
                 <div className="container-content">
                     <div className="max-w-2xl mb-8 sm:mb-10 text-center md:text-left">
                         <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-1.5">
@@ -522,7 +522,7 @@ export default function About({ team = [], seo = {} }) {
             </section>
 
             {/* Bottom Contact CTA */}
-            <section className="py-12 sm:py-14 bg-white dark:bg-navy border-t border-slate-200 dark:border-navy-border transition-colors duration-300">
+            <section className="py-12 sm:py-14 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
                 <div className="container-content text-center max-w-2xl mx-auto space-y-6">
                     <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-slate-900 dark:text-paper">Partner with Sanchar Telesystems</h2>
                     <p className="text-slate-600 dark:text-steel text-sm sm:text-base leading-relaxed">

@@ -72,7 +72,7 @@ export default function WhySancharDiagram() {
     const spokeRadius = 54;
 
     return (
-        <section className="py-20 bg-slate-50 dark:bg-navy-dark border-y border-slate-200 dark:border-navy-border transition-colors duration-300 relative overflow-hidden">
+        <section className="py-20 bg-white dark:bg-navy transition-colors duration-300 relative overflow-hidden">
             {/* Soft Ambient Radial Background Aura */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 dark:bg-beacon/5 rounded-full blur-3xl pointer-events-none" />
 

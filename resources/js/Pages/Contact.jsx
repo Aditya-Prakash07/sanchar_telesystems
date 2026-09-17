@@ -44,7 +44,7 @@ export default function Contact({ seo = {}, flash = {} }) {
             />
 
             {/* Header */}
-            <header className="relative bg-white dark:bg-navy border-b border-slate-200/80 dark:border-navy-border pt-36 pb-16 overflow-hidden transition-colors duration-300">
+            <header className="relative bg-white dark:bg-navy pt-36 pb-16 overflow-hidden transition-colors duration-300">
                 <div className="container-content relative z-10">
                     <div className="max-w-3xl">
                         <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">

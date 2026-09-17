@@ -3,7 +3,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 
 export default function Footer() {
     return (
-        <footer className="bg-slate-950 dark:bg-[#0a0d14] text-slate-300 dark:text-steel border-t border-slate-800/80 dark:border-white/10 relative overflow-hidden transition-colors duration-300">
+        <footer className="bg-slate-950 dark:bg-[#0a0d14] text-slate-300 dark:text-steel relative overflow-hidden transition-colors duration-300">
             {/* Certifications & Compliance Strip (Seamless Unified Background) */}
             <div className="border-b border-slate-800/80 dark:border-white/5 bg-transparent relative z-10">
                 <div className="container-content py-4 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-400 dark:text-paper/70">

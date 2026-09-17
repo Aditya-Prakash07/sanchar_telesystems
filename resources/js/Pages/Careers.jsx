@@ -13,7 +13,7 @@ export default function Careers({ openings = [], seo = {} }) {
             />
 
             {/* Header */}
-            <header className="relative bg-white dark:bg-navy border-b border-slate-200/80 dark:border-navy-border pt-36 pb-20 overflow-hidden transition-colors duration-300">
+            <header className="relative bg-white dark:bg-navy pt-36 pb-20 overflow-hidden transition-colors duration-300">
                 <div className="container-content relative z-10">
                     <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
                         <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-beacon animate-pulse" />
@@ -57,7 +57,7 @@ export default function Careers({ openings = [], seo = {} }) {
             </header>
 
             {/* Why Sanchar Pillars */}
-            <section className="py-20 bg-slate-50 dark:bg-navy-dark border-b border-slate-200 dark:border-navy-border transition-colors duration-300">
+            <section className="py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
                 <div className="container-content">
                     <div className="text-center max-w-2xl mx-auto mb-16">
                         <span className="text-xs font-mono uppercase tracking-wider font-bold text-blue-600 dark:text-beacon block mb-2">

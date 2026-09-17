@@ -18,7 +18,7 @@ export default function ProductsCategory({ category, subcategory, items = [], se
             />
 
             {/* Header */}
-            <header className="relative bg-white dark:bg-navy border-b border-slate-200/80 dark:border-navy-border pt-36 pb-16 overflow-hidden">
+            <header className="relative bg-white dark:bg-navy pt-36 pb-16 overflow-hidden">
                 <div className="container-content relative z-10">
                     {/* Breadcrumbs */}
                     <nav className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 mb-6">

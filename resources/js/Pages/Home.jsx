@@ -2,7 +2,6 @@ import { Link } from '@inertiajs/react';
 import { useState, useEffect, useRef } from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
-import SignalWave from '@/Components/SignalWave';
 import KeyStatsSection from '@/Components/KeyStatsSection';
 import WelcomeVideoSection from '@/Components/WelcomeVideoSection';
 import AnimatedHeading from '@/Components/AnimatedHeading';
@@ -10,20 +9,22 @@ import AnimatedHeading from '@/Components/AnimatedHeading';
 const SECTOR_DATA = [
     {
         title: 'Homeland Security & Defense',
+        model: 'ST-200R',
         tag: 'MISSION CRITICAL TIER-1',
         headline: 'Tactical Voice, Encrypted DMR & P25 Networks',
-        description: 'Secure, zero-interruption radio communication topologies engineered for defense forces, tactical SWAT squads, and central police organizations operating in hostile RF environments.',
+        description: 'Secure, zero-interruption radio communication topologies and ruggedized 4G/LTE PoC terminals engineered for defense forces, tactical SWAT squads, and central police organizations operating in hostile RF environments.',
         features: [
             'AES-256 Bit Hardware Encryption',
             'Full Duplex Interoperability Gateways',
-            'MIL-STD-810G Rugged Handsets',
+            'MIL-STD-810G & IP67 Rugged Handsets',
             'Sub-300ms Call Setup Latency'
         ],
-        image: '/storage/media/sectors/p1.jpg',
-        specs: { coverage: '35–50 km Direct Line-of-Sight', channels: '1024 Secure Digital Channels', frequency: 'VHF 136-174 / UHF 400-470 MHz' }
+        image: '/storage/media/products/1710240493_ST-200R(1).jpg',
+        specs: { coverage: 'All-India 4G/LTE Range', channels: 'Unlimited Groups & Channels', battery: '3800 / 5000 mAh Li-Ion' }
     },
     {
         title: 'Railways & Metro Transit',
+        model: 'LTE-R Cab Radio',
         tag: 'LTE-R & CAB RADIO',
         headline: 'Train-to-Trackside Broadband & Passenger Security',
         description: 'Railway-certified wireless solutions conforming to EN 50155. Providing continuous high-speed voice dispatch, train collision avoidance telemetry, and mission-critical cab communications.',
@@ -38,6 +39,7 @@ const SECTOR_DATA = [
     },
     {
         title: 'Oil, Gas & Petrochemical',
+        model: 'ATEX V-710',
         tag: 'ATEX & INTRINSICALLY SAFE',
         headline: 'Explosion-Proof Terminals for Hazardous Zones',
         description: 'Zone 1 & Zone 2 certified communications equipment designed to prevent electrical sparks in flammable refineries, offshore drilling platforms, and chemical storage facilities.',
@@ -52,6 +54,7 @@ const SECTOR_DATA = [
     },
     {
         title: 'Mining & Heavy Industries',
+        model: 'Diamond Antenna',
         tag: 'DEEP MINE & HIGH-NOISE',
         headline: 'Underground Leaky Feeder & Repeater Topologies',
         description: 'Ruggedized repeater and telemetry systems ensuring continuous communication through subterranean tunnels, open-cast mines, steel mills, and heavy logistics yards.',
@@ -179,17 +182,12 @@ export default function Home({ banners = [], categories = [], featuredProducts =
     const hardwareScrollRef = useRef(null);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(true);
-    const [activeHardwareIndex, setActiveHardwareIndex] = useState(0);
 
     const updateHardwareScrollState = () => {
         if (!hardwareScrollRef.current) return;
         const { scrollLeft, scrollWidth, clientWidth } = hardwareScrollRef.current;
         setCanScrollLeft(scrollLeft > 15);
         setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 15);
-
-        const cardWidth = hardwareScrollRef.current.firstElementChild?.clientWidth || 360;
-        const index = Math.round(scrollLeft / (cardWidth + 24));
-        setActiveHardwareIndex(Math.min(Math.max(0, index), (featuredProducts?.length || 1) - 1));
     };
 
     useEffect(() => {
@@ -210,15 +208,6 @@ export default function Home({ banners = [], categories = [], featuredProducts =
         const scrollDistance = cardWidth + 24;
         hardwareScrollRef.current.scrollBy({
             left: direction === 'next' ? scrollDistance : -scrollDistance,
-            behavior: 'smooth'
-        });
-    };
-
-    const scrollToIndex = (idx) => {
-        if (!hardwareScrollRef.current) return;
-        const cardWidth = hardwareScrollRef.current.firstElementChild?.clientWidth || 360;
-        hardwareScrollRef.current.scrollTo({
-            left: idx * (cardWidth + 24),
             behavior: 'smooth'
         });
     };
@@ -267,9 +256,9 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                 </div>
 
                 <div className="container-content relative z-10 my-auto">
-                    <div className="grid lg:grid-cols-12 gap-12 items-center min-h-[480px]">
-                        {/* Slide Content with Kinetic Masked Typography & Staggered Telemetry Entrance */}
-                        <div className="lg:col-span-8">
+                    <div className="min-h-[480px] grid lg:grid-cols-12 gap-8 items-center py-6 sm:py-10">
+                        {/* Slide Content firmly anchored to the left side */}
+                        <div className="lg:col-span-8 xl:col-span-7 max-w-2xl text-left">
                             <div key={currentSlide} className="space-y-6">
                                 {/* Top Operational Pill Badge */}
                                 <div className="animate-hero-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-beacon/35 bg-black/50 backdrop-blur-md text-beacon font-mono text-xs tracking-wider uppercase shadow-md">
@@ -277,18 +266,18 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                     <span>{slides[currentSlide].badge || 'TELECOM ENGINEERING • WPC TYPE APPROVED'}</span>
                                 </div>
 
-                                {/* Masked Kinetic Dual-Tone Heading */}
+                                {/* Hero Heading with Smooth Kinetic & Interactive Letter Reveal */}
                                 <div className="py-1">
                                     <AnimatedHeading
                                         key={currentSlide}
                                         as="h1"
                                         immediate={true}
-                                        delay={60}
-                                        stagger={42}
+                                        delay={30}
+                                        letterStagger={24}
                                         highlight="last"
                                         highlightCount={1}
                                         className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight leading-[1.12] text-white drop-shadow-xl"
-                                        gradientClass="bg-gradient-to-r from-blue-300 via-cyan-300 to-sky-400 bg-clip-text text-transparent drop-shadow-[0_2px_16px_rgba(59,130,246,0.55)] animate-text-sheen"
+                                        gradientClass="bg-gradient-to-r from-blue-300 via-cyan-300 to-sky-400 bg-clip-text text-transparent drop-shadow-[0_2px_16px_rgba(59,130,246,0.55)]"
                                     >
                                         {slides[currentSlide].heading}
                                     </AnimatedHeading>
@@ -299,17 +288,17 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                     <div className="animate-hero-tracer h-full w-full bg-gradient-to-r from-beacon via-sky-400 to-transparent rounded-full shadow-[0_0_10px_rgba(59,130,246,0.6)]" />
                                 </div>
 
-                                {/* Subtitle with Blur-to-Focus Motion */}
-                                <p className="animate-hero-subtitle text-lg sm:text-xl text-slate-200/95 max-w-2xl leading-relaxed font-sans min-h-[3.5rem] drop-shadow-md">
+                                {/* Subtitle */}
+                                <p className="text-lg sm:text-xl text-slate-200/95 max-w-2xl leading-relaxed font-sans min-h-[3.5rem] drop-shadow-md">
                                     {slides[currentSlide].subheading}
                                 </p>
 
-                                {/* Animated Telemetry Capability Chips */}
+                                {/* Telemetry Capability Chips */}
                                 <div className="flex flex-wrap items-center gap-2.5 pt-1">
                                     {(slides[currentSlide].chips || ['WPC & TEC Approved', 'MIL-STD-810 Tested', 'Govt. of India OEM']).map((chip, chipIdx) => (
                                         <div 
                                              key={chipIdx} 
-                                             className={`animate-hero-chip-${chipIdx + 1} inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-black/45 backdrop-blur-md border border-white/15 text-[11px] font-mono text-white/90 shadow-sm`}
+                                             className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-black/45 backdrop-blur-md border border-white/15 text-[11px] font-mono text-white/90 shadow-sm"
                                         >
                                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                                             <span>{chip}</span>
@@ -317,8 +306,8 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                     ))}
                                 </div>
 
-                                {/* Staggered CTA Buttons */}
-                                <div className="animate-hero-cta pt-3 flex flex-wrap items-center gap-4">
+                                {/* CTA Buttons */}
+                                <div className="pt-3 flex flex-wrap items-center gap-4">
                                     <Link 
                                         href={slides[currentSlide].cta_url || '/products'} 
                                         className="btn-shimmer !py-3.5 !px-8 text-sm uppercase tracking-wider font-mono font-bold shadow-xl hover:shadow-blue-500/40"
@@ -404,46 +393,6 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 </div>
                             </div>
                         </div>
-
-                        {/* Right: Real-time Telemetry Status Card (Floating Glass HUD) */}
-                        <div className="lg:col-span-4 hidden lg:block">
-                            <div className="card-dual !bg-slate-950/65 dark:!bg-[#12151b]/75 border border-white/15 p-6 space-y-5 shadow-2xl backdrop-blur-xl">
-                                <div className="flex items-center justify-between border-b border-white/10 pb-3 font-mono text-xs">
-                                    <span className="text-beacon font-bold">SYSTEM TELEMETRY</span>
-                                    <span className="flex items-center gap-1.5 text-emerald-400">
-                                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                                        ONLINE
-                                    </span>
-                                </div>
-
-                                <div className="space-y-3 font-mono text-xs text-slate-300">
-                                    <div className="flex justify-between py-1 border-b border-white/5">
-                                        <span className="text-slate-400">DISPATCH PROTOCOL</span>
-                                        <span className="text-white font-semibold">DMR TIER III / TETRA</span>
-                                    </div>
-                                    <div className="flex justify-between py-1 border-b border-white/5">
-                                        <span className="text-slate-400">SPECTRUM CLEARANCE</span>
-                                        <span className="text-white font-semibold">WPC ETA VERIFIED</span>
-                                    </div>
-                                    <div className="flex justify-between py-1 border-b border-white/5">
-                                        <span className="text-slate-400">LATENCY BENCHMARK</span>
-                                        <span className="text-beacon font-bold">&lt; 300 MS DIRECT PTT</span>
-                                    </div>
-                                    <div className="flex justify-between py-1 border-b border-white/5">
-                                        <span className="text-slate-400">SECURITY ENCRYPTION</span>
-                                        <span className="text-white font-semibold">AES-256 BIT E2EE</span>
-                                    </div>
-                                </div>
-
-                                <div className="pt-2">
-                                    <SignalWave className="w-full h-12 text-beacon/80" />
-                                </div>
-
-                                <div className="text-[11px] font-mono text-slate-400 text-center">
-                                    Continuous Carrier Wave • Okhla RF Testing Lab
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -452,7 +401,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             {/* =========================================================================
                 2. NATIONAL DEPLOYMENT PROOF BAR
             ========================================================================= */}
-            <section className="bg-white dark:bg-navy border-y border-slate-200 dark:border-navy-border/80 py-8 transition-colors duration-300">
+            <section className="bg-slate-50/80 dark:bg-[#080c14] py-8 transition-colors duration-300">
                 <div className="container-content">
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
                         <div className="shrink-0 max-w-sm">
@@ -641,6 +590,11 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
                                     <span>Field Proven</span>
                                 </div>
+                                {SECTOR_DATA[selectedSector].model && (
+                                    <div className="absolute bottom-3 left-3 z-20 px-2.5 py-1 rounded-md bg-blue-600/90 dark:bg-beacon/90 text-white font-mono text-[11px] font-bold tracking-wider uppercase shadow-md backdrop-blur-xs">
+                                        Model: {SECTOR_DATA[selectedSector].model}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -651,7 +605,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             {/* =========================================================================
                 4. FEATURED HARDWARE SHOWCASE — SINGLE ROW INTERACTIVE SHELF
             ========================================================================= */}
-            <section id="hardware" className="py-12 sm:py-14 bg-white dark:bg-navy border-y border-slate-200 dark:border-navy-border transition-colors duration-300 relative overflow-hidden">
+            <section id="hardware" className="py-12 sm:py-14 bg-white dark:bg-navy transition-colors duration-300 relative overflow-hidden">
                 <div className="container-content">
                     {/* Header with Title, Browse Catalog Link & Interactive Controls */}
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-6">
@@ -849,31 +803,6 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                             </div>
                         </div>
                     </div>
-
-                    {/* Interactive Dot Indicators & Overview Counter */}
-                    <div className="mt-4 flex items-center justify-between pt-2 border-t border-slate-100 dark:border-white/5">
-                        <div className="flex items-center gap-2">
-                            {(featuredProducts || []).map((_, dotIdx) => (
-                                <button
-                                    key={dotIdx}
-                                    onClick={() => scrollToIndex(dotIdx)}
-                                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                                        activeHardwareIndex === dotIdx 
-                                            ? 'w-8 bg-blue-600 dark:bg-beacon shadow-sm shadow-blue-500/30' 
-                                            : 'w-2.5 bg-slate-200 dark:bg-white/20 hover:bg-slate-300 dark:hover:bg-white/40'
-                                    }`}
-                                    aria-label={`Scroll to product ${dotIdx + 1}`}
-                                    title={`Product ${dotIdx + 1}`}
-                                />
-                            ))}
-                        </div>
-
-                        <span className="text-xs font-mono text-slate-400 dark:text-steel flex items-center gap-1.5 select-none">
-                            <span>0{activeHardwareIndex + 1}</span>
-                            <span className="opacity-40">/</span>
-                            <span>0{(featuredProducts || []).length}</span>
-                        </span>
-                    </div>
                 </div>
             </section>
 
@@ -887,7 +816,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             {/* =========================================================================
                 6. OEM PARTNERS SHOWCASE — SINGLE ROW CONTINUOUS MARQUEE (LEFT TO RIGHT)
             ========================================================================= */}
-            <section id="oem" className="py-12 sm:py-14 bg-slate-50 dark:bg-navy-dark border-t border-slate-200 dark:border-navy-border transition-colors duration-300 overflow-hidden">
+            <section id="oem" className="py-12 sm:py-14 bg-slate-50 dark:bg-navy-dark transition-colors duration-300 overflow-hidden">
                 <div className="container-content">
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-4">
                         <div>
@@ -958,7 +887,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             {/* =========================================================================
                 7. BOTTOM CALL TO ACTION
             ========================================================================= */}
-            <section className="py-14 sm:py-16 bg-white dark:bg-navy border-t border-slate-200 dark:border-navy-border transition-colors duration-300 relative overflow-hidden">
+            <section className="py-14 sm:py-16 bg-white dark:bg-navy transition-colors duration-300 relative overflow-hidden">
                 {/* Ambient Radial Backdrop Glow */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-blue-500/5 dark:bg-beacon/5 rounded-full blur-3xl pointer-events-none" />
 

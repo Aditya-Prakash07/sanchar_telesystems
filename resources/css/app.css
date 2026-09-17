@@ -189,6 +189,36 @@
         animation: heroTitleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.06s both;
     }
 
+    /* Professional Words Jumping & Expanding from Center Kinetic Animation */
+    @keyframes wordJumpExpand {
+        0% {
+            opacity: 0;
+            transform: translate3d(0, 32px, 0) scale(0.62);
+            filter: blur(6px);
+        }
+        52% {
+            opacity: 1;
+            filter: blur(0px);
+        }
+        64% {
+            transform: translate3d(0, -7px, 0) scale(1.055);
+        }
+        82% {
+            transform: translate3d(0, 1.5px, 0) scale(0.99);
+        }
+        100% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+            filter: blur(0px);
+        }
+    }
+
+    .animate-word-jump-expand {
+        animation: wordJumpExpand 680ms cubic-bezier(0.2, 0.85, 0.32, 1.2) both;
+        transform-origin: 50% 50%;
+        will-change: transform, opacity, filter;
+    }
+
     @keyframes tracerExpand {
         0% {
             transform: scaleX(0);

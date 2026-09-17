@@ -27,7 +27,7 @@ export default function ProductsShow({ category, subcategory, item, seo = {} }) 
             />
 
             {/* Breadcrumb Header */}
-            <div className="bg-white dark:bg-navy text-slate-900 dark:text-paper pt-32 pb-8 border-b border-slate-200/80 dark:border-navy-border">
+            <div className="bg-white dark:bg-navy text-slate-900 dark:text-paper pt-32 pb-8">
                 <div className="container-content">
                     <nav className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400">
                         <Link href="/" className="hover:text-slate-900 dark:hover:text-white transition-colors">HOME</Link>
