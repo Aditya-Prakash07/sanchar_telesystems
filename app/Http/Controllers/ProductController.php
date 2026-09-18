@@ -20,7 +20,15 @@ class ProductController extends Controller
     {
         $categories = ProductCategory::where('is_published', true)
             ->orderBy('sort_order')
-            ->with(['subcategories' => fn ($q) => $q->where('is_published', true)])
+            ->with([
+                'subcategories' => fn ($q) => $q->where('is_published', true)
+                    ->orderBy('sort_order')
+                    ->with([
+                        'items' => fn ($iq) => $iq->where('is_published', true)
+                            ->orderBy('sort_order')
+                            ->select(['id', 'product_subcategory_id', 'name', 'slug', 'model_number', 'short_description', 'cover_image_path'])
+                    ])
+            ])
             ->get(['id', 'name', 'slug', 'description', 'thumbnail_path']);
 
         return Inertia::render('Products/Index', [

@@ -1,9 +1,54 @@
 import { Link } from '@inertiajs/react';
+import { useState, useMemo } from 'react';
 import MainLayout from '@/Layouts/MainLayout';
 import Seo from '@/Components/Seo';
 import AnimatedHeading from '@/Components/AnimatedHeading';
 
+export function toSpacedWords(text = '') {
+    return (text || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+export function toAlphanumericOnly(text = '') {
+    return (text || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+export function matchesSearch(fields = [], query = '') {
+    if (!query || !query.trim()) return true;
+
+    const rawQuery = query.toLowerCase().trim();
+    const spacedQuery = toSpacedWords(query);
+    const alphaQuery = toAlphanumericOnly(query);
+    const queryTokens = spacedQuery.split(/\s+/).filter(Boolean);
+
+    const combinedRaw = fields.filter(Boolean).join(' ').toLowerCase();
+    const combinedSpaced = toSpacedWords(combinedRaw);
+    const combinedAlpha = toAlphanumericOnly(combinedRaw);
+
+    if (combinedRaw.includes(rawQuery)) return true;
+    if (spacedQuery && combinedSpaced.includes(spacedQuery)) return true;
+    if (alphaQuery && combinedAlpha.includes(alphaQuery)) return true;
+
+    if (queryTokens.length > 0) {
+        const allTokensMatch = queryTokens.every((token) => {
+            const tokenAlpha = toAlphanumericOnly(token);
+            return combinedSpaced.includes(token) || (tokenAlpha && combinedAlpha.includes(tokenAlpha));
+        });
+        if (allTokensMatch) return true;
+    }
+
+    return false;
+}
+
 export default function ProductsCategory({ category, subcategory, items = [], seo = {} }) {
+    const [search, setSearch] = useState('');
+
+    const filteredItems = useMemo(() => {
+        if (!search.trim()) return items;
+        return items.filter((item) =>
+            matchesSearch([item.name, item.model_number, item.short_description, item.slug], search)
+        );
+    }, [items, search]);
+
     return (
         <MainLayout>
             <Seo
@@ -46,16 +91,38 @@ export default function ProductsCategory({ category, subcategory, items = [], se
                         <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-steel leading-relaxed font-sans">
                             {subcategory.description || `Browse high-durability ${subcategory.name} equipment and systems engineered for mission-critical deployments across India.`}
                         </p>
+
+                        {/* Subcategory Search filter input */}
+                        {items.length > 0 && (
+                            <div className="mt-8 max-w-lg relative">
+                                <input 
+                                    type="text"
+                                    placeholder={`Search in ${subcategory.name} (e.g. ST-200R, NX-3220)...`}
+                                    value={search}
+                                    onChange={(e) => setSearch(e.target.value)}
+                                    className="input !bg-slate-50 dark:!bg-navy-surface !border-slate-300 dark:!border-navy-border !text-slate-900 dark:!text-white placeholder:text-slate-400 focus:!border-blue-500 dark:focus:!border-beacon !pr-16"
+                                />
+                                {search && (
+                                    <button 
+                                        onClick={() => setSearch('')}
+                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-white text-xs font-mono px-2 py-1 rounded bg-slate-200/60 dark:bg-navy-border/80 transition-colors"
+                                    >
+                                        CLEAR
+                                    </button>
+                                )}
+                            </div>
+                        )}
                     </div>
                 </div>
             </header>
 
             {/* Items Grid */}
-            <div className="py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
+            <div className="py-16 sm:py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
                 <div className="container-content">
-                    <div className="flex items-center justify-between border-b border-slate-200 dark:border-navy-border pb-4 mb-10">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200 dark:border-navy-border pb-4 mb-10 gap-3">
                         <span className="text-xs font-mono uppercase text-slate-500 dark:text-steel font-bold">
-                            HARDWARE CATALOG &bull; {items.length} {items.length === 1 ? 'TERMINAL' : 'TERMINALS / UNITS'}
+                            HARDWARE CATALOG &bull; {filteredItems.length} OF {items.length} {items.length === 1 ? 'UNIT' : 'UNITS'}
+                            {search && <span className="text-blue-600 dark:text-beacon ml-2 font-semibold">(FILTERED)</span>}
                         </span>
                         <Link href="/products" className="text-xs font-mono text-blue-600 dark:text-beacon hover:underline inline-flex items-center gap-1.5 font-medium">
                             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -65,24 +132,51 @@ export default function ProductsCategory({ category, subcategory, items = [], se
                         </Link>
                     </div>
 
-                    {items.length === 0 ? (
+                    {filteredItems.length === 0 ? (
                         <div className="panel p-16 text-center space-y-4">
-                            <p className="font-mono text-sm text-slate-600 dark:text-steel">
-                                Direct supply models available via custom RFP quotation.
-                            </p>
-                            <Link href="/contact-us" className="btn-beacon !py-2.5 !px-6 text-xs font-mono uppercase tracking-wider font-bold">
-                                Request Custom Hardware Specs
-                            </Link>
+                            {search ? (
+                                <>
+                                    <p className="font-mono text-sm text-slate-700 dark:text-paper font-semibold">
+                                        No products matched &ldquo;{search}&rdquo; in {subcategory.name}.
+                                    </p>
+                                    <p className="text-xs font-mono text-slate-500 dark:text-steel">
+                                        Try searching across all categories or check for alternative model numbers.
+                                    </p>
+                                    <div className="pt-2 flex items-center justify-center gap-4">
+                                        <button 
+                                            onClick={() => setSearch('')}
+                                            className="btn-beacon !py-2 !px-5 text-xs font-mono uppercase tracking-wider font-bold"
+                                        >
+                                            Reset Filter
+                                        </button>
+                                        <Link 
+                                            href="/products" 
+                                            className="text-xs font-mono text-blue-600 dark:text-beacon hover:underline"
+                                        >
+                                            Search All Categories
+                                        </Link>
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    <p className="font-mono text-sm text-slate-600 dark:text-steel">
+                                        Direct supply models available via custom RFP quotation.
+                                    </p>
+                                    <Link href="/contact-us" className="btn-beacon !py-2.5 !px-6 text-xs font-mono uppercase tracking-wider font-bold">
+                                        Request Custom Hardware Specs
+                                    </Link>
+                                </>
+                            )}
                         </div>
                     ) : (
                         <div className={`grid gap-8 ${
-                            items.length === 1 
+                            filteredItems.length === 1 
                                 ? 'grid-cols-1 max-w-md' 
-                                : items.length === 2 
+                                : filteredItems.length === 2 
                                 ? 'grid-cols-1 sm:grid-cols-2 max-w-3xl' 
                                 : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
                         }`}>
-                            {items.map((item) => (
+                            {filteredItems.map((item) => (
                                 <Link
                                     key={item.id}
                                     href={`/products/${category.slug}/${subcategory.slug}/${item.slug}`}
