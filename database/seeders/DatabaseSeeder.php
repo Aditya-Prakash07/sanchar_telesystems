@@ -313,37 +313,37 @@ class DatabaseSeeder extends Seeder
             OemPartner::create($p + ['is_published' => true]);
         }
 
-        // 7. Original Live Site Hero Banners
+        // 7. Motorola Solutions-Style Hero Banners
         $heroBanners = [
             [
-                'heading' => 'CONNECTION EVERYWHERE',
-                'subheading' => 'World-class wireless communication solutions engineered for India’s defense, homeland security, and critical industrial sectors.',
-                'image_path' => 'media/banners/banner1.png',
-                'cta_label' => 'Explore Products',
+                'heading' => 'Accelerating Mission-Critical Communications',
+                'subheading' => 'Our plan to scale and diversify tactical wireless operations, DMR Tier III networks and secure communications to meet growing national demand.',
+                'image_path' => 'media/banners/banner1.jpg',
+                'cta_label' => 'View Release',
                 'cta_url' => '/products',
                 'sort_order' => 0,
             ],
             [
-                'heading' => 'SEAMLESS COMMUNICATION',
-                'subheading' => 'Integrated DMR, TETRA, and P25 trunking architectures built for zero failure in high-risk operational environments.',
+                'heading' => 'Next-Generation Tactical Radio Networks',
+                'subheading' => 'Empowering first responders and defense forces with AES-256 encrypted multi-band digital transceivers engineered for zero mission failure.',
                 'image_path' => 'media/banners/banner2.jpg',
-                'cta_label' => 'View DMR Systems',
+                'cta_label' => 'Explore Network Solutions',
                 'cta_url' => '/products',
                 'sort_order' => 1,
             ],
             [
-                'heading' => 'PTT OVER CELLULAR',
-                'subheading' => 'Nationwide instant group voice and live dispatch over LTE & Wi-Fi networks — keeping emergency forces connected without range limits.',
+                'heading' => 'Intrinsically Safe Industrial & Defense Radios',
+                'subheading' => 'Certified explosion-proof ATEX and MIL-STD-810H rugged communications built for hazardous industrial sectors, refineries and tactical operations.',
                 'image_path' => 'media/banners/banner3.jpg',
-                'cta_label' => 'Discover PoC Platforms',
+                'cta_label' => 'Discover ATEX Radios',
                 'cta_url' => '/products',
                 'sort_order' => 2,
             ],
             [
-                'heading' => 'STAY CONNECTED',
+                'heading' => 'Nationwide Turnkey Wireless Infrastructure',
                 'subheading' => 'Over three decades of mission-critical engineering excellence trusted by the Parliament of India, Delhi Police, and Indian Railways.',
                 'image_path' => 'media/banners/banner4.jpg',
-                'cta_label' => 'Consult with Engineering Desk',
+                'cta_label' => 'Our Deployments',
                 'cta_url' => '/contact-us',
                 'sort_order' => 3,
             ],

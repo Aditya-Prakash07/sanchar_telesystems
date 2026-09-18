@@ -127,40 +127,32 @@ export default function Home({ banners = [], categories = [], featuredProducts =
     // Default hero slides if none in database
     const slides = banners.length > 0 ? banners : [
         {
-            heading: 'Digital Mobile Radio Networks',
-            subheading: 'AES-256 encrypted DMR voice networks deployed across Indian defense, police, and critical industrial operations. WPC type-approved.',
-            image_path: 'media/banners/banner1.png',
-            cta_label: 'Explore NX-Series',
+            heading: 'Accelerating Mission-Critical Communications',
+            subheading: 'Our plan to scale and diversify tactical wireless operations, DMR Tier III networks and secure communications to meet growing national demand.',
+            image_path: 'media/banners/banner1.jpg',
+            cta_label: 'View Release',
             cta_url: '/products',
-            badge: 'DMR TIER III • KENWOOD NX-SERIES',
-            category: 'PROFESSIONAL RADIO SYSTEMS',
         },
         {
-            heading: 'Mission-Critical PoC Platforms',
-            subheading: 'Nationwide broadband push-to-talk over LTE and Wi-Fi — unlimited range, live GPS dispatch, and instant SOS. GeM-registered.',
+            heading: 'Next-Generation Tactical Radio Networks',
+            subheading: 'Empowering first responders and defense forces with AES-256 encrypted multi-band digital transceivers engineered for zero mission failure.',
             image_path: 'media/banners/banner2.jpg',
-            cta_label: 'View PoC Solutions',
+            cta_label: 'Explore Network Solutions',
             cta_url: '/products',
-            badge: 'PTT OVER CELLULAR • ST-200R',
-            category: 'BROADBAND COMMUNICATIONS',
         },
         {
-            heading: 'Intrinsically Safe Radio',
-            subheading: 'ATEX Zone 1 & Zone 2 certified terminals for refineries, offshore rigs, and chemical plants. IP68 sealed, explosion-proof design.',
+            heading: 'Intrinsically Safe Industrial & Defense Radios',
+            subheading: 'Certified explosion-proof ATEX and MIL-STD-810H rugged communications built for hazardous industrial sectors, refineries and tactical operations.',
             image_path: 'media/banners/banner3.jpg',
-            cta_label: 'Discover ATEX Range',
+            cta_label: 'Discover ATEX Radios',
             cta_url: '/products',
-            badge: 'ATEX / IECEX CERTIFIED • V-710',
-            category: 'HAZARDOUS AREA EQUIPMENT',
         },
         {
-            heading: 'Trusted at National Scale',
-            subheading: 'From Parliament of India to Indian Railways — Sanchar delivers turnkey wireless infrastructure for critical national operations.',
+            heading: 'Nationwide Turnkey Wireless Infrastructure',
+            subheading: 'Over three decades of mission-critical engineering excellence trusted by the Parliament of India, Delhi Police, and Indian Railways.',
             image_path: 'media/banners/banner4.jpg',
             cta_label: 'Our Deployments',
             cta_url: '/contact-us',
-            badge: 'PARLIAMENT • DELHI POLICE • INDIAN RAILWAYS',
-            category: 'GOVERNMENT & DEFENSE',
         }
     ];
 
