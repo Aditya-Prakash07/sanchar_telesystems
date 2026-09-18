@@ -426,7 +426,7 @@
     }
 
     .csstricks-anchor-inner {
-        background: #000000;
+        background: #ffffff;
         border-radius: calc(1.5rem - 3px);
         padding: 1.75rem 1.5rem;
         width: 100%;
@@ -436,6 +436,11 @@
         position: relative;
         overflow: hidden;
         z-index: 2;
+        transition: background-color 0.3s ease;
+    }
+
+    .dark .csstricks-anchor-inner {
+        background: #000000;
     }
 
     /* Overlapping Deck Track */

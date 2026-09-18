@@ -680,30 +680,30 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                             <div className="csstricks-anchor-inner h-full flex flex-col justify-between p-6 xl:p-7">
                                 {/* Top Glowing Header */}
                                 <div className="space-y-3.5">
-                                    <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-[10px] font-mono font-bold text-sky-300 uppercase tracking-widest shadow-xs">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+                                    <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-500/20 border border-blue-200 dark:border-blue-400/30 text-[10px] font-mono font-bold text-blue-700 dark:text-sky-300 uppercase tracking-widest shadow-xs">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-cyan-400 animate-ping" />
                                         <span>Field Proven</span>
                                     </div>
-                                    <div className="font-display font-black text-2xl sm:text-3xl xl:text-[28px] text-white tracking-tight leading-tight pt-1">
+                                    <div className="font-display font-black text-2xl sm:text-3xl xl:text-[28px] text-slate-900 dark:text-white tracking-tight leading-tight pt-1">
                                         Mission-Critical<br />Wireless Systems<br />
-                                        <span className="bg-gradient-to-r from-sky-400 via-cyan-300 to-teal-300 bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(56,189,248,0.5)]">
+                                        <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-cyan-600 dark:from-sky-400 dark:via-cyan-300 dark:to-teal-300 bg-clip-text text-transparent dark:drop-shadow-[0_2px_12px_rgba(56,189,248,0.5)]">
                                             Field Deployed
                                         </span>
                                     </div>
-                                    <p className="text-xs text-slate-300 leading-relaxed pt-1">
+                                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed pt-1">
                                         Standardized RF platforms and transceivers deployed nationwide across defense and rail.
                                     </p>
                                 </div>
 
                                 {/* Bottom Info & Link */}
-                                <div className="pt-5 border-t border-white/10 space-y-3 mt-4">
-                                    <div className="text-[11px] font-mono text-slate-400 flex items-center gap-2">
-                                        <span className="text-emerald-400 font-bold">✓</span>
+                                <div className="pt-5 border-t border-slate-200 dark:border-white/10 space-y-3 mt-4">
+                                    <div className="text-[11px] font-mono text-slate-600 dark:text-slate-400 flex items-center gap-2">
+                                        <span className="text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
                                         <span>WPC &amp; TEC Approved</span>
                                     </div>
                                     <Link
                                         href="/products"
-                                        className="group/cta inline-flex items-center gap-2 text-xs font-mono font-bold text-sky-400 hover:text-white transition-colors"
+                                        className="group/cta inline-flex items-center gap-2 text-xs font-mono font-bold text-blue-600 hover:text-blue-800 dark:text-sky-400 dark:hover:text-white transition-colors"
                                     >
                                         <span>Explore 120+ Products</span>
                                         <svg className="w-3.5 h-3.5 transition-transform duration-200 group-hover/cta:translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
