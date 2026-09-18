@@ -15,11 +15,11 @@ export default {
             colors: {
                 // "Signal" design system — see DESIGN-SYSTEM.md for rationale.
                 navy: {
-                    dark: '#0a0d14',
-                    DEFAULT: '#12151b', // matching key stats section background
-                    surface: '#161a23',
-                    light: '#1f2430',
-                    border: '#282f3e',
+                    dark: '#0a0a0a',
+                    DEFAULT: '#111111',
+                    surface: '#1a1a1a',
+                    light: '#222222',
+                    border: '#2e2e2e',
                 },
                 paper: '#F6F7F5',      // light section bg
                 ink: '#10151C',        // primary text on paper
@@ -38,7 +38,7 @@ export default {
                 },
             },
             fontFamily: {
-                display: ['"Space Grotesk"', ...defaultTheme.fontFamily.sans],
+                display: ['"CleanAmpersand"', '"Space Grotesk"', ...defaultTheme.fontFamily.sans],
                 sans: ['"IBM Plex Sans"', ...defaultTheme.fontFamily.sans],
                 mono: ['"IBM Plex Mono"', ...defaultTheme.fontFamily.mono],
             },

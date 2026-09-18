@@ -153,7 +153,7 @@ export default function KeyStatsSection({ stats = [] }) {
     return (
         <section 
             ref={sectionRef}
-            className="py-20 sm:py-24 lg:py-28 bg-slate-100/80 dark:bg-[#0c101a] text-slate-900 dark:text-paper relative overflow-hidden transition-colors duration-300"
+            className="py-20 sm:py-24 lg:py-28 bg-slate-50 dark:bg-[#111111] text-slate-900 dark:text-paper relative overflow-hidden transition-colors duration-300"
         >
             {/* Ambient Background Grid Pattern */}
             <div className="absolute inset-0 bg-grid-pattern opacity-10 dark:opacity-15 pointer-events-none" />

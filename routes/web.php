@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CareersController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OemPartnerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SitemapController;
@@ -24,6 +25,9 @@ Route::get('/products/{category:slug}/{subcategory:slug}/{item:slug}', [ProductC
     ->name('products.show');
 Route::get('/products/{category:slug}/{subcategory:slug}/{item:slug}/datasheet', [ProductController::class, 'datasheet'])
     ->name('products.show.datasheet');
+
+Route::get('/latest-news', [NewsController::class, 'index'])->name('news.index');
+Route::get('/latest-news/{post:slug}', [NewsController::class, 'show'])->name('news.show');
 
 Route::get('/oem-partners', [OemPartnerController::class, 'index'])->name('oem-partners');
 Route::get('/careers', [CareersController::class, 'index'])->name('careers');

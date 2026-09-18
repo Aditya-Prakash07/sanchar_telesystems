@@ -13,7 +13,7 @@ export default function Careers({ openings = [], seo = {} }) {
             />
 
             {/* Header */}
-            <header className="relative bg-white dark:bg-navy pt-36 pb-20 overflow-hidden transition-colors duration-300">
+            <header className="relative bg-white dark:bg-[#0a0a0a] pt-36 pb-20 overflow-hidden transition-colors duration-300">
                 <div className="container-content relative z-10">
                     <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
                         <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-beacon animate-pulse" />
@@ -35,7 +35,7 @@ export default function Careers({ openings = [], seo = {} }) {
                         </p>
                     </div>
 
-                    <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-200 dark:border-white/10 pt-8 max-w-4xl text-xs font-mono">
+                    <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 max-w-4xl text-xs font-mono">
                         <div>
                             <span className="text-slate-500 dark:text-slate-400 block">PRIMARY LOCATION</span>
                             <span className="text-slate-900 dark:text-white font-bold mt-1 block">NEW DELHI (HQ & LAB)</span>
@@ -57,7 +57,7 @@ export default function Careers({ openings = [], seo = {} }) {
             </header>
 
             {/* Why Sanchar Pillars */}
-            <section className="py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
+            <section className="py-20 bg-slate-50 dark:bg-[#111111] transition-colors duration-300">
                 <div className="container-content">
                     <div className="text-center max-w-2xl mx-auto mb-16">
                         <span className="text-xs font-mono uppercase tracking-wider font-bold text-blue-600 dark:text-beacon block mb-2">
@@ -96,7 +96,7 @@ export default function Careers({ openings = [], seo = {} }) {
                                     02
                                 </div>
                                 <h3 className="font-display font-bold text-slate-900 dark:text-paper text-lg mb-3">
-                                    Indigenous R&D & Make in India
+                                    Indigenous R&D and Make in India
                                 </h3>
                                 <p className="text-sm text-slate-600 dark:text-steel leading-relaxed">
                                     Participate in the design of next-generation DMR handhelds, base repeaters, and tactical push-to-talk PoC terminals designed and manufactured right here in India.
@@ -122,9 +122,9 @@ export default function Careers({ openings = [], seo = {} }) {
             </section>
 
             {/* Openings Section */}
-            <section className="py-20 bg-white dark:bg-navy transition-colors duration-300">
+            <section className="py-20 bg-white dark:bg-[#0a0a0a] transition-colors duration-300">
                 <div className="container-content max-w-4xl">
-                    <div className="flex items-center justify-between mb-10 pb-4 border-b border-slate-200 dark:border-navy-border/80">
+                    <div className="flex items-center justify-between mb-10 pb-2">
                         <div>
                             <span className="text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider font-bold block mb-1">
                                 CAREER OPPORTUNITIES

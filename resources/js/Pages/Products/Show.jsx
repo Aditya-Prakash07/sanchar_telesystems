@@ -14,7 +14,7 @@ export default function ProductsShow({ category, subcategory, item, seo = {} }) 
     return (
         <MainLayout>
             <Seo
-                title={seo?.title || `${item.name} — Technical Specifications | Sanchar Telesystems`}
+                title={seo?.title || `${item.name} | Sanchar Telesystems`}
                 description={seo?.description || item.short_description || `Technical specifications, frequency bands, and features for ${item.name}.`}
                 canonicalPath={`/products/${category.slug}/${subcategory.slug}/${item.slug}`}
                 breadcrumbs={[
@@ -27,7 +27,7 @@ export default function ProductsShow({ category, subcategory, item, seo = {} }) 
             />
 
             {/* Breadcrumb Header */}
-            <div className="bg-white dark:bg-navy text-slate-900 dark:text-paper pt-32 pb-8">
+            <div className="bg-white dark:bg-[#0a0a0a] text-slate-900 dark:text-paper pt-32 pb-8 transition-colors duration-300">
                 <div className="container-content">
                     <nav className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400">
                         <Link href="/" className="hover:text-slate-900 dark:hover:text-white transition-colors">HOME</Link>
@@ -44,7 +44,7 @@ export default function ProductsShow({ category, subcategory, item, seo = {} }) 
             </div>
 
             {/* Product Hero & Specifications */}
-            <div className="py-16 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
+            <div className="py-16 bg-slate-50 dark:bg-[#111111] transition-colors duration-300">
                 <div className="container-content">
                     <div className="grid lg:grid-cols-12 gap-12 items-start">
                         {/* Hardware Image Showcase */}

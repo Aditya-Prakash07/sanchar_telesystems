@@ -8,6 +8,7 @@ const NAV_LINKS = [
     { label: 'About Us', href: '/about-us' },
     { label: 'Products', href: '/products', hasDropdown: true },
     { label: 'OEM Partners', href: '/oem-partners' },
+    { label: 'News', href: '/latest-news' },
     { label: 'Careers', href: '/careers' },
     { label: 'Contact Us', href: '/contact-us' },
 ];
@@ -63,7 +64,7 @@ export default function Navbar() {
             {/* Main Navigation Bar (100% Solid Opaque when scrolled) */}
             <div className={`transition-all duration-300 ${
                 scrolled
-                    ? 'bg-white dark:bg-navy shadow-md py-3 border-b border-slate-200/80 dark:border-navy-border'
+                    ? 'bg-white dark:bg-navy shadow-[0_4px_20px_-4px_rgba(0,0,0,0.07)] dark:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.4)] py-3'
                     : 'bg-transparent py-4'
             }`}>
                 <nav className="container-content flex items-center justify-between">

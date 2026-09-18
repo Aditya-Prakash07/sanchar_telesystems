@@ -134,11 +134,11 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
             />
 
             {/* Header */}
-            <header className="relative bg-white dark:bg-navy pt-36 pb-16 overflow-hidden">
+            <header className="relative bg-white dark:bg-[#0a0a0a] pt-36 pb-16 overflow-hidden transition-colors duration-300">
                 <div className="container-content relative z-10 max-w-3xl">
                     <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
                         <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
-                        <span>TACTICAL HARDWARE &amp; SYSTEMS CATALOG</span>
+                        <span>TACTICAL HARDWARE & SYSTEMS CATALOG</span>
                     </div>
                     <AnimatedHeading
                         as="h1"
@@ -176,7 +176,7 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
             </header>
 
             {/* Catalog & Search Results Grid */}
-            <div className="py-16 sm:py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
+            <div className="py-16 sm:py-20 bg-slate-50 dark:bg-[#111111] transition-colors duration-300">
                 <div className="container-content space-y-16">
                     {/* 1. Direct Matching Products (When search query is active) */}
                     {isSearching && matchingProducts.length > 0 && (
@@ -286,7 +286,7 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
                                         BROWSE BY CATEGORY
                                     </span>
                                     <h3 className="text-xl font-display font-bold text-slate-900 dark:text-paper">
-                                        Related Categories &amp; Subcategories
+                                        Related Categories & Subcategories
                                     </h3>
                                 </div>
                             )}

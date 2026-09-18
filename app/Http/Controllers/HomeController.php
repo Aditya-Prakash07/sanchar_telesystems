@@ -44,7 +44,7 @@ class HomeController extends Controller
             'latestNews' => NewsPost::where('is_published', true)
                 ->orderByDesc('published_at')
                 ->take(3)
-                ->get(['title', 'slug', 'cover_image_path', 'published_at']),
+                ->get(['id', 'title', 'slug', 'body', 'cover_image_path', 'published_at']),
 
             'seo' => [
                 'title' => 'Sanchar Telesystems — Mission-Critical Wireless Communication Solutions',

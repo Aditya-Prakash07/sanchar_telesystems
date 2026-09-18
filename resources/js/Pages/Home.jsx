@@ -42,7 +42,7 @@ const SECTOR_DATA = [
         model: 'ATEX V-710',
         tag: 'ATEX & INTRINSICALLY SAFE',
         headline: 'Explosion-Proof Terminals for Hazardous Zones',
-        description: 'Zone 1 & Zone 2 certified communications equipment designed to prevent electrical sparks in flammable refineries, offshore drilling platforms, and chemical storage facilities.',
+        description: 'Zone 1 and Zone 2 certified communications equipment designed to prevent electrical sparks in flammable refineries, offshore drilling platforms, and chemical storage facilities.',
         features: [
             'ATEX / IECEx Certified Handhelds',
             'Gas Group IIA, IIB, IIC Protection',
@@ -119,7 +119,7 @@ const getSectorIcon = (idx) => {
     }
 };
 
-export default function Home({ banners = [], categories = [], featuredProducts = [], stats = [], testimonials = [], oemPartners = [], seo = {} }) {
+export default function Home({ banners = [], categories = [], featuredProducts = [], stats = [], testimonials = [], oemPartners = [], latestNews = [], seo = {} }) {
     const [selectedSector, setSelectedSector] = useState(0);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
@@ -127,42 +127,51 @@ export default function Home({ banners = [], categories = [], featuredProducts =
     // Default hero slides if none in database
     const slides = banners.length > 0 ? banners : [
         {
-            heading: 'CONNECTION EVERYWHERE',
-            subheading: 'World-class wireless communication solutions engineered for India’s defense, homeland security, and critical industrial sectors.',
+            heading: 'Digital Mobile Radio Networks',
+            subheading: 'AES-256 encrypted DMR voice networks deployed across Indian defense, police, and critical industrial operations. WPC type-approved.',
             image_path: 'media/banners/banner1.png',
-            cta_label: 'Explore Products',
+            cta_label: 'Explore NX-Series',
             cta_url: '/products',
-            badge: 'MISSION CRITICAL TIER-1 • WPC TYPE APPROVED',
-            chips: ['MIL-STD-810G Rugged', 'AES-256 Encryption', '35–50 km Range']
+            badge: 'DMR TIER III • KENWOOD NX-SERIES',
+            category: 'PROFESSIONAL RADIO SYSTEMS',
         },
         {
-            heading: 'SEAMLESS COMMUNICATION',
-            subheading: 'Integrated DMR, TETRA, and P25 trunking architectures built for zero failure in high-risk operational environments.',
+            heading: 'Mission-Critical PoC Platforms',
+            subheading: 'Nationwide broadband push-to-talk over LTE and Wi-Fi — unlimited range, live GPS dispatch, and instant SOS. GeM-registered.',
             image_path: 'media/banners/banner2.jpg',
-            cta_label: 'View DMR Systems',
+            cta_label: 'View PoC Solutions',
             cta_url: '/products',
-            badge: 'TACTICAL DMR & TETRA • ENCRYPTED VOICE',
-            chips: ['Zero-Interruption Voice', 'Sub-300ms Call Setup', 'Full Duplex Interop']
+            badge: 'PTT OVER CELLULAR • ST-200R',
+            category: 'BROADBAND COMMUNICATIONS',
         },
         {
-            heading: 'PTT OVER CELLULAR',
-            subheading: 'Nationwide instant group voice and live dispatch over LTE & Wi-Fi networks — keeping emergency forces connected without range limits.',
+            heading: 'Intrinsically Safe Radio',
+            subheading: 'ATEX Zone 1 & Zone 2 certified terminals for refineries, offshore rigs, and chemical plants. IP68 sealed, explosion-proof design.',
             image_path: 'media/banners/banner3.jpg',
-            cta_label: 'Discover PoC Platforms',
+            cta_label: 'Discover ATEX Range',
             cta_url: '/products',
-            badge: 'BROADBAND PoC & LTE • NATIONWIDE CARRIER',
-            chips: ['Unlimited Range Dispatch', 'Live GPS Tracking', 'Instant SOS Emergency']
+            badge: 'ATEX / IECEX CERTIFIED • V-710',
+            category: 'HAZARDOUS AREA EQUIPMENT',
         },
         {
-            heading: 'STAY CONNECTED',
-            subheading: 'Turnkey wireless communications and engineering excellence trusted by the Parliament of India, Delhi Police, and Indian Railways.',
+            heading: 'Trusted at National Scale',
+            subheading: 'From Parliament of India to Indian Railways — Sanchar delivers turnkey wireless infrastructure for critical national operations.',
             image_path: 'media/banners/banner4.jpg',
-            cta_label: 'Consult with Engineering Desk',
+            cta_label: 'Our Deployments',
             cta_url: '/contact-us',
-            badge: 'GOVT. OF INDIA WPC & TEC APPROVED SUPPLIER',
-            chips: ['GeM Registered OEM', 'TEC & WPC Certified', 'Turnkey Network EPC']
+            badge: 'PARLIAMENT • DELHI POLICE • INDIAN RAILWAYS',
+            category: 'GOVERNMENT & DEFENSE',
         }
     ];
+
+    const scrollContainer = (ref, direction) => {
+        if (!ref.current) return;
+        const scrollDistance = 320;
+        ref.current.scrollBy({
+            left: direction === 'next' ? scrollDistance : -scrollDistance,
+            behavior: 'smooth'
+        });
+    };
 
     const SLIDE_DURATION = 3400; // 3.4s fast transition
 
@@ -204,8 +213,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
 
     const scrollHardware = (direction) => {
         if (!hardwareScrollRef.current) return;
-        const cardWidth = hardwareScrollRef.current.firstElementChild?.clientWidth || 360;
-        const scrollDistance = cardWidth + 24;
+        const scrollDistance = 210;
         hardwareScrollRef.current.scrollBy({
             left: direction === 'next' ? scrollDistance : -scrollDistance,
             behavior: 'smooth'
@@ -221,187 +229,114 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             />
 
             {/* =========================================================================
-                1. HERO SECTION WITH ORIGINAL LIVE BANNERS CAROUSEL (EQUAL FULL VIEWPORT HEIGHT)
+                1. HERO SECTION WITH MOTOROLA SOLUTIONS-INSPIRED LIVE BANNERS (CINEMATIC FULL VIEWPORT)
             ========================================================================= */}
             <section 
-                className="relative bg-slate-950 text-paper overflow-hidden h-[100dvh] min-h-[640px] max-h-[980px] flex flex-col justify-center pt-20 pb-12 sm:pt-24 sm:pb-16"
+                className="relative bg-[#04060a] text-paper overflow-hidden h-[100dvh] min-h-[640px] max-h-[960px] flex flex-col justify-center"
             >
-                {/* Background Slider Imagery — Vivid, High-Visibility with Smooth Ken Burns Motion */}
+                {/* Background Slider Imagery / Video — Smooth transitions */}
                 <div className="absolute inset-0 z-0 overflow-hidden">
                     {slides.map((s, idx) => (
                         <div
                             key={s.id || idx}
-                            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                                currentSlide === idx ? 'opacity-90 sm:opacity-95 z-10' : 'opacity-0 pointer-events-none z-0'
+                            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                                currentSlide === idx ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none z-0'
                             }`}
                         >
                             <img
                                 src={`/storage/${s.image_path}`}
                                 alt={s.heading}
-                                className={`w-full h-full object-cover object-center transform transition-transform duration-[4200ms] ease-out will-change-transform ${
-                                    currentSlide === idx ? 'scale-108' : 'scale-100'
+                                className={`w-full h-full object-cover object-center transform transition-transform duration-[6000ms] ease-out will-change-transform ${
+                                    currentSlide === idx ? 'scale-104' : 'scale-100'
                                 }`}
                                 onError={(e) => {
                                     e.target.onerror = null;
-                                    e.target.src = '/storage/media/banners/banner1.png';
+                                    e.target.src = '/storage/media/banners/banner1.jpg';
                                 }}
                             />
                         </div>
                     ))}
-                    {/* Cinematic directional gradient: high contrast behind text on left, clear & vivid view of banner photo on center/right */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/60 sm:via-slate-950/35 to-slate-950/10 z-10 pointer-events-none" />
-                    {/* Bottom and top edge vignette blends */}
-                    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent z-10 pointer-events-none" />
-                    <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-slate-950/80 via-slate-950/30 to-transparent z-10 pointer-events-none" />
+
+                    {/* Motorola signature left-side deep pitch black vignette */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 sm:via-black/55 to-transparent z-10 pointer-events-none" />
+                    {/* Top & bottom subtle cinematic letterbox gradients */}
+                    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black via-black/60 to-transparent z-10 pointer-events-none" />
+                    <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/80 via-black/30 to-transparent z-10 pointer-events-none" />
                 </div>
 
-                <div className="container-content relative z-10 my-auto">
-                    <div className="min-h-[480px] grid lg:grid-cols-12 gap-8 items-center py-6 sm:py-10">
-                        {/* Slide Content firmly anchored to the left side */}
-                        <div className="lg:col-span-8 xl:col-span-7 max-w-2xl text-left">
-                            <div key={currentSlide} className="space-y-6">
-                                {/* Top Operational Pill Badge */}
-                                <div className="animate-hero-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-beacon/35 bg-black/50 backdrop-blur-md text-beacon font-mono text-xs tracking-wider uppercase shadow-md">
-                                    <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
-                                    <span>{slides[currentSlide].badge || 'TELECOM ENGINEERING • WPC TYPE APPROVED'}</span>
-                                </div>
+                {/* Left Large Motorola-Style Chevron Arrow */}
+                <button
+                    onClick={prevSlide}
+                    className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center text-white/50 hover:text-white transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
+                    aria-label="Previous Slide"
+                >
+                    <svg className="w-10 h-10 stroke-[1.2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
 
-                                {/* Hero Heading with Smooth Kinetic & Interactive Letter Reveal */}
-                                <div className="py-1">
-                                    <AnimatedHeading
-                                        key={currentSlide}
-                                        as="h1"
-                                        immediate={true}
-                                        delay={30}
-                                        letterStagger={24}
-                                        highlight="last"
-                                        highlightCount={1}
-                                        className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight leading-[1.12] text-white drop-shadow-xl"
-                                        gradientClass="bg-gradient-to-r from-blue-300 via-cyan-300 to-sky-400 bg-clip-text text-transparent drop-shadow-[0_2px_16px_rgba(59,130,246,0.55)]"
-                                    >
-                                        {slides[currentSlide].heading}
-                                    </AnimatedHeading>
-                                </div>
+                {/* Right Large Motorola-Style Chevron Arrow */}
+                <button
+                    onClick={nextSlide}
+                    className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center text-white/50 hover:text-white transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
+                    aria-label="Next Slide"
+                >
+                    <svg className="w-10 h-10 stroke-[1.2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
 
-                                {/* Luminous Telemetry Tracer Accent Line */}
-                                <div className="relative h-1 w-28 overflow-hidden rounded-full bg-white/15 my-1">
-                                    <div className="animate-hero-tracer h-full w-full bg-gradient-to-r from-beacon via-sky-400 to-transparent rounded-full shadow-[0_0_10px_rgba(59,130,246,0.6)]" />
-                                </div>
+                {/* Main Content Area */}
+                <div className="container-content relative z-20 my-auto px-6 sm:px-12 lg:px-16">
+                    <div className="max-w-2xl text-left py-12 sm:py-16">
+                        <div key={currentSlide} className="space-y-6 animate-in fade-in duration-500">
+                            {/* Headline: Motorola-style Bold, Clean, Pure Typography */}
+                            <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-sans font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-2xl">
+                                {slides[currentSlide].heading}
+                            </h1>
 
-                                {/* Subtitle */}
-                                <p className="text-lg sm:text-xl text-slate-200/95 max-w-2xl leading-relaxed font-sans min-h-[3.5rem] drop-shadow-md">
-                                    {slides[currentSlide].subheading}
-                                </p>
+                            {/* Subheading: Clean, Editorial 2-line Subtitle */}
+                            <p className="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed font-sans font-normal drop-shadow-md">
+                                {slides[currentSlide].subheading}
+                            </p>
 
-                                {/* Telemetry Capability Chips */}
-                                <div className="flex flex-wrap items-center gap-2.5 pt-1">
-                                    {(slides[currentSlide].chips || ['WPC & TEC Approved', 'MIL-STD-810 Tested', 'Govt. of India OEM']).map((chip, chipIdx) => (
-                                        <div 
-                                             key={chipIdx} 
-                                             className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-black/45 backdrop-blur-md border border-white/15 text-[11px] font-mono text-white/90 shadow-sm"
-                                        >
-                                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                                            <span>{chip}</span>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                {/* CTA Buttons */}
-                                <div className="pt-3 flex flex-wrap items-center gap-4">
-                                    <Link 
-                                        href={slides[currentSlide].cta_url || '/products'} 
-                                        className="btn-shimmer !py-3.5 !px-8 text-sm uppercase tracking-wider font-mono font-bold shadow-xl hover:shadow-blue-500/40"
-                                    >
-                                        {slides[currentSlide].cta_label || 'Explore Products'}
-                                    </Link>
-
-                                    <Link 
-                                        href="/contact-us" 
-                                        className="btn-outline-paper !py-3.5 !px-6 text-sm font-mono uppercase tracking-wider text-white bg-black/35 backdrop-blur-md hover:bg-black/60 border border-white/25 hover:border-white/50"
-                                    >
-                                        Engineering Consultation
-                                    </Link>
-                                </div>
-                            </div>
-
-                            {/* Slide Controls with Play/Pause and Live Progress */}
-                            <div className="pt-8 flex items-center gap-4">
-                                {/* Slide Counter Badge */}
-                                <div className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-xs font-mono font-bold text-white/90 flex items-center gap-1.5 shadow-md select-none">
-                                    <span className="text-beacon">0{currentSlide + 1}</span>
-                                    <span className="text-white/40">/</span>
-                                    <span>0{slides.length}</span>
-                                </div>
-
-                                <button 
-                                    onClick={prevSlide}
-                                    className="h-9 w-9 rounded-full border border-white/20 bg-black/40 hover:bg-black/70 text-white/90 hover:text-beacon hover:border-beacon/60 flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
-                                    aria-label="Previous Slide"
+                            {/* Motorola-Style Solid White Rounded Pill CTA Button */}
+                            <div className="pt-2 flex items-center gap-4">
+                                <Link
+                                    href={slides[currentSlide].cta_url || '/products'}
+                                    className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-white text-slate-950 font-sans font-bold text-sm hover:bg-slate-100 hover:shadow-xl hover:scale-102 active:scale-98 transition-all duration-200"
                                 >
-                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                    </svg>
-                                </button>
-
-                                {/* Dedicated Play / Pause Toggle Button */}
-                                <button 
-                                    onClick={() => setIsPaused((prev) => !prev)}
-                                    className="h-9 w-9 rounded-full border border-white/20 bg-black/40 hover:bg-black/70 text-white/90 hover:text-beacon hover:border-beacon/60 flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
-                                    aria-label={isPaused ? "Play slideshow" : "Pause slideshow"}
-                                    title={isPaused ? "Play" : "Pause"}
-                                >
-                                    {isPaused ? (
-                                        <svg className="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24">
-                                            <path d="M8 5v14l11-7z" />
-                                        </svg>
-                                    ) : (
-                                        <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                                        </svg>
-                                    )}
-                                </button>
-
-                                <button 
-                                    onClick={nextSlide}
-                                    className="h-9 w-9 rounded-full border border-white/20 bg-black/40 hover:bg-black/70 text-white/90 hover:text-beacon hover:border-beacon/60 flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
-                                    aria-label="Next Slide"
-                                >
-                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </button>
-
-                                <div className="flex items-center gap-2 ml-1">
-                                    {slides.map((s, dotIdx) => (
-                                        <button
-                                            key={dotIdx}
-                                            onClick={() => setCurrentSlide(dotIdx)}
-                                            className={`relative h-2 rounded-full overflow-hidden transition-all duration-300 cursor-pointer ${
-                                                currentSlide === dotIdx ? 'w-14 bg-white/25 shadow-sm' : 'w-3 bg-white/30 hover:bg-white/60 hover:w-5'
-                                            }`}
-                                            aria-label={`Go to slide ${dotIdx + 1}: ${s.heading}`}
-                                            title={`Slide ${dotIdx + 1}: ${s.heading}`}
-                                        >
-                                            {currentSlide === dotIdx && (
-                                                <span 
-                                                    className="absolute inset-0 bg-beacon rounded-full animate-slide-progress shadow-sm shadow-beacon/50" 
-                                                    style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
-                                                />
-                                            )}
-                                        </button>
-                                    ))}
-                                </div>
+                                    {slides[currentSlide].cta_label || 'View release'}
+                                </Link>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                {/* Motorola Bottom-Center Carousel Dot Pagination with Cyan Active Indicator */}
+                <div className="absolute bottom-6 sm:bottom-8 inset-x-0 z-20 flex items-center justify-center gap-2.5">
+                    {slides.map((s, dotIdx) => (
+                        <button
+                            key={dotIdx}
+                            onClick={() => setCurrentSlide(dotIdx)}
+                            className={`transition-all duration-300 rounded-full cursor-pointer ${
+                                currentSlide === dotIdx 
+                                    ? 'w-3 h-3 bg-sky-400 ring-2 ring-sky-400/40 ring-offset-2 ring-offset-black scale-110' 
+                                    : 'w-2.5 h-2.5 bg-white/40 hover:bg-white/70'
+                            }`}
+                            aria-label={`Go to slide ${dotIdx + 1}: ${s.heading}`}
+                            title={`Slide ${dotIdx + 1}: ${s.heading}`}
+                        />
+                    ))}
+                </div>
             </section>
+
 
 
             {/* =========================================================================
                 2. NATIONAL DEPLOYMENT PROOF BAR
             ========================================================================= */}
-            <section className="bg-slate-50/80 dark:bg-[#080c14] py-8 transition-colors duration-300">
+            <section className="bg-white dark:bg-[#0a0a0a] py-8 transition-colors duration-300">
                 <div className="container-content">
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
                         <div className="shrink-0 max-w-sm">
@@ -482,7 +417,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             {/* =========================================================================
                 3. TAILORED INDUSTRY SECTORS (INTERACTIVE TABS)
             ========================================================================= */}
-            <section id="sectors" className="py-12 sm:py-14 bg-slate-50 dark:bg-navy-dark transition-colors duration-300 relative overflow-hidden">
+            <section id="sectors" className="py-12 sm:py-14 bg-slate-50 dark:bg-[#111111] transition-colors duration-300 relative overflow-hidden">
                 <div className="container-content relative z-10">
                     <div className="max-w-3xl mb-6 sm:mb-8">
                         <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-1.5">
@@ -605,7 +540,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             {/* =========================================================================
                 4. FEATURED HARDWARE SHOWCASE — SINGLE ROW INTERACTIVE SHELF
             ========================================================================= */}
-            <section id="hardware" className="py-12 sm:py-14 bg-white dark:bg-navy transition-colors duration-300 relative overflow-hidden">
+            <section id="hardware" className="py-12 sm:py-14 bg-white dark:bg-[#0a0a0a] transition-colors duration-300 relative overflow-hidden">
                 <div className="container-content">
                     {/* Header with Title, Browse Catalog Link & Interactive Controls */}
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-6">
@@ -673,29 +608,27 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                         </div>
                     </div>
 
-                    {/* CSS-Tricks Style Hardware Showcase: Left Fixed Animated Anchor Card + Separate Overlapping Fanning Deck */}
+                    {/* Featured Hardware Showcase: Left Fixed Anchor Card (taller) + 4 Text-focused Overlapping Cards (Pipeline style) */}
                     <div className="flex flex-col lg:flex-row lg:items-center gap-5 xl:gap-6 relative">
-                        {/* 1. Left Fixed Anchor Card (Visibly larger, taller framing anchor, continuous flowing gradient animation) */}
-                        <div className="csstricks-anchor shrink-0 w-full lg:w-[250px] xl:w-[265px] h-auto lg:h-[385px] xl:h-[395px]">
-                            <div className="csstricks-anchor-inner h-full flex flex-col justify-between p-6 xl:p-7">
-                                {/* Top Glowing Header */}
-                                <div className="space-y-3.5">
+                        {/* 1. Left Fixed Anchor Card — Taller than animated cards (like About Us pipeline) */}
+                        <div className="csstricks-anchor shrink-0 w-full lg:w-[250px] xl:w-[265px] h-auto lg:h-[370px] xl:h-[380px] rounded-2xl">
+                            <div className="csstricks-anchor-inner h-full flex flex-col justify-between p-6 xl:p-7 rounded-2xl">
+                                <div className="space-y-3">
                                     <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-500/20 border border-blue-200 dark:border-blue-400/30 text-[10px] font-mono font-bold text-blue-700 dark:text-sky-300 uppercase tracking-widest shadow-xs">
                                         <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-cyan-400 animate-ping" />
                                         <span>Field Proven</span>
                                     </div>
                                     <div className="font-display font-black text-2xl sm:text-3xl xl:text-[28px] text-slate-900 dark:text-white tracking-tight leading-tight pt-1">
-                                        Mission-Critical<br />Wireless Systems<br />
+                                        Mission-Critical<br />Wireless<br />Systems<br />
                                         <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-cyan-600 dark:from-sky-400 dark:via-cyan-300 dark:to-teal-300 bg-clip-text text-transparent dark:drop-shadow-[0_2px_12px_rgba(56,189,248,0.5)]">
                                             Field Deployed
                                         </span>
                                     </div>
                                     <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed pt-1">
-                                        Standardized RF platforms and transceivers deployed nationwide across defense and rail.
+                                        Standardized RF platforms and transceivers deployed nationwide across defense, rail, and public safety.
                                     </p>
                                 </div>
 
-                                {/* Bottom Info & Link */}
                                 <div className="pt-5 border-t border-slate-200 dark:border-white/10 space-y-3 mt-4">
                                     <div className="text-[11px] font-mono text-slate-600 dark:text-slate-400 flex items-center gap-2">
                                         <span className="text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
@@ -714,89 +647,85 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                             </div>
                         </div>
 
-                        {/* 2. Overlapping Product Deck (Squarish cards vertically centered with the larger black card) */}
+                        {/* 2. Overlapping Fanning Deck — text-focused cards matching About Us pipeline card style */}
                         <div className="relative flex-1 min-w-0 group/shelf overflow-hidden">
                             {canScrollLeft && (
-                                <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 z-30 bg-gradient-to-r from-white dark:from-navy to-transparent transition-opacity duration-300" />
+                                <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 z-40 bg-gradient-to-r from-white dark:from-[#0a0a0a] to-transparent transition-opacity duration-300" />
                             )}
                             {canScrollRight && (
-                                <div className="pointer-events-none absolute right-2 top-0 bottom-0 w-12 z-30 bg-gradient-to-l from-white dark:from-navy to-transparent transition-opacity duration-300" />
+                                <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-14 z-40 bg-gradient-to-l from-white dark:from-[#0a0a0a] to-transparent transition-opacity duration-300" />
                             )}
 
-                            <div 
+                            <div
                                 ref={hardwareScrollRef}
-                                className="flex overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory py-8 pl-6 pr-8 csstricks-deck hardware-deck items-center"
+                                className="flex overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory py-8 pl-4 pr-12 csstricks-deck hardware-deck items-center"
                             >
                                 {(featuredProducts || []).map((item, index) => (
-                                    <div 
+                                    <div
                                         key={item.id}
                                         style={{ zIndex: index + 1 }}
-                                        className="csstricks-card snap-start shrink-0 w-[220px] sm:w-[225px] lg:w-auto h-[285px] sm:h-[290px] group/card flex flex-col justify-between border border-slate-200/90 dark:border-white/10 bg-white dark:bg-navy-surface rounded-2xl overflow-hidden cursor-pointer"
+                                        className="csstricks-card snap-start shrink-0 w-[310px] h-[310px] sm:h-[320px] group/card flex flex-col border border-slate-200/90 dark:border-white/10 bg-white dark:bg-navy-surface rounded-2xl overflow-hidden cursor-pointer"
                                     >
-                                        <div className="flex-1 flex flex-col">
-                                            {/* Square Image Pedestal with horizontally centered product image & deep black in dark mode */}
-                                            <div className="h-28 sm:h-30 w-full bg-gradient-to-b from-slate-100/70 via-slate-50/40 to-slate-100/80 dark:bg-black dark:from-black dark:via-black dark:to-black overflow-hidden relative flex items-center justify-center p-2 border-b border-slate-100 dark:border-white/10 shrink-0">
-                                                {/* Subtle radial spotlight in light mode */}
-                                                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.12),transparent_70%)] dark:hidden pointer-events-none" />
-
-                                                <div className="w-20 h-20 sm:w-22 sm:h-22 flex items-center justify-center relative mx-auto">
-                                                    <img
-                                                        src={`/storage/${item.cover_image_path}`}
-                                                        alt={item.name}
-                                                        className="max-h-full max-w-full object-contain transition-all duration-500 group-hover/card:scale-110 group-hover/card:-translate-y-1 drop-shadow-[0_4px_8px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_8px_16px_rgba(0,0,0,0.9)] relative z-10"
-                                                        loading="lazy"
-                                                        onError={(e) => {
-                                                            e.target.onerror = null;
-                                                            e.target.src = '/storage/media/products/1559989450_nx3220_ht.jpg';
-                                                        }}
-                                                    />
-                                                </div>
-
-                                                <div className="absolute bottom-2 left-2 z-20">
-                                                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[8px] font-mono uppercase tracking-wider font-semibold bg-white/90 dark:bg-black/90 text-slate-700 dark:text-paper/80 border border-slate-200 dark:border-white/10 shadow-xs">
-                                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                                                        WPC
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                            {/* Details with Complete Text Visible (Zero ... Truncation) */}
-                                            <div className="p-2.5 sm:p-3 space-y-1 flex-1 flex flex-col justify-between">
-                                                <div>
-                                                    <div className="flex items-center gap-2 mb-1">
-                                                        <span className="badge-rf text-[8px] px-1.5 py-0.5">
-                                                            {item.subcategory?.name || 'Radio System'}
-                                                        </span>
-                                                    </div>
-
-                                                    <h3 className="font-display font-bold text-xs sm:text-[13px] text-slate-900 dark:text-paper group-hover/card:text-blue-600 dark:group-hover/card:text-beacon transition-colors leading-snug">
-                                                        {item.name}
-                                                    </h3>
-
-                                                    <p className="text-[10px] text-slate-500 dark:text-steel leading-relaxed mt-1">
-                                                        {item.short_description || 'High-reliability wireless communication equipment engineered for critical infrastructure.'}
-                                                    </p>
-                                                </div>
+                                        {/* Product Image Strip */}
+                                        <div className="h-[120px] shrink-0 w-full bg-gradient-to-b from-slate-50 to-slate-100/80 dark:from-[#111111] dark:to-[#0a0a0a] relative flex items-center justify-center border-b border-slate-100 dark:border-white/[0.06] overflow-hidden">
+                                            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.08),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.05),transparent_70%)] pointer-events-none" />
+                                            <img
+                                                src={`/storage/${item.cover_image_path}`}
+                                                alt={item.name}
+                                                className="h-[90px] w-auto max-w-[120px] object-contain transition-all duration-500 group-hover/card:scale-110 group-hover/card:-translate-y-1 drop-shadow-[0_4px_10px_rgba(0,0,0,0.12)] dark:drop-shadow-[0_6px_16px_rgba(0,0,0,0.9)] relative z-10"
+                                                loading="lazy"
+                                                onError={(e) => {
+                                                    e.target.onerror = null;
+                                                    e.target.src = '/storage/media/products/1559989450_nx3220_ht.jpg';
+                                                }}
+                                            />
+                                            {/* WPC badge */}
+                                            <div className="absolute bottom-1.5 left-2 z-20">
+                                                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[8px] font-mono uppercase tracking-wider font-semibold bg-white/90 dark:bg-black/80 text-slate-600 dark:text-paper/70 border border-slate-200 dark:border-white/10 shadow-xs">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                                                    WPC
+                                                </span>
                                             </div>
                                         </div>
 
-                                        <div className="p-2 sm:p-2 px-3 border-t border-slate-100 dark:border-navy-border/40 mt-auto flex items-center justify-between bg-slate-50/50 dark:bg-navy-surface/30 shrink-0">
-                                            <Link
-                                                href={`/products/${item.subcategory?.category?.slug || 'professional-amateur-radio'}/${item.subcategory?.slug || 'dmr'}/${item.slug}`}
-                                                className="text-[10px] font-mono font-semibold text-slate-900 dark:text-paper hover:text-blue-600 dark:hover:text-beacon flex items-center gap-1 group/link"
-                                            >
-                                                <span>Specs</span>
-                                                <svg className="w-3 h-3 transition-transform duration-200 group-hover/link:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </Link>
+                                        {/* Text Content */}
+                                        <div className="p-3.5 flex-1 flex flex-col justify-between">
+                                            <div>
+                                                {/* Subcategory badge + index */}
+                                                <div className="flex items-center justify-between mb-1.5">
+                                                    <span className="font-mono text-[10px] tracking-wider text-blue-600 dark:text-beacon font-bold px-1.5 py-0.5 rounded bg-blue-500/10 dark:bg-beacon/10 border border-blue-500/20 dark:border-beacon/20">
+                                                        {item.subcategory?.name?.toUpperCase() || 'RADIO SYSTEM'}
+                                                    </span>
+                                                    <span className="text-[10px] font-mono text-slate-400 dark:text-steel tracking-wider">
+                                                        {String(index + 1).padStart(2, '0')}
+                                                    </span>
+                                                </div>
 
-                                            <Link
-                                                href={`/contact-us?subject=Quote%20Request%20for%20${encodeURIComponent(item.name)}`}
-                                                className="btn-shimmer !py-0.5 !px-2.5 text-[9px] font-mono uppercase font-bold shadow-xs hover:shadow-sm"
-                                            >
-                                                RFQ
-                                            </Link>
+                                                {/* Product name */}
+                                                <h3 className="font-display font-bold text-sm text-slate-900 dark:text-paper group-hover/card:text-blue-600 dark:group-hover/card:text-beacon transition-colors leading-snug mb-1">
+                                                    {item.name}
+                                                </h3>
+
+                                                {/* Description */}
+                                                <p className="text-[11px] text-slate-500 dark:text-steel leading-relaxed line-clamp-2">
+                                                    {item.short_description || 'High-reliability wireless communication equipment engineered for critical infrastructure.'}
+                                                </p>
+                                            </div>
+
+                                            {/* Footer */}
+                                            <div className="pt-2 mt-1.5 border-t border-slate-100 dark:border-white/10 flex items-center justify-between font-mono">
+                                                <span className="text-slate-500 dark:text-steel text-[10px] flex items-center gap-1.5">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                                                    WPC Approved
+                                                </span>
+                                                <Link
+                                                    href={`/products/${item.subcategory?.category?.slug || 'professional-amateur-radio'}/${item.subcategory?.slug || 'dmr'}/${item.slug}`}
+                                                    className="text-blue-600 dark:text-beacon group-hover/card:translate-x-1 transition-transform inline-block text-sm"
+                                                    title={`View ${item.name} specifications`}
+                                                >
+                                                    &rarr;
+                                                </Link>
+                                            </div>
                                         </div>
                                     </div>
                                 ))}
@@ -805,6 +734,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                     </div>
                 </div>
             </section>
+
 
 
             {/* =========================================================================
@@ -816,7 +746,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             {/* =========================================================================
                 6. OEM PARTNERS SHOWCASE — SINGLE ROW CONTINUOUS MARQUEE (LEFT TO RIGHT)
             ========================================================================= */}
-            <section id="oem" className="py-12 sm:py-14 bg-slate-50 dark:bg-navy-dark transition-colors duration-300 overflow-hidden">
+            <section id="oem" className="py-12 sm:py-14 bg-white dark:bg-[#0a0a0a] transition-colors duration-300 overflow-hidden">
                 <div className="container-content">
                     <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-4">
                         <div>
@@ -848,9 +778,9 @@ export default function Home({ banners = [], categories = [], featuredProducts =
 
                 {/* Single Continuous Row Marquee (Left to Right) with Edge Gradient Feathering */}
                 <div className="relative w-full overflow-hidden py-3">
-                    {/* Left and Right Edge Fade Gradients */}
-                    <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 sm:w-32 z-10 bg-gradient-to-r from-slate-50 dark:from-navy-dark to-transparent" />
-                    <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 sm:w-32 z-10 bg-gradient-to-l from-slate-50 dark:from-navy-dark to-transparent" />
+                    {/* Left and Right Edge Fade Gradients matching section bg */}
+                    <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 sm:w-32 z-10 bg-gradient-to-r from-white dark:from-[#0a0a0a] to-transparent" />
+                    <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 sm:w-32 z-10 bg-gradient-to-l from-white dark:from-[#0a0a0a] to-transparent" />
 
                     <div className="animate-marquee-ltr flex items-center gap-5 sm:gap-6">
                         {/* Duplicate array for continuous seamless infinite loop */}
@@ -860,7 +790,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 href={partner.website_url || '#'}
                                 target={partner.website_url && partner.website_url !== '#' ? '_blank' : '_self'}
                                 rel="noopener noreferrer"
-                                className="group shrink-0 min-w-[190px] sm:min-w-[210px] h-[104px] p-3.5 rounded-2xl bg-white dark:bg-navy-surface border border-slate-200/90 dark:border-white/10 flex flex-col items-center justify-between text-center hover:border-blue-500/50 dark:hover:border-beacon/50 hover:shadow-xl hover:shadow-blue-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1 transition-all duration-300"
+                                className="group shrink-0 min-w-[190px] sm:min-w-[210px] h-[104px] p-3.5 rounded-2xl bg-slate-50/80 dark:bg-navy-surface border border-slate-200/90 dark:border-white/10 flex flex-col items-center justify-between text-center hover:border-blue-500/50 dark:hover:border-beacon/50 hover:shadow-xl hover:shadow-blue-500/5 dark:hover:shadow-beacon/5 hover:-translate-y-1 transition-all duration-300"
                             >
                                 <div className="w-full h-12 px-3 py-1.5 rounded-xl bg-white dark:bg-white/95 border border-slate-200/80 dark:border-slate-300 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-300">
                                     <img
@@ -885,9 +815,194 @@ export default function Home({ banners = [], categories = [], featuredProducts =
 
 
             {/* =========================================================================
-                7. BOTTOM CALL TO ACTION
+                7. LATEST NEWS & STRATEGIC DISPATCHES
             ========================================================================= */}
-            <section className="py-14 sm:py-16 bg-white dark:bg-navy transition-colors duration-300 relative overflow-hidden">
+            {latestNews && latestNews.length > 0 && (
+                <section id="news" className="py-14 sm:py-16 bg-slate-50 dark:bg-[#111111] transition-colors duration-300 relative overflow-hidden">
+                    <div className="container-content">
+                        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-4">
+                            <div>
+                                <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-1">
+                                    INDUSTRY INTELLIGENCE & ANNOUNCEMENTS
+                                </span>
+                                <AnimatedHeading 
+                                    as="h2" 
+                                    highlightPhrase="Strategic Updates"
+                                    className="text-2xl sm:text-3xl lg:text-[34px] font-display font-bold text-slate-900 dark:text-paper"
+                                >
+                                    Latest News & Strategic Updates
+                                </AnimatedHeading>
+                                <p className="mt-2 text-slate-600 dark:text-steel text-sm max-w-2xl">
+                                    Statutory wireless clearances, technology milestones, and mission-critical telecommunications insights.
+                                </p>
+                            </div>
+
+                            <Link 
+                                href="/latest-news" 
+                                className="group inline-flex items-center gap-2 text-xs font-mono font-bold text-blue-600 dark:text-beacon hover:underline shrink-0 uppercase tracking-wider"
+                            >
+                                <span>Browse All Dispatches</span>
+                                <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </Link>
+                        </div>
+
+                        {/* News Adaptive Layout: Full-width featured dispatch when 1 post; balanced grid when 2+ */}
+                        {latestNews.length === 1 ? (
+                            (() => {
+                                const post = latestNews[0];
+                                const plainExcerpt = (post.body || '').replace(/<[^>]+>/g, '').trim();
+                                const excerpt = plainExcerpt.length > 260 ? plainExcerpt.substring(0, 260) + '...' : plainExcerpt;
+                                const dateFormatted = post.published_at 
+                                    ? new Date(post.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                                    : 'Recent';
+
+                                return (
+                                    <Link
+                                        key={post.id || post.slug}
+                                        href={`/latest-news/${post.slug}`}
+                                        className="card-symmetric group relative hover:border-blue-500/60 dark:hover:border-beacon/50 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 ease-out overflow-hidden flex flex-col md:flex-row w-full"
+                                    >
+                                        {/* Top specular accent line on hover */}
+                                        <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-blue-500/0 dark:via-beacon/0 to-transparent group-hover:via-blue-500 dark:group-hover:via-beacon transition-all duration-500 z-20" />
+
+                                        {/* Cover Image Pedestal */}
+                                        <div className="w-full md:w-5/12 lg:w-1/2 aspect-[16/10] md:aspect-auto md:min-h-[320px] bg-slate-100 dark:bg-black overflow-hidden relative flex items-center justify-center border-b md:border-b-0 md:border-r border-slate-100 dark:border-white/10 shrink-0">
+                                            <img
+                                                src={post.cover_image_path ? `/storage/${post.cover_image_path}` : '/storage/media/banners/banner1.png'}
+                                                alt={post.title}
+                                                className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
+                                                loading="lazy"
+                                                onError={(e) => {
+                                                    e.target.onerror = null;
+                                                    e.target.src = '/storage/media/banners/banner1.png';
+                                                }}
+                                            />
+                                            <div className="absolute top-4 left-4 z-20">
+                                                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-900/85 dark:bg-neutral-900/90 text-xs font-mono text-sky-300 dark:text-beacon border border-white/10 backdrop-blur-sm shadow-md">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                                                    {dateFormatted}
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        {/* Content Column */}
+                                        <div className="flex-1 p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-4">
+                                            <div className="space-y-3">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-[11px] font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold">
+                                                        FEATURED STRATEGIC UPDATE
+                                                    </span>
+                                                    <span className="text-slate-300 dark:text-steel/40">•</span>
+                                                    <span className="text-[10px] font-mono text-slate-400 dark:text-steel">
+                                                        OFFICIAL DISPATCH
+                                                    </span>
+                                                </div>
+
+                                                <h3 className="font-display font-bold text-xl sm:text-2xl lg:text-3xl text-slate-900 dark:text-paper group-hover:text-blue-600 dark:group-hover:text-beacon transition-colors leading-snug">
+                                                    {post.title}
+                                                </h3>
+
+                                                <p className="text-sm sm:text-base text-slate-600 dark:text-steel leading-relaxed">
+                                                    {excerpt}
+                                                </p>
+                                            </div>
+
+                                            <div className="pt-4 border-t border-slate-100 dark:border-navy-border/40 flex items-center justify-between text-xs sm:text-sm font-mono text-slate-500 dark:text-steel">
+                                                <span className="group-hover:text-slate-900 dark:group-hover:text-paper font-semibold inline-flex items-center gap-2">
+                                                    Read Full Intelligence Dispatch
+                                                </span>
+                                                <div className="w-8 h-8 rounded-full bg-blue-50 dark:bg-navy-surface flex items-center justify-center text-blue-600 dark:text-beacon group-hover:bg-blue-600 group-hover:text-white dark:group-hover:bg-beacon dark:group-hover:text-slate-950 transition-all duration-300 shadow-xs">
+                                                    <svg className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                );
+                            })()
+                        ) : (
+                            <div className={`grid gap-6 sm:gap-8 w-full ${
+                                latestNews.length === 2
+                                    ? 'grid-cols-1 md:grid-cols-2'
+                                    : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+                            }`}>
+                                {latestNews.map((post) => {
+                                    const plainExcerpt = (post.body || '').replace(/<[^>]+>/g, '').trim();
+                                    const excerpt = plainExcerpt.length > 120 ? plainExcerpt.substring(0, 120) + '...' : plainExcerpt;
+                                    const dateFormatted = post.published_at 
+                                        ? new Date(post.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                                        : 'Recent';
+
+                                    return (
+                                        <Link
+                                            key={post.id || post.slug}
+                                            href={`/latest-news/${post.slug}`}
+                                            className="card-symmetric group relative hover:border-blue-500/60 dark:hover:border-beacon/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden flex flex-col"
+                                        >
+                                            {/* Top specular accent line on hover */}
+                                            <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-blue-500/0 dark:via-beacon/0 to-transparent group-hover:via-blue-500 dark:group-hover:via-beacon transition-all duration-500 z-20" />
+
+                                            <div className="flex-1 flex flex-col">
+                                                {/* Image Pedestal */}
+                                                <div className="aspect-[16/10] w-full bg-slate-100 dark:bg-black overflow-hidden relative flex items-center justify-center border-b border-slate-100 dark:border-white/10">
+                                                    <img
+                                                        src={post.cover_image_path ? `/storage/${post.cover_image_path}` : '/storage/media/banners/banner1.png'}
+                                                        alt={post.title}
+                                                        className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
+                                                        loading="lazy"
+                                                        onError={(e) => {
+                                                            e.target.onerror = null;
+                                                            e.target.src = '/storage/media/banners/banner1.png';
+                                                        }}
+                                                    />
+
+                                                    <div className="absolute top-3 right-3 z-20">
+                                                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-900/80 dark:bg-neutral-900/90 text-[10px] font-mono text-sky-300 dark:text-beacon border border-white/10 backdrop-blur-xs">
+                                                            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                                                            {dateFormatted}
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                {/* Content */}
+                                                <div className="p-6 space-y-2 flex-1 flex flex-col">
+                                                    <div className="text-[10px] font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold">
+                                                        PRESS DISPATCH
+                                                    </div>
+
+                                                    <h3 className="font-display font-bold text-lg text-slate-900 dark:text-paper group-hover:text-blue-600 dark:group-hover:text-beacon transition-colors line-clamp-2 leading-snug">
+                                                        {post.title}
+                                                    </h3>
+
+                                                    <p className="text-xs sm:text-sm text-slate-600 dark:text-steel line-clamp-3 leading-relaxed flex-1">
+                                                        {excerpt}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div className="p-6 pt-4 border-t border-slate-100 dark:border-navy-border/40 mt-auto flex items-center justify-between text-xs font-mono text-slate-500 dark:text-steel">
+                                                <span className="group-hover:text-slate-900 dark:group-hover:text-paper font-medium">Read Full Story</span>
+                                                <svg className="w-4 h-4 text-blue-600 dark:text-beacon transform group-hover:translate-x-1.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </div>
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
+                </section>
+            )}
+
+
+            {/* =========================================================================
+                8. BOTTOM CALL TO ACTION
+            ========================================================================= */}
+            <section className="py-14 sm:py-16 bg-white dark:bg-[#0a0a0a] transition-colors duration-300 relative overflow-hidden">
                 {/* Ambient Radial Backdrop Glow */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-blue-500/5 dark:bg-beacon/5 rounded-full blur-3xl pointer-events-none" />
 

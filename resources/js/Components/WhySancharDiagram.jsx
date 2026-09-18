@@ -38,7 +38,7 @@ const PILLARS = [
         angle: 90,
         x: 270,
         y: 455,
-        description: 'Military-grade AES-256 bit hardware voice & data encryption complying with homeland security and defense protocols.',
+        description: 'Military-grade AES-256 bit hardware voice and data encryption complying with homeland security and defense protocols.',
         icon: '🔒'
     },
     {
@@ -72,7 +72,7 @@ export default function WhySancharDiagram() {
     const spokeRadius = 54;
 
     return (
-        <section className="py-20 bg-white dark:bg-navy transition-colors duration-300 relative overflow-hidden">
+        <section className="py-20 bg-white dark:bg-[#0a0a0a] transition-colors duration-300 relative overflow-hidden">
             {/* Soft Ambient Radial Background Aura */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 dark:bg-beacon/5 rounded-full blur-3xl pointer-events-none" />
 

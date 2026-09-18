@@ -238,72 +238,72 @@ class DatabaseSeeder extends Seeder
         $oemPartners = [
             [
                 'name' => 'Kenwood Corporation, Japan',
-                'description' => 'Started in 1946, KENWOOD is a world leader in land mobile radios with a global reputation for advanced RF engineering, superb reliability, and innovative mission-critical performance. Sanchar has been Kenwood\'s accredited distributor in India since 1999.',
+                'description' => 'Started in 1946 KENWOOD IS WORLD LEADER in mobile radios .It has carved out a worldwide reputation as a leader in its field , based on its advanced technologies, innovative R&D manufacturing quality and superb reliability of its product in mission critical application. Sanchar has been their accredited distributor in India since 1999 to provide best of these sophisticated land mobile radios to its esteemed customer.',
                 'logo_path' => 'media/partners/1560034561_Kenwood-logo.png',
                 'website_url' => 'https://www.kenwood.com/',
                 'sort_order' => 0,
             ],
             [
                 'name' => 'Diamond Corporation, Japan',
-                'description' => 'Established in 1955, Diamond Antenna Japan is the global benchmark in high-gain base station, mobile, and handheld RF antennas. Sanchar provides genuine Diamond antennas to maximize transceiver range and signal integrity.',
+                'description' => 'Established in September 4th 1955 Diamond, Japan are world leader in RF Antennas and accessories. Sanchar has been associated with them to provide excellent antennas to give enhanced permanence to our Radios.',
                 'logo_path' => 'media/partners/1560034773_da.png',
                 'website_url' => 'https://www.diamond-ant.co.jp/english/',
                 'sort_order' => 1,
             ],
             [
                 'name' => 'Radio Activity',
-                'description' => 'Specialized RF engineering company focused on DMR Tier III simulcast and multisite repeater stations. A 100% subsidiary of JVCKENWOOD Group, Radio Activity partners with Sanchar to cater to Indian professional mobile radio networks.',
+                'description' => 'Founded in 2003, Radio Activity is a dynamic and flexible engineering company, specialized in the design of radio devices and applications. With vast experience and multi-disciplinary skills, their team of engineers designs, develops and continuously offers customized solutions to the Professional Mobile Radio (PMR) market. 100% subsidiary of JVCKENWOOD group, Sanchar associates with them to cater Indian market.',
                 'logo_path' => 'media/partners/1560034967_ra.png',
                 'website_url' => 'https://www.radioactivity-tlc.com/',
                 'sort_order' => 2,
             ],
             [
                 'name' => 'EF Johnson Technologies',
-                'description' => 'Founded in 1923, A JVCKENWOOD company delivering modern turnkey P25 solutions for public safety and tactical first responders. Sanchar serves as their accredited representative in India for mission-critical wireless deployments.',
+                'description' => 'Founded in 1923, A JVCKENWOOD company,EF Johnson are committed to providing modern, turnkey solutions for today and the future. They deliver superior products so that customer can focus on their mission - protecting and saving lives. Sanchar are their local representative in India.',
                 'logo_path' => 'media/partners/1560035008_ef.png',
                 'website_url' => 'https://www.efjohnson.com/',
                 'sort_order' => 3,
             ],
             [
                 'name' => 'Yaesu',
-                'description' => 'Synonymous with premium transceivers for amateur radio, air band, and marine communicators (Standard Horizon) for over half a century. Sanchar is the authorized National Distributor for Yaesu across the Indian subcontinent.',
+                'description' => 'The Yaesu brand is well known among ham radio aficionados and is synonymous with premium quality ham radios. From stationary multi-feature communications equipment to portable devices, YAESU has consistently represented the best in communications equipment to the world\'s top DX\'ers for over half a century. Sanchar is National distributor for Yaesu for their Ham radios and air band and marine radios(Standard Horizon).',
                 'logo_path' => 'media/partners/1560035046_ya.png',
                 'website_url' => 'https://www.yaesu.com/',
                 'sort_order' => 4,
             ],
             [
                 'name' => 'RugGear',
-                'description' => 'Global pioneer in designing rugged smart mobile devices and mission-critical MCPTT / Push-to-Talk over Cellular (PoC) terminals tested to MIL-STD-810H and IP68 standards. Sanchar delivers rugged tactical PTT hardware with RugGear.',
+                'description' => 'RugGearhas been a global leader in the design and manufacturing of rugged phones and the partner of choice for leading network operators, enterprises and brands around the world.Sanchar has partnered with them for rugged phone suitable for PTT operations.',
                 'logo_path' => 'media/partners/1560035112_ru.png',
                 'website_url' => 'https://www.ruggear.com/',
                 'sort_order' => 5,
             ],
             [
                 'name' => 'Wireless Technologies',
-                'description' => 'Wireless Technologies Finland Ltd develops carrier-grade real-time group communication and dispatch platforms (PushCom) compliant with 3GPP and IETF telecom standards, powering Sanchar\'s nationwide PoC fleet deployments.',
+                'description' => 'Wireless Technologies Finland Ltd, business ID FI18411756, was founded in Espoo in 2003. The company focuses on developing and supplying real-time group communication solutions for mobile operators and organizations. Our core-solution is a superset of relevant telecom standards from 3GPP and IETF, with a rich set of extensions, flexible integration and configuration options.',
                 'logo_path' => 'media/partners/1560578565_PushCom_Logo_1.PNG',
-                'website_url' => 'https://www.wirelesstechnologies.mobi/',
+                'website_url' => 'http://www.wirelesstechnologies.mobi/',
                 'sort_order' => 6,
             ],
             [
                 'name' => 'Teltronics (Cab Radios)',
-                'description' => 'Global leader in railway mission-critical communications (EN 50155). Teltronic delivers continuous train-to-trackside voice and data over TETRA, LTE-R, and future 5G FRMCS standards, deployed by Sanchar for Indian rail infrastructure.',
+                'description' => "Teltronic solutions are based on TETRA and LTE standards, and offer continuous train-ground voice and data communication. In addition, the 5G standard and its application for the future FRMCS (Future Railway Mobile Communication System) also form part of Teltronic’s offer for the railway sector.\n\nIn order to manage the wide range of functionalities of Teltronic on-board equipment, its portfolio includes a set of control consoles. All these consoles include an easy-to-use interface, from which you can control the radio equipment, as well as a set of audio accessories (headphone, speaker and microphone) in order to facilitate driver communications.",
                 'logo_path' => 'media/partners/1707162735_Teltronics.png',
                 'website_url' => 'https://www.teltronic.es/en/',
                 'sort_order' => 7,
             ],
             [
                 'name' => 'Nokia (Captive 4G/5G)',
-                'description' => 'World leader in Private Wireless and Industrial 4G/5G networks. Nokia RAN infrastructure provides future-proof, carrier-grade connectivity for critical ports, mining, and smart industrial campuses deployed by Sanchar.',
+                'description' => "Nokia is the biggest market leader in the Private LTE sector. Nokia RAN devices are by nature future-proof; for example, Nokia radios manufactured after 2012 may be software-upgraded to 5G, which speeds up the rollout of 5G.\n\nNokia RAN combines the flexibility of cloud RAN and open RAN with the efficiency of single RAN supporting 2G, 3G, 4G, and 5G.",
                 'logo_path' => 'media/partners/1707308840_nokia.png',
                 'website_url' => 'https://www.nokia.com/networks/solutions/private-wireless/',
                 'sort_order' => 8,
             ],
             [
                 'name' => 'Resonous',
-                'description' => 'Bangalore-based 4G/5G Wireless Network Solutions provider with deep R&D focus, delivering secure, reliable, and cost-effective end-to-end small cells and core networks for Indian defense, rural telecom, and Industry 4.0 IoT.',
+                'description' => 'Resonous technologies is a Bangalore based 4G and 5G Wireless Network Solutions Supplier with strong R&D focus for nearly 10 years, delivering cutting edge solutions with secure, reliable, and cost-effective end to end portfolio, Resonous technologies is  specialized to serves the industry-tailored needs of Voice, Broadband Data, and IoT. Resonous technologies focused domains are Rural Telecom, Defense, and Industry4.0 Communications with operations in India, Europe and USA.',
                 'logo_path' => 'media/partners/1707308900_Resonous.png',
-                'website_url' => 'https://www.resonous.com/',
+                'website_url' => 'https://resonoustech.com/',
                 'sort_order' => 9,
             ],
         ];
@@ -352,6 +352,23 @@ class DatabaseSeeder extends Seeder
         Banner::truncate();
         foreach ($heroBanners as $b) {
             Banner::create($b + ['is_published' => true]);
+        }
+
+        // 8. Press Dispatches & Latest News (Official from sanchartelesystems.com)
+        $newsPosts = [
+            [
+                'title' => 'Sanchar Telesystems invited to "International experience sharing Conclave on Broadband PPDR Network 2024"',
+                'slug' => 'sanchar-telesystems-broadband-ppdr-network-conclave-2024',
+                'body' => '<p>The International Experience Sharing Conclave on Broadband Public Protection & Disaster Relief (BB-PPDR) Network was held at the Vigyan Bhawan, New Delhi on March 13th. The event was organized by the Directorate of Coordination Police Wireless (DCPW), Ministry of Home Affairs, the conclave brought together industry experts & Disaster Management teams to evaluate the traditional communication networks and the contemporary requirements of PPDR agencies, with the aim to find solutions to bridge the gaps.</p><p>Sanchar Telesystems Limited set-up an experience centre for the representatives of PPDR agencies attending the event and showcased its STELE MCX radios and their capabilities.</p>',
+                'cover_image_path' => 'news/1710581517_BBPPDR.jpeg',
+                'published_at' => '2024-03-16',
+                'is_published' => true,
+            ],
+        ];
+
+        NewsPost::truncate();
+        foreach ($newsPosts as $post) {
+            NewsPost::create($post);
         }
     }
 }

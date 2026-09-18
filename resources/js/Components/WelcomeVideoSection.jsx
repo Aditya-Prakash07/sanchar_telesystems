@@ -16,7 +16,7 @@ export default function WelcomeVideoSection() {
     const originalVideoSrc = '/storage/media/video/STL_Intro_2_720p.mp4';
 
     return (
-        <section className="py-14 sm:py-18 bg-white dark:bg-navy transition-colors duration-300 relative overflow-hidden">
+        <section className="py-14 sm:py-18 bg-white dark:bg-[#0a0a0a] transition-colors duration-300 relative overflow-hidden">
             {/* Ambient Background Glow */}
             <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[720px] h-[360px] bg-blue-500/5 dark:bg-beacon/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -50,16 +50,16 @@ export default function WelcomeVideoSection() {
             </div>
 
             {/* =========================================================================
-                2. COMPLETE WIDTH VIDEO CANVAS (COMPLETE HEIGHT, SEAMLESS NATURAL BLEND)
+                2. ORIGINAL DIMENSION VIDEO SHOWCASE (TOP/BOTTOM CROPPED, FULL WIDTH)
             ========================================================================= */}
             <div 
-                className="relative w-full aspect-video bg-white dark:bg-navy my-4 sm:my-6 overflow-hidden flex items-center justify-center"
+                className="relative w-full aspect-[1280/674] bg-white dark:bg-[#0a0a0a] my-4 sm:my-6 overflow-hidden"
             >
-                {/* Original Video with Complete Height and No Portion Cut */}
+                {/* Video: 100% full width (zero left/right crop), top & bottom bars clipped cleanly */}
                 <video
                     ref={videoRef}
-                    className="w-full h-full object-contain object-center"
-                    style={{ transform: 'translateY(-0.8%) scale(1.045)', transformOrigin: 'center center' }}
+                    className="w-full h-auto max-w-none absolute left-0"
+                    style={{ top: '-2.8%', width: '100%' }}
                     autoPlay
                     loop
                     muted={isMuted}
@@ -122,7 +122,7 @@ export default function WelcomeVideoSection() {
                             Vision & Purpose
                         </h3>
                         <p className="text-xs sm:text-sm text-slate-600 dark:text-steel leading-relaxed font-sans">
-                            To be India's preeminent mission-critical communication provider offering quality, reliable, secure, and affordable voice & data ecosystems.
+                            To be India's preeminent mission-critical communication provider offering quality, reliable, secure, and affordable voice and data ecosystems.
                         </p>
                     </div>
 
@@ -169,7 +169,7 @@ export default function WelcomeVideoSection() {
                             Nationwide Footprint
                         </h3>
                         <p className="text-xs sm:text-sm text-slate-600 dark:text-steel leading-relaxed font-sans">
-                            Active radio infrastructure across 28 Indian States & UTs trusted by Indian Railways, Delhi Police, Metro Rail networks, and heavy industry.
+                            Active radio infrastructure across 28 Indian States and UTs trusted by Indian Railways, Delhi Police, Metro Rail networks, and heavy industry.
                         </p>
                     </div>
                 </div>

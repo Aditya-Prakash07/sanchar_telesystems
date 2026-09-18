@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ProductCategory;
 use App\Models\ProductSubcategory;
 use App\Models\PortfolioItem;
+use App\Models\NewsPost;
 use Illuminate\Http\Response;
 
 class SitemapController extends Controller
@@ -21,6 +22,7 @@ class SitemapController extends Controller
         $staticPages = [
             ['url' => '/', 'priority' => '1.0', 'changefreq' => 'weekly'],
             ['url' => '/products', 'priority' => '0.9', 'changefreq' => 'daily'],
+            ['url' => '/latest-news', 'priority' => '0.8', 'changefreq' => 'weekly'],
             ['url' => '/about-us', 'priority' => '0.8', 'changefreq' => 'monthly'],
             ['url' => '/oem-partners', 'priority' => '0.8', 'changefreq' => 'monthly'],
             ['url' => '/careers', 'priority' => '0.7', 'changefreq' => 'weekly'],
@@ -70,6 +72,18 @@ class SitemapController extends Controller
                 $xml .= '<priority>0.7</priority>';
                 $xml .= '</url>';
             }
+        }
+
+        // 4. Latest News
+        $news = NewsPost::where('is_published', true)->get();
+        foreach ($news as $post) {
+            $postUrl = "{$baseUrl}/latest-news/{$post->slug}";
+            $xml .= '<url>';
+            $xml .= '<loc>' . htmlspecialchars($postUrl) . '</loc>';
+            $xml .= '<lastmod>' . ($post->updated_at ? $post->updated_at->format('Y-m-d') : $today) . '</lastmod>';
+            $xml .= '<changefreq>monthly</changefreq>';
+            $xml .= '<priority>0.6</priority>';
+            $xml .= '</url>';
         }
 
         $xml .= '</urlset>';

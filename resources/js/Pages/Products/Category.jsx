@@ -63,7 +63,7 @@ export default function ProductsCategory({ category, subcategory, items = [], se
             />
 
             {/* Header */}
-            <header className="relative bg-white dark:bg-navy pt-36 pb-16 overflow-hidden">
+            <header className="relative bg-white dark:bg-[#0a0a0a] pt-36 pb-16 overflow-hidden transition-colors duration-300">
                 <div className="container-content relative z-10">
                     {/* Breadcrumbs */}
                     <nav className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 mb-6">
@@ -117,9 +117,9 @@ export default function ProductsCategory({ category, subcategory, items = [], se
             </header>
 
             {/* Items Grid */}
-            <div className="py-16 sm:py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
+            <div className="py-16 sm:py-20 bg-slate-50 dark:bg-[#111111] transition-colors duration-300">
                 <div className="container-content">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200 dark:border-navy-border pb-4 mb-10 gap-3">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 mb-10 gap-3">
                         <span className="text-xs font-mono uppercase text-slate-500 dark:text-steel font-bold">
                             HARDWARE CATALOG &bull; {filteredItems.length} OF {items.length} {items.length === 1 ? 'UNIT' : 'UNITS'}
                             {search && <span className="text-blue-600 dark:text-beacon ml-2 font-semibold">(FILTERED)</span>}

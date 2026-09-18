@@ -3,26 +3,26 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 
 export default function Footer() {
     return (
-        <footer className="bg-slate-950 dark:bg-[#0a0d14] text-slate-300 dark:text-steel relative overflow-hidden transition-colors duration-300">
-            {/* Certifications & Compliance Strip (Seamless Unified Background) */}
-            <div className="border-b border-slate-800/80 dark:border-white/5 bg-transparent relative z-10">
-                <div className="container-content py-4 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-400 dark:text-paper/70">
-                    <div className="flex flex-wrap items-center gap-6">
-                        <span className="flex items-center gap-2 text-beacon font-semibold">
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+        <footer className="bg-slate-950 dark:bg-[#04070d] text-slate-300 dark:text-steel relative overflow-hidden transition-colors duration-300">
+            {/* Certifications & Compliance Strip (Single Continuous Line) */}
+            <div className="bg-black/40 dark:bg-black/50 relative z-10">
+                <div className="container-content py-3.5 flex items-center justify-between gap-4 lg:gap-6 text-[11px] xl:text-xs font-mono text-slate-400 dark:text-paper/70 whitespace-nowrap overflow-x-auto no-scrollbar">
+                    <div className="flex items-center gap-3.5 xl:gap-6 shrink-0">
+                        <span className="flex items-center gap-2 text-beacon font-semibold shrink-0">
+                            <svg className="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                             </svg>
                             GOVERNMENT OF INDIA WPC & TEC APPROVED
                         </span>
-                        <span className="hidden sm:inline text-white/20">•</span>
-                        <span>ISO 9001:2015 Quality Management</span>
-                        <span className="hidden sm:inline text-white/20">•</span>
-                        <span>Atmanirbhar Bharat / Make In India Partner</span>
+                        <span className="text-white/20 shrink-0">•</span>
+                        <span className="shrink-0">ISO 9001:2015 Quality Management</span>
+                        <span className="text-white/20 shrink-0">•</span>
+                        <span className="shrink-0">Atmanirbhar Bharat / Make In India Partner</span>
                     </div>
 
-                    <div className="flex items-center gap-2 text-slate-300 dark:text-steel-light">
-                        <span className="inline-block h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                        <span>24/7 Mission-Critical Support Active</span>
+                    <div className="flex items-center gap-2 text-slate-300 dark:text-steel-light shrink-0 ml-auto pl-4">
+                        <span className="inline-block h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                        <span className="shrink-0">24/7 Mission-Critical Support Active</span>
                     </div>
                 </div>
             </div>
@@ -66,6 +66,7 @@ export default function Footer() {
                     title="Organization"
                     links={[
                         { label: 'About Sanchar', href: '/about-us' },
+                        { label: 'Latest News & Updates', href: '/latest-news' },
                         { label: 'Project Delivery Lifecycle', href: '/about-us' },
                         { label: 'Global OEM Partners', href: '/oem-partners' },
                         { label: 'Careers in Telecommunications', href: '/careers' },
@@ -111,7 +112,7 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="border-t border-slate-800/80 dark:border-white/5 relative z-10 bg-transparent">
+            <div className="bg-black/25 dark:bg-black/35 relative z-10">
                 <div className="container-content py-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-500 dark:text-steel font-mono">
                     <p>© {new Date().getFullYear()} Sanchar Telesystems Limited. All rights reserved.</p>
                     <div className="flex items-center gap-6">

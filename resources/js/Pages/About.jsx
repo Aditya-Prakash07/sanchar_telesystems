@@ -48,7 +48,7 @@ export default function About({ team = [], seo = {} }) {
             />
 
             {/* Header */}
-            <header className="relative bg-white dark:bg-navy pt-36 pb-20 overflow-hidden transition-colors duration-300">
+            <header className="relative bg-white dark:bg-[#0a0a0a] pt-36 pb-20 overflow-hidden transition-colors duration-300">
                 <div className="container-content relative z-10">
                     <div className="max-w-3xl">
                         <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
@@ -62,14 +62,14 @@ export default function About({ team = [], seo = {} }) {
                             highlightPhrase="Wireless Communications."
                             className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
                         >
-                            Mobility, Efficiency, and Reliability in Wireless Communications.
+                            Mobility, Efficiency & Reliability in Wireless Communications.
                         </AnimatedHeading>
                         <p className="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
                             Sanchar Telesystems is a market leader in mission-critical wireless communications in India. We pioneer in offering world-class wireless communication solutions to customers around the country.
                         </p>
                     </div>
 
-                    <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-200 dark:border-navy-border/80 pt-8 max-w-4xl text-xs font-mono">
+                    <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 max-w-4xl text-xs font-mono">
                         <div>
                             <span className="text-slate-500 dark:text-slate-400 block">UNITS DEPLOYED</span>
                             <span className="text-slate-900 dark:text-white font-bold mt-1 block">300,000+ UNITS SOLD</span>
@@ -91,7 +91,7 @@ export default function About({ team = [], seo = {} }) {
             </header>
 
             {/* Corporate Narrative & Impact Metrics */}
-            <section className="py-20 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
+            <section className="py-20 bg-slate-50 dark:bg-[#111111] transition-colors duration-300">
                 <div className="container-content">
                     <div className="grid lg:grid-cols-12 gap-12 items-center">
                         <div className="lg:col-span-6 space-y-5 text-slate-700 dark:text-steel leading-relaxed text-sm sm:text-base">
@@ -106,7 +106,7 @@ export default function About({ team = [], seo = {} }) {
                                 Engineering Turnkey Networks Where Failure is Not an Option
                             </AnimatedHeading>
                             <p>
-                                Mobility, Efficiency, and Reliability are the three core principles that Sanchar Telesystems products and solutions are designed to meet. Cutting-edge technologies and OPEN standards are supported across all of our systems.
+                                Mobility, Efficiency, and Reliability are the three core principles that Sanchar Telesystems products and solutions are designed to meet. Cutting-edge technologies and open standards are supported across all of our systems.
                             </p>
                             <p>
                                 Sanchar has been investing continuously in product and solution research and development because it understands the need to provide customized solutions for users in critical industries. Additionally, devices are an essential component of any solution, and Sanchar collaborates with reputable global OEMs to supply equipment optimized for Indian spectrum conditions.
@@ -152,7 +152,7 @@ export default function About({ team = [], seo = {} }) {
                                     <div className="font-display text-3xl font-bold text-blue-600 dark:text-beacon">
                                         <span>100%</span>
                                     </div>
-                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">WPC &amp; TEC Approved</h3>
+                                    <h3 className="font-display font-semibold text-sm text-slate-900 dark:text-paper">WPC & TEC Approved</h3>
                                     <p className="text-xs text-slate-500 dark:text-steel">All hardware systems fully certified under Government of India wireless regulatory standards.</p>
                                 </div>
                             </div>
@@ -162,7 +162,7 @@ export default function About({ team = [], seo = {} }) {
             </section>
 
             {/* OEM Alliances & GeM Procurement */}
-            <section className="py-20 sm:py-24 bg-white dark:bg-navy transition-colors duration-300">
+            <section className="py-20 sm:py-24 bg-white dark:bg-[#0a0a0a] transition-colors duration-300">
                 <div className="container-content">
                     <div className="grid lg:grid-cols-12 gap-12 items-center">
                         <div className="lg:col-span-6 space-y-5 text-slate-700 dark:text-steel leading-relaxed text-sm sm:text-base">
@@ -177,7 +177,7 @@ export default function About({ team = [], seo = {} }) {
                                 World-Class Technology Alliances & Make In India Manufacturing
                             </AnimatedHeading>
                             <p>
-                                We collaborate with world&rsquo;s leading Original Equipment Manufacturers (OEMs) and Technology providers to bring best-in-class communication solutions to India. We are a leading manufacturer of LTE MCX, LTE PoC, and DMR radios in India.
+                                We collaborate with the world&rsquo;s leading Original Equipment Manufacturers (OEMs) and technology providers to bring best-in-class communication solutions to India. We are a leading manufacturer of LTE MCX, LTE PoC, and DMR radios in India.
                             </p>
                             <p>
                                 We specialize in offering best communication solutions which are right for your business — configured for zero downtime across government, enterprise, and industrial deployments.
@@ -205,7 +205,7 @@ export default function About({ team = [], seo = {} }) {
             </section>
 
             {/* Official RF Testing Lab & Service Infrastructure ("Service is our Motto") */}
-            <section className="py-20 sm:py-24 bg-slate-50 dark:bg-navy-dark transition-colors duration-300 relative overflow-hidden">
+            <section className="py-20 sm:py-24 bg-slate-50 dark:bg-[#111111] transition-colors duration-300 relative overflow-hidden">
                 <div className="container-content relative z-10">
                     <div className="grid lg:grid-cols-12 gap-12 items-center">
                         {/* Left: Sanchar Lab Photo (From Official Website) */}
@@ -289,7 +289,7 @@ export default function About({ team = [], seo = {} }) {
             <WhySancharDiagram />
 
             {/* Turnkey 6-Step Execution Methodology */}
-            <section className="py-12 sm:py-14 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
+            <section className="py-12 sm:py-14 bg-slate-50 dark:bg-[#111111] transition-colors duration-300">
                 <div className="container-content">
                     {/* Header */}
                     <div className="max-w-2xl mb-6 sm:mb-8">
@@ -395,7 +395,7 @@ export default function About({ team = [], seo = {} }) {
             </section>
 
             {/* Executive Leadership Gallery */}
-            <section className="py-12 sm:py-14 bg-white dark:bg-navy transition-colors duration-300">
+            <section className="py-12 sm:py-14 bg-white dark:bg-[#0a0a0a] transition-colors duration-300">
                 <div className="container-content">
                     <div className="max-w-2xl mb-8 sm:mb-10 text-center md:text-left">
                         <span className="text-xs font-mono uppercase tracking-widest text-blue-600 dark:text-beacon font-bold block mb-1.5">
@@ -448,7 +448,7 @@ export default function About({ team = [], seo = {} }) {
                                 name: 'Mr. Amit Bhardwaj',
                                 title: 'General Manager – Finance & Imports',
                                 exp: '17+ Yrs Exp',
-                                bio: 'Veteran in finance & EXIM heading corporate finance and strategic fiscal planning with over 17 years of hands-on experience.',
+                                bio: 'Veteran in finance and EXIM heading corporate finance and strategic fiscal planning with over 17 years of hands-on experience.',
                                 photo_path: 'media/team/AmitBhardwaj.jpg'
                             }
                         ]).map((member, idx) => {
@@ -522,7 +522,7 @@ export default function About({ team = [], seo = {} }) {
             </section>
 
             {/* Bottom Contact CTA */}
-            <section className="py-12 sm:py-14 bg-slate-50 dark:bg-navy-dark transition-colors duration-300">
+            <section className="py-12 sm:py-14 bg-slate-50 dark:bg-[#111111] transition-colors duration-300">
                 <div className="container-content text-center max-w-2xl mx-auto space-y-6">
                     <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-slate-900 dark:text-paper">Partner with Sanchar Telesystems</h2>
                     <p className="text-slate-600 dark:text-steel text-sm sm:text-base leading-relaxed">

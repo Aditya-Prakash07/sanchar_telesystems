@@ -173,12 +173,13 @@ export default function AnimatedHeading({
                         >
                             {letters.map((char, charIdx) => {
                                 const charDelay = delay + (currentWordOffset + charIdx) * letterStagger + (wordIdx * 18);
+                                const isCharAmp = char === '&';
                                 return (
                                     <span 
                                         key={charIdx} 
                                         className={`inline-block will-change-transform ${
                                             isHighlighted ? gradientClass : ''
-                                        }`}
+                                        } ${isCharAmp ? 'font-sans font-semibold' : ''}`}
                                         style={{
                                             transform: isVisible 
                                                 ? 'translate3d(0, 0, 0) rotateX(0deg) scale(1)' 
@@ -189,7 +190,8 @@ export default function AnimatedHeading({
                                             transitionProperty: 'transform, opacity, filter',
                                             transitionDuration: '520ms',
                                             transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
-                                            transitionDelay: `${charDelay}ms`
+                                            transitionDelay: `${charDelay}ms`,
+                                            ...(isCharAmp ? { fontFamily: '"IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' } : {})
                                         }}
                                     >
                                         {char}
@@ -201,6 +203,7 @@ export default function AnimatedHeading({
                 }
 
                 // Standard Word-by-Word Mode for smaller/standard headings
+                const isWordAmp = word.trim() === '&';
                 return (
                     <span 
                         key={wordIdx} 
@@ -212,10 +215,11 @@ export default function AnimatedHeading({
                                 isVisible 
                                     ? 'translate-y-0 opacity-100 blur-0' 
                                     : 'translate-y-[115%] opacity-0 blur-[6px]'
-                            } ${isHighlighted ? gradientClass : ''}`}
+                            } ${isHighlighted ? gradientClass : ''} ${isWordAmp ? 'font-sans font-semibold' : ''}`}
                             style={{
                                 transitionDelay: `${delay + wordIdx * stagger}ms`,
-                                transitionProperty: 'transform, opacity, filter'
+                                transitionProperty: 'transform, opacity, filter',
+                                ...(isWordAmp ? { fontFamily: '"IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' } : {})
                             }}
                         >
                             {word}
