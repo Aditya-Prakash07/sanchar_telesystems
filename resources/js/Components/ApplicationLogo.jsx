@@ -15,7 +15,7 @@ export default function ApplicationLogo({
     const isDarkContext = 
         variant === 'white' || 
         variant === 'dark' || 
-        (variant === 'auto' && (theme === 'dark' || isOverBanner));
+        (variant === 'auto' && theme === 'dark');
 
     return (
         <div className={`flex items-center gap-3 shrink-0 select-none ${className}`} {...props}>

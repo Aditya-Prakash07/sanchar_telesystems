@@ -95,7 +95,7 @@ export default function Navbar() {
                                             href={link.href}
                                             className={`text-sm font-medium transition-colors flex items-center gap-1.5 py-2 whitespace-nowrap ${
                                                 isOverBanner && theme === 'light'
-                                                    ? (isActive ? 'text-sky-300 font-bold drop-shadow-sm' : 'text-white/95 hover:text-sky-200 font-medium drop-shadow-sm')
+                                                    ? (isActive ? 'text-blue-600 font-bold' : 'text-slate-800 hover:text-blue-600 font-medium')
                                                     : (isActive ? 'text-blue-600 dark:text-beacon font-semibold' : 'text-slate-700 dark:text-paper/85 hover:text-blue-600 dark:hover:text-beacon')
                                             }`}
                                         >
@@ -103,8 +103,8 @@ export default function Navbar() {
                                             <svg 
                                                 className={`w-3.5 h-3.5 transition-transform duration-200 shrink-0 ${
                                                     productsDropdown 
-                                                        ? (isOverBanner && theme === 'light' ? 'rotate-180 text-sky-300' : 'rotate-180 text-blue-600 dark:text-beacon') 
-                                                        : (isOverBanner && theme === 'light' ? 'text-white/80' : 'opacity-60')
+                                                        ? (isOverBanner && theme === 'light' ? 'rotate-180 text-blue-600' : 'rotate-180 text-blue-600 dark:text-beacon') 
+                                                        : (isOverBanner && theme === 'light' ? 'text-slate-600' : 'opacity-60')
                                                 }`} 
                                                 fill="none" 
                                                 viewBox="0 0 24 24" 
@@ -132,7 +132,7 @@ export default function Navbar() {
 
                                             return (
                                                 <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[980px] max-w-[95vw] xl:w-[1060px] z-50">
-                                                    <div className="bg-white dark:bg-[#161a23] border border-slate-200/90 dark:border-white/10 shadow-2xl rounded-2xl p-6 overflow-hidden transition-all duration-200 animate-in fade-in slide-in-from-top-2">
+                                                    <div className="bg-white dark:bg-[#0a0a0a] border border-slate-200/90 dark:border-white/10 shadow-2xl rounded-2xl p-6 overflow-hidden transition-all duration-200 animate-in fade-in slide-in-from-top-2">
                                                         
                                                         {/* Top Telemetry Header */}
                                                         <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/10 pb-3.5 mb-5">
@@ -153,7 +153,7 @@ export default function Navbar() {
                                                         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                                                             
                                                             {/* Pillar 1: Land Mobile Radio (LMR) */}
-                                                            <div className="group/col flex flex-col justify-between p-4 rounded-xl border border-slate-200/70 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.02] hover:border-blue-500/40 dark:hover:border-beacon/30 hover:bg-white dark:hover:bg-white/[0.04] transition-all duration-200">
+                                                            <div className="group/col flex flex-col justify-between p-4 rounded-xl border border-slate-200/70 dark:border-white/10 bg-slate-50/50 dark:bg-[#111111] hover:border-blue-500/40 dark:hover:border-beacon/40 hover:bg-white dark:hover:bg-[#161616] transition-all duration-200">
                                                                 <div>
                                                                     <div className="flex items-center gap-3 mb-3">
                                                                         <div className="w-9 h-9 rounded-lg bg-blue-500/10 dark:bg-beacon/10 text-blue-600 dark:text-beacon flex items-center justify-center shrink-0 group-hover/col:bg-blue-600 group-hover/col:text-white transition-all duration-200">
@@ -184,7 +184,7 @@ export default function Navbar() {
                                                                                 key={sub.slug}
                                                                                 href={`/products/${radioCat.slug}/${sub.slug}`}
                                                                                 onClick={() => setProductsDropdown(false)}
-                                                                                className="group/item flex items-center justify-between py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-700 dark:text-steel hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.07] hover:translate-x-0.5 active:scale-[0.98] transition-all duration-150"
+                                                                                className="group/item flex items-center justify-between py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-700 dark:text-steel hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.08] hover:translate-x-0.5 active:scale-[0.98] transition-all duration-150"
                                                                             >
                                                                                 <div className="flex items-center gap-2 truncate">
                                                                                     <span className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-white/20 group-hover/item:bg-blue-600 dark:group-hover/item:bg-beacon transition-colors shrink-0" />
@@ -212,7 +212,7 @@ export default function Navbar() {
                                                             </div>
 
                                                             {/* Pillar 2: Broadband PoC, LTE-R & Captive LTE */}
-                                                            <div className="group/col flex flex-col justify-between p-4 rounded-xl border border-slate-200/70 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.02] hover:border-blue-500/40 dark:hover:border-beacon/30 hover:bg-white dark:hover:bg-white/[0.04] transition-all duration-200">
+                                                            <div className="group/col flex flex-col justify-between p-4 rounded-xl border border-slate-200/70 dark:border-white/10 bg-slate-50/50 dark:bg-[#111111] hover:border-blue-500/40 dark:hover:border-beacon/40 hover:bg-white dark:hover:bg-[#161616] transition-all duration-200">
                                                                 <div>
                                                                     <div className="flex items-center gap-3 mb-3">
                                                                         <div className="w-9 h-9 rounded-lg bg-blue-500/10 dark:bg-beacon/10 text-blue-600 dark:text-beacon flex items-center justify-center shrink-0 group-hover/col:bg-blue-600 group-hover/col:text-white transition-all duration-200">
@@ -243,7 +243,7 @@ export default function Navbar() {
                                                                                 key={sub.slug}
                                                                                 href={`/products/${sub.catSlug}/${sub.slug}`}
                                                                                 onClick={() => setProductsDropdown(false)}
-                                                                                className="group/item flex items-center justify-between py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-700 dark:text-steel hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.07] hover:translate-x-0.5 active:scale-[0.98] transition-all duration-150"
+                                                                                className="group/item flex items-center justify-between py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-700 dark:text-steel hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.08] hover:translate-x-0.5 active:scale-[0.98] transition-all duration-150"
                                                                             >
                                                                                 <div className="flex items-center gap-2 truncate">
                                                                                     <span className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-white/20 group-hover/item:bg-blue-600 dark:group-hover/item:bg-beacon transition-colors shrink-0" />
@@ -271,7 +271,7 @@ export default function Navbar() {
                                                             </div>
 
                                                             {/* Pillar 3: OEM RF Accessories & Antennas */}
-                                                            <div className="group/col flex flex-col justify-between p-4 rounded-xl border border-slate-200/70 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.02] hover:border-blue-500/40 dark:hover:border-beacon/30 hover:bg-white dark:hover:bg-white/[0.04] transition-all duration-200">
+                                                            <div className="group/col flex flex-col justify-between p-4 rounded-xl border border-slate-200/70 dark:border-white/10 bg-slate-50/50 dark:bg-[#111111] hover:border-blue-500/40 dark:hover:border-beacon/40 hover:bg-white dark:hover:bg-[#161616] transition-all duration-200">
                                                                 <div>
                                                                     <div className="flex items-center gap-3 mb-3">
                                                                         <div className="w-9 h-9 rounded-lg bg-blue-500/10 dark:bg-beacon/10 text-blue-600 dark:text-beacon flex items-center justify-center shrink-0 group-hover/col:bg-blue-600 group-hover/col:text-white transition-all duration-200">
@@ -302,7 +302,7 @@ export default function Navbar() {
                                                                                 key={sub.slug}
                                                                                 href={`/products/${accessoriesCat.slug}/${sub.slug}`}
                                                                                 onClick={() => setProductsDropdown(false)}
-                                                                                className="group/item flex items-center justify-between py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-700 dark:text-steel hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.07] hover:translate-x-0.5 active:scale-[0.98] transition-all duration-150"
+                                                                                className="group/item flex items-center justify-between py-1.5 px-2.5 rounded-lg text-xs font-medium text-slate-700 dark:text-steel hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.08] hover:translate-x-0.5 active:scale-[0.98] transition-all duration-150"
                                                                             >
                                                                                 <div className="flex items-center gap-2 truncate">
                                                                                     <span className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-white/20 group-hover/item:bg-blue-600 dark:group-hover/item:bg-beacon transition-colors shrink-0" />
@@ -332,7 +332,7 @@ export default function Navbar() {
                                                         </div>
 
                                                         {/* Bottom Executive Utility Strip */}
-                                                        <div className="mt-5 pt-4 border-t border-slate-100 dark:border-white/10 bg-slate-50 dark:bg-[#0a0d14] -mx-6 -mb-6 p-4 px-6 flex flex-wrap items-center justify-between gap-3 text-xs">
+                                                        <div className="mt-5 pt-4 border-t border-slate-100 dark:border-white/10 bg-slate-50 dark:bg-[#0d0d0d] -mx-6 -mb-6 p-4 px-6 flex flex-wrap items-center justify-between gap-3 text-xs">
                                                             <div className="flex flex-wrap items-center gap-3 text-[11px] font-mono text-slate-500 dark:text-steel">
                                                                 <span className="flex items-center gap-1.5">
                                                                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
@@ -368,7 +368,7 @@ export default function Navbar() {
                                         href={link.href}
                                         className={`text-sm font-medium transition-colors py-2 whitespace-nowrap ${
                                             isOverBanner && theme === 'light'
-                                                ? (isActive ? 'text-sky-300 font-bold drop-shadow-sm' : 'text-white/95 hover:text-sky-200 font-medium drop-shadow-sm')
+                                                ? (isActive ? 'text-blue-600 font-bold' : 'text-slate-800 hover:text-blue-600 font-medium')
                                                 : (isActive ? 'text-blue-600 dark:text-beacon font-semibold' : 'text-slate-700 dark:text-paper/85 hover:text-blue-600 dark:hover:text-beacon')
                                         }`}
                                     >
@@ -385,11 +385,7 @@ export default function Navbar() {
                         <button
                             type="button"
                             onClick={toggleTheme}
-                            className={`p-2 rounded-lg border transition-all duration-200 active:scale-95 ${
-                                isOverBanner && theme === 'light'
-                                    ? 'border-white/30 text-white hover:text-sky-200 hover:border-blue-400/60 bg-black/25 backdrop-blur-sm shadow-sm'
-                                    : 'border-slate-200 dark:border-navy-border text-slate-600 dark:text-paper/80 hover:text-blue-600 dark:hover:text-beacon hover:border-blue-500/40 dark:hover:border-beacon/40'
-                            }`}
+                            className="p-2 rounded-lg border border-slate-200 dark:border-navy-border text-slate-700 dark:text-paper/80 hover:text-blue-600 dark:hover:text-beacon hover:border-blue-500/40 dark:hover:border-beacon/40 transition-all duration-200 active:scale-95 bg-white/60 dark:bg-transparent backdrop-blur-sm shadow-sm"
                             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
                             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
                         >
@@ -399,11 +395,9 @@ export default function Navbar() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                                 </svg>
                             ) : (
-                                /* Moon Icon (to switch to dark) - Pure white when banners are in background on Home in light mode */
+                                /* Moon Icon (to switch to dark) */
                                 <svg 
-                                    className={`w-5 h-5 transition-colors ${
-                                        isOverBanner ? 'text-white' : 'text-slate-700'
-                                    }`} 
+                                    className="w-5 h-5 text-slate-700 hover:text-blue-600 transition-colors" 
                                     fill="none" 
                                     viewBox="0 0 24 24" 
                                     stroke="currentColor"
@@ -417,11 +411,7 @@ export default function Navbar() {
                         <button
                             type="button"
                             onClick={() => setMobileOpen(!mobileOpen)}
-                            className={`lg:hidden p-2 rounded-lg transition-colors ${
-                                isOverBanner && theme === 'light'
-                                    ? 'text-white hover:bg-white/15'
-                                    : 'text-slate-700 dark:text-paper hover:bg-slate-100 dark:hover:bg-white/5'
-                            }`}
+                            className="lg:hidden p-2 rounded-lg transition-colors text-slate-700 dark:text-paper hover:bg-slate-100 dark:hover:bg-white/5"
                             aria-label="Toggle Navigation"
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

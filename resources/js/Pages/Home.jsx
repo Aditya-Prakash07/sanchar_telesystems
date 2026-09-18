@@ -5,6 +5,7 @@ import Seo from '@/Components/Seo';
 import KeyStatsSection from '@/Components/KeyStatsSection';
 import WelcomeVideoSection from '@/Components/WelcomeVideoSection';
 import AnimatedHeading from '@/Components/AnimatedHeading';
+import { useTheme } from '@/Context/ThemeContext';
 
 const SECTOR_DATA = [
     {
@@ -120,12 +121,14 @@ const getSectorIcon = (idx) => {
 };
 
 export default function Home({ banners = [], categories = [], featuredProducts = [], stats = [], testimonials = [], oemPartners = [], latestNews = [], seo = {} }) {
+    const { theme } = useTheme();
+    const isDark = theme === 'dark';
     const [selectedSector, setSelectedSector] = useState(0);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
 
     // Default hero slides if none in database
-    const slides = banners.length > 0 ? banners : [
+    const rawSlides = banners.length > 0 ? banners : [
         {
             heading: 'Accelerating Mission-Critical Communications',
             subheading: 'Our plan to scale and diversify tactical wireless operations, DMR Tier III networks and secure communications to meet growing national demand.',
@@ -155,6 +158,18 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             cta_url: '/contact-us',
         }
     ];
+
+    // Map slides to theme-specific banner image variants
+    const slides = rawSlides.map((s, idx) => {
+        const bannerNum = idx + 1;
+        const imgPath = isDark
+            ? (s.image_path || `media/banners/banner${bannerNum}.jpg`)
+            : `media/banners/banner${bannerNum}_light.jpg`;
+        return {
+            ...s,
+            resolved_image_path: imgPath
+        };
+    });
 
     const scrollContainer = (ref, direction) => {
         if (!ref.current) return;
@@ -224,9 +239,9 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                 1. HERO SECTION WITH MOTOROLA SOLUTIONS-INSPIRED LIVE BANNERS (CINEMATIC FULL VIEWPORT)
             ========================================================================= */}
             <section 
-                className="relative bg-[#04060a] text-paper overflow-hidden h-[100dvh] min-h-[640px] max-h-[960px] flex flex-col justify-center"
+                className="relative bg-white dark:bg-[#04060a] text-slate-900 dark:text-paper overflow-hidden h-[100dvh] min-h-[640px] max-h-[960px] flex flex-col justify-center transition-colors duration-300"
             >
-                {/* Background Slider Imagery / Video — Smooth transitions */}
+                {/* Background Slider Imagery — Smooth transitions */}
                 <div className="absolute inset-0 z-0 overflow-hidden">
                     {slides.map((s, idx) => (
                         <div
@@ -236,30 +251,30 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                             }`}
                         >
                             <img
-                                src={`/storage/${s.image_path}`}
+                                src={`/storage/${s.resolved_image_path}`}
                                 alt={s.heading}
                                 className={`w-full h-full object-cover object-center transform transition-transform duration-[6000ms] ease-out will-change-transform ${
                                     currentSlide === idx ? 'scale-104' : 'scale-100'
                                 }`}
                                 onError={(e) => {
                                     e.target.onerror = null;
-                                    e.target.src = '/storage/media/banners/banner1.jpg';
+                                    e.target.src = isDark ? '/storage/media/banners/banner1.jpg' : '/storage/media/banners/banner1_light.jpg';
                                 }}
                             />
                         </div>
                     ))}
 
-                    {/* Motorola signature left-side deep pitch black vignette */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 sm:via-black/55 to-transparent z-10 pointer-events-none" />
-                    {/* Top & bottom subtle cinematic letterbox gradients */}
-                    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black via-black/60 to-transparent z-10 pointer-events-none" />
-                    <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/80 via-black/30 to-transparent z-10 pointer-events-none" />
+                    {/* Left-side studio vignette: pure white on left in light mode, pitch black in dark mode */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 sm:via-white/50 to-transparent dark:from-black dark:via-black/80 dark:sm:via-black/55 dark:to-transparent z-10 pointer-events-none transition-colors duration-300" />
+                    {/* Top & bottom subtle letterbox gradients */}
+                    <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white/90 via-white/40 to-transparent dark:from-black dark:via-black/60 dark:to-transparent z-10 pointer-events-none transition-colors duration-300" />
+                    <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/80 via-white/20 to-transparent dark:from-black/80 dark:via-black/30 dark:to-transparent z-10 pointer-events-none transition-colors duration-300" />
                 </div>
 
                 {/* Left Large Motorola-Style Chevron Arrow */}
                 <button
                     onClick={prevSlide}
-                    className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center text-white/50 hover:text-white transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
+                    className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center text-slate-700/60 hover:text-slate-950 dark:text-white/50 dark:hover:text-white transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
                     aria-label="Previous Slide"
                 >
                     <svg className="w-10 h-10 stroke-[1.2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -270,7 +285,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                 {/* Right Large Motorola-Style Chevron Arrow */}
                 <button
                     onClick={nextSlide}
-                    className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center text-white/50 hover:text-white transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
+                    className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center text-slate-700/60 hover:text-slate-950 dark:text-white/50 dark:hover:text-white transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
                     aria-label="Next Slide"
                 >
                     <svg className="w-10 h-10 stroke-[1.2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -282,21 +297,21 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                 <div className="container-content relative z-20 my-auto px-6 sm:px-12 lg:px-16">
                     <div className="max-w-2xl text-left py-12 sm:py-16">
                         <div key={currentSlide} className="space-y-6 animate-in fade-in duration-500">
-                            {/* Headline: Motorola-style Bold, Clean, Pure Typography */}
-                            <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-sans font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-2xl">
+                            {/* Headline: Bold, Clean, High-Contrast Typography */}
+                            <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-sans font-extrabold text-slate-950 dark:text-white tracking-tight leading-[1.12] drop-shadow-sm dark:drop-shadow-2xl">
                                 {slides[currentSlide].heading}
                             </h1>
 
                             {/* Subheading: Clean, Editorial 2-line Subtitle */}
-                            <p className="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed font-sans font-normal drop-shadow-md">
+                            <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 max-w-xl leading-relaxed font-sans font-normal">
                                 {slides[currentSlide].subheading}
                             </p>
 
-                            {/* Motorola-Style Solid White Rounded Pill CTA Button */}
+                            {/* Motorola-Style Rounded Pill CTA Button (Inverted in Dark/Light for max pop) */}
                             <div className="pt-2 flex items-center gap-4">
                                 <Link
                                     href={slides[currentSlide].cta_url || '/products'}
-                                    className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-white text-slate-950 font-sans font-bold text-sm hover:bg-slate-100 hover:shadow-xl hover:scale-102 active:scale-98 transition-all duration-200"
+                                    className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-slate-950 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100 font-sans font-bold text-sm shadow-lg hover:shadow-xl hover:scale-102 active:scale-98 transition-all duration-200"
                                 >
                                     {slides[currentSlide].cta_label || 'View release'}
                                 </Link>
@@ -313,8 +328,8 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                             onClick={() => setCurrentSlide(dotIdx)}
                             className={`transition-all duration-300 rounded-full cursor-pointer ${
                                 currentSlide === dotIdx 
-                                    ? 'w-3 h-3 bg-sky-400 ring-2 ring-sky-400/40 ring-offset-2 ring-offset-black scale-110' 
-                                    : 'w-2.5 h-2.5 bg-white/40 hover:bg-white/70'
+                                    ? 'w-3 h-3 bg-blue-600 dark:bg-sky-400 ring-2 ring-blue-500/40 dark:ring-sky-400/40 ring-offset-2 ring-offset-white dark:ring-offset-black scale-110' 
+                                    : 'w-2.5 h-2.5 bg-slate-400/50 dark:bg-white/40 hover:bg-slate-600 dark:hover:bg-white/70'
                             }`}
                             aria-label={`Go to slide ${dotIdx + 1}: ${s.heading}`}
                             title={`Slide ${dotIdx + 1}: ${s.heading}`}
