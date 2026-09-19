@@ -172,13 +172,11 @@ export default function Home({ banners = [], categories = [], featuredProducts =
     ];
 
     const slides = rawSlides.map((s, idx) => {
-        const bannerNum = idx + 1;
         const imgPath = isDark
-            ? (s.image_path || `media/banners/banner${bannerNum}.jpg`)
-            : `media/banners/banner${bannerNum}_light.jpg`;
+            ? 'media/banners/banner1.jpg'
+            : 'media/banners/banner1_light.jpg';
         return {
             ...s,
-            badge: s.badge || defaultBadges[idx % defaultBadges.length],
             resolved_image_path: imgPath
         };
     });
@@ -285,10 +283,10 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                 {/* Left Large Motorola-Style Chevron Arrow */}
                 <button
                     onClick={prevSlide}
-                    className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center text-slate-700/60 hover:text-slate-950 dark:text-white/50 dark:hover:text-white transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
+                    className="flex absolute left-3 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-12 sm:h-12 items-center justify-center rounded-full bg-white/40 hover:bg-white/80 dark:bg-black/40 dark:hover:bg-black/70 backdrop-blur-md text-slate-800 hover:text-slate-950 dark:text-white/70 dark:hover:text-white shadow-md hover:shadow-lg border border-slate-200/50 dark:border-white/10 transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer pointer-events-auto"
                     aria-label="Previous Slide"
                 >
-                    <svg className="w-10 h-10 stroke-[1.2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                     </svg>
                 </button>
@@ -296,17 +294,17 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                 {/* Right Large Motorola-Style Chevron Arrow */}
                 <button
                     onClick={nextSlide}
-                    className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center text-slate-700/60 hover:text-slate-950 dark:text-white/50 dark:hover:text-white transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
+                    className="flex absolute right-3 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-12 sm:h-12 items-center justify-center rounded-full bg-white/40 hover:bg-white/80 dark:bg-black/40 dark:hover:bg-black/70 backdrop-blur-md text-slate-800 hover:text-slate-950 dark:text-white/70 dark:hover:text-white shadow-md hover:shadow-lg border border-slate-200/50 dark:border-white/10 transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer pointer-events-auto"
                     aria-label="Next Slide"
                 >
-                    <svg className="w-10 h-10 stroke-[1.2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                 </button>
 
                 {/* Main Content Area — Firmly Aligned to the Left Edge */}
-                <div className="relative z-20 my-auto w-full px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24">
-                    <div className="max-w-xl xl:max-w-2xl w-full text-left py-10 sm:py-14">
+                <div className="relative z-20 my-auto w-full px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24 pointer-events-none">
+                    <div className="max-w-xl xl:max-w-2xl w-full text-left py-10 sm:py-14 pointer-events-auto">
                         <div key={currentSlide} className="space-y-6">
                             {/* Headline: Motorola-style Bold Typography with Kinetic Letter Reveal Animation */}
                             <div className="py-1">
