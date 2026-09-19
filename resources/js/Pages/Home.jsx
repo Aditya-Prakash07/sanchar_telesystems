@@ -133,33 +133,44 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             heading: 'Accelerating Mission-Critical Communications',
             subheading: 'Our plan to scale and diversify tactical wireless operations, DMR Tier III networks and secure communications to meet growing national demand.',
             image_path: 'media/banners/banner1.jpg',
-            cta_label: 'View Release',
-            cta_url: '/products',
+            cta_label: 'Explore DMR Radios',
+            cta_url: '/products/professional-amateur-radio/professional-amateur-radio-digital-mobile-radio-dmr',
+            badge: 'DMR TIER III • KENWOOD NX-SERIES',
         },
         {
-            heading: 'Next-Generation Tactical Radio Networks',
-            subheading: 'Empowering first responders and defense forces with AES-256 encrypted multi-band digital transceivers engineered for zero mission failure.',
+            heading: 'Next-Generation PoC & Broadband Networks',
+            subheading: 'Empowering first responders and defense forces with nationwide LTE push-to-talk, live dispatching, and sub-second voice latency.',
             image_path: 'media/banners/banner2.jpg',
-            cta_label: 'Explore Network Solutions',
-            cta_url: '/products',
+            cta_label: 'Explore PoC Solutions',
+            cta_url: '/products/ptt-over-cellular-poc',
+            badge: 'PTT OVER CELLULAR • ST-500R 5G',
         },
         {
             heading: 'Intrinsically Safe Industrial & Defense Radios',
             subheading: 'Certified explosion-proof ATEX and MIL-STD-810H rugged communications built for hazardous industrial sectors, refineries and tactical operations.',
             image_path: 'media/banners/banner3.jpg',
             cta_label: 'Discover ATEX Radios',
-            cta_url: '/products',
+            cta_url: '/products/professional-amateur-radio',
+            badge: 'ATEX / IECEX CERTIFIED • V-710',
         },
         {
             heading: 'Nationwide Turnkey Wireless Infrastructure',
             subheading: 'Over three decades of mission-critical engineering excellence trusted by the Parliament of India, Delhi Police, and Indian Railways.',
             image_path: 'media/banners/banner4.jpg',
-            cta_label: 'Our Deployments',
-            cta_url: '/contact-us',
+            cta_label: 'Explore Infrastructure',
+            cta_url: '#sectors',
+            badge: 'PARLIAMENT • POLICE • INDIAN RAILWAYS',
         }
     ];
 
     // Map slides to theme-specific banner image variants
+    const defaultBadges = [
+        'DMR TIER III • KENWOOD NX-SERIES',
+        'PTT OVER CELLULAR • ST-500R 5G',
+        'ATEX / IECEX CERTIFIED • V-710',
+        'PARLIAMENT • POLICE • INDIAN RAILWAYS',
+    ];
+
     const slides = rawSlides.map((s, idx) => {
         const bannerNum = idx + 1;
         const imgPath = isDark
@@ -167,6 +178,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             : `media/banners/banner${bannerNum}_light.jpg`;
         return {
             ...s,
+            badge: s.badge || defaultBadges[idx % defaultBadges.length],
             resolved_image_path: imgPath
         };
     });
@@ -180,9 +192,9 @@ export default function Home({ banners = [], categories = [], featuredProducts =
         });
     };
 
-    const SLIDE_DURATION = 3400; // 3.4s fast transition
+    const SLIDE_DURATION = 6500; // 6.5s comfortable reading pace
 
-    // Continuous smooth auto-advance every 3.4s, resetting when slide changes or paused
+    // Continuous smooth auto-advance every 6.5s, resetting when slide changes or paused
     useEffect(() => {
         if (slides.length <= 1 || isPaused) return;
         const timer = setInterval(() => {
@@ -253,7 +265,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                             <img
                                 src={`/storage/${s.resolved_image_path}`}
                                 alt={s.heading}
-                                className={`w-full h-full object-cover object-center transform transition-transform duration-[6000ms] ease-out will-change-transform ${
+                                className={`w-full h-full object-cover object-right transform transition-transform duration-[6000ms] ease-out will-change-transform ${
                                     currentSlide === idx ? 'scale-104' : 'scale-100'
                                 }`}
                                 onError={(e) => {
@@ -264,11 +276,10 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                         </div>
                     ))}
 
-                    {/* Left-side studio vignette: pure white on left in light mode, pitch black in dark mode */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 sm:via-white/50 to-transparent dark:from-black dark:via-black/80 dark:sm:via-black/55 dark:to-transparent z-10 pointer-events-none transition-colors duration-300" />
-                    {/* Top & bottom subtle letterbox gradients */}
-                    <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white/90 via-white/40 to-transparent dark:from-black dark:via-black/60 dark:to-transparent z-10 pointer-events-none transition-colors duration-300" />
-                    <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/80 via-white/20 to-transparent dark:from-black/80 dark:via-black/30 dark:to-transparent z-10 pointer-events-none transition-colors duration-300" />
+                    {/* Deep pitch-black cinematic vignette in dark mode; ultra-clean and subtle in light mode */}
+                    <div className="absolute inset-0 hidden dark:block bg-gradient-to-r from-black via-black/80 sm:via-black/55 to-transparent z-10 pointer-events-none" />
+                    <div className="absolute inset-x-0 bottom-0 h-28 hidden dark:block bg-gradient-to-t from-black via-black/60 to-transparent z-10 pointer-events-none" />
+                    <div className="absolute inset-x-0 top-0 h-24 hidden dark:block bg-gradient-to-b from-black/80 via-black/30 to-transparent z-10 pointer-events-none" />
                 </div>
 
                 {/* Left Large Motorola-Style Chevron Arrow */}
@@ -293,34 +304,66 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                     </svg>
                 </button>
 
-                {/* Main Content Area */}
-                <div className="container-content relative z-20 my-auto px-6 sm:px-12 lg:px-16">
-                    <div className="max-w-2xl text-left py-12 sm:py-16">
-                        <div key={currentSlide} className="space-y-6 animate-in fade-in duration-500">
-                            {/* Headline: Bold, Clean, High-Contrast Typography */}
-                            <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-sans font-extrabold text-slate-950 dark:text-white tracking-tight leading-[1.12] drop-shadow-sm dark:drop-shadow-2xl">
-                                {slides[currentSlide].heading}
-                            </h1>
+                {/* Main Content Area — Firmly Aligned to the Left Edge */}
+                <div className="relative z-20 my-auto w-full px-6 sm:px-12 md:px-16 lg:px-20 xl:px-24">
+                    <div className="max-w-xl xl:max-w-2xl w-full text-left py-10 sm:py-14">
+                        <div key={currentSlide} className="space-y-6">
+                            {/* Headline: Motorola-style Bold Typography with Kinetic Letter Reveal Animation */}
+                            <div className="py-1">
+                                <AnimatedHeading
+                                    key={currentSlide}
+                                    as="h1"
+                                    immediate={true}
+                                    delay={20}
+                                    letterStagger={14}
+                                    highlight="last"
+                                    highlightCount={1}
+                                    className="text-4xl sm:text-5xl lg:text-[54px] font-sans font-extrabold text-slate-950 dark:text-white tracking-tight leading-[1.12] drop-shadow-xs dark:drop-shadow-2xl"
+                                    gradientClass="bg-gradient-to-r from-blue-700 via-indigo-600 to-sky-600 dark:from-sky-300 dark:via-cyan-300 dark:to-blue-400 bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(37,99,235,0.3)]"
+                                >
+                                    {slides[currentSlide].heading}
+                                </AnimatedHeading>
+                            </div>
 
-                            {/* Subheading: Clean, Editorial 2-line Subtitle */}
-                            <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 max-w-xl leading-relaxed font-sans font-normal">
+                            {/* Luminous Telemetry Tracer Line */}
+                            <div className="relative h-1 w-24 overflow-hidden rounded-full bg-slate-200 dark:bg-white/15 my-1">
+                                <div className="animate-hero-tracer h-full w-full bg-gradient-to-r from-blue-600 via-indigo-500 to-transparent dark:from-cyan-400 dark:via-blue-500 dark:to-transparent rounded-full shadow-sm" />
+                            </div>
+
+                            {/* Subheading: High Contrast & Crisp Readability */}
+                            <p className="animate-hero-subtitle text-base sm:text-lg text-slate-800 dark:text-slate-300 max-w-lg leading-relaxed font-sans font-normal">
                                 {slides[currentSlide].subheading}
                             </p>
 
-                            {/* Motorola-Style Rounded Pill CTA Button (Inverted in Dark/Light for max pop) */}
-                            <div className="pt-2 flex items-center gap-4">
-                                <Link
-                                    href={slides[currentSlide].cta_url || '/products'}
-                                    className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-slate-950 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100 font-sans font-bold text-sm shadow-lg hover:shadow-xl hover:scale-102 active:scale-98 transition-all duration-200"
-                                >
-                                    {slides[currentSlide].cta_label || 'View release'}
-                                </Link>
+                            {/* Motorola-Style Rounded Pill CTA Button with Interactive Hover & Click Effects */}
+                            <div className="animate-hero-cta pt-2 flex items-center gap-4">
+                                {slides[currentSlide].cta_url?.startsWith('#') ? (
+                                    <a
+                                        href={slides[currentSlide].cta_url}
+                                        className="group relative inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full bg-slate-950 text-white hover:bg-blue-600 dark:bg-white dark:text-slate-950 dark:hover:bg-cyan-400 dark:hover:text-slate-950 font-sans font-bold text-sm shadow-md hover:shadow-xl hover:shadow-blue-600/30 dark:hover:shadow-cyan-400/30 hover:scale-105 hover:-translate-y-0.5 active:scale-95 active:translate-y-0.5 active:shadow-inner transition-all duration-200 cursor-pointer select-none focus:outline-hidden focus:ring-4 focus:ring-blue-500/30 dark:focus:ring-cyan-400/30"
+                                    >
+                                        <span>{slides[currentSlide].cta_label || 'View Release'}</span>
+                                        <svg className="w-4 h-4 transform group-hover:translate-y-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                        </svg>
+                                    </a>
+                                ) : (
+                                    <Link
+                                        href={slides[currentSlide].cta_url || '/products'}
+                                        className="group relative inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full bg-slate-950 text-white hover:bg-blue-600 dark:bg-white dark:text-slate-950 dark:hover:bg-cyan-400 dark:hover:text-slate-950 font-sans font-bold text-sm shadow-md hover:shadow-xl hover:shadow-blue-600/30 dark:hover:shadow-cyan-400/30 hover:scale-105 hover:-translate-y-0.5 active:scale-95 active:translate-y-0.5 active:shadow-inner transition-all duration-200 cursor-pointer select-none focus:outline-hidden focus:ring-4 focus:ring-blue-500/30 dark:focus:ring-cyan-400/30"
+                                    >
+                                        <span>{slides[currentSlide].cta_label || 'View Release'}</span>
+                                        <svg className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        </svg>
+                                    </Link>
+                                )}
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Motorola Bottom-Center Carousel Dot Pagination with Cyan Active Indicator */}
+                {/* Motorola Bottom-Center Carousel Dot Pagination */}
                 <div className="absolute bottom-6 sm:bottom-8 inset-x-0 z-20 flex items-center justify-center gap-2.5">
                     {slides.map((s, dotIdx) => (
                         <button
@@ -328,8 +371,8 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                             onClick={() => setCurrentSlide(dotIdx)}
                             className={`transition-all duration-300 rounded-full cursor-pointer ${
                                 currentSlide === dotIdx 
-                                    ? 'w-3 h-3 bg-blue-600 dark:bg-sky-400 ring-2 ring-blue-500/40 dark:ring-sky-400/40 ring-offset-2 ring-offset-white dark:ring-offset-black scale-110' 
-                                    : 'w-2.5 h-2.5 bg-slate-400/50 dark:bg-white/40 hover:bg-slate-600 dark:hover:bg-white/70'
+                                    ? 'w-8 h-2.5 bg-blue-600 dark:bg-sky-400 ring-2 ring-blue-500/30 dark:ring-sky-400/40 ring-offset-2 ring-offset-white dark:ring-offset-black' 
+                                    : 'w-2.5 h-2.5 bg-slate-300 dark:bg-white/40 hover:bg-slate-500 dark:hover:bg-white/70'
                             }`}
                             aria-label={`Go to slide ${dotIdx + 1}: ${s.heading}`}
                             title={`Slide ${dotIdx + 1}: ${s.heading}`}

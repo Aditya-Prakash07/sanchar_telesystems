@@ -167,12 +167,11 @@ export default function AnimatedHeading({
                     return (
                         <span 
                             key={wordIdx} 
-                            className="inline-block whitespace-nowrap overflow-hidden py-1.5 align-bottom mr-[0.28em] last:mr-0 leading-tight"
-                            style={{ perspective: '800px' }}
+                            className="inline-block whitespace-nowrap overflow-hidden py-1 align-bottom mr-[0.28em] last:mr-0 leading-tight"
                             aria-hidden="true"
                         >
                             {letters.map((char, charIdx) => {
-                                const charDelay = delay + (currentWordOffset + charIdx) * letterStagger + (wordIdx * 18);
+                                const charDelay = delay + (currentWordOffset + charIdx) * letterStagger + (wordIdx * 12);
                                 const isCharAmp = char === '&';
                                 return (
                                     <span 
@@ -182,13 +181,12 @@ export default function AnimatedHeading({
                                         } ${isCharAmp ? 'font-sans font-semibold' : ''}`}
                                         style={{
                                             transform: isVisible 
-                                                ? 'translate3d(0, 0, 0) rotateX(0deg) scale(1)' 
-                                                : 'translate3d(0, 115%, 0) rotateX(-40deg) scale(0.85)',
+                                                ? 'none' 
+                                                : 'translate3d(0, 18px, 0)',
                                             opacity: isVisible ? 1 : 0,
-                                            filter: isVisible ? 'blur(0px)' : 'blur(4px)',
                                             transformOrigin: '50% 100%',
-                                            transitionProperty: 'transform, opacity, filter',
-                                            transitionDuration: '520ms',
+                                            transitionProperty: 'transform, opacity',
+                                            transitionDuration: '380ms',
                                             transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
                                             transitionDelay: `${charDelay}ms`,
                                             ...(isCharAmp ? { fontFamily: '"IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' } : {})
