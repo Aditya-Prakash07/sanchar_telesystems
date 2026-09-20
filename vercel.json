@@ -5,16 +5,7 @@
     "api/index.php": {
       "runtime": "vercel-php@0.8.0",
       "maxDuration": 15,
-      "excludeFiles": [
-        "node_modules/**",
-        "public/storage/**",
-        "storage/app/**",
-        "tests/**",
-        "*.py",
-        "*.md",
-        "vercel.json",
-        ".vercelignore"
-      ]
+      "excludeFiles": "{public/storage/**,storage/app/**,tests/**,*.py,*.md}"
     }
   },
   "routes": [
