@@ -172,9 +172,10 @@ export default function Home({ banners = [], categories = [], featuredProducts =
     ];
 
     const slides = rawSlides.map((s, idx) => {
+        const bannerNum = idx + 1;
         const imgPath = isDark
-            ? 'media/banners/banner1.jpg'
-            : 'media/banners/banner1_light.jpg';
+            ? (s.image_path || `media/banners/banner${bannerNum}.jpg`)
+            : (s.image_path ? s.image_path.replace('.jpg', '_light.jpg') : `media/banners/banner${bannerNum}_light.jpg`);
         return {
             ...s,
             resolved_image_path: imgPath
@@ -283,10 +284,10 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                 {/* Left Large Motorola-Style Chevron Arrow */}
                 <button
                     onClick={prevSlide}
-                    className="flex absolute left-3 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-12 sm:h-12 items-center justify-center rounded-full bg-white/40 hover:bg-white/80 dark:bg-black/40 dark:hover:bg-black/70 backdrop-blur-md text-slate-800 hover:text-slate-950 dark:text-white/70 dark:hover:text-white shadow-md hover:shadow-lg border border-slate-200/50 dark:border-white/10 transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer pointer-events-auto"
+                    className="flex absolute left-2 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-40 p-2 items-center justify-center text-slate-700/60 hover:text-slate-950 dark:text-white/40 dark:hover:text-white transition-all duration-200 hover:scale-125 active:scale-90 cursor-pointer pointer-events-auto"
                     aria-label="Previous Slide"
                 >
-                    <svg className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-8 h-8 sm:w-10 sm:h-10 stroke-[1.2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                     </svg>
                 </button>
@@ -294,10 +295,10 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                 {/* Right Large Motorola-Style Chevron Arrow */}
                 <button
                     onClick={nextSlide}
-                    className="flex absolute right-3 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-40 w-11 h-11 sm:w-12 sm:h-12 items-center justify-center rounded-full bg-white/40 hover:bg-white/80 dark:bg-black/40 dark:hover:bg-black/70 backdrop-blur-md text-slate-800 hover:text-slate-950 dark:text-white/70 dark:hover:text-white shadow-md hover:shadow-lg border border-slate-200/50 dark:border-white/10 transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer pointer-events-auto"
+                    className="flex absolute right-2 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-40 p-2 items-center justify-center text-slate-700/60 hover:text-slate-950 dark:text-white/40 dark:hover:text-white transition-all duration-200 hover:scale-125 active:scale-90 cursor-pointer pointer-events-auto"
                     aria-label="Next Slide"
                 >
-                    <svg className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-8 h-8 sm:w-10 sm:h-10 stroke-[1.2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                 </button>
@@ -338,17 +339,17 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 {slides[currentSlide].cta_url?.startsWith('#') ? (
                                     <a
                                         href={slides[currentSlide].cta_url}
-                                        className="group relative inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full bg-slate-950 text-white hover:bg-blue-600 dark:bg-white dark:text-slate-950 dark:hover:bg-cyan-400 dark:hover:text-slate-950 font-sans font-bold text-sm shadow-md hover:shadow-xl hover:shadow-blue-600/30 dark:hover:shadow-cyan-400/30 hover:scale-105 hover:-translate-y-0.5 active:scale-95 active:translate-y-0.5 active:shadow-inner transition-all duration-200 cursor-pointer select-none focus:outline-hidden focus:ring-4 focus:ring-blue-500/30 dark:focus:ring-cyan-400/30"
+                                        className="group relative inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full bg-slate-950 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100 font-sans font-bold text-sm shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer select-none"
                                     >
                                         <span>{slides[currentSlide].cta_label || 'View Release'}</span>
-                                        <svg className="w-4 h-4 transform group-hover:translate-y-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                        <svg className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                         </svg>
                                     </a>
                                 ) : (
                                     <Link
                                         href={slides[currentSlide].cta_url || '/products'}
-                                        className="group relative inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full bg-slate-950 text-white hover:bg-blue-600 dark:bg-white dark:text-slate-950 dark:hover:bg-cyan-400 dark:hover:text-slate-950 font-sans font-bold text-sm shadow-md hover:shadow-xl hover:shadow-blue-600/30 dark:hover:shadow-cyan-400/30 hover:scale-105 hover:-translate-y-0.5 active:scale-95 active:translate-y-0.5 active:shadow-inner transition-all duration-200 cursor-pointer select-none focus:outline-hidden focus:ring-4 focus:ring-blue-500/30 dark:focus:ring-cyan-400/30"
+                                        className="group relative inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full bg-slate-950 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100 font-sans font-bold text-sm shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer select-none"
                                     >
                                         <span>{slides[currentSlide].cta_label || 'View Release'}</span>
                                         <svg className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">

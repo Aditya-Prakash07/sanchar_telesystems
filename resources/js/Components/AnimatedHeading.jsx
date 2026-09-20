@@ -46,10 +46,10 @@ export default function AnimatedHeading({
 
         if (immediate) {
             // Allow initial hidden frame to register in browser layout before triggering transition
-            const timer = requestAnimationFrame(() => {
+            const timer = setTimeout(() => {
                 setIsVisible(true);
-            });
-            return () => cancelAnimationFrame(timer);
+            }, 20);
+            return () => clearTimeout(timer);
         }
 
         const el = containerRef.current;
