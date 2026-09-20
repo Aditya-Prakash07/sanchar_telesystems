@@ -1,7 +1,6 @@
 {
     "$schema": "https://www.schemastore.org/package.json",
     "private": true,
-    "type": "module",
     "scripts": {
         "build": "vite build && node -e 'if (require(\"fs\").existsSync(\"storage/app/public\")) require(\"fs\").cpSync(\"storage/app/public\", \"public/storage\", {recursive: true, force: true})'",
         "dev": "vite"
