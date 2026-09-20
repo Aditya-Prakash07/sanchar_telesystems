@@ -126,16 +126,34 @@ export default function Home({ banners = [], categories = [], featuredProducts =
     const [selectedSector, setSelectedSector] = useState(0);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
+    const [isMuted, setIsMuted] = useState(true);
+    const videoRef = useRef(null);
 
-    // Default hero slides if none in database
+    const toggleMute = () => {
+        setIsMuted((prev) => {
+            const next = !prev;
+            if (videoRef.current) {
+                videoRef.current.muted = next;
+            }
+            return next;
+        });
+    };
+
+    // Default hero slides if none in database (5 Banners Total: Video + 4 Flagship Hardware)
     const rawSlides = banners.length > 0 ? banners : [
+        {
+            heading: 'Pioneering Mission-Critical Wireless Systems',
+            subheading: 'Over three decades of mission-critical engineering excellence trusted by India’s defense forces, homeland security, and key national infrastructure.',
+            image_path: 'media/banners/radio_dark_mode.mp4',
+            cta_label: 'Explore Our Solutions',
+            cta_url: '/products',
+        },
         {
             heading: 'Accelerating Mission-Critical Communications',
             subheading: 'Our plan to scale and diversify tactical wireless operations, DMR Tier III networks and secure communications to meet growing national demand.',
             image_path: 'media/banners/banner1.jpg',
             cta_label: 'Explore DMR Radios',
             cta_url: '/products/professional-amateur-radio/professional-amateur-radio-digital-mobile-radio-dmr',
-            badge: 'DMR TIER III • KENWOOD NX-SERIES',
         },
         {
             heading: 'Next-Generation PoC & Broadband Networks',
@@ -143,7 +161,6 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             image_path: 'media/banners/banner2.jpg',
             cta_label: 'Explore PoC Solutions',
             cta_url: '/products/ptt-over-cellular-poc',
-            badge: 'PTT OVER CELLULAR • ST-500R 5G',
         },
         {
             heading: 'Intrinsically Safe Industrial & Defense Radios',
@@ -151,7 +168,6 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             image_path: 'media/banners/banner3.jpg',
             cta_label: 'Discover ATEX Radios',
             cta_url: '/products/professional-amateur-radio',
-            badge: 'ATEX / IECEX CERTIFIED • V-710',
         },
         {
             heading: 'Nationwide Turnkey Wireless Infrastructure',
@@ -159,25 +175,33 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             image_path: 'media/banners/banner4.jpg',
             cta_label: 'Explore Infrastructure',
             cta_url: '#sectors',
-            badge: 'PARLIAMENT • POLICE • INDIAN RAILWAYS',
         }
     ];
 
-    // Map slides to theme-specific banner image variants
-    const defaultBadges = [
-        'DMR TIER III • KENWOOD NX-SERIES',
-        'PTT OVER CELLULAR • ST-500R 5G',
-        'ATEX / IECEX CERTIFIED • V-710',
-        'PARLIAMENT • POLICE • INDIAN RAILWAYS',
-    ];
-
     const slides = rawSlides.map((s, idx) => {
-        const bannerNum = idx + 1;
+        const isVideo = Boolean(s.image_path?.endsWith('.mp4') || s.image_path?.includes('radio_') || idx === 0);
+        if (isVideo) {
+            const vidPath = isDark
+                ? 'media/banners/radio_dark_mode.mp4'
+                : 'media/banners/radio_light_mode.mp4';
+            return {
+                ...s,
+                isVideo: true,
+                resolved_video_path: vidPath
+            };
+        }
+
+        // For image slides (slides 1..4 corresponding to hardware banners 1..4)
+        const bannerNum = idx; // idx 1 -> banner1, idx 2 -> banner2, etc.
+        const baseImg = (s.image_path && !s.image_path.endsWith('.mp4')) 
+            ? s.image_path 
+            : `media/banners/banner${bannerNum}.jpg`;
         const imgPath = isDark
-            ? (s.image_path || `media/banners/banner${bannerNum}.jpg`)
-            : (s.image_path ? s.image_path.replace('.jpg', '_light.jpg') : `media/banners/banner${bannerNum}_light.jpg`);
+            ? baseImg
+            : baseImg.replace('.jpg', '_light.jpg');
         return {
             ...s,
+            isVideo: false,
             resolved_image_path: imgPath
         };
     });
@@ -191,16 +215,30 @@ export default function Home({ banners = [], categories = [], featuredProducts =
         });
     };
 
-    const SLIDE_DURATION = 6500; // 6.5s comfortable reading pace
+    const SLIDE_DURATION = 6500; // 6.5s comfortable reading pace for image banners
 
-    // Continuous smooth auto-advance every 6.5s, resetting when slide changes or paused
+    // Continuous smooth auto-advance: gives the first video banner full 20s playback, 6.5s for images
     useEffect(() => {
         if (slides.length <= 1 || isPaused) return;
+        const currentIsVideo = Boolean(slides[currentSlide]?.isVideo);
+        const duration = currentIsVideo ? 20200 : SLIDE_DURATION;
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides.length);
-        }, SLIDE_DURATION);
+        }, duration);
         return () => clearInterval(timer);
-    }, [currentSlide, slides.length, isPaused]);
+    }, [currentSlide, slides.length, isPaused, slides]);
+
+    // Synchronize video playback & reset currentTime when navigating between slides
+    useEffect(() => {
+        if (videoRef.current) {
+            if (slides[currentSlide]?.isVideo) {
+                videoRef.current.currentTime = 0;
+                videoRef.current.play().catch(() => {});
+            } else {
+                videoRef.current.pause();
+            }
+        }
+    }, [currentSlide, slides]);
 
     const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
     const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
@@ -252,7 +290,7 @@ export default function Home({ banners = [], categories = [], featuredProducts =
             <section 
                 className="relative bg-white dark:bg-[#04060a] text-slate-900 dark:text-paper overflow-hidden h-[100dvh] min-h-[640px] max-h-[960px] flex flex-col justify-center transition-colors duration-300"
             >
-                {/* Background Slider Imagery — Smooth transitions */}
+                {/* Background Slider Imagery / Video — Smooth transitions */}
                 <div className="absolute inset-0 z-0 overflow-hidden">
                     {slides.map((s, idx) => (
                         <div
@@ -261,17 +299,30 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                                 currentSlide === idx ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none z-0'
                             }`}
                         >
-                            <img
-                                src={`/storage/${s.resolved_image_path}`}
-                                alt={s.heading}
-                                className={`w-full h-full object-cover object-right transform transition-transform duration-[6000ms] ease-out will-change-transform ${
-                                    currentSlide === idx ? 'scale-104' : 'scale-100'
-                                }`}
-                                onError={(e) => {
-                                    e.target.onerror = null;
-                                    e.target.src = isDark ? '/storage/media/banners/banner1.jpg' : '/storage/media/banners/banner1_light.jpg';
-                                }}
-                            />
+                            {s.isVideo ? (
+                                <video
+                                    ref={videoRef}
+                                    key={`${s.resolved_video_path}-${isDark ? 'dark' : 'light'}`}
+                                    src={`/storage/${s.resolved_video_path}`}
+                                    autoPlay
+                                    muted={isMuted}
+                                    playsInline
+                                    onEnded={nextSlide}
+                                    className="w-full h-full object-cover object-center"
+                                />
+                            ) : (
+                                <img
+                                    src={`/storage/${s.resolved_image_path}`}
+                                    alt={s.heading}
+                                    className={`w-full h-full object-cover object-right transform transition-transform duration-[6000ms] ease-out will-change-transform ${
+                                        currentSlide === idx ? 'scale-104' : 'scale-100'
+                                    }`}
+                                    onError={(e) => {
+                                        e.target.onerror = null;
+                                        e.target.src = isDark ? '/storage/media/banners/banner1.jpg' : '/storage/media/banners/banner1_light.jpg';
+                                    }}
+                                />
+                            )}
                         </div>
                     ))}
 
@@ -279,6 +330,9 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                     <div className="absolute inset-0 hidden dark:block bg-gradient-to-r from-black via-black/80 sm:via-black/55 to-transparent z-10 pointer-events-none" />
                     <div className="absolute inset-x-0 bottom-0 h-28 hidden dark:block bg-gradient-to-t from-black via-black/60 to-transparent z-10 pointer-events-none" />
                     <div className="absolute inset-x-0 top-0 h-24 hidden dark:block bg-gradient-to-b from-black/80 via-black/30 to-transparent z-10 pointer-events-none" />
+
+                    {/* Light mode gentle reading gradient to guarantee crisp text contrast */}
+                    <div className="absolute inset-0 block dark:hidden bg-gradient-to-r from-white via-white/80 sm:via-white/40 to-transparent z-10 pointer-events-none" />
                 </div>
 
                 {/* Left Large Motorola-Style Chevron Arrow */}
@@ -378,6 +432,33 @@ export default function Home({ banners = [], categories = [], featuredProducts =
                         />
                     ))}
                 </div>
+
+                {/* Audio Mute/Unmute Toggle Button for Video Banner */}
+                {slides[currentSlide]?.isVideo && (
+                    <button
+                        onClick={toggleMute}
+                        className="absolute bottom-5 sm:bottom-7 right-4 sm:right-8 lg:right-12 z-30 flex items-center gap-2 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full bg-white/75 hover:bg-white dark:bg-black/60 dark:hover:bg-black/85 backdrop-blur-md border border-slate-200/80 dark:border-white/15 text-slate-800 dark:text-slate-100 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer pointer-events-auto select-none group"
+                        aria-label={isMuted ? 'Unmute video audio' : 'Mute video audio'}
+                        title={isMuted ? 'Click to unmute video audio' : 'Click to mute video audio'}
+                    >
+                        {isMuted ? (
+                            <>
+                                <svg className="w-4 h-4 text-slate-600 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+                                </svg>
+                                <span className="text-[11px] sm:text-xs font-semibold tracking-wider uppercase font-mono text-slate-700 dark:text-slate-300">Unmute</span>
+                            </>
+                        ) : (
+                            <>
+                                <svg className="w-4 h-4 text-blue-600 dark:text-cyan-400 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                </svg>
+                                <span className="text-[11px] sm:text-xs font-semibold tracking-wider uppercase font-mono text-blue-600 dark:text-cyan-400">Mute</span>
+                            </>
+                        )}
+                    </button>
+                )}
             </section>
 
 

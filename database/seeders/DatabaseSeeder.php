@@ -313,15 +313,23 @@ class DatabaseSeeder extends Seeder
             OemPartner::create($p + ['is_published' => true]);
         }
 
-        // 7. Motorola Solutions-Style Hero Banners
+        // 7. Motorola Solutions-Style Hero Banners (5 Total: 1 Video + 4 Flagship Hardware)
         $heroBanners = [
+            [
+                'heading' => 'Pioneering Mission-Critical Wireless Systems',
+                'subheading' => 'Over three decades of mission-critical engineering excellence trusted by India’s defense forces, homeland security, and key national infrastructure.',
+                'image_path' => 'media/banners/radio_dark_mode.mp4',
+                'cta_label' => 'Explore Our Solutions',
+                'cta_url' => '/products',
+                'sort_order' => 0,
+            ],
             [
                 'heading' => 'Accelerating Mission-Critical Communications',
                 'subheading' => 'Our plan to scale and diversify tactical wireless operations, DMR Tier III networks and secure communications to meet growing national demand.',
                 'image_path' => 'media/banners/banner1.jpg',
                 'cta_label' => 'Explore DMR Radios',
                 'cta_url' => '/products/professional-amateur-radio/professional-amateur-radio-digital-mobile-radio-dmr',
-                'sort_order' => 0,
+                'sort_order' => 1,
             ],
             [
                 'heading' => 'Next-Generation PoC & Broadband Networks',
@@ -329,7 +337,7 @@ class DatabaseSeeder extends Seeder
                 'image_path' => 'media/banners/banner2.jpg',
                 'cta_label' => 'Explore PoC Solutions',
                 'cta_url' => '/products/ptt-over-cellular-poc',
-                'sort_order' => 1,
+                'sort_order' => 2,
             ],
             [
                 'heading' => 'Intrinsically Safe Industrial & Defense Radios',
@@ -337,7 +345,7 @@ class DatabaseSeeder extends Seeder
                 'image_path' => 'media/banners/banner3.jpg',
                 'cta_label' => 'Discover ATEX Radios',
                 'cta_url' => '/products/professional-amateur-radio',
-                'sort_order' => 2,
+                'sort_order' => 3,
             ],
             [
                 'heading' => 'Nationwide Turnkey Wireless Infrastructure',
@@ -345,7 +353,7 @@ class DatabaseSeeder extends Seeder
                 'image_path' => 'media/banners/banner4.jpg',
                 'cta_label' => 'Explore Infrastructure',
                 'cta_url' => '#sectors',
-                'sort_order' => 3,
+                'sort_order' => 4,
             ],
         ];
 
