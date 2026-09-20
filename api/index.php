@@ -66,8 +66,14 @@ require $baseDir . '/vendor/autoload.php';
 /** @var Application $app */
 $app = require_once $baseDir . '/bootstrap/app.php';
 
-// Direct storage to /tmp/storage
-$app->useStoragePath('/tmp/storage');
+try {
+    // Direct storage to /tmp/storage
+    $app->useStoragePath('/tmp/storage');
 
-// Handle request
-$app->handleRequest(Request::capture());
+    // Handle request
+    $app->handleRequest(Request::capture());
+} catch (\Throwable $e) {
+    http_response_code(500);
+    header('Content-Type: text/plain');
+    echo "SERVERLESS_EXCEPTION: " . $e->getMessage() . "\n" . $e->getFile() . ":" . $e->getLine() . "\n" . $e->getTraceAsString();
+}
