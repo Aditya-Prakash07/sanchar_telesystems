@@ -107,6 +107,7 @@ class DatabaseSeeder extends Seeder
         // 2. Rich Products directly from Live Site (all 121 models)
         $scrapedProductsFile = storage_path('app/scraped_products.json');
         if (file_exists($scrapedProductsFile)) {
+            PortfolioItem::truncate();
             $scraped = json_decode(file_get_contents($scrapedProductsFile), true);
             foreach ($scraped as $i => $p) {
                 // Find matching subcategory
@@ -123,26 +124,24 @@ class DatabaseSeeder extends Seeder
                 }
 
                 if ($matchedSub) {
-                    $baseSlug = Str::slug($matchedSub->name . '-' . $p['name']);
-                    // Ensure unique slug
-                    $slug = $baseSlug;
-                    $counter = 1;
-                    while (PortfolioItem::where('slug', $slug)->exists()) {
-                        $slug = $baseSlug . '-' . $counter++;
-                    }
+                    $slug = Str::slug($matchedSub->name . '-' . $p['name']);
 
-                    PortfolioItem::create([
-                        'product_subcategory_id' => $matchedSub->id,
-                        'name' => $p['name'],
-                        'slug' => $slug,
-                        'model_number' => $p['model_number'] ?: $p['name'],
-                        'short_description' => $p['short_description'],
-                        'description' => $p['description'],
-                        'specifications' => $p['specifications'],
-                        'cover_image_path' => $p['cover_image_path'],
-                        'is_published' => true,
-                        'sort_order' => $i,
-                    ]);
+                    PortfolioItem::updateOrCreate(
+                        [
+                            'product_subcategory_id' => $matchedSub->id,
+                            'name' => $p['name'],
+                        ],
+                        [
+                            'slug' => $slug,
+                            'model_number' => $p['model_number'] ?: $p['name'],
+                            'short_description' => $p['short_description'],
+                            'description' => $p['description'],
+                            'specifications' => $p['specifications'],
+                            'cover_image_path' => $p['cover_image_path'],
+                            'is_published' => true,
+                            'sort_order' => $i,
+                        ]
+                    );
                 }
             }
         }
