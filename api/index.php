@@ -7,26 +7,6 @@ define('LARAVEL_START', microtime(true));
 
 $baseDir = dirname(__DIR__);
 
-// Check if website is in offline / maintenance mode
-if (
-    getenv('APP_OFFLINE') === 'true'
-    || file_exists($baseDir . '/offline.flag')
-    || file_exists($baseDir . '/storage/framework/down')
-    || file_exists(__DIR__ . '/offline.flag')
-) {
-    http_response_code(503);
-    header('Retry-After: 3600');
-    header('Cache-Control: no-cache, private');
-    if (file_exists($baseDir . '/resources/views/maintenance.php')) {
-        require $baseDir . '/resources/views/maintenance.php';
-    } elseif (file_exists($baseDir . '/public/maintenance.html')) {
-        readfile($baseDir . '/public/maintenance.html');
-    } else {
-        echo "<h1>Website Temporarily Offline for Scheduled Maintenance</h1><p>Please contact info@sanchartelesystems.com</p>";
-    }
-    exit;
-}
-
 // Ensure required writable storage paths exist in /tmp
 $tmpDirs = [
     '/tmp/storage/app/public',

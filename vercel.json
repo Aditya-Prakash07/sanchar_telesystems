@@ -30,7 +30,6 @@
     "DB_CONNECTION": "sqlite",
     "CACHE_STORE": "array",
     "SESSION_DRIVER": "cookie",
-    "LOG_CHANNEL": "stderr",
-    "APP_OFFLINE": "true"
+    "LOG_CHANNEL": "stderr"
   }
 }
