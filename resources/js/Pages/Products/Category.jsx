@@ -64,9 +64,9 @@ export default function ProductsCategory({ category, subcategory, items = [], se
 
             {/* Header */}
             <header className="relative bg-white dark:bg-[#0a0a0a] pt-36 pb-16 overflow-hidden transition-colors duration-300">
-                <div className="container-content relative z-10">
+                <div className="container-content relative z-10 max-w-3xl mx-auto text-center">
                     {/* Breadcrumbs */}
-                    <nav className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 mb-6">
+                    <nav className="flex items-center justify-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 mb-6">
                         <Link href="/" className="hover:text-slate-900 dark:hover:text-white transition-colors">HOME</Link>
                         <span>/</span>
                         <Link href="/products" className="hover:text-slate-900 dark:hover:text-white transition-colors">PRODUCTS</Link>
@@ -74,8 +74,8 @@ export default function ProductsCategory({ category, subcategory, items = [], se
                         <span className="text-blue-600 dark:text-beacon uppercase font-bold">{subcategory.name}</span>
                     </nav>
 
-                    <div className="max-w-3xl">
-                        <span className="badge-rf text-xs mb-3">
+                    <div className="max-w-3xl mx-auto text-center">
+                        <span className="badge-rf text-xs mb-3 inline-block">
                             {category.name}
                         </span>
                         <AnimatedHeading
@@ -84,17 +84,17 @@ export default function ProductsCategory({ category, subcategory, items = [], se
                             stagger={40}
                             highlight="last"
                             highlightCount={1}
-                            className="text-3xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
+                            className="text-3xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight text-center"
                         >
                             {subcategory.name}
                         </AnimatedHeading>
-                        <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-steel leading-relaxed font-sans">
+                        <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-steel leading-relaxed font-sans max-w-2xl mx-auto text-center">
                             {subcategory.description || `Browse high-durability ${subcategory.name} equipment and systems engineered for mission-critical deployments across India.`}
                         </p>
 
                         {/* Subcategory Search filter input */}
                         {items.length > 0 && (
-                            <div className="mt-8 max-w-lg relative">
+                            <div className="mt-8 max-w-lg mx-auto relative text-left">
                                 <input 
                                     type="text"
                                     placeholder={`Search in ${subcategory.name} (e.g. ST-200R, NX-3220)...`}

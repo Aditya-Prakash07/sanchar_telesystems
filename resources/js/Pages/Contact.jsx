@@ -46,8 +46,8 @@ export default function Contact({ seo = {}, flash = {} }) {
             {/* Header */}
             <header className="relative bg-white dark:bg-[#0a0a0a] pt-36 pb-16 overflow-hidden transition-colors duration-300">
                 <div className="container-content relative z-10">
-                    <div className="max-w-3xl">
-                        <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
+                    <div className="max-w-3xl mx-auto text-center">
+                        <div className="inline-flex items-center justify-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
                             <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
                             <span>DIRECT ENGINEERING DESK &bull; NEW DELHI HQ</span>
                         </div>
@@ -56,11 +56,11 @@ export default function Contact({ seo = {}, flash = {} }) {
                             immediate={true}
                             stagger={40}
                             highlightPhrase="Operations & Procurement"
-                            className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
+                            className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight text-center"
                         >
                             Contact Technical Operations & Procurement
                         </AnimatedHeading>
-                        <p className="mt-5 text-lg text-slate-600 dark:text-steel leading-relaxed font-sans">
+                        <p className="mt-5 text-lg text-slate-600 dark:text-steel leading-relaxed font-sans max-w-2xl mx-auto text-center">
                             Consult with our RF design team, request formal government tender authorizations, or schedule an onsite propagation survey.
                         </p>
                     </div>

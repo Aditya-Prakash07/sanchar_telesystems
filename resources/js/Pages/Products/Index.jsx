@@ -135,8 +135,8 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
 
             {/* Header */}
             <header className="relative bg-white dark:bg-[#0a0a0a] pt-36 pb-16 overflow-hidden transition-colors duration-300">
-                <div className="container-content relative z-10 max-w-3xl">
-                    <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
+                <div className="container-content relative z-10 max-w-3xl mx-auto text-center">
+                    <div className="inline-flex items-center justify-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
                         <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
                         <span>TACTICAL HARDWARE & SYSTEMS CATALOG</span>
                     </div>
@@ -145,17 +145,17 @@ export default function ProductsIndex({ categories = [], seo = {} }) {
                         immediate={true}
                         stagger={40}
                         highlightPhrase="Wireless Communications"
-                        className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
+                        className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight text-center"
                     >
                         Wireless Communications Equipment
                     </AnimatedHeading>
-                    <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-steel leading-relaxed font-sans">
+                    <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-steel leading-relaxed font-sans max-w-2xl mx-auto text-center">
                         Engineered for defense, public safety, high-speed rail, and hazardous environments.
                         Select a product vertical below to explore terminals, base stations, and accessories.
                     </p>
 
                     {/* Search filter input */}
-                    <div className="mt-8 max-w-lg relative">
+                    <div className="mt-8 max-w-lg mx-auto relative text-left">
                         <input 
                             type="text"
                             placeholder="Search products (e.g. ST-200R, PoC, DMR, Diamond)..."

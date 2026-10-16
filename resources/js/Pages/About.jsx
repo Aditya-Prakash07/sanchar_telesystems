@@ -50,8 +50,8 @@ export default function About({ team = [], seo = {} }) {
             {/* Header */}
             <header className="relative bg-white dark:bg-[#0a0a0a] pt-36 pb-20 overflow-hidden transition-colors duration-300">
                 <div className="container-content relative z-10">
-                    <div className="max-w-3xl">
-                        <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
+                    <div className="max-w-3xl mx-auto text-center">
+                        <div className="inline-flex items-center justify-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
                             <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-beacon animate-pulse" />
                             <span>GOVT. OF INDIA WPC & TEC APPROVED SUPPLIER &bull; NEW DELHI HQ</span>
                         </div>
@@ -60,16 +60,16 @@ export default function About({ team = [], seo = {} }) {
                             immediate={true}
                             stagger={40}
                             highlightPhrase="Wireless Communications."
-                            className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
+                            className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight text-center"
                         >
                             Mobility, Efficiency & Reliability in Wireless Communications.
                         </AnimatedHeading>
-                        <p className="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+                        <p className="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-sans max-w-2xl mx-auto text-center">
                             Sanchar Telesystems is a market leader in mission-critical wireless communications in India. We pioneer in offering world-class wireless communication solutions to customers around the country.
                         </p>
                     </div>
 
-                    <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 max-w-4xl text-xs font-mono">
+                    <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 max-w-4xl mx-auto text-xs font-mono text-center border-t border-slate-100 dark:border-white/5">
                         <div>
                             <span className="text-slate-500 dark:text-slate-400 block">UNITS DEPLOYED</span>
                             <span className="text-slate-900 dark:text-white font-bold mt-1 block">300,000+ UNITS SOLD</span>

@@ -187,27 +187,26 @@ export default function OemPartners({ partners = [], seo = {} }) {
             {/* Header */}
             <header className="relative bg-white dark:bg-[#0a0a0a] pt-36 pb-20 overflow-hidden transition-colors duration-300">
                 <div className="container-content relative z-10">
-                    <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
-                        <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-beacon animate-pulse" />
-                        <span>GLOBAL TECHNOLOGY ALLIANCES &bull; OEM NETWORK</span>
-                    </div>
-
-                    <div className="max-w-3xl">
+                    <div className="max-w-3xl mx-auto text-center">
+                        <div className="inline-flex items-center justify-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
+                            <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-beacon animate-pulse" />
+                            <span>GLOBAL TECHNOLOGY ALLIANCES &bull; OEM NETWORK</span>
+                        </div>
                         <AnimatedHeading
                             as="h1"
                             immediate={true}
                             stagger={40}
                             highlightPhrase="Indian Spectrum."
-                            className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
+                            className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight text-center"
                         >
                             World-Class Hardware, Calibrated for Indian Spectrum.
                         </AnimatedHeading>
-                        <p className="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+                        <p className="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-sans max-w-2xl mx-auto text-center">
                             We collaborate with Tier-1 international radio manufacturers, antenna specialists, and tactical audio engineers to engineer turnkey, WPC-certified communication systems for India's defense, public safety, and enterprise sectors.
                         </p>
                     </div>
 
-                    <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 max-w-4xl text-xs font-mono">
+                    <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 max-w-4xl mx-auto text-xs font-mono text-center border-t border-slate-100 dark:border-white/5">
                         <div>
                             <span className="text-slate-500 dark:text-slate-400 block">INTEGRATION MODEL</span>
                             <span className="text-slate-900 dark:text-white font-bold mt-1 block">DIRECT AUTHORIZED TIER-1</span>

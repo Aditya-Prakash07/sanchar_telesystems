@@ -47,8 +47,8 @@ export default function NewsIndex({ posts = [], seo = {} }) {
 
             {/* Header */}
             <header className="relative bg-white dark:bg-[#0a0a0a] pt-36 pb-16 overflow-hidden transition-colors duration-300">
-                <div className="container-content relative z-10 max-w-3xl">
-                    <div className="inline-flex items-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
+                <div className="container-content relative z-10 max-w-3xl mx-auto text-center">
+                    <div className="inline-flex items-center justify-center gap-2 text-xs font-mono text-blue-600 dark:text-beacon uppercase tracking-wider mb-4 font-semibold">
                         <span className="w-2 h-2 rounded-full bg-beacon animate-pulse" />
                         <span>INDUSTRY INTELLIGENCE & DISPATCHES</span>
                     </div>
@@ -59,17 +59,17 @@ export default function NewsIndex({ posts = [], seo = {} }) {
                         stagger={40}
                         highlight="last"
                         highlightCount={1}
-                        className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight"
+                        className="text-4xl sm:text-5xl font-display font-bold tracking-tight text-slate-900 dark:text-white leading-tight text-center"
                     >
                         Latest News & Updates
                     </AnimatedHeading>
 
-                    <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-steel leading-relaxed font-sans">
+                    <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-steel leading-relaxed font-sans max-w-2xl mx-auto text-center">
                         Official company dispatches, telecom policy changes, WPC/TEC statutory updates, and mission-critical milestones.
                     </p>
 
                     {/* Search Input */}
-                    <div className="mt-8 max-w-lg relative">
+                    <div className="mt-8 max-w-lg mx-auto relative text-left">
                         <input
                             type="text"
                             placeholder="Search news and announcements..."
