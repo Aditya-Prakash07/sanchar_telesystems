@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Offline | Sanchar Telesystems Limited</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #030712;
+            color: #f1f5f9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 10%, rgba(30, 58, 138, 0.3) 0%, transparent 60%),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 36px 36px, 36px 36px;
+        }
+
+        .container {
+            max-width: 740px;
+            width: 100%;
+            background: rgba(11, 19, 43, 0.88);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(59, 130, 246, 0.28);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 45px rgba(37, 99, 235, 0.15);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-wrap {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            color: #fca5a5;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            margin-bottom: 1.5rem;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #ef4444;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px #ef4444;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.35; transform: scale(1.15); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        h1 {
+            font-size: 2.1rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            color: #ffffff;
+            margin-bottom: 0.85rem;
+            line-height: 1.25;
+        }
+
+        .lead-text {
+            color: #94a3b8;
+            font-size: 1rem;
+            line-height: 1.65;
+            max-width: 580px;
+            margin: 0 auto 2.25rem;
+        }
+
+        .contact-box {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.85), rgba(30, 58, 138, 0.18));
+            border: 1px solid rgba(96, 165, 250, 0.35);
+            border-radius: 14px;
+            padding: 1.75rem 1.75rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-box-title {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: #38bdf8;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .contact-channels {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            align-items: stretch;
+        }
+
+        .contact-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 12px;
+            padding: 1.25rem 1rem;
+            text-decoration: none;
+            color: #ffffff;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .contact-btn:hover {
+            border-color: #38bdf8;
+            background: rgba(30, 58, 138, 0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(56, 189, 248, 0.25);
+        }
+
+        .contact-btn-label {
+            font-size: 0.7rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.45rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .contact-btn-value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            color: #f8fafc;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            white-space: nowrap;
+        }
+
+        .contact-btn:hover .contact-btn-value {
+            color: #38bdf8;
+        }
+
+        .compliance-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.12);
+            font-size: 0.72rem;
+            color: #64748b;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        .compliance-bar span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-note {
+            margin-top: 1.75rem;
+            font-size: 0.75rem;
+            color: #475569;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 2.25rem 1.25rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            .contact-channels {
+                grid-template-columns: 1fr;
+            }
+            .contact-btn-value {
+                font-size: 0.88rem;
+                white-space: normal;
+                word-break: break-all;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 70" width="260" height="57" fill="none">
+                <defs>
+                    <linearGradient id="sancharBlue" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#1d4ed8"/>
+                        <stop offset="35%" stop-color="#3b82f6"/>
+                        <stop offset="70%" stop-color="#60a5fa"/>
+                        <stop offset="100%" stop-color="#93c5fd"/>
+                    </linearGradient>
+                </defs>
+                <g transform="translate(4, 3) scale(0.236)">
+                    <g transform="translate(-38.2, 288.6) scale(0.1, -0.1)" fill="url(#sancharBlue)">
+                        <path d="M1445 2880 c-388 -70 -729 -326 -933 -700 -66 -120 -136 -355 -76 -253 10 18 35 61 54 94 97 171 303 326 532 403 170 56 174 56 873 56 355 0 645 3 645 8 0 24 -138 145 -240 210 -99 62 -233 122 -350 155 -94 26 -123 29 -280 32 -96 2 -197 0 -225 -5z"/>
+                        <path d="M1440 2008 c-134 -8 -247 -35 -329 -78 -67 -36 -156 -122 -148 -142 4 -11 76 -16 372 -26 202 -6 369 -12 371 -14 3 -4 -139 -414 -146 -422 -3 -2 -265 -6 -583 -7 -318 -2 -583 -7 -589 -10 -13 -8 -5 -57 29 -163 l25 -79 509 6 c307 4 509 3 509 -2 0 -11 -70 -274 -104 -386 l-23 -80 -297 -3 c-246 -2 -296 -5 -296 -16 0 -38 226 -211 367 -280 203 -100 349 -131 583 -123 180 6 256 23 418 92 317 136 601 429 717 739 38 102 28 111 -33 29 -29 -39 -94 -111 -145 -160 -186 -176 -382 -255 -674 -269 -122 -7 -133 -6 -133 10 0 16 106 360 131 427 8 20 22 28 61 38 27 8 80 29 118 47 77 39 198 144 186 162 -5 8 -47 12 -138 12 -130 0 -130 0 -124 28 3 15 32 115 64 222 l57 195 350 5 c350 5 350 5 349 35 -2 34 -41 183 -54 204 -7 12 -108 15 -647 15 -351 1 -690 -2 -753 -6z"/>
+                    </g>
+                </g>
+                <text x="76" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="25" font-weight="900" letter-spacing="6.8" fill="url(#sancharBlue)">SANCHAR</text>
+                <text x="76" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.8" fill="#93c5fd">TELESYSTEMS LIMITED.</text>
+            </svg>
+        </div>
+
+        <!-- Status Pill -->
+        <div>
+            <div class="status-badge">
+                <span class="pulse-dot"></span>
+                <span>Website Offline &bull; Scheduled Maintenance</span>
+            </div>
+        </div>
+
+        <!-- Headline & Description -->
+        <h1>Website Temporarily Offline</h1>
+        <p class="lead-text">
+            Our platform is currently offline for scheduled maintenance and infrastructure upgrades. For any inquiries, orders, or urgent requirements, please contact directly:
+        </p>
+
+        <!-- Direct Contact Box with User's Phone & Email -->
+        <div class="contact-box">
+            <div class="contact-box-title">
+                <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V5h2v4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Direct Contact Information</span>
+            </div>
+            <div class="contact-channels">
+                <!-- Phone -->
+                <a href="tel:+919529338081" class="contact-btn">
+                    <div class="contact-btn-label">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/>
+                        </svg>
+                        Call / WhatsApp
+                    </div>
+                    <div class="contact-btn-value">+91 95293 38081</div>
+                </a>
+
+                <!-- Email -->
+                <a href="mailto:mailtoadityaprakash@gmail.com" class="contact-btn">
+                    <div class="contact-btn-label">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                        </svg>
+                        Email Inquiries
+                    </div>
+                    <div class="contact-btn-value">mailtoadityaprakash@gmail.com</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Compliance & Badges -->
+        <div class="compliance-bar">
+            <span>🛡️ GOVT OF INDIA WPC &amp; TEC APPROVED</span>
+            <span>&bull;</span>
+            <span>ISO 9001:2015 CERTIFIED</span>
+            <span>&bull;</span>
+            <span>MAKE IN INDIA</span>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        &copy; <?= date('Y') ?> Sanchar Telesystems Limited. All rights reserved.
+    </div>
+</body>
+</html>

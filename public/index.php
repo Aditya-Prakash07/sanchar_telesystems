@@ -6,8 +6,24 @@ use Illuminate\Http\Request;
 define('LARAVEL_START', microtime(true));
 
 // Determine if the application is in maintenance mode...
-if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
-    require $maintenance;
+if (
+    getenv('APP_OFFLINE') === 'true'
+    || file_exists(__DIR__ . '/../offline.flag')
+    || file_exists(__DIR__ . '/../storage/framework/down')
+    || file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')
+) {
+    http_response_code(503);
+    header('Retry-After: 3600');
+    header('Cache-Control: no-cache, private');
+    if (file_exists(__DIR__ . '/../resources/views/maintenance.php')) {
+        require __DIR__ . '/../resources/views/maintenance.php';
+        exit;
+    } elseif (file_exists(__DIR__ . '/maintenance.html')) {
+        readfile(__DIR__ . '/maintenance.html');
+        exit;
+    } elseif (isset($maintenance) && file_exists($maintenance)) {
+        require $maintenance;
+    }
 }
 
 // Register the Composer autoloader...
